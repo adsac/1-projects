@@ -16,20 +16,19 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.withFrameMillis
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.geometry.Size
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.graphics.drawscope.DrawScope
 import androidx.compose.ui.graphics.drawscope.Stroke
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
@@ -41,6 +40,7 @@ import com.partygames.app.ui.theme.Player2Color
 import com.partygames.app.ui.theme.Player3Color
 import com.partygames.app.ui.theme.Player4Color
 import kotlinx.coroutines.delay
+import kotlinx.coroutines.isActive
 
 val playerColors = listOf(Player1Color, Player2Color, Player3Color, Player4Color)
 
@@ -59,13 +59,13 @@ fun TowerStackScreen(
         viewModel.initialize(playerCount)
     }
 
-    // Game loop
+    // Game loop using withFrameMillis
     LaunchedEffect(state.gamePhase) {
         if (state.gamePhase != GamePhase.Playing) return@LaunchedEffect
         var lastFrameTime = withFrameMillis { it }
-        while (state.gamePhase == GamePhase.Playing) {
+        while (isActive && state.gamePhase == GamePhase.Playing) {
             val frameTime = withFrameMillis { it }
-            val delta = (frameTime - lastFrameTime).coerceIn(0, 50) / 1000f
+            val delta = (frameTime - lastFrameTime).coerceIn(0L, 50L) / 1000f
             lastFrameTime = frameTime
             viewModel.update(delta)
         }
@@ -106,7 +106,6 @@ fun TowerStackScreen(
             val canvasHeight = size.height
 
             // Scale factor: map game units to pixels
-            // The board is BOARD_WIDTH wide in game units
             val scale = canvasWidth / (BOARD_WIDTH + SWING_MARGIN * 2 + 40f)
             val centerX = canvasWidth / 2f
 
@@ -160,8 +159,10 @@ fun TowerStackScreen(
                 val blockScreenX = centerX + block.x * scale - blockScreenWidth / 2f
                 val blockScreenY = gameYToScreen((block.level + 1) * BLOCK_HEIGHT)
 
+                // Cull off-screen blocks
                 if (blockScreenY + blockScreenHeight < -blockScreenHeight ||
-                    blockScreenY > canvasHeight + blockScreenHeight) continue
+                    blockScreenY > canvasHeight + blockScreenHeight
+                ) continue
 
                 val color = playerColors.getOrElse(block.playerIndex) { Player1Color }
 
@@ -172,7 +173,7 @@ fun TowerStackScreen(
                     size = Size(blockScreenWidth, blockScreenHeight)
                 )
 
-                // Block border
+                // Block border (darker edge)
                 drawRect(
                     color = color.copy(alpha = 0.4f),
                     topLeft = Offset(blockScreenX, blockScreenY),
@@ -189,7 +190,7 @@ fun TowerStackScreen(
                 )
             }
 
-            // Draw dropping block (animation)
+            // Draw dropping block animation
             if (state.isDropping) {
                 val dropBlockWidth = state.dropWidth * scale
                 val dropBlockHeight = BLOCK_HEIGHT * scale
@@ -210,7 +211,7 @@ fun TowerStackScreen(
                 )
             }
 
-            // Draw swinging block at top (only if not dropping)
+            // Draw swinging block at top (only when not dropping and game is active)
             if (!state.isDropping && state.gamePhase == GamePhase.Playing) {
                 val level = state.placedBlocks.size
                 val swingGameY = (level + 1) * BLOCK_HEIGHT + BLOCK_HEIGHT * 2
@@ -221,18 +222,11 @@ fun TowerStackScreen(
 
                 val color = playerColors.getOrElse(state.currentPlayerIndex) { Player1Color }
 
-                // Ghost line showing where it will drop
-                drawLine(
-                    color = color.copy(alpha = 0.15f),
-                    start = Offset(
-                        centerX + state.swingX * scale - swingBlockWidth / 2f,
-                        swingScreenY + swingBlockHeight
-                    ),
-                    end = Offset(
-                        centerX + state.swingX * scale - swingBlockWidth / 2f,
-                        baseTop
-                    ),
-                    strokeWidth = swingBlockWidth,
+                // Ghost column showing drop zone
+                drawRect(
+                    color = color.copy(alpha = 0.08f),
+                    topLeft = Offset(swingScreenX, swingScreenY + swingBlockHeight),
+                    size = Size(swingBlockWidth, baseTop - (swingScreenY + swingBlockHeight))
                 )
 
                 // The swinging block
@@ -248,17 +242,20 @@ fun TowerStackScreen(
                     style = Stroke(width = 2f)
                 )
 
-                // Pulsing indicator line below
+                // Small indicator line below block
                 drawLine(
                     color = color.copy(alpha = 0.4f),
                     start = Offset(swingScreenX, swingScreenY + swingBlockHeight + 4f),
-                    end = Offset(swingScreenX + swingBlockWidth, swingScreenY + swingBlockHeight + 4f),
+                    end = Offset(
+                        swingScreenX + swingBlockWidth,
+                        swingScreenY + swingBlockHeight + 4f
+                    ),
                     strokeWidth = 2f
                 )
             }
         }
 
-        // UI Overlay: Current player indicator
+        // UI Overlay: top HUD (only during play)
         if (state.gamePhase == GamePhase.Playing) {
             Column(
                 modifier = Modifier
@@ -269,14 +266,14 @@ fun TowerStackScreen(
             ) {
                 // Block counter
                 Text(
-                    text = "Block ${state.blocksPlaced + 1} / ${state.totalBlocks}",
+                    text = "Block ${(state.blocksPlaced + 1).coerceAtMost(state.totalBlocks)} / ${state.totalBlocks}",
                     color = Color.White.copy(alpha = 0.6f),
                     fontSize = 14.sp
                 )
 
                 Spacer(modifier = Modifier.height(8.dp))
 
-                // Current player
+                // Current player indicator
                 Row(
                     verticalAlignment = Alignment.CenterVertically,
                     horizontalArrangement = Arrangement.Center
@@ -306,12 +303,14 @@ fun TowerStackScreen(
                 ) {
                     for (i in 0 until state.playerCount) {
                         val isEliminated = i in state.eliminatedPlayers
-                        val color = if (isEliminated) Color.Gray else playerColors.getOrElse(i) { Player1Color }
+                        val color = if (isEliminated) {
+                            Color.Gray
+                        } else {
+                            playerColors.getOrElse(i) { Player1Color }
+                        }
                         val score = state.playerScores[i] ?: 0f
 
-                        Column(
-                            horizontalAlignment = Alignment.CenterHorizontally
-                        ) {
+                        Column(horizontalAlignment = Alignment.CenterHorizontally) {
                             Box(
                                 modifier = Modifier
                                     .size(12.dp)
@@ -329,7 +328,7 @@ fun TowerStackScreen(
                 }
             }
 
-            // Tap instruction
+            // Tap instruction at bottom
             Text(
                 text = "TAP to drop!",
                 color = Color.White.copy(alpha = 0.4f),
@@ -392,7 +391,8 @@ fun TowerStackScreen(
 
                     Spacer(modifier = Modifier.height(16.dp))
 
-                    val winnerColor = playerColors.getOrElse(state.winnerIndex) { Player1Color }
+                    val winnerColor =
+                        playerColors.getOrElse(state.winnerIndex) { Player1Color }
                     Row(
                         verticalAlignment = Alignment.CenterVertically,
                         horizontalArrangement = Arrangement.Center
@@ -413,12 +413,16 @@ fun TowerStackScreen(
 
                     Spacer(modifier = Modifier.height(16.dp))
 
-                    // Final scores
+                    // Final scores for all players
                     for (i in 0 until state.playerCount) {
-                        val color = if (i in state.eliminatedPlayers) Color.Gray
-                            else playerColors.getOrElse(i) { Player1Color }
+                        val color = if (i in state.eliminatedPlayers) {
+                            Color.Gray
+                        } else {
+                            playerColors.getOrElse(i) { Player1Color }
+                        }
                         val score = state.playerScores[i] ?: 0f
-                        val label = if (i in state.eliminatedPlayers) " (eliminated)" else ""
+                        val label =
+                            if (i in state.eliminatedPlayers) " (eliminated)" else ""
 
                         Text(
                             text = "${playerNames.getOrElse(i) { "Player" }}: ${score.toInt()}$label",
@@ -431,13 +435,4 @@ fun TowerStackScreen(
             }
         }
     }
-}
-
-private suspend fun withFrameMillis(block: (Long) -> Long): Long {
-    var result = 0L
-    androidx.compose.ui.platform.LocalDensity
-    kotlinx.coroutines.withContext(kotlinx.coroutines.Dispatchers.Main) {
-        result = block(System.nanoTime() / 1_000_000)
-    }
-    return result
 }

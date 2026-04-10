@@ -5,7 +5,6 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlin.math.hypot
-import kotlin.math.sqrt
 import kotlin.random.Random
 
 /** Phases the Bomb Tag game transitions through. */

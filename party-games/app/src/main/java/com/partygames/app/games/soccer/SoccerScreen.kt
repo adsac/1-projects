@@ -29,7 +29,7 @@ import androidx.compose.ui.geometry.Size
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.drawscope.DrawScope
 import androidx.compose.ui.graphics.drawscope.Stroke
-import androidx.compose.ui.graphics.drawscope.rotate
+import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
@@ -298,27 +298,18 @@ private fun DashButton(
         modifier = modifier
     ) {
         Text(
-            text = if (rotated) label.reversed() else label,
+            text = label,
             color = Color.White,
             fontSize = 22.sp,
             fontWeight = FontWeight.ExtraBold,
             textAlign = TextAlign.Center,
-            modifier = if (rotated) Modifier.rotateComposable(180f) else Modifier
+            modifier = if (rotated) {
+                Modifier.graphicsLayer { rotationZ = 180f }
+            } else {
+                Modifier
+            }
         )
     }
-}
-
-// Extension to rotate a Modifier for the upside-down P2 text
-private fun Modifier.rotateComposable(degrees: Float): Modifier =
-    this.then(androidx.compose.ui.draw.DrawModifier { contentDrawScope ->
-        // This approach is replaced below with graphicsLayer
-    }.let { this }) // placeholder; we use graphicsLayer instead
-
-// Actually, use graphicsLayer for the rotation:
-@Composable
-private fun Modifier.rotateComposable(degrees: Float): Modifier {
-    // Not needed as a composable; use the simple graphicsLayer approach inline
-    return this
 }
 
 // ---- Drawing functions ----

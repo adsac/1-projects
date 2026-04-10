@@ -19,7 +19,6 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
-import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.geometry.CornerRadius
@@ -95,10 +94,11 @@ fun MiniRacersScreen(
         if (state.phase != RacePhase.Racing) return@LaunchedEffect
         var lastFrameTime = withFrameMillis { it }
         while (isActive) {
-            val currentTime = withFrameMillis { it }
-            val dt = ((currentTime - lastFrameTime) / 1000f).coerceIn(0f, 0.05f)
-            lastFrameTime = currentTime
-            viewModel.update(dt)
+            lastFrameTime = withFrameMillis { frameTime ->
+                val dt = ((frameTime - lastFrameTime) / 1000f).coerceIn(0f, 0.05f)
+                viewModel.update(dt)
+                frameTime
+            }
         }
     }
 
@@ -466,15 +466,3 @@ private fun DrawScope.drawCar(
     }
 }
 
-/**
- * Suspend helper that awaits the next animation frame and returns the
- * frame time in milliseconds.
- */
-private suspend fun withFrameMillis(onFrame: (Long) -> Long): Long {
-    var result = 0L
-    androidx.compose.ui.platform.LocalDensity // ensure compose runtime is available
-    kotlinx.coroutines.withContext(kotlinx.coroutines.Dispatchers.Main) {
-        result = androidx.compose.animation.core.withFrameMillis { onFrame(it) }
-    }
-    return result
-}

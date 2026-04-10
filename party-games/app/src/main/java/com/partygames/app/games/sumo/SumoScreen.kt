@@ -18,13 +18,11 @@ import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
-import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
-import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.geometry.Offset
@@ -210,7 +208,6 @@ private fun ArenaCanvas(state: SumoState) {
         // Cross lines on the dohyo (starting marks)
         val lineLen = arenaR * 0.15f
         val lineOffset = arenaR * 0.15f
-        val lineStroke = Stroke(width = 3.dp.toPx())
         // Left line
         drawLine(
             color = Color(0xFF5C3D2E),

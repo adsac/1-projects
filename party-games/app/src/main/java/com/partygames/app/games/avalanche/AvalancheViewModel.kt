@@ -7,7 +7,6 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
-import kotlin.math.max
 import kotlin.random.Random
 
 // ---------------------------------------------------------------------------
@@ -202,7 +201,7 @@ class AvalancheViewModel : ViewModel() {
     // -----------------------------------------------------------------------
 
     fun update(deltaTime: Float) {
-        var s = _state.value
+        val s = _state.value
         if (s.phase != AvalanchePhase.Playing) return
 
         val dt = deltaTime.coerceIn(0f, 0.05f) // safety cap

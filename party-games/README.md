@@ -19,15 +19,24 @@ A collection of 10 fun multiplayer mini-games playable on a single Android phone
 
 ## Download & Play
 
-### Option 1: Download the APK (easiest)
+### Easiest: tap and install (recommended)
 
-1. Go to the **Actions** tab of this repository
-2. Click the latest successful build
-3. Download the **party-games-debug-apk** artifact
-4. Unzip it and transfer the `.apk` file to your Android phone
-5. Open the APK on your phone and install it (you may need to enable "Install from unknown sources" in Settings)
+1. On your Android phone, open the repo's **Releases** page
+2. Tap the **latest** release (`Party Games (latest build)`)
+3. Tap **`party-games-latest.apk`** - it'll download directly to your phone
+4. Open the downloaded file and tap **Install**
+   - First time only: Android may ask you to allow "Install unknown apps" for your browser. Accept it, then retry.
+5. Done - launch **Party Games** from your app drawer
 
-### Option 2: Build it yourself
+**Share with friends:** just send them the release URL. Every push to the branch updates the same "latest" release, so the link never goes stale.
+
+**Tip:** make a QR code from the release URL (use any free QR generator) and friends can scan it to install on the spot.
+
+### Alternative: download from Actions tab
+
+If you can't find the release, you can grab the APK from any successful CI run: **Actions** tab -> latest build -> download the `party-games-debug-apk` artifact -> unzip and transfer to your phone.
+
+### Build it yourself
 
 **Requirements:** Android Studio (or Android SDK + JDK 17)
 
@@ -43,7 +52,7 @@ Install it on your phone:
 adb install app/build/outputs/apk/debug/app-debug.apk
 ```
 
-### Option 3: Open in Android Studio
+### Open in Android Studio
 
 1. Open Android Studio
 2. File > Open > select the `party-games/` folder

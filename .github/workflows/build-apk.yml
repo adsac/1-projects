@@ -5,6 +5,9 @@ on:
     branches:
       - '**'
 
+permissions:
+  contents: write
+
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -31,8 +34,25 @@ jobs:
         working-directory: party-games
         run: ./gradlew assembleDebug
 
-      - name: Upload debug APK
+      - name: Rename APK
+        run: cp party-games/app/build/outputs/apk/debug/app-debug.apk party-games-latest.apk
+
+      - name: Upload debug APK artifact
         uses: actions/upload-artifact@v4
         with:
           name: party-games-debug-apk
-          path: party-games/app/build/outputs/apk/debug/*.apk
+          path: party-games-latest.apk
+
+      - name: Publish rolling release
+        if: github.ref == 'refs/heads/claude/android-multiplayer-games-4NYnb'
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: latest
+          name: Party Games (latest build)
+          body: |
+            Latest Party Games APK, auto-built from the `claude/android-multiplayer-games-4NYnb` branch.
+
+            **To install:** Tap `party-games-latest.apk` below on your Android phone, then open it to install. You may need to allow "Install unknown apps" for your browser/file manager in Settings.
+          files: party-games-latest.apk
+          prerelease: true
+          make_latest: 'true'

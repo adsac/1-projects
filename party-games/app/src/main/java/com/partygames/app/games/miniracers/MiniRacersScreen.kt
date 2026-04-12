@@ -43,7 +43,7 @@ import com.partygames.app.ui.theme.Player1Color
 import com.partygames.app.ui.theme.Player2Color
 import com.partygames.app.ui.theme.Player3Color
 import com.partygames.app.ui.theme.Player4Color
-import androidx.compose.animation.core.withFrameMillis
+import androidx.compose.runtime.withFrameMillis
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.isActive
 import kotlin.math.atan2

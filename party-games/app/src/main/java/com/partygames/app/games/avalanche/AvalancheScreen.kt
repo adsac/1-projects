@@ -40,6 +40,7 @@ import com.partygames.app.ui.theme.Player1Color
 import com.partygames.app.ui.theme.Player2Color
 import com.partygames.app.ui.theme.Player3Color
 import com.partygames.app.ui.theme.Player4Color
+import androidx.compose.runtime.withFrameMillis
 import kotlinx.coroutines.delay
 import kotlin.math.sin
 
@@ -432,14 +433,3 @@ private fun DrawScope.drawGame(state: AvalancheState) {
     }
 }
 
-// ---------------------------------------------------------------------------
-// Frame-time helper (matches existing project pattern)
-// ---------------------------------------------------------------------------
-
-private suspend fun withFrameMillis(block: (Long) -> Long): Long {
-    var result = 0L
-    kotlinx.coroutines.withContext(kotlinx.coroutines.Dispatchers.Main) {
-        result = block(System.nanoTime() / 1_000_000)
-    }
-    return result
-}

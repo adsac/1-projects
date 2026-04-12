@@ -45,7 +45,7 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import androidx.compose.animation.core.withFrameMillis
+import androidx.compose.runtime.withFrameMillis
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.partygames.app.ui.theme.Player1Color
 import com.partygames.app.ui.theme.Player2Color

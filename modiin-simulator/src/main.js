@@ -3,12 +3,12 @@
 // ============================================================
 import * as THREE from 'three';
 import {
-  TRAFFIC_COUNT, STREETS,
+  TRAFFIC_COUNT, STREETS, LANDMARKS,
   SKY_DAY, SKY_DUSK, SKY_NIGHT, FOG_DAY, FOG_NIGHT,
 } from './config.js';
 import {
   buildTerrain, buildRoads, buildBuildings,
-  buildLandmarks, buildProps, buildSky,
+  buildLandmarks, buildProps, buildSky, buildHorizon,
   lookupLocation, terrainHeight,
 } from './city.js';
 import { Player, ChaseCamera, InputState, makeCar } from './player.js';
@@ -66,6 +66,26 @@ function setLoader(pct, hint) {
 
 const labels = [];
 const sky = buildSky(scene);
+const horizon = buildHorizon(scene);
+
+// Starfield (visible only at night via opacity).
+const starGeo = new THREE.BufferGeometry();
+const starPositions = new Float32Array(2400 * 3);
+for (let i = 0; i < 2400; i++) {
+  const phi = Math.random() * Math.PI * 2;
+  const theta = Math.acos(1 - Math.random() * 0.9);           // upper hemisphere
+  const r = 2800;
+  starPositions[i * 3    ] = r * Math.sin(theta) * Math.cos(phi);
+  starPositions[i * 3 + 1] = r * Math.cos(theta);
+  starPositions[i * 3 + 2] = r * Math.sin(theta) * Math.sin(phi);
+}
+starGeo.setAttribute('position', new THREE.BufferAttribute(starPositions, 3));
+const starMat = new THREE.PointsMaterial({
+  color: 0xffffff, size: 3.5, sizeAttenuation: true, transparent: true, opacity: 0,
+});
+const stars = new THREE.Points(starGeo, starMat);
+scene.add(stars);
+
 await nextFrame();
 
 setLoader(15, 'Sculpting terrain…');
@@ -81,7 +101,8 @@ buildBuildings(scene);
 await nextFrame();
 
 setLoader(75, 'Placing landmarks & Anabe Park…');
-buildLandmarks(scene, labels);
+const waterMeshes = [];
+buildLandmarks(scene, labels, waterMeshes);
 await nextFrame();
 
 setLoader(90, 'Planting trees…');
@@ -164,6 +185,49 @@ function updateTraffic(dt) {
 // ---------- HUD ----------
 const hud = new HUD();
 
+// ---------- Tour: visit every landmark to complete ----------
+const TOUR_TARGETS = LANDMARKS.filter(
+  lm => lm.type !== 'distant' && lm.type !== 'suburb' && lm.type !== 'gateway'
+);
+const visited = new Set();
+hud.setTour(0, TOUR_TARGETS.length);
+
+function checkTour() {
+  const p = player.object.position;
+  for (const lm of TOUR_TARGETS) {
+    if (visited.has(lm.key)) continue;
+    const d = Math.hypot(p.x - lm.pos[0], p.z - lm.pos[1]);
+    const radius = Math.max(lm.size[0], lm.size[1]) * 0.5 + 30;
+    if (d < radius) {
+      visited.add(lm.key);
+      hud.setTour(visited.size, TOUR_TARGETS.length);
+      playChime();
+      if (visited.size === TOUR_TARGETS.length) {
+        hud.showNotice(`🏆 Tour complete! You've seen every landmark in Modi'in.`);
+      } else {
+        hud.showNotice(`★ ${lm.name} visited (${visited.size}/${TOUR_TARGETS.length})`);
+      }
+    }
+  }
+}
+
+function playChime() {
+  ensureAudio();
+  const t = audioCtx.currentTime;
+  [880, 1320].forEach((f, i) => {
+    const osc = audioCtx.createOscillator();
+    const g = audioCtx.createGain();
+    osc.type = 'sine';
+    osc.frequency.setValueAtTime(f, t + i * 0.14);
+    g.gain.setValueAtTime(0.0001, t + i * 0.14);
+    g.gain.exponentialRampToValueAtTime(0.18, t + i * 0.14 + 0.02);
+    g.gain.exponentialRampToValueAtTime(0.0001, t + i * 0.14 + 0.4);
+    osc.connect(g).connect(audioCtx.destination);
+    osc.start(t + i * 0.14);
+    osc.stop(t + i * 0.14 + 0.45);
+  });
+}
+
 // ---------- Day / Night ----------
 let timeOfDay = 9.5;       // hours, 0..24
 let dayPaused = false;
@@ -208,6 +272,11 @@ function updateDayNight(dt) {
   sky.material.color.copy(skyCol);
   scene.background.copy(skyCol);
   scene.fog.color.copy(fogCol);
+
+  // Stars fade in on the way to night.
+  starMat.opacity = isDay ? 0 : isDusk ? 0.25 : 0.95;
+  stars.position.set(player.object.position.x, 0, player.object.position.z);
+  horizon.position.set(player.object.position.x, 0, player.object.position.z);
 
   // Street-lamp glow
   const lampOn = !isDay && !isDusk;
@@ -337,6 +406,7 @@ function loop() {
   sun.target.updateMatrixWorld();
   updateLabels(dt);
   updateEngine();
+  updateWater();
 
   const info = lookupLocation(player.object.position.x, player.object.position.z);
   hud.setLocation(info);
@@ -344,6 +414,7 @@ function loop() {
   hud.setCompass(player.heading);
   hud.tick(dt);
   hud.drawMinimap(player.object.position.x, player.object.position.z, player.heading, traffic);
+  checkTour();
 
   renderer.render(scene, camera);
   requestAnimationFrame(loop);
@@ -364,6 +435,21 @@ hud.reveal();
 hud.showNotice('ברוכים הבאים למודיעין! · Welcome to Modi\'in!\nDrive with WASD — explore the city.');
 last = performance.now();
 requestAnimationFrame(loop);
+
+function updateWater() {
+  const t = performance.now() * 0.001;
+  for (const m of waterMeshes) {
+    const pos = m.geometry.attributes.position;
+    const base = m.userData.basePos;
+    for (let i = 0; i < pos.count; i++) {
+      const x = base[i * 3    ];
+      const y = base[i * 3 + 1];
+      // Z of the geometry lies along the Y axis after rotateX - use base values.
+      pos.setZ(i, Math.sin(x * 0.06 + t * 1.6) * 0.12 + Math.cos(y * 0.05 - t * 1.1) * 0.12);
+    }
+    pos.needsUpdate = true;
+  }
+}
 
 function nextFrame() { return new Promise(r => requestAnimationFrame(() => r())); }
 function sleep(ms) { return new Promise(r => setTimeout(r, ms)); }

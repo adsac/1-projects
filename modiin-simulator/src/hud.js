@@ -13,6 +13,7 @@ export class HUD {
       landmark:      document.getElementById('landmark-near'),
       clock:         document.getElementById('clock'),
       timeOfDay:     document.getElementById('time-of-day'),
+      tourProgress:  document.getElementById('tour-progress'),
       speed:         document.getElementById('speed-value'),
       gear:          document.getElementById('gear-indicator'),
       compassDial:   document.getElementById('compass-dial'),
@@ -143,6 +144,12 @@ export class HUD {
       this.elements.landmark.textContent = '';
       this.lastLandmarkKey = null;
     }
+  }
+
+  setTour(visited, total) {
+    this.elements.tourProgress.textContent = visited === total
+      ? `★ Tour complete! ${visited}/${total}`
+      : `Tour: ${visited}/${total}`;
   }
 
   setClock(hours, tod) {

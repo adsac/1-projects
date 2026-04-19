@@ -216,8 +216,63 @@ export function buildRoads(scene) {
     }
   }
 
+  // Crosswalks wherever two streets cross (rough intersection detection).
+  const crosswalkMat = new THREE.MeshBasicMaterial({
+    color: 0xffffff, transparent: true, opacity: 0.9,
+  });
+  const crosswalks = new THREE.Group();
+  for (let i = 0; i < STREETS.length; i++) {
+    for (let j = i + 1; j < STREETS.length; j++) {
+      const isect = findIntersection(STREETS[i], STREETS[j]);
+      if (!isect) continue;
+      // Draw two hashed strips aligned with each street's tangent.
+      for (const s of [STREETS[i], STREETS[j]]) {
+        if (s.type === 'highway') continue;
+        const { ang } = streetTangentAt(s, isect.x, isect.z);
+        const perpA = ang + Math.PI / 2;
+        const offset = (Math.max(STREETS[i].width, STREETS[j].width) / 2 + 1.5);
+        for (let sgn of [-1, 1]) {
+          for (let k = -3; k <= 3; k++) {
+            const stripe = new THREE.Mesh(
+              new THREE.PlaneGeometry(0.6, 3),
+              crosswalkMat
+            );
+            stripe.rotation.x = -Math.PI / 2;
+            stripe.rotation.z = ang;
+            const cx = isect.x + Math.cos(ang) * offset * sgn + Math.cos(perpA) * k * 0.9;
+            const cz = isect.z + Math.sin(ang) * offset * sgn + Math.sin(perpA) * k * 0.9;
+            stripe.position.set(cx, 0.08, cz);
+            crosswalks.add(stripe);
+          }
+        }
+      }
+    }
+  }
+  group.add(crosswalks);
+
   scene.add(group);
   return group;
+}
+
+function findIntersection(a, b) {
+  for (let i = 0; i < a.path.length - 1; i++) {
+    for (let j = 0; j < b.path.length - 1; j++) {
+      const p = segIntersect(a.path[i], a.path[i+1], b.path[j], b.path[j+1]);
+      if (p) return { x: p[0], z: p[1] };
+    }
+  }
+  return null;
+}
+function segIntersect(A, B, C, D) {
+  const r = [B[0] - A[0], B[1] - A[1]];
+  const s = [D[0] - C[0], D[1] - C[1]];
+  const rxs = r[0] * s[1] - r[1] * s[0];
+  if (Math.abs(rxs) < 1e-6) return null;
+  const qp = [C[0] - A[0], C[1] - A[1]];
+  const t = (qp[0] * s[1] - qp[1] * s[0]) / rxs;
+  const u = (qp[0] * r[1] - qp[1] * r[0]) / rxs;
+  if (t < 0 || t > 1 || u < 0 || u > 1) return null;
+  return [A[0] + t * r[0], A[1] + t * r[1]];
 }
 
 // ----- Labels via canvas sprite -----
@@ -414,7 +469,7 @@ function overlapsLandmark(x, z, pad = 0) {
 }
 
 // ----- Landmarks -----
-export function buildLandmarks(scene, labels) {
+export function buildLandmarks(scene, labels, waterMeshes = []) {
   const group = new THREE.Group();
   group.name = 'landmarks';
 
@@ -434,14 +489,32 @@ export function buildLandmarks(scene, labels) {
       pad.receiveShadow = true;
       sub.add(pad);
 
-      // Lake
+      // Animated lake surface: the Y of each vertex drifts to simulate
+      // ripples. Marked with userData.waterTime so main.js can tick it.
+      const lakeR = Math.min(lm.size[0], lm.size[1]) * 0.3;
+      const lakeGeo = new THREE.CircleGeometry(lakeR, 72);
       const lake = new THREE.Mesh(
-        new THREE.CircleGeometry(Math.min(lm.size[0], lm.size[1]) * 0.3, 40),
-        new THREE.MeshStandardMaterial({ color: lm.accent, roughness: 0.25, metalness: 0.4 })
+        lakeGeo,
+        new THREE.MeshStandardMaterial({
+          color: lm.accent, roughness: 0.18, metalness: 0.55,
+          emissive: 0x123040, emissiveIntensity: 0.1,
+        })
       );
       lake.rotation.x = -Math.PI / 2;
       lake.position.y = 0.12;
+      lake.userData.water = true;
+      lake.userData.basePos = lakeGeo.attributes.position.array.slice();
       sub.add(lake);
+      waterMeshes.push(lake);
+
+      // Small boardwalk / pier
+      const pier = new THREE.Mesh(
+        new THREE.BoxGeometry(3, 0.3, lakeR * 0.8),
+        new THREE.MeshStandardMaterial({ color: 0x6b4a2e, roughness: 1 })
+      );
+      pier.position.set(lakeR * 0.7, 0.2, 0);
+      pier.rotation.y = Math.PI / 2;
+      sub.add(pier);
 
       // Trees
       for (let i = 0; i < 30; i++) {
@@ -660,6 +733,61 @@ function pickSpecies() {
   return 'palm';
 }
 
+function makeBusStop() {
+  const g = new THREE.Group();
+  const pole = new THREE.Mesh(
+    new THREE.CylinderGeometry(0.06, 0.08, 3.2, 6),
+    new THREE.MeshStandardMaterial({ color: 0x4a4a4a, roughness: 0.8 })
+  );
+  pole.position.y = 1.6;
+  g.add(pole);
+  const canopy = new THREE.Mesh(
+    new THREE.BoxGeometry(3.2, 0.12, 1.4),
+    new THREE.MeshStandardMaterial({ color: 0xeaeaea, roughness: 0.5, metalness: 0.2 })
+  );
+  canopy.position.set(0, 2.5, 0);
+  g.add(canopy);
+  const bench = new THREE.Mesh(
+    new THREE.BoxGeometry(2.4, 0.2, 0.4),
+    new THREE.MeshStandardMaterial({ color: 0x2a3a55, roughness: 0.9 })
+  );
+  bench.position.set(0, 0.6, 0);
+  g.add(bench);
+  const sign = new THREE.Mesh(
+    new THREE.BoxGeometry(0.7, 0.9, 0.04),
+    new THREE.MeshStandardMaterial({ color: 0xffffff, emissive: 0x6688aa, emissiveIntensity: 0.15 })
+  );
+  sign.position.set(1.5, 2.2, 0);
+  g.add(sign);
+  return g;
+}
+
+function makeParkedCar() {
+  const g = new THREE.Group();
+  const palette = [0x2c4c8a, 0x8a3a3a, 0xdadada, 0x4a4a4a, 0x2a6a4a, 0xe1a227, 0x6a5a3a];
+  const color = palette[ri(0, palette.length - 1)];
+  const chassis = new THREE.Mesh(
+    new THREE.BoxGeometry(1.8, 0.55, 4.2),
+    new THREE.MeshStandardMaterial({ color, roughness: 0.55, metalness: 0.3 })
+  );
+  chassis.position.y = 0.55;
+  chassis.castShadow = true;
+  g.add(chassis);
+  const cabin = new THREE.Mesh(
+    new THREE.BoxGeometry(1.55, 0.6, 2.1),
+    new THREE.MeshStandardMaterial({ color, roughness: 0.5 })
+  );
+  cabin.position.set(0, 1.1, -0.1);
+  g.add(cabin);
+  const win = new THREE.Mesh(
+    new THREE.BoxGeometry(1.45, 0.55, 2),
+    new THREE.MeshStandardMaterial({ color: 0x1a2330, roughness: 0.3, metalness: 0.7, transparent: true, opacity: 0.8 })
+  );
+  win.position.set(0, 1.15, -0.1);
+  g.add(win);
+  return g;
+}
+
 function makeLampPost() {
   const g = new THREE.Group();
   const pole = new THREE.Mesh(
@@ -713,6 +841,42 @@ export function buildProps(scene) {
     }
   }
 
+  // Bus stops along arterials & the spine — small canopy + pole + bench.
+  for (const s of STREETS) {
+    if (s.type !== 'spine' && s.type !== 'arterial') continue;
+    const total = pathLength(s.path);
+    const spacing = 220;
+    for (let d = 140; d < total; d += spacing) {
+      const side = (Math.floor(d / spacing) % 2 === 0) ? 1 : -1;
+      const { x, z, nx, nz } = samplePath(s.path, d);
+      const bx = x + nx * (s.width / 2 + SIDEWALK_WIDTH - 0.4) * side;
+      const bz = z + nz * (s.width / 2 + SIDEWALK_WIDTH - 0.4) * side;
+      if (overlapsLandmark(bx, bz, 2)) continue;
+      const stop = makeBusStop();
+      stop.position.set(bx, terrainHeight(bx, bz), bz);
+      stop.rotation.y = Math.atan2(nx * side, nz * side);
+      scene.add(stop);
+    }
+  }
+
+  // Parked cars along collector streets in neighborhoods.
+  for (const s of STREETS) {
+    if (s.type !== 'collector') continue;
+    const total = pathLength(s.path);
+    for (let d = 18; d < total; d += rr(14, 28)) {
+      if (rand() < 0.45) continue;
+      const side = rand() < 0.5 ? 1 : -1;
+      const { x, z, tx, tz, nx, nz } = samplePath(s.path, d);
+      const px = x + nx * (s.width / 2 + 1.3) * side;
+      const pz = z + nz * (s.width / 2 + 1.3) * side;
+      if (overlapsLandmark(px, pz, 1)) continue;
+      const car = makeParkedCar();
+      car.position.set(px, terrainHeight(px, pz), pz);
+      car.rotation.y = Math.atan2(tx, tz);
+      scene.add(car);
+    }
+  }
+
   // Scatter pines + olives in the Judean foothills outside the city.
   for (let i = 0; i < 420; i++) {
     const x = rr(-WORLD_SIZE/2 + 40, WORLD_SIZE/2 - 40);
@@ -763,6 +927,42 @@ export function buildSky(scene) {
   sky.name = 'sky';
   scene.add(sky);
   return sky;
+}
+
+// ----- Distant mountain silhouettes (two rings at the horizon) -----
+export function buildHorizon(scene) {
+  const group = new THREE.Group();
+  group.name = 'horizon';
+
+  function ring(radius, amplitude, baseY, color, segments = 96) {
+    const positions = [], indices = [];
+    for (let i = 0; i <= segments; i++) {
+      const a = (i / segments) * Math.PI * 2;
+      const noise = Math.sin(a * 11) * 0.4 + Math.sin(a * 17.3) * 0.3 + Math.sin(a * 5.1) * 0.3;
+      const h = baseY + amplitude * (0.6 + 0.4 * noise);
+      const x = Math.cos(a) * radius, z = Math.sin(a) * radius;
+      positions.push(x, baseY, z);                              // base
+      positions.push(x, h, z);                                  // peak
+    }
+    for (let i = 0; i < segments; i++) {
+      const a = i * 2, b = i * 2 + 1, c = a + 2, d = b + 2;
+      indices.push(a, b, c, c, b, d);
+    }
+    const g = new THREE.BufferGeometry();
+    g.setAttribute('position', new THREE.Float32BufferAttribute(positions, 3));
+    g.setIndex(indices);
+    g.computeVertexNormals();
+    const m = new THREE.MeshBasicMaterial({ color, side: THREE.DoubleSide, fog: true });
+    return new THREE.Mesh(g, m);
+  }
+
+  // Far ridge (Judean hills in the east toward Jerusalem)
+  group.add(ring(2400, 180, 0, 0x4a5a6a, 120));
+  // Nearer ridge (Ben Shemen / Lapid foothills)
+  group.add(ring(1800, 110, 0, 0x5c6b74, 96));
+
+  scene.add(group);
+  return group;
 }
 
 // ----- Neighborhood lookup (for HUD) -----

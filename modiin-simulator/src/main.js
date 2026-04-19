@@ -3,7 +3,7 @@
 // ============================================================
 import * as THREE from 'three';
 import {
-  WORLD_SIZE, TRAFFIC_COUNT, RINGS, RADIAL_COUNT,
+  TRAFFIC_COUNT, STREETS,
   SKY_DAY, SKY_DUSK, SKY_NIGHT, FOG_DAY, FOG_NIGHT,
 } from './config.js';
 import {
@@ -94,18 +94,50 @@ const player = new Player(scene);
 const chaseCam = new ChaseCamera(camera);
 const input = new InputState();
 
-// ---------- NPC traffic ----------
+// ---------- NPC traffic (drive along street polylines) ----------
 const traffic = [];
+function pathTotalLen(p) {
+  let s = 0;
+  for (let i = 0; i < p.length - 1; i++) s += Math.hypot(p[i+1][0]-p[i][0], p[i+1][1]-p[i][1]);
+  return s;
+}
+function sampleStreet(path, dist) {
+  let rem = dist;
+  for (let i = 0; i < path.length - 1; i++) {
+    const [ax, az] = path[i], [bx, bz] = path[i + 1];
+    const L = Math.hypot(bx - ax, bz - az);
+    if (rem <= L) {
+      const t = rem / L;
+      return {
+        x: ax + (bx - ax) * t,
+        z: az + (bz - az) * t,
+        tx: (bx - ax) / L,
+        tz: (bz - az) / L,
+      };
+    }
+    rem -= L;
+  }
+  const last = path[path.length - 1];
+  return { x: last[0], z: last[1], tx: 1, tz: 0 };
+}
+// Pre-compute lengths per drivable street.
+const driveStreets = STREETS
+  .filter(s => s.type !== 'highway' || Math.random() < 0.5)
+  .map(s => ({ street: s, length: pathTotalLen(s.path) }));
+
 function spawnTraffic() {
-  const palette = [0x2b78b0, 0x2d8b55, 0xe1a227, 0xc44545, 0x8a61c6, 0x3c3c3c, 0xd4c9b8];
+  const palette = [0x2b78b0, 0x2d8b55, 0xe1a227, 0xc44545, 0x8a61c6, 0x3c3c3c, 0xd4c9b8, 0xeaeaea];
   for (let i = 0; i < TRAFFIC_COUNT; i++) {
-    const ring = RINGS[1 + Math.floor(Math.random() * (RINGS.length - 2))];
-    const ang = Math.random() * Math.PI * 2;
+    const ds = driveStreets[Math.floor(Math.random() * driveStreets.length)];
     const dir = Math.random() < 0.5 ? 1 : -1;
-    const speed = 6 + Math.random() * 10;
+    const dist = Math.random() * ds.length;
+    const lateral = (Math.random() < 0.5 ? -1 : 1) * ds.street.width * 0.22;
+    const speed = (ds.street.type === 'highway' ? 18 : ds.street.type === 'spine' ? 12 : 8) + Math.random() * 4;
     const car = makeCar(palette[i % palette.length]);
-    car.position.set(Math.cos(ang) * ring.r, 0, Math.sin(ang) * ring.r);
-    car.userData.ai = { ring, ang, dir, speed };
+    const s = sampleStreet(ds.street.path, dist);
+    const nx = -s.tz, nz = s.tx;
+    car.position.set(s.x + nx * lateral, Math.max(0, terrainHeight(s.x, s.z)), s.z + nz * lateral);
+    car.userData.ai = { ds, dir, dist, speed, lateral };
     scene.add(car);
     traffic.push(car);
   }
@@ -115,14 +147,16 @@ spawnTraffic();
 function updateTraffic(dt) {
   for (const car of traffic) {
     const ai = car.userData.ai;
-    const angStep = (ai.speed * ai.dir * dt) / ai.ring.r;
-    ai.ang += angStep;
-    const x = Math.cos(ai.ang) * ai.ring.r;
-    const z = Math.sin(ai.ang) * ai.ring.r;
+    ai.dist += ai.speed * ai.dir * dt;
+    // Bounce at ends
+    if (ai.dist < 0)           { ai.dist = 0; ai.dir = 1; car.rotation.y += Math.PI; }
+    else if (ai.dist > ai.ds.length) { ai.dist = ai.ds.length; ai.dir = -1; car.rotation.y += Math.PI; }
+    const s = sampleStreet(ai.ds.street.path, ai.dist);
+    const nx = -s.tz, nz = s.tx;
+    const x = s.x + nx * ai.lateral;
+    const z = s.z + nz * ai.lateral;
     car.position.set(x, Math.max(0, terrainHeight(x, z)), z);
-    // Tangent direction
-    const tx = -Math.sin(ai.ang) * ai.dir;
-    const tz =  Math.cos(ai.ang) * ai.dir;
+    const tx = s.tx * ai.dir, tz = s.tz * ai.dir;
     car.rotation.y = Math.atan2(tx, tz);
   }
 }

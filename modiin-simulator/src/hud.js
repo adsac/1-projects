@@ -1,7 +1,7 @@
 // ============================================================
 // hud.js — Minimap, compass, clock, neighborhood & landmark UI.
 // ============================================================
-import { RINGS, RADIAL_COUNT, LANDMARKS, CITY_RADIUS, RAD_TO_DEG } from './config.js';
+import { STREETS, LANDMARKS, NEIGHBORHOODS, CITY_BOUNDS, RAD_TO_DEG } from './config.js';
 
 const COMPASS_POINTS = ['N', 'NE', 'E', 'SE', 'S', 'SW', 'W', 'NW'];
 
@@ -25,7 +25,12 @@ export class HUD {
     };
     this.mmCtx = this.elements.minimap.getContext('2d');
     this.mmSize = this.elements.minimap.width;
-    this.mmScale = (this.mmSize * 0.47) / CITY_RADIUS; // fit city within minimap
+    // Fit the city's longest half-extent inside the minimap.
+    const halfMax = Math.max(
+      Math.max(-CITY_BOUNDS.minX, CITY_BOUNDS.maxX),
+      Math.max(-CITY_BOUNDS.minZ, CITY_BOUNDS.maxZ)
+    );
+    this.mmScale = (this.mmSize * 0.46) / halfMax;
     this.lastLandmarkKey = null;
     this.noticeTimer = 0;
     this.hornTimer = 0;
@@ -55,32 +60,42 @@ export class HUD {
     ctx.fillStyle = grd;
     ctx.fillRect(0, 0, this.mmSize, this.mmSize);
 
+    // Neighborhood fills (very subtle warm tint)
+    ctx.fillStyle = 'rgba(255, 210, 119, 0.05)';
+    for (const n of NEIGHBORHOODS) {
+      const [x0, z0, x1, z1] = n.aabb;
+      ctx.fillRect(
+        this.mmSize / 2 + x0 * this.mmScale,
+        this.mmSize / 2 + z0 * this.mmScale,
+        (x1 - x0) * this.mmScale,
+        (z1 - z0) * this.mmScale,
+      );
+    }
+
     // City footprint hint
     ctx.strokeStyle = 'rgba(255,210,119,0.12)';
     ctx.setLineDash([3, 3]);
-    ctx.beginPath();
-    ctx.arc(this.mmSize / 2, this.mmSize / 2, CITY_RADIUS * this.mmScale, 0, Math.PI * 2);
-    ctx.stroke();
+    ctx.strokeRect(
+      this.mmSize / 2 + CITY_BOUNDS.minX * this.mmScale,
+      this.mmSize / 2 + CITY_BOUNDS.minZ * this.mmScale,
+      (CITY_BOUNDS.maxX - CITY_BOUNDS.minX) * this.mmScale,
+      (CITY_BOUNDS.maxZ - CITY_BOUNDS.minZ) * this.mmScale,
+    );
     ctx.setLineDash([]);
 
-    // Ring roads
-    ctx.strokeStyle = '#5a6b88';
-    ctx.lineWidth = 1.4;
-    for (const ring of RINGS) {
+    // Streets (highways bolder, spine brightest)
+    for (const s of STREETS) {
+      if (s.type === 'highway')   { ctx.strokeStyle = '#6c7e9f'; ctx.lineWidth = 2.2; }
+      else if (s.type === 'spine'){ ctx.strokeStyle = '#ffd277'; ctx.lineWidth = 1.8; }
+      else if (s.type === 'arterial') { ctx.strokeStyle = '#7a8ba8'; ctx.lineWidth = 1.5; }
+      else                        { ctx.strokeStyle = '#4a5878'; ctx.lineWidth = 1; }
       ctx.beginPath();
-      ctx.arc(this.mmSize / 2, this.mmSize / 2, ring.r * this.mmScale, 0, Math.PI * 2);
-      ctx.stroke();
-    }
-
-    // Radial roads
-    ctx.strokeStyle = '#4a5878';
-    ctx.lineWidth = 1;
-    for (let i = 0; i < RADIAL_COUNT; i++) {
-      const a = (i / RADIAL_COUNT) * Math.PI * 2;
-      const rOuter = RINGS[RINGS.length - 1].r * this.mmScale;
-      ctx.beginPath();
-      ctx.moveTo(this.mmSize / 2, this.mmSize / 2);
-      ctx.lineTo(this.mmSize / 2 + Math.cos(a) * rOuter, this.mmSize / 2 + Math.sin(a) * rOuter);
+      for (let i = 0; i < s.path.length; i++) {
+        const [x, z] = s.path[i];
+        const mx = this.mmSize / 2 + x * this.mmScale;
+        const my = this.mmSize / 2 + z * this.mmScale;
+        if (i === 0) ctx.moveTo(mx, my); else ctx.lineTo(mx, my);
+      }
       ctx.stroke();
     }
 

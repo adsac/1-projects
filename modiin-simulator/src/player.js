@@ -101,12 +101,13 @@ export class Player {
     this.object = makeCar(0xd94c3a);
     scene.add(this.object);
 
-    // Start slightly south of the Azrieli Mall on Ring 1
-    this.object.position.set(0, 0, 200);
-    this.object.rotation.y = Math.PI;
+    // Start on Dam HaMaccabim just east of the Azrieli Mall, facing east.
+    this.object.position.set(-1600, 0, -10);
+    this.object.rotation.order = 'YXZ';        // yaw-pitch-roll feels natural
+    this.object.rotation.y = Math.PI / 2;
 
     this.velocity = 0;           // forward speed (m/s, can be negative)
-    this.heading = Math.PI;      // yaw in radians
+    this.heading = Math.PI / 2;  // yaw (facing +X = east)
     this.steerAngle = 0;         // current front-wheel steer
     this.handbrake = false;
 
@@ -167,9 +168,29 @@ export class Player {
     this.object.position.z += dz;
     this.object.rotation.y = this.heading;
 
-    // Terrain follow (the visible car stays planted)
-    const groundY = Math.max(0, terrainHeight(this.object.position.x, this.object.position.z));
-    this.object.position.y = groundY;
+    // Terrain follow with a 4-wheel sample for pitch and roll.
+    const hx = Math.sin(this.heading), hz = Math.cos(this.heading);
+    const px = -hz, pz = hx;                   // right-perp
+    const half = CAR.length * 0.45;
+    const hw = CAR.width * 0.5;
+    const cx = this.object.position.x, cz = this.object.position.z;
+    const yFL = terrainHeight(cx + hx * half - px * hw, cz + hz * half - pz * hw);
+    const yFR = terrainHeight(cx + hx * half + px * hw, cz + hz * half + pz * hw);
+    const yRL = terrainHeight(cx - hx * half - px * hw, cz - hz * half - pz * hw);
+    const yRR = terrainHeight(cx - hx * half + px * hw, cz - hz * half + pz * hw);
+    const front = (yFL + yFR) * 0.5;
+    const rear  = (yRL + yRR) * 0.5;
+    const left  = (yFL + yRL) * 0.5;
+    const right = (yFR + yRR) * 0.5;
+    const avg = (yFL + yFR + yRL + yRR) * 0.25;
+    this.object.position.y = avg;
+    // Body pitch (nose-up on accel, nose-down on brake) + terrain pitch.
+    const targetPitch = Math.atan2(rear - front, CAR.length) - Math.sign(this.velocity) * 0.01 - (throttle > 0 ? 0.015 : 0) + (throttle < 0 && this.velocity > 1 ? 0.025 : 0);
+    const targetRoll  = Math.atan2(left - right, CAR.width);
+    this._pitch = (this._pitch || 0) * 0.85 + targetPitch * 0.15;
+    this._roll  = (this._roll  || 0) * 0.85 + targetRoll  * 0.15;
+    this.object.rotation.x = this._pitch;
+    this.object.rotation.z = this._roll;
 
     // Wheel spin (visual)
     const wheels = this.object.userData.wheels;
@@ -192,8 +213,8 @@ export class Player {
   }
 
   respawn() {
-    this.object.position.set(0, 0, 200);
-    this.heading = Math.PI;
+    this.object.position.set(-1600, 0, -10);
+    this.heading = Math.PI / 2;
     this.velocity = 0;
   }
 

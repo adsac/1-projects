@@ -3,10 +3,10 @@
 // ============================================================
 import * as THREE from 'three';
 import {
-  WORLD_SIZE, TERRAIN_SEGMENTS, CITY_RADIUS,
-  RINGS, RADIAL_COUNT, NEIGHBORHOODS, LANDMARKS,
+  WORLD_SIZE, TERRAIN_SEGMENTS, CITY_BOUNDS,
+  STREETS, NEIGHBORHOODS, LANDMARKS,
   BUILDING_COLORS, ROOF_COLORS,
-  ROAD_WIDTH, SIDEWALK_WIDTH, DEG,
+  SIDEWALK_WIDTH,
 } from './config.js';
 
 // ----- Seeded RNG so every run looks identical -----
@@ -37,43 +37,53 @@ function fbm(x, y) {
   }
   return v;
 }
+// ----- Terrain: Modi'in sits on foothills. West is low (valley floor
+// near the station), center has Titura Hill (archaeological mound),
+// east rises to Moriah ridge. Anabe Park is a shallow basin east.
 export function terrainHeight(x, z) {
-  const d = Math.hypot(x, z);
-  // "outside" is 0 inside the city (flat) and 1 in the surrounding hills.
-  const outside = THREE.MathUtils.smoothstep(d, CITY_RADIUS * 0.55, CITY_RADIUS * 1.1);
-  const hills = (fbm(x, z) - 0.5) * 55;
-  const ridge = Math.sin(x * 0.0009) * Math.cos(z * 0.0012) * 6 * outside;
-  // Gentle Anabe depression east of center
-  const anabeDist = Math.hypot(x - 1050, z - 150);
-  const anabe = -Math.max(0, 18 - anabeDist * 0.02) * 0.4;
-  return hills * outside + ridge + anabe;
+  // Large-scale west-to-east rise (a few meters over several km).
+  const eastRise = (x + 2100) * 0.0055;                 // ~ +22m across the city
+  // Perimeter hills mask (only active outside city bounds).
+  const outCity = THREE.MathUtils.smoothstep(
+    Math.max(
+      Math.abs(x) - (CITY_BOUNDS.maxX - 40),
+      Math.abs(z) - (CITY_BOUNDS.maxZ - 40)
+    ), 0, 400
+  );
+  const hills = (fbm(x, z) - 0.5) * 60 * outCity;
+  // Small in-city undulations so driving doesn't feel dead-flat.
+  const undul = (fbm(x * 0.5 + 800, z * 0.5 - 400) - 0.5) * 3;
+  // Titura Hill — a prominent archaeological mound near city center.
+  const titDist = Math.hypot(x - 50, z - 30);
+  const titura = Math.max(0, (1 - titDist / 110)) * 42;
+  // Anabe bowl — a gentle depression where the lake sits.
+  const anabeDist = Math.hypot(x - 1700, z - 250);
+  const anabe = -Math.max(0, 1 - anabeDist / 220) * 5;
+  // Highway cuts: 443 north and 431 south sit in shallow grooves.
+  const cut443 = -Math.max(0, 1 - Math.abs(z + 920) / 60) * 4;
+  const cut431 = -Math.max(0, 1 - Math.abs(z - 960) / 60) * 4;
+  return eastRise + hills + undul + titura + anabe + cut443 + cut431;
 }
 
-// Distance from point to nearest road — used to flatten + pave.
-export function roadDistance(x, z) {
-  const d = Math.hypot(x, z);
-  let best = Infinity;
+// Distance from (x,z) to the nearest street centerline, along with
+// the street it was closest to. Used for paving and keeping buildings
+// off roads.
+export function nearestStreet(x, z) {
+  let bestD = Infinity, bestStreet = null;
+  for (const s of STREETS) {
+    for (let i = 0; i < s.path.length - 1; i++) {
+      const [ax, az] = s.path[i], [bx, bz] = s.path[i + 1];
+      const d = distToSegment(x, z, ax, az, bx, bz);
+      if (d < bestD) { bestD = d; bestStreet = s; }
+    }
+  }
+  return { d: bestD, street: bestStreet };
+}
+export function roadDistance(x, z) { return nearestStreet(x, z).d; }
 
-  // Ring roads
-  for (const ring of RINGS) {
-    best = Math.min(best, Math.abs(d - ring.r));
-  }
-  // Radial avenues, only within outer ring
-  if (d < RINGS[RINGS.length - 1].r + 40) {
-    const a = Math.atan2(z, x);
-    const step = (Math.PI * 2) / RADIAL_COUNT;
-    const snapped = Math.round(a / step) * step;
-    const perp = Math.abs(Math.sin(a - snapped)) * d;
-    if (d > 40) best = Math.min(best, perp);
-  }
-  // Spurs to outlying landmarks (train station + Anabe + forest)
-  const spurs = [
-    [-650, 780], [1050, 150], [1300, -900], [-1150, 450], [-900, -200],
-  ];
-  for (const [sx, sz] of spurs) {
-    best = Math.min(best, distToSegment(x, z, 0, 0, sx, sz));
-  }
-  return best;
+// Minimum lateral distance to be "on" the nearest street's pavement.
+export function pavedWidth(street) {
+  return street.width * 0.55;
 }
 
 function distToSegment(px, py, ax, ay, bx, by) {
@@ -96,29 +106,30 @@ export function buildTerrain(scene) {
   for (let i = 0; i < pos.count; i++) {
     const x = pos.getX(i), z = pos.getZ(i);
     let h = terrainHeight(x, z);
-    const rd = roadDistance(x, z);
-    if (rd < ROAD_WIDTH + SIDEWALK_WIDTH) {
-      // Flatten roads + sidewalks
-      h = THREE.MathUtils.lerp(h, 0, 0.9);
+    const ns = nearestStreet(x, z);
+    const paved = ns.street ? pavedWidth(ns.street) : 0;
+    if (ns.d < paved + SIDEWALK_WIDTH) {
+      // Pull road surface down to the terrain-at-centerline (smooth conform).
+      h = THREE.MathUtils.lerp(h, terrainHeight(x, z) - 0.05, 0.85);
     }
     pos.setY(i, h);
 
-    // Vertex color: grass, road, dirt, rock by elevation + proximity
-    if (rd < ROAD_WIDTH) {
-      c.setHex(0x2c2f36);                            // asphalt
-    } else if (rd < ROAD_WIDTH + SIDEWALK_WIDTH) {
-      c.setHex(0xbdb6a6);                            // sidewalk
+    const inCity =
+      x > CITY_BOUNDS.minX - 50 && x < CITY_BOUNDS.maxX + 50 &&
+      z > CITY_BOUNDS.minZ - 50 && z < CITY_BOUNDS.maxZ + 50;
+
+    if (ns.d < paved) {
+      c.setHex(ns.street.type === 'highway' ? 0x23262c : 0x2c2f36);
+    } else if (ns.d < paved + SIDEWALK_WIDTH) {
+      c.setHex(0xbdb6a6);                                  // sidewalk
+    } else if (inCity) {
+      c.setHex(0x8aa16a);                                  // lawns / medians
+      if (rand() < 0.18) c.offsetHSL(0, 0, rr(-0.05, 0.05));
     } else {
-      const d = Math.hypot(x, z);
-      const inCity = d < CITY_RADIUS;
-      if (inCity) {
-        c.setHex(0x8fa36a);                          // city greenery
-        if (rand() < 0.15) c.offsetHSL(0, 0, rr(-0.04, 0.04));
-      } else {
-        // Outside city: hills → tan/ochre, higher → rockier
-        const t = THREE.MathUtils.clamp((h + 20) / 40, 0, 1);
-        c.setRGB(0.55 + t * 0.18, 0.50 + t * 0.10, 0.32 + t * 0.04);
-      }
+      // Judean foothills: tan & ochre, darker where elevation rises.
+      const t = THREE.MathUtils.clamp((h + 10) / 40, 0, 1);
+      c.setRGB(0.56 + t * 0.12, 0.50 + t * 0.08, 0.34 + t * 0.04);
+      if (rand() < 0.08) c.offsetHSL(0, 0, rr(-0.05, 0.05));
     }
     colors[i * 3 + 0] = c.r;
     colors[i * 3 + 1] = c.g;
@@ -139,62 +150,70 @@ export function buildTerrain(scene) {
   return mesh;
 }
 
-// ----- Roads as ribbons (slightly above terrain to avoid z-fight) -----
+// ----- Roads: build a triangulated ribbon from each street's polyline.
+function streetRibbon(path, width, yOffset = 0.06) {
+  const positions = [], indices = [], uvs = [];
+  const half = width / 2;
+  let cumulative = 0;
+
+  for (let i = 0; i < path.length; i++) {
+    const [x, z] = path[i];
+    // Tangent (average of adjacent segments)
+    let tx, tz;
+    if (i === 0)                       { tx = path[1][0] - x; tz = path[1][1] - z; }
+    else if (i === path.length - 1)    { tx = x - path[i-1][0]; tz = z - path[i-1][1]; }
+    else                                { tx = path[i+1][0] - path[i-1][0]; tz = path[i+1][1] - path[i-1][1]; }
+    const tl = Math.hypot(tx, tz) || 1;
+    tx /= tl; tz /= tl;
+    const nx = -tz, nz = tx;           // left perpendicular
+
+    positions.push(x + nx * half, yOffset, z + nz * half);
+    positions.push(x - nx * half, yOffset, z - nz * half);
+    uvs.push(0, cumulative / width, 1, cumulative / width);
+
+    if (i < path.length - 1) {
+      cumulative += Math.hypot(path[i+1][0] - x, path[i+1][1] - z);
+    }
+  }
+  for (let i = 0; i < path.length - 1; i++) {
+    const a = i * 2, b = i * 2 + 1, c = a + 2, d = b + 2;
+    indices.push(a, b, c, c, b, d);
+  }
+  const geo = new THREE.BufferGeometry();
+  geo.setAttribute('position', new THREE.Float32BufferAttribute(positions, 3));
+  geo.setAttribute('uv', new THREE.Float32BufferAttribute(uvs, 2));
+  geo.setIndex(indices);
+  geo.computeVertexNormals();
+  return geo;
+}
+
 export function buildRoads(scene) {
   const group = new THREE.Group();
   group.name = 'roads';
 
-  const ringMat = new THREE.MeshStandardMaterial({
-    color: 0x2a2d34, roughness: 0.9, metalness: 0.0,
+  const asphaltMat = new THREE.MeshStandardMaterial({
+    color: 0x2c2f36, roughness: 0.9, metalness: 0.0,
   });
-  const laneMat = new THREE.MeshBasicMaterial({ color: 0xf0e07b });
+  const highwayMat = new THREE.MeshStandardMaterial({
+    color: 0x23262c, roughness: 0.85, metalness: 0.0,
+  });
 
-  // Ring roads
-  for (const ring of RINGS) {
-    const g = new THREE.RingGeometry(ring.r - ROAD_WIDTH * 0.55, ring.r + ROAD_WIDTH * 0.55, 96);
-    g.rotateX(-Math.PI / 2);
-    const m = new THREE.Mesh(g, ringMat);
-    m.position.y = 0.05;
-    m.receiveShadow = true;
-    group.add(m);
+  for (const s of STREETS) {
+    const mat = s.type === 'highway' ? highwayMat : asphaltMat;
+    const geo = streetRibbon(s.path, s.width);
+    const mesh = new THREE.Mesh(geo, mat);
+    mesh.receiveShadow = true;
+    mesh.userData.street = s;
+    group.add(mesh);
 
-    // Dashed center line
-    const lg = new THREE.RingGeometry(ring.r - 0.12, ring.r + 0.12, 96, 1, 0, Math.PI * 2);
-    lg.rotateX(-Math.PI / 2);
-    const dash = new THREE.Mesh(lg, laneMat);
-    dash.position.y = 0.08;
-    // Approximate dashes by scaling UV — easier: alpha test with a mask texture.
-    dash.material = new THREE.MeshBasicMaterial({
-      color: 0xf0e07b, transparent: true, opacity: 0.55,
-    });
-    group.add(dash);
-  }
-
-  // Radial avenues (straight bars from inner ring to outer)
-  const radialLen = RINGS[RINGS.length - 1].r;
-  const radialGeo = new THREE.PlaneGeometry(ROAD_WIDTH * 1.1, radialLen);
-  radialGeo.rotateX(-Math.PI / 2);
-  radialGeo.translate(0, 0.05, radialLen / 2);
-  for (let i = 0; i < RADIAL_COUNT; i++) {
-    const m = new THREE.Mesh(radialGeo.clone(), ringMat);
-    m.rotation.y = (i * Math.PI * 2) / RADIAL_COUNT;
-    m.receiveShadow = true;
-    group.add(m);
-  }
-
-  // Spur roads out to distant landmarks
-  const spurs = [
-    { to: [-650, 780] }, { to: [1050, 150] },
-    { to: [1300, -900] }, { to: [-1150, 450] }, { to: [-900, -200] },
-  ];
-  for (const { to } of spurs) {
-    const len = Math.hypot(to[0], to[1]);
-    const g = new THREE.PlaneGeometry(ROAD_WIDTH * 1.1, len);
-    g.rotateX(-Math.PI / 2);
-    g.translate(0, 0.05, len / 2);
-    const m = new THREE.Mesh(g, ringMat);
-    m.rotation.y = -Math.atan2(to[1], to[0]) + Math.PI / 2;
-    group.add(m);
+    // Center lane stripe (slightly brighter) for arterials+highways.
+    if (s.type === 'highway' || s.type === 'arterial' || s.type === 'spine') {
+      const stripe = streetRibbon(s.path, 0.3, 0.07);
+      const stripeMat = new THREE.MeshBasicMaterial({
+        color: s.type === 'highway' ? 0xffffff : 0xf0e07b, transparent: true, opacity: 0.85,
+      });
+      group.add(new THREE.Mesh(stripe, stripeMat));
+    }
   }
 
   scene.add(group);
@@ -331,36 +350,39 @@ function makeBuilding(width, depth, floors, color, roofColor) {
   return g;
 }
 
-// Populate each sector between ring roads with buildings facing the street.
+// Populate each neighborhood AABB with buildings on a jittered grid,
+// rotating each to face the nearest street.
 export function buildBuildings(scene) {
   const group = new THREE.Group();
   group.name = 'buildings';
+  const STEP = 22;
 
-  for (let ri2 = 0; ri2 < RINGS.length - 1; ri2++) {
-    const rInner = RINGS[ri2].r + ROAD_WIDTH + 3;
-    const rOuter = RINGS[ri2 + 1].r - ROAD_WIDTH - 3;
-    if (rOuter <= rInner) continue;
-    for (let i = 0; i < RADIAL_COUNT * 3; i++) {
-      const ang = (i / (RADIAL_COUNT * 3)) * Math.PI * 2;
+  for (const n of NEIGHBORHOODS) {
+    const [x0, z0, x1, z1] = n.aabb;
+    const isCenter = n.key === 'heart' || n.key === 'mercaz';
+    for (let x = x0 + 10; x < x1 - 10; x += STEP) {
+      for (let z = z0 + 10; z < z1 - 10; z += STEP) {
+        if (rand() < 0.18) continue;                   // plaza gaps
+        const jx = rr(-6, 6), jz = rr(-6, 6);
+        const px = x + jx, pz = z + jz;
 
-      for (let r = rInner + 6; r < rOuter - 6; r += rr(12, 22)) {
-        if (rand() < 0.10) continue;               // sparse voids for plazas
-        const jitterA = rr(-0.03, 0.03);
-        const x = Math.cos(ang + jitterA) * r;
-        const z = Math.sin(ang + jitterA) * r;
+        const ns = nearestStreet(px, pz);
+        if (!ns.street || ns.d < pavedWidth(ns.street) + 3) continue;
+        if (overlapsLandmark(px, pz, 8)) continue;
 
-        // Keep off roads + landmark footprints
-        if (roadDistance(x, z) < ROAD_WIDTH + 3) continue;
-        if (overlapsLandmark(x, z, 10)) continue;
+        // Face the nearest street: compute tangent at closest point.
+        const { ang } = streetTangentAt(ns.street, px, pz);
+        const faceAng = ang + Math.PI / 2;
 
-        const floors = ri2 === 0 ? ri(3, 5) : ri2 === 1 ? ri(3, 6) : ri(2, 4);
-        const width = rr(8, 14);
-        const depth = rr(8, 13);
+        // Taller in the Heart; shorter at city edges.
+        const floors = isCenter ? ri(4, 7) : ri(2, 5);
+        const width = rr(9, 14);
+        const depth = rr(9, 13);
         const color = BUILDING_COLORS[ri(0, BUILDING_COLORS.length - 1)];
-        const roof = ROOF_COLORS[ri(0, ROOF_COLORS.length - 1)];
+        const roof  = ROOF_COLORS[ri(0, ROOF_COLORS.length - 1)];
         const b = makeBuilding(width, depth, floors, color, roof);
-        b.position.set(x, 0, z);
-        b.rotation.y = -ang + Math.PI / 2 + rr(-0.08, 0.08);
+        b.position.set(px, terrainHeight(px, pz), pz);
+        b.rotation.y = faceAng + rr(-0.05, 0.05);
         group.add(b);
       }
     }
@@ -368,6 +390,19 @@ export function buildBuildings(scene) {
 
   scene.add(group);
   return group;
+}
+
+// Return unit tangent angle of a street near (x,z).
+function streetTangentAt(street, x, z) {
+  let best = Infinity, bestI = 0;
+  for (let i = 0; i < street.path.length - 1; i++) {
+    const [ax, az] = street.path[i], [bx, bz] = street.path[i + 1];
+    const d = distToSegment(x, z, ax, az, bx, bz);
+    if (d < best) { best = d; bestI = i; }
+  }
+  const [ax, az] = street.path[bestI];
+  const [bx, bz] = street.path[bestI + 1];
+  return { ang: Math.atan2(bz - az, bx - ax) };
 }
 
 function overlapsLandmark(x, z, pad = 0) {
@@ -385,7 +420,8 @@ export function buildLandmarks(scene, labels) {
 
   for (const lm of LANDMARKS) {
     const sub = new THREE.Group();
-    sub.position.set(lm.pos[0], 0, lm.pos[1]);
+    // Sit the landmark on the current terrain height at its footprint center.
+    sub.position.set(lm.pos[0], terrainHeight(lm.pos[0], lm.pos[1]), lm.pos[1]);
 
     if (lm.type === 'park') {
       // Flat green pad + lake + trees
@@ -427,28 +463,60 @@ export function buildLandmarks(scene, labels) {
         t.position.set(rr(-lm.size[0] / 2 + 4, lm.size[0] / 2 - 4), 0, rr(-lm.size[1] / 2 + 4, lm.size[1] / 2 - 4));
         sub.add(t);
       }
-    } else if (lm.type === 'nature') {
-      // Hill / archaeology mound
-      const mound = new THREE.Mesh(
-        new THREE.ConeGeometry(lm.size[0] * 0.9, lm.h, 12),
-        new THREE.MeshStandardMaterial({ color: lm.color, roughness: 0.98 })
-      );
-      mound.position.y = lm.h / 2;
-      mound.castShadow = true;
-      sub.add(mound);
-      // Flag on top
+    } else if (lm.type === 'nature' || lm.type === 'hill') {
+      // Archaeological mound (Titura). The mound shape is already
+      // embedded in the terrain; here we add ruins + paths + flag.
+      for (let i = 0; i < 5; i++) {
+        const stone = new THREE.Mesh(
+          new THREE.BoxGeometry(rr(3, 6), rr(1.2, 2.2), rr(3, 6)),
+          new THREE.MeshStandardMaterial({ color: 0xc8b996, roughness: 1 })
+        );
+        const a = rr(0, Math.PI * 2), r = rr(20, 60);
+        stone.position.set(Math.cos(a) * r, rr(20, 36), Math.sin(a) * r);
+        stone.rotation.y = rr(0, Math.PI);
+        stone.castShadow = true;
+        sub.add(stone);
+      }
       const pole = new THREE.Mesh(
         new THREE.CylinderGeometry(0.15, 0.15, 8),
         new THREE.MeshStandardMaterial({ color: 0x999999 })
       );
-      pole.position.y = lm.h + 4;
+      pole.position.y = 48;
       sub.add(pole);
       const flag = new THREE.Mesh(
-        new THREE.PlaneGeometry(3, 2),
-        new THREE.MeshStandardMaterial({ color: lm.accent, side: THREE.DoubleSide })
+        new THREE.PlaneGeometry(3.5, 2.2),
+        new THREE.MeshStandardMaterial({ color: 0xffffff, side: THREE.DoubleSide })
       );
-      flag.position.set(1.5, lm.h + 7, 0);
+      flag.position.set(1.8, 51, 0);
       sub.add(flag);
+    } else if (lm.type === 'distant' || lm.type === 'suburb') {
+      // Cluster of low-detail cream boxes to fill the horizon.
+      for (let i = 0; i < 24; i++) {
+        const w = rr(10, 22), d = rr(10, 22), h = rr(lm.h * 0.6, lm.h);
+        const b = new THREE.Mesh(
+          new THREE.BoxGeometry(w, h, d),
+          new THREE.MeshStandardMaterial({ color: lm.color, roughness: 0.9 })
+        );
+        b.position.set(rr(-lm.size[0]/2, lm.size[0]/2), h / 2, rr(-lm.size[1]/2, lm.size[1]/2));
+        b.castShadow = true; b.receiveShadow = true;
+        sub.add(b);
+      }
+    } else if (lm.type === 'gateway') {
+      // Tall sculptural gateway arch
+      const pillar = new THREE.Mesh(
+        new THREE.BoxGeometry(2, lm.h, 2),
+        new THREE.MeshStandardMaterial({ color: lm.color, roughness: 0.7 })
+      );
+      pillar.position.y = lm.h / 2;
+      pillar.castShadow = true;
+      sub.add(pillar);
+      const top = new THREE.Mesh(
+        new THREE.TorusGeometry(8, 0.6, 8, 16, Math.PI),
+        new THREE.MeshStandardMaterial({ color: lm.accent, emissive: lm.accent, emissiveIntensity: 0.5 })
+      );
+      top.position.y = lm.h;
+      top.rotation.x = Math.PI / 2;
+      sub.add(top);
     } else {
       // Generic landmark building with accent band
       const base = new THREE.Mesh(
@@ -510,39 +578,86 @@ export function buildLandmarks(scene, labels) {
   return group;
 }
 
-// ----- Props: trees, lamp posts -----
-export function makeTree(conifer = false) {
+// ----- Props: trees, lamp posts --------------------------
+// Tree species tuned for Mediterranean/Judean look.
+export function makeTree(species = 'pine') {
   const g = new THREE.Group();
-  const trunk = new THREE.Mesh(
-    new THREE.CylinderGeometry(0.22, 0.3, 2.2, 6),
-    new THREE.MeshStandardMaterial({ color: 0x6a4a2b, roughness: 1 })
-  );
-  trunk.position.y = 1.1;
-  trunk.castShadow = true;
-  g.add(trunk);
+  const trunkMat = new THREE.MeshStandardMaterial({ color: 0x6a4a2b, roughness: 1 });
 
-  if (conifer) {
+  if (species === 'cypress') {
+    // Tall narrow spire (classic Italian / graveyard cypress).
+    const trunk = new THREE.Mesh(new THREE.CylinderGeometry(0.18, 0.22, 1.2, 6), trunkMat);
+    trunk.position.y = 0.6; g.add(trunk);
+    const spire = new THREE.Mesh(
+      new THREE.ConeGeometry(0.9, 6.5, 10),
+      new THREE.MeshStandardMaterial({ color: 0x2e5028, roughness: 1 })
+    );
+    spire.position.y = 4.5; spire.castShadow = true; g.add(spire);
+  } else if (species === 'olive') {
+    // Short, silvery, gnarled canopy.
+    const trunk = new THREE.Mesh(new THREE.CylinderGeometry(0.28, 0.4, 1.6, 6), trunkMat);
+    trunk.position.y = 0.8; g.add(trunk);
+    for (let i = 0; i < 3; i++) {
+      const bunch = new THREE.Mesh(
+        new THREE.SphereGeometry(0.9 + rand() * 0.3, 8, 6),
+        new THREE.MeshStandardMaterial({ color: 0x8a9d70, roughness: 1 })
+      );
+      bunch.position.set(rr(-0.7, 0.7), 2 + rr(-0.2, 0.4), rr(-0.7, 0.7));
+      bunch.castShadow = true;
+      g.add(bunch);
+    }
+  } else if (species === 'palm') {
+    // Date palm: tall trunk, spray of fronds.
+    const trunk = new THREE.Mesh(
+      new THREE.CylinderGeometry(0.22, 0.32, 6, 8),
+      new THREE.MeshStandardMaterial({ color: 0x8d6a3a, roughness: 1 })
+    );
+    trunk.position.y = 3; trunk.castShadow = true; g.add(trunk);
+    const frondMat = new THREE.MeshStandardMaterial({ color: 0x56893a, roughness: 1, side: THREE.DoubleSide });
+    for (let i = 0; i < 7; i++) {
+      const frond = new THREE.Mesh(new THREE.PlaneGeometry(2.4, 0.5), frondMat);
+      const a = (i / 7) * Math.PI * 2;
+      frond.position.set(Math.cos(a) * 0.9, 6 + rand() * 0.2, Math.sin(a) * 0.9);
+      frond.rotation.y = a;
+      frond.rotation.z = -0.6;
+      g.add(frond);
+    }
+  } else if (species === 'jacaranda') {
+    // Purple-blooming shade tree (street trees in spring).
+    const trunk = new THREE.Mesh(new THREE.CylinderGeometry(0.22, 0.3, 2.4, 6), trunkMat);
+    trunk.position.y = 1.2; g.add(trunk);
+    const canopy = new THREE.Mesh(
+      new THREE.SphereGeometry(1.8 + rand() * 0.5, 10, 8),
+      new THREE.MeshStandardMaterial({ color: 0x8b68c8, roughness: 1 })
+    );
+    canopy.position.y = 3.3; canopy.castShadow = true; g.add(canopy);
+  } else {
+    // Pine (Jerusalem pine default)
+    const trunk = new THREE.Mesh(new THREE.CylinderGeometry(0.22, 0.3, 2.2, 6), trunkMat);
+    trunk.position.y = 1.1; g.add(trunk);
     for (let i = 0; i < 3; i++) {
       const cone = new THREE.Mesh(
         new THREE.ConeGeometry(1.5 - i * 0.3, 1.8, 8),
-        new THREE.MeshStandardMaterial({ color: 0x2f5a2a, roughness: 1 })
+        new THREE.MeshStandardMaterial({ color: 0x3a6a34, roughness: 1 })
       );
       cone.position.y = 2 + i * 1.0;
       cone.castShadow = true;
       g.add(cone);
     }
-  } else {
-    const canopy = new THREE.Mesh(
-      new THREE.SphereGeometry(1.4 + rand() * 0.5, 10, 8),
-      new THREE.MeshStandardMaterial({ color: 0x558a3a, roughness: 1 })
-    );
-    canopy.position.y = 3;
-    canopy.castShadow = true;
-    g.add(canopy);
   }
-  const s = rr(0.8, 1.3);
+
+  const s = rr(0.85, 1.2);
   g.scale.set(s, s, s);
   return g;
+}
+
+function pickSpecies() {
+  const r = rand();
+  if (r < 0.35) return 'pine';
+  if (r < 0.55) return 'cypress';
+  if (r < 0.75) return 'olive';
+  if (r < 0.90) return 'jacaranda';
+  return 'palm';
 }
 
 function makeLampPost() {
@@ -571,33 +686,43 @@ export function buildProps(scene) {
   trees.name = 'trees';
   lamps.name = 'lamps';
 
-  // Street trees along ring roads
-  for (const ring of RINGS) {
-    const circumference = 2 * Math.PI * ring.r;
-    const count = Math.max(12, Math.floor(circumference / 22));
-    for (let i = 0; i < count; i++) {
-      const a = (i / count) * Math.PI * 2;
-      const r = ring.r + ROAD_WIDTH + SIDEWALK_WIDTH + 1.2;
-      const x = Math.cos(a) * r, z = Math.sin(a) * r;
-      if (overlapsLandmark(x, z, 2)) continue;
-      const t = makeTree();
-      t.position.set(x, 0, z);
+  // Street trees & lamps along every street (except highways — too fast).
+  for (const s of STREETS) {
+    if (s.type === 'highway') continue;
+    const totalLen = pathLength(s.path);
+    const spacing = 18;
+    const n = Math.floor(totalLen / spacing);
+    const half = s.width / 2 + SIDEWALK_WIDTH + 1;
+    for (let i = 0; i < n; i++) {
+      const side = i % 2 === 0 ? 1 : -1;
+      const { x, z, nx, nz } = samplePath(s.path, i * spacing);
+      const tx = x + nx * half * side, tz = z + nz * half * side;
+      if (overlapsLandmark(tx, tz, 2)) continue;
+      // Species choice by street type
+      const species = s.type === 'spine' || s.type === 'arterial'
+        ? (rand() < 0.6 ? 'jacaranda' : 'palm')
+        : pickSpecies();
+      const t = makeTree(species);
+      t.position.set(tx, terrainHeight(tx, tz), tz);
       trees.add(t);
-
       if (i % 3 === 0) {
         const lp = makeLampPost();
-        lp.position.set(x - Math.cos(a) * 0.6, 0, z - Math.sin(a) * 0.6);
+        lp.position.set(tx - nx * side * 0.8, terrainHeight(tx, tz), tz - nz * side * 0.8);
         lamps.add(lp);
       }
     }
   }
 
-  // Scatter trees in hills outside city
-  for (let i = 0; i < 240; i++) {
-    const a = rand() * Math.PI * 2;
-    const r = rr(CITY_RADIUS + 50, WORLD_SIZE / 2 - 40);
-    const x = Math.cos(a) * r, z = Math.sin(a) * r;
-    const t = makeTree(rand() < 0.6);
+  // Scatter pines + olives in the Judean foothills outside the city.
+  for (let i = 0; i < 420; i++) {
+    const x = rr(-WORLD_SIZE/2 + 40, WORLD_SIZE/2 - 40);
+    const z = rr(-WORLD_SIZE/2 + 40, WORLD_SIZE/2 - 40);
+    const inCityX = x > CITY_BOUNDS.minX - 20 && x < CITY_BOUNDS.maxX + 20;
+    const inCityZ = z > CITY_BOUNDS.minZ - 20 && z < CITY_BOUNDS.maxZ + 20;
+    if (inCityX && inCityZ) continue;
+    if (roadDistance(x, z) < 15) continue;
+    const species = rand() < 0.7 ? 'pine' : 'olive';
+    const t = makeTree(species);
     t.position.set(x, terrainHeight(x, z), z);
     trees.add(t);
   }
@@ -605,6 +730,29 @@ export function buildProps(scene) {
   scene.add(trees);
   scene.add(lamps);
   return { trees, lamps };
+}
+
+function pathLength(p) {
+  let s = 0;
+  for (let i = 0; i < p.length - 1; i++) s += Math.hypot(p[i+1][0]-p[i][0], p[i+1][1]-p[i][1]);
+  return s;
+}
+
+function samplePath(path, dist) {
+  let remaining = dist;
+  for (let i = 0; i < path.length - 1; i++) {
+    const [ax, az] = path[i], [bx, bz] = path[i + 1];
+    const segLen = Math.hypot(bx - ax, bz - az);
+    if (remaining <= segLen) {
+      const t = remaining / segLen;
+      const x = ax + (bx - ax) * t, z = az + (bz - az) * t;
+      const tx = (bx - ax) / segLen, tz = (bz - az) / segLen;
+      return { x, z, tx, tz, nx: -tz, nz: tx };
+    }
+    remaining -= segLen;
+  }
+  const last = path[path.length - 1];
+  return { x: last[0], z: last[1], tx: 1, tz: 0, nx: 0, nz: 1 };
 }
 
 // ----- Skybox / sky sphere -----
@@ -619,36 +767,36 @@ export function buildSky(scene) {
 
 // ----- Neighborhood lookup (for HUD) -----
 export function lookupLocation(x, z) {
-  const d = Math.hypot(x, z);
-  const a = (Math.atan2(z, x) * 180 / Math.PI + 360) % 360;
-
-  // Nearest landmark within 100 m
+  // Nearest landmark
   let nearest = null, bestD = Infinity;
   for (const lm of LANDMARKS) {
     const dd = Math.hypot(x - lm.pos[0], z - lm.pos[1]);
     if (dd < bestD) { bestD = dd; nearest = { lm, d: dd }; }
   }
 
-  // Ring / street
-  let street = "Outskirts";
-  if (d < CITY_RADIUS + 40) {
-    let bestRing = null, bestRd = Infinity;
-    for (const ring of RINGS) {
-      const rd = Math.abs(d - ring.r);
-      if (rd < bestRd) { bestRd = rd; bestRing = ring; }
-    }
-    if (bestRing && bestRd < 40) street = bestRing.name;
-    else street = "Side street";
+  // Nearest street name
+  const ns = nearestStreet(x, z);
+  let street = "Off-road";
+  if (ns.street) {
+    const w = pavedWidth(ns.street) + SIDEWALK_WIDTH + 4;
+    street = ns.d < w ? ns.street.name : `near ${ns.street.name}`;
   }
 
-  // Neighborhood
+  // Neighborhood by AABB
   let nb = "Modi'in";
-  for (const n of NEIGHBORHOODS) {
-    const diff = Math.min(Math.abs(a - n.angle), 360 - Math.abs(a - n.angle));
-    if (diff < 18 && d >= n.minR - 20 && d <= n.maxR + 20) { nb = n.name; break; }
+  const inCity =
+    x > CITY_BOUNDS.minX && x < CITY_BOUNDS.maxX &&
+    z > CITY_BOUNDS.minZ && z < CITY_BOUNDS.maxZ;
+  if (!inCity) {
+    if (z < CITY_BOUNDS.minZ) nb = "Judean Foothills (N)";
+    else if (z > CITY_BOUNDS.maxZ) nb = "Judean Foothills (S)";
+    else if (x < CITY_BOUNDS.minX) nb = "Ayalon Valley";
+    else nb = "Eastern Ridge";
+  } else {
+    for (const n of NEIGHBORHOODS) {
+      const [x0, z0, x1, z1] = n.aabb;
+      if (x >= x0 && x <= x1 && z >= z0 && z <= z1) { nb = n.name; break; }
+    }
   }
-  if (d < 180) nb = "The Heart";
-  if (d > CITY_RADIUS) nb = "Judean Foothills";
-
   return { neighborhood: nb, street, nearest };
 }

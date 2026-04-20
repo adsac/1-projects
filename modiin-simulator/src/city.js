@@ -383,15 +383,49 @@ function makeBuilding(width, depth, floors, color, roofColor) {
   body.castShadow = true; body.receiveShadow = true;
   g.add(body);
 
-  // Pitched roof slab
-  const roofH = 0.7;
-  const roof = new THREE.Mesh(
-    new THREE.BoxGeometry(width + 0.5, roofH, depth + 0.5),
-    new THREE.MeshStandardMaterial({ color: roofColor, roughness: 0.85 })
-  );
-  roof.position.y = h + roofH / 2;
-  roof.castShadow = true;
-  g.add(roof);
+  // Roof: most residential blocks in Modi'in wear a pitched terra-cotta
+  // tile roof (a Safdie signature). Taller buildings get a flat cap.
+  if (floors <= 5 && rand() < 0.88) {
+    // Build a gable: two triangular ends + two sloped rectangles.
+    const ridgeH = Math.min(width, depth) * 0.35;
+    const roofMat = new THREE.MeshStandardMaterial({ color: roofColor, roughness: 0.9 });
+    // Sloped panels
+    const slopeLen = Math.sqrt((width / 2) ** 2 + ridgeH ** 2);
+    const slope = new THREE.PlaneGeometry(depth + 0.3, slopeLen);
+    for (const sgn of [-1, 1]) {
+      const panel = new THREE.Mesh(slope, roofMat);
+      panel.rotation.y = Math.PI / 2;
+      panel.rotation.x = -sgn * Math.atan2(width / 2, ridgeH);
+      panel.position.set(sgn * width / 4, h + ridgeH / 2, 0);
+      panel.castShadow = true;
+      panel.receiveShadow = true;
+      g.add(panel);
+    }
+    // Gable end walls (triangular)
+    const gableMat = new THREE.MeshStandardMaterial({ color, roughness: 0.9 });
+    for (const sgn of [-1, 1]) {
+      const tri = new THREE.Shape();
+      tri.moveTo(-width / 2, 0);
+      tri.lineTo( width / 2, 0);
+      tri.lineTo(0, ridgeH);
+      tri.closePath();
+      const triGeo = new THREE.ShapeGeometry(tri);
+      const end = new THREE.Mesh(triGeo, gableMat);
+      end.position.set(0, h, sgn * depth / 2);
+      end.rotation.y = sgn > 0 ? 0 : Math.PI;
+      g.add(end);
+    }
+  } else {
+    // Flat parapet cap for taller / occasional modern buildings.
+    const roofH = 0.7;
+    const roof = new THREE.Mesh(
+      new THREE.BoxGeometry(width + 0.4, roofH, depth + 0.4),
+      new THREE.MeshStandardMaterial({ color: roofColor, roughness: 0.9 })
+    );
+    roof.position.y = h + roofH / 2;
+    roof.castShadow = true;
+    g.add(roof);
+  }
 
   // Occasional rooftop water tanks (very common on Israeli homes)
   if (floors <= 3 && rand() < 0.7) {
@@ -507,7 +541,7 @@ export function buildLandmarks(scene, labels, waterMeshes = []) {
       sub.add(lake);
       waterMeshes.push(lake);
 
-      // Small boardwalk / pier
+      // Boardwalk / pier
       const pier = new THREE.Mesh(
         new THREE.BoxGeometry(3, 0.3, lakeR * 0.8),
         new THREE.MeshStandardMaterial({ color: 0x6b4a2e, roughness: 1 })
@@ -515,6 +549,39 @@ export function buildLandmarks(scene, labels, waterMeshes = []) {
       pier.position.set(lakeR * 0.7, 0.2, 0);
       pier.rotation.y = Math.PI / 2;
       sub.add(pier);
+
+      // Amphitheater: concentric half-rings of seating facing a small
+      // stage. Real Anabe Park has exactly this feature on its west side.
+      const amphi = new THREE.Group();
+      amphi.position.set(-lm.size[0] * 0.28, 0, -lm.size[1] * 0.22);
+      for (let r = 0; r < 6; r++) {
+        const ring = new THREE.Mesh(
+          new THREE.RingGeometry(8 + r * 1.8, 9.5 + r * 1.8, 32, 1, Math.PI, Math.PI),
+          new THREE.MeshStandardMaterial({ color: 0xcbc1a8, roughness: 0.95 })
+        );
+        ring.rotation.x = -Math.PI / 2;
+        ring.position.y = 0.1 + r * 0.45;
+        amphi.add(ring);
+      }
+      const stage = new THREE.Mesh(
+        new THREE.CircleGeometry(6.5, 28),
+        new THREE.MeshStandardMaterial({ color: 0x7e5b3a, roughness: 0.9 })
+      );
+      stage.rotation.x = -Math.PI / 2;
+      stage.position.y = 0.2;
+      amphi.add(stage);
+      sub.add(amphi);
+
+      // Small island in the middle of the lake
+      const island = new THREE.Mesh(
+        new THREE.CylinderGeometry(lakeR * 0.12, lakeR * 0.18, 0.7, 18),
+        new THREE.MeshStandardMaterial({ color: 0x7a9856, roughness: 1 })
+      );
+      island.position.y = 0.35;
+      sub.add(island);
+      const islandTree = makeTree('cypress');
+      islandTree.position.y = 0.7;
+      sub.add(islandTree);
 
       // Trees
       for (let i = 0; i < 30; i++) {

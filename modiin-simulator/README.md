@@ -86,10 +86,42 @@ modiin-simulator/
 
 ## Notes & caveats
 
-- Landmark footprints and coordinates are **approximate** —
-  the goal was a recognizable, playful Modi'in, not a GIS-accurate map.
+### On fidelity
+
+This is a hand-modeled interpretation, not a GIS-sourced reconstruction.
+Positions are placed from memory of the real city and aim for
+*relative* correctness rather than metric accuracy:
+
+- **Azrieli Mall & Modi'in Central Station** are at the city's NW
+  corner, tucked under Route 443 near the Ayalon Valley exit.
+- **Dam HaMaccabim** is the main east-west spine; **Emek Dotan /
+  Zevulun / HaElah / HaYarden / HaHula** are its parallel siblings.
+- **North of the spine (W→E):** Heart → Kaiser → Buchman → Prachim →
+  Avnei Chen. **South of the spine (W→E):** Givat C → Nofim →
+  Shvatim → HaKramim → Moriah.
+- **Titura Hill** is the small archaeological mound just north of
+  the spine between Kaiser and Prachim.
+- **Anabe Park** with its lake, amphitheatre and boardwalks sits at
+  the eastern end of the city, south of the spine.
+- **Route 443** enters from the SW (from the Ayalon Valley), curves
+  over the city along its northern edge, and exits NE toward
+  Jerusalem via the Beit Horon pass. Two exit ramps (Modi'in Center
+  and Moriah) drop into the city.
+- **Route 431** skirts the south edge.
+- **Maccabim-Re'ut** sits west of the main city (merged in 2003).
+- **Ben Shemen Forest** is NW exterior; **Hashmonaim** is a
+  religious town immediately north; **Modi'in Illit** is a distant
+  silhouette far to the east.
+- Every apartment block wears either cream-limestone cladding or a
+  pitched terra-cotta tile roof — Moshe Safdie's municipal signature.
+
+Street polyline paths, neighborhood AABBs and landmark footprints
+remain approximate; do not rely on this to navigate the real city.
+
+### Environment
+
 - Tested on recent Chrome, Firefox, and Safari. Requires WebGL2 and
   top-level `await` in modules.
-- Performance knobs: reduce `TERRAIN_SEGMENTS`, `TRAFFIC_COUNT`,
-  building density in `src/config.js` / `src/city.js` if you're on
-  lower-end hardware.
+- Performance knobs: reduce `TERRAIN_SEGMENTS`, `TRAFFIC_COUNT`, or
+  building density in `src/config.js` / `src/city.js` on lower-end
+  hardware.

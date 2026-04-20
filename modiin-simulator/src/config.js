@@ -148,22 +148,48 @@ export const STREETS = [
     width: 8,
     path: [[1750, -500], [1750, 600]],
   },
-  // Highways at the city edges
+  // Route 443: the main corridor Tel Aviv area → Jerusalem. It enters
+  // Modi'in from the SW (coming up from the Ayalon Valley), curves
+  // above the city along its northern edge, and exits to the NE
+  // toward Jerusalem via the Beit Horon pass.
   {
     key: "hw443",
-    name: "Highway 443",
+    name: "Route 443 (Tel Aviv–Jerusalem)",
     nameHe: "כביש 443",
     type: "highway",
-    width: 22,
-    path: [[-3000, -950], [-1200, -920], [800, -900], [3000, -870]],
+    width: 24,
+    path: [
+      [-3000, 200], [-2500, -100], [-2050, -550], [-1700, -780],
+      [-1100, -900], [0, -940], [1000, -920], [1900, -880],
+      [2500, -700], [3000, -350],
+    ],
   },
+  // Route 431 south edge (east-west, joins Route 6).
   {
     key: "hw431",
-    name: "Highway 431",
+    name: "Route 431",
     nameHe: "כביש 431",
     type: "highway",
     width: 22,
-    path: [[-3000, 970], [-1200, 950], [800, 960], [3000, 990]],
+    path: [[-3000, 980], [-1500, 960], [0, 950], [1500, 970], [3000, 1000]],
+  },
+  // Exit ramp from 443 to the Modi'in Center (near Azrieli).
+  {
+    key: "exit-center",
+    name: "Modi'in Center Exit",
+    nameHe: "מחלף מודיעין מרכז",
+    type: "arterial",
+    width: 11,
+    path: [[-1700, -780], [-1600, -700], [-1550, -620], [-1500, -500]],
+  },
+  // Exit from 443 to Moriah/east
+  {
+    key: "exit-east",
+    name: "Moriah Exit",
+    nameHe: "מחלף מוריה",
+    type: "arterial",
+    width: 11,
+    path: [[1900, -880], [1700, -700], [1500, -500], [1400, -320]],
   },
   // Spur to Anabe Park
   {
@@ -177,18 +203,23 @@ export const STREETS = [
 ];
 
 // ---------- Neighborhoods ----------
-// Axis-aligned rectangles that approximate the real pod layout.
+// Axis-aligned rectangles approximating the real pod layout.
+// Reference: west-to-east Safdie linear plan. North of the spine
+// (z<0) runs Kaiser → Buchman → Prachim → Avnei Chen; south of
+// the spine (z>0) runs Nofim → Shvatim → HaKramim → Moriah; with
+// the Heart/HaLev at the western end near Azrieli, and Givat C
+// and Reut/Maccabim further west.
 export const NEIGHBORHOODS = [
-  { key: "heart",   name: "The Heart / HaLev",  nameHe: "הלב",         center: [-1600,   50], aabb: [-2000, -200, -1200,  250] },
-  { key: "nofim",   name: "Nofim",              nameHe: "הנופים",       center: [-1400, -450], aabb: [-1800, -800, -1000, -200] },
-  { key: "givat-c", name: "Givat C",            nameHe: "גבעת ג׳",      center: [-1300,  500], aabb: [-1750,  200,  -900,  800] },
-  { key: "kaiser",  name: "Kaiser",             nameHe: "קייזר",        center: [ -500, -470], aabb: [ -900, -800,  -100, -180] },
-  { key: "prachim", name: "Prachim",            nameHe: "הפרחים",       center: [ -500,  490], aabb: [ -900,  200,  -100,  780] },
-  { key: "buchman", name: "Buchman",            nameHe: "בוכמן",        center: [  250, -470], aabb: [ -100, -800,   650, -180] },
-  { key: "avnei",   name: "Avnei Chen",         nameHe: "אבני חן",      center: [  300,  500], aabb: [ -100,  200,   700,  800] },
-  { key: "moriah",  name: "Moriah",             nameHe: "מוריה",        center: [  900,  490], aabb: [  550,  200,  1250,  800] },
-  { key: "shvatim", name: "Shvatim",            nameHe: "השבטים",       center: [ 1550, -400], aabb: [ 1250, -750,  1900,  -80] },
-  { key: "kramim",  name: "HaKramim",           nameHe: "הכרמים",       center: [ 1600,  500], aabb: [ 1300,  200,  1950,  780] },
+  { key: "heart",   name: "The Heart / HaLev", nameHe: "לב העיר",  center: [-1300, -300], aabb: [-1650, -720, -1000,   80] },
+  { key: "kaiser",  name: "Kaiser",            nameHe: "קייזר",    center: [ -750, -500], aabb: [-1100, -800,  -400, -180] },
+  { key: "buchman", name: "Buchman",           nameHe: "בוכמן",    center: [  150, -520], aabb: [ -350, -820,   650, -180] },
+  { key: "prachim", name: "Prachim",           nameHe: "הפרחים",   center: [  850, -500], aabb: [  620, -800,  1150, -180] },
+  { key: "avnei",   name: "Avnei Chen",        nameHe: "אבני חן",  center: [ 1450, -450], aabb: [ 1150, -780,  1800, -160] },
+  { key: "shvatim", name: "Shvatim",           nameHe: "השבטים",   center: [ -200,  400], aabb: [ -500,  180,    80,  700] },
+  { key: "nofim",   name: "Nofim",             nameHe: "הנופים",   center: [-1150,  480], aabb: [-1500,  180,  -820,  780] },
+  { key: "givat-c", name: "Givat C",           nameHe: "גבעת ג׳",  center: [-1750,  420], aabb: [-1950,  180, -1550,  780] },
+  { key: "kramim",  name: "HaKramim",          nameHe: "הכרמים",   center: [  450,  460], aabb: [  100,  180,   820,  780] },
+  { key: "moriah",  name: "Moriah",            nameHe: "מוריה",    center: [ 1100,  430], aabb: [  820,  180,  1500,  760] },
 ];
 
 // ---------- Landmarks ----------
@@ -199,109 +230,176 @@ export const LANDMARKS = [
     key: "azrieli",
     name: "Azrieli Mall Modi'in",
     nameHe: "קניון עזריאלי מודיעין",
-    pos: [-1780, -90], size: [130, 90], h: 28,
+    // In reality the mall sits on the city's NW corner, right next
+    // to the Central Station on the south side of Route 443.
+    pos: [-1550, -620], size: [140, 95], h: 28,
     color: 0xe8dcc0, accent: 0x4a78d0,
     type: "mall",
-    description: "Central shopping mall next to the railway station.",
+    description: "Central shopping mall adjacent to the railway station.",
   },
   {
     key: "train",
     name: "Modi'in Central Station",
     nameHe: "תחנת הרכבת מודיעין מרכז",
-    pos: [-1940, -130], size: [240, 55], h: 12,
+    // Immediately west of the mall; real site is "Modi'in Center".
+    pos: [-1780, -620], size: [260, 55], h: 12,
     color: 0xcbc3b2, accent: 0x2b6cb0,
     type: "station",
-    description: "Terminus of Israel Railways line from Tel Aviv.",
+    description: "Western terminus of the Tel Aviv–Modi'in rail line.",
   },
   {
     key: "cityhall",
     name: "City Hall",
     nameHe: "עיריית מודיעין-מכבים-רעות",
-    pos: [-520, 100], size: [70, 60], h: 24,
+    // Sits on Emek HaElah in the civic core, south of the spine.
+    pos: [-420, 210], size: [72, 62], h: 24,
     color: 0xd9cfb8, accent: 0xc44545,
     type: "civic",
     description: "Municipality of Modi'in-Maccabim-Re'ut.",
   },
   {
+    key: "heichal",
+    name: "Heichal HaTarbut",
+    nameHe: "היכל התרבות",
+    pos: [-320, 210], size: [70, 60], h: 18,
+    color: 0xe4d5b0, accent: 0x8a3a3a,
+    type: "civic",
+    description: "City performing-arts hall & cultural center.",
+  },
+  {
+    key: "assuta",
+    name: "Assuta Modi'in Hospital",
+    nameHe: "אסותא מודיעין",
+    pos: [-900, -220], size: [110, 80], h: 22,
+    color: 0xf0e8d4, accent: 0xd63d3d,
+    type: "hospital",
+    description: "Regional outpatient hospital & clinics.",
+  },
+  {
     key: "titura",
     name: "Titura Hill",
     nameHe: "תל תיטורה",
-    pos: [50, 30], size: [160, 160], h: 55,
+    // Real Titura is a small archaeological mound north-central,
+    // between Kaiser and Prachim, just north of the spine.
+    pos: [-80, -320], size: [150, 150], h: 48,
     color: 0xb8a888, accent: 0xffcc55,
     type: "hill",
-    description: "Archaeological hill at the geographic heart of the city.",
+    description: "Archaeological hill & lookout north of Dam HaMaccabim.",
   },
   {
     key: "anabe",
     name: "Anabe Park",
     nameHe: "פארק ענבה",
-    pos: [1700, 250], size: [420, 350], h: 2,
+    // Occupies the east-of-center valley, bordering Moriah on the
+    // south and the eastern extension on the north.
+    pos: [1600, 300], size: [460, 380], h: 2,
     color: 0x4f7a3a, accent: 0x5aa3d6,
     type: "park",
-    description: "Large lakeside park in the eastern valley.",
+    description: "Flagship municipal park with a lake, amphitheatre & paddle-boats.",
+  },
+  {
+    key: "levhair",
+    name: "Lev Ha'ir",
+    nameHe: "לב העיר",
+    pos: [-1150, -180], size: [75, 60], h: 16,
+    color: 0xe8d8b5, accent: 0x3d8b54,
+    type: "mall",
+    description: "Older open-air shopping center near the city core.",
   },
   {
     key: "country",
     name: "Modi'in Country Club",
     nameHe: "קאנטרי קלאב מודיעין",
-    pos: [260, -560], size: [130, 80], h: 10,
+    // Sits on the southern fringe between Nofim and HaKramim.
+    pos: [-600, 660], size: [130, 85], h: 10,
     color: 0xdde6d8, accent: 0x3aa6d0,
     type: "sport",
-    description: "Pools, gym, outdoor courts.",
+    description: "Pools, gym, outdoor courts — a Modi'in social hub.",
   },
   {
     key: "stadium",
     name: "Maccabim Stadium",
     nameHe: "אצטדיון מכבים",
-    pos: [-920, -770], size: [160, 115], h: 18,
+    // In real life the pitch is near the western suburbs.
+    pos: [-1900, 380], size: [160, 115], h: 18,
     color: 0xd6d3ca, accent: 0x36b36b,
     type: "stadium",
     description: "Football pitch and running track.",
   },
   {
+    key: "ronvardi",
+    name: "Ron Vardi High School",
+    nameHe: "תיכון רון ורדי",
+    pos: [1050, -350], size: [95, 70], h: 12,
+    color: 0xd8cba8, accent: 0xb86a2f,
+    type: "school",
+    description: "One of several city high schools.",
+  },
+  {
+    key: "yeshurun",
+    name: "Beit Knesset Yeshurun",
+    nameHe: "בית כנסת ישורון",
+    pos: [130, 320], size: [26, 28], h: 14,
+    color: 0xeadcba, accent: 0xd4b94a,
+    type: "synagogue",
+    description: "Central synagogue with a small rotunda.",
+  },
+  {
     key: "library",
     name: "Modi'in Central Library",
     nameHe: "הספרייה העירונית",
-    pos: [-420, 160], size: [45, 40], h: 14,
+    pos: [-480, 260], size: [50, 42], h: 14,
     color: 0xead5a5, accent: 0x3b6bb2,
     type: "civic",
-    description: "Public library and cultural hall.",
+    description: "Public library & small exhibition hall.",
   },
   {
-    key: "highschool",
-    name: "'Ort' High School",
-    nameHe: "תיכון אורט",
-    pos: [600, 260], size: [80, 60], h: 10,
+    key: "ortschool",
+    name: "Ort 'Sapir' High School",
+    nameHe: "תיכון אורט ספיר",
+    pos: [620, 280], size: [85, 62], h: 10,
     color: 0xd7cfb8, accent: 0xb86a2f,
     type: "school",
-    description: "A city school among many.",
+    description: "Science & arts high school in Buchman.",
   },
   {
     key: "benshemen",
     name: "Ben Shemen Forest",
     nameHe: "יער בן שמן",
-    pos: [-1300, -1600], size: [1000, 600], h: 1,
+    // Real forest sits NW of the city.
+    pos: [-2300, -1500], size: [1100, 700], h: 1,
     color: 0x3d6a2c, accent: 0x2a4a1d,
     type: "forest",
-    description: "Historic pine forest northwest of the city.",
+    description: "Historic pine forest NW of the city; popular for hiking.",
   },
   {
     key: "hashmonaim",
     name: "Hashmonaim",
     nameHe: "חשמונאים",
-    pos: [2300, -1150], size: [450, 300], h: 9,
+    // Religious town just north of Modi'in.
+    pos: [400, -1500], size: [420, 280], h: 9,
     color: 0xe5d5b3, accent: 0x7d3a2a,
     type: "suburb",
-    description: "Neighboring town to the northeast.",
+    description: "Neighboring religious town north of Modi'in.",
+  },
+  {
+    key: "lapid",
+    name: "Lapid",
+    nameHe: "לפיד",
+    pos: [-800, -1550], size: [300, 220], h: 8,
+    color: 0xe0d2b0, accent: 0x7d3a2a,
+    type: "suburb",
+    description: "Small moshav on the northern ridge.",
   },
   {
     key: "maccabim-reut",
     name: "Maccabim-Re'ut",
     nameHe: "מכבים-רעות",
-    pos: [1800, 1200], size: [550, 300], h: 9,
+    // Older garden suburbs sit WEST of main Modi'in (merged 2003).
+    pos: [-2550, 350], size: [650, 550], h: 9,
     color: 0xe0d2b0, accent: 0x6a4b35,
     type: "suburb",
-    description: "Older suburb merged with Modi'in in 2003.",
+    description: "Garden suburbs merged into the municipality in 2003.",
   },
   {
     key: "modiin-illit",

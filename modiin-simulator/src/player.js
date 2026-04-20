@@ -111,7 +111,9 @@ export class Player {
     this.steerAngle = 0;         // current front-wheel steer
     this.handbrake = false;
 
-    this.cameraMode = 0;         // 0 = chase, 1 = cockpit, 2 = top-down, 3 = hood
+    this.cameraMode = 0;         // 0 = chase, 1 = cockpit, 2 = top-down, 3 = hood, 4 = aerial
+    this.aerialHeight = 900;
+    this.aerialAngle = 0;
     this.hornActive = false;
     this.headlightsOn = false;
   }
@@ -264,6 +266,18 @@ export class ChaseCamera {
         p.z + Math.cos(h) * 1.5
       );
       this.look.set(p.x + Math.sin(h) * 12, p.y + 1.4, p.z + Math.cos(h) * 12);
+    } else if (mode === 4) {
+      // Aerial: slow-orbiting bird's-eye over the player, showing the
+      // whole city. Orbit rate is ~1 revolution per 40 s.
+      player.aerialAngle += dt * 0.15;
+      const r = 1100;
+      const aa = player.aerialAngle;
+      this.target.set(
+        p.x + Math.cos(aa) * r,
+        p.y + player.aerialHeight,
+        p.z + Math.sin(aa) * r,
+      );
+      this.look.set(p.x, p.y, p.z);
     }
 
     const lerp = mode === 2 ? 0.15 : 0.12;

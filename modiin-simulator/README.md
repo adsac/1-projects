@@ -17,7 +17,8 @@ any modern browser.
 | `S` / `↓`            | Reverse / brake              |
 | `A` `D` / `←` `→`    | Steer                        |
 | `Space`              | Handbrake                    |
-| `C`                  | Cycle camera (chase / cockpit / top-down / hood) |
+| `C`                  | Cycle camera (chase / cockpit / top-down / hood / aerial) |
+| `V`                  | Toggle aerial bird's-eye view |
 | `H`                  | Horn                         |
 | `N`                  | Toggle permanent night       |
 | `P`                  | Pause day/night cycle        |
@@ -68,6 +69,24 @@ php -S localhost:8080
 ```
 
 Then open <http://localhost:8080>.
+
+## Real-world map data (OpenStreetMap)
+
+The simulator can render the *actual* street grid and building
+footprints of Modi'in by pulling them from OpenStreetMap via the
+Overpass API. Run once (requires Node 18+ for the global `fetch`):
+
+```bash
+node tools/fetch-osm.mjs
+```
+
+This writes `data/osm.json` (~2–5 MB) with projected local-meters
+coordinates. The simulator auto-detects the file on next reload and
+switches to OSM-sourced streets, buildings, parks, water and rail.
+Without the file it falls back to the hand-placed procedural layout.
+
+The fetcher also respects OSM's usage policy — don't re-run it on
+every load.
 
 ## Project layout
 

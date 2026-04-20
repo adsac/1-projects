@@ -11,6 +11,10 @@ import {
   buildLandmarks, buildProps, buildSky, buildHorizon,
   lookupLocation, terrainHeight,
 } from './city.js';
+import {
+  loadOSM, buildOSMStreets, buildOSMBuildings,
+  buildOSMAreas, buildOSMRails, findByName,
+} from './osm.js';
 import { Player, ChaseCamera, InputState, makeCar } from './player.js';
 import { HUD } from './hud.js';
 
@@ -88,25 +92,56 @@ scene.add(stars);
 
 await nextFrame();
 
-setLoader(15, 'Sculpting terrain…');
+setLoader(10, 'Loading OpenStreetMap…');
+const osm = await loadOSM('data/osm.json');
+await nextFrame();
+
+setLoader(20, 'Sculpting terrain…');
 buildTerrain(scene);
 await nextFrame();
 
-setLoader(30, 'Paving ring roads…');
-buildRoads(scene);
-await nextFrame();
-
-setLoader(55, 'Raising apartments…');
-buildBuildings(scene);
-await nextFrame();
-
-setLoader(75, 'Placing landmarks & Anabe Park…');
 const waterMeshes = [];
-buildLandmarks(scene, labels, waterMeshes);
-await nextFrame();
+let lamps;
+if (osm) {
+  setLoader(35, 'Drawing OSM parks & water…');
+  buildOSMAreas(scene, osm);
+  await nextFrame();
 
-setLoader(90, 'Planting trees…');
-const { lamps } = buildProps(scene);
+  setLoader(50, 'Paving OSM streets…');
+  buildOSMStreets(scene, osm);
+  await nextFrame();
+
+  setLoader(65, 'Laying railway…');
+  buildOSMRails(scene, osm);
+  await nextFrame();
+
+  setLoader(80, 'Raising OSM buildings…');
+  buildOSMBuildings(scene, osm);
+  await nextFrame();
+
+  setLoader(88, 'Placing labeled landmarks…');
+  // Labels only — the building geometry is already from OSM.
+  buildLandmarks(scene, labels, waterMeshes, { labelsOnly: true, locateFromOSM: osm });
+  await nextFrame();
+
+  setLoader(93, 'Planting trees…');
+  ({ lamps } = buildProps(scene, { skipStreetProps: true }));
+} else {
+  setLoader(30, 'Paving procedural streets…');
+  buildRoads(scene);
+  await nextFrame();
+
+  setLoader(55, 'Raising apartments…');
+  buildBuildings(scene);
+  await nextFrame();
+
+  setLoader(75, 'Placing landmarks & Anabe Park…');
+  buildLandmarks(scene, labels, waterMeshes);
+  await nextFrame();
+
+  setLoader(90, 'Planting trees…');
+  ({ lamps } = buildProps(scene));
+}
 await nextFrame();
 
 // ---------- Player ----------
@@ -114,6 +149,17 @@ setLoader(95, 'Starting engine…');
 const player = new Player(scene);
 const chaseCam = new ChaseCamera(camera);
 const input = new InputState();
+
+// Respawn near "Dam HaMaccabim" if OSM data has it.
+if (osm) {
+  const spawnSpot = findByName(osm, "המכבים", "Maccabim Blvd", "Dam HaMaccabim", "דרך המכבים");
+  if (spawnSpot) {
+    player.object.position.set(spawnSpot.x, 0, spawnSpot.z);
+    player.heading = Math.PI / 2;
+    player.object.rotation.y = player.heading;
+    console.log('[spawn] snapped to Dam HaMaccabim:', spawnSpot);
+  }
+}
 
 // ---------- NPC traffic (drive along street polylines) ----------
 const traffic = [];
@@ -141,9 +187,12 @@ function sampleStreet(path, dist) {
   const last = path[path.length - 1];
   return { x: last[0], z: last[1], tx: 1, tz: 0 };
 }
-// Pre-compute lengths per drivable street.
-const driveStreets = STREETS
-  .filter(s => s.type !== 'highway' || Math.random() < 0.5)
+// Use OSM streets as the traffic network if available.
+const streetSource = osm ? osm.streets : STREETS;
+const driveStreets = streetSource
+  .filter(s => s.path && s.path.length >= 2)
+  .filter(s => !['highway','service'].includes(s.type) || Math.random() < 0.3)
+  .filter(s => pathTotalLen(s.path) > 40)
   .map(s => ({ street: s, length: pathTotalLen(s.path) }));
 
 function spawnTraffic() {
@@ -298,8 +347,10 @@ function updateDayNight(dt) {
 
 // ---------- Camera controls ----------
 let pendingCameraCycle = false;
+let pendingAerialToggle = false;
 window.addEventListener('keydown', (e) => {
   if (e.code === 'KeyC') pendingCameraCycle = true;
+  if (e.code === 'KeyV') pendingAerialToggle = true;
   if (e.code === 'KeyH') {
     hud.triggerHorn();
     playHorn();
@@ -387,9 +438,15 @@ function loop() {
   last = now;
 
   if (pendingCameraCycle) {
-    player.cameraMode = (player.cameraMode + 1) % 4;
+    player.cameraMode = (player.cameraMode + 1) % 5;
     pendingCameraCycle = false;
-    const modes = ['Chase', 'Cockpit', 'Top-down', 'Hood'];
+    const modes = ['Chase', 'Cockpit', 'Top-down', 'Hood', 'Aerial'];
+    hud.showNotice(`📷 ${modes[player.cameraMode]} camera`);
+  }
+  if (pendingAerialToggle) {
+    pendingAerialToggle = false;
+    player.cameraMode = player.cameraMode === 4 ? 0 : 4;
+    const modes = ['Chase', 'Cockpit', 'Top-down', 'Hood', 'Aerial'];
     hud.showNotice(`📷 ${modes[player.cameraMode]} camera`);
   }
 

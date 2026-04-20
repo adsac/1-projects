@@ -482,6 +482,36 @@ export function buildBuildings(scene) {
   return group;
 }
 
+// Find an OSM feature by name (inline copy so we don't circular-import).
+function findOSMFeature(osm, needle) {
+  const low = needle.toLowerCase();
+  function match(s) { return s && s.toLowerCase().includes(low); }
+  for (const s of osm.streets) {
+    if (match(s.name) || match(s.nameHe)) {
+      const mid = s.path[Math.floor(s.path.length / 2)];
+      return { x: mid[0], z: mid[1] };
+    }
+  }
+  for (const a of osm.areas) {
+    if (match(a.name) || match(a.nameHe)) {
+      let cx = 0, cz = 0;
+      for (const [x, z] of a.polygon) { cx += x; cz += z; }
+      return { x: cx / a.polygon.length, z: cz / a.polygon.length };
+    }
+  }
+  for (const b of osm.buildings) {
+    if (match(b.name) || match(b.nameHe)) {
+      let cx = 0, cz = 0;
+      for (const [x, z] of b.polygon) { cx += x; cz += z; }
+      return { x: cx / b.polygon.length, z: cz / b.polygon.length };
+    }
+  }
+  for (const p of osm.points) {
+    if (match(p.name) || match(p.nameHe)) return { x: p.pos[0], z: p.pos[1] };
+  }
+  return null;
+}
+
 // Return unit tangent angle of a street near (x,z).
 function streetTangentAt(street, x, z) {
   let best = Infinity, bestI = 0;
@@ -504,14 +534,41 @@ function overlapsLandmark(x, z, pad = 0) {
 }
 
 // ----- Landmarks -----
-export function buildLandmarks(scene, labels, waterMeshes = []) {
+export function buildLandmarks(scene, labels, waterMeshes = [], opts = {}) {
   const group = new THREE.Group();
   group.name = 'landmarks';
 
   for (const lm of LANDMARKS) {
     const sub = new THREE.Group();
+
+    // If we have OSM data, snap each landmark to the matching OSM feature
+    // by name so the floating label sits on the real building/park.
+    let posX = lm.pos[0], posZ = lm.pos[1];
+    if (opts.locateFromOSM) {
+      const needles = [lm.name, lm.nameHe].filter(Boolean);
+      if (needles.length) {
+        // Lazy-import would loop; inline the same logic from osm.js here.
+        for (const needle of needles) {
+          const found = findOSMFeature(opts.locateFromOSM, needle);
+          if (found) { posX = found.x; posZ = found.z; break; }
+        }
+      }
+    }
+
     // Sit the landmark on the current terrain height at its footprint center.
-    sub.position.set(lm.pos[0], terrainHeight(lm.pos[0], lm.pos[1]), lm.pos[1]);
+    sub.position.set(posX, terrainHeight(posX, posZ), posZ);
+
+    // If called in label-only mode (OSM supplied all building geometry)
+    // skip the procedural 3D structures and just add the floating label.
+    if (opts.labelsOnly) {
+      const label = makeLabel(lm.name, lm.nameHe);
+      label.position.set(0, (lm.h || 12) + 6, 0);
+      sub.add(label);
+      labels.push({ sprite: label, pos: new THREE.Vector3(posX, 0, posZ), baseY: (lm.h || 12) + 6 });
+      sub.userData.landmark = lm;
+      group.add(sub);
+      continue;
+    }
 
     if (lm.type === 'park') {
       // Flat green pad + lake + trees
@@ -846,11 +903,30 @@ function makeLampPost() {
   return g;
 }
 
-export function buildProps(scene) {
+export function buildProps(scene, opts = {}) {
   const trees = new THREE.Group();
   const lamps = new THREE.Group();
   trees.name = 'trees';
   lamps.name = 'lamps';
+
+  // If OSM supplied the street network, skip the procedural street-trees
+  // and parked cars (those are tied to STREETS polylines).
+  if (opts.skipStreetProps) {
+    for (let i = 0; i < 140; i++) {
+      const x = rr(-WORLD_SIZE/2 + 40, WORLD_SIZE/2 - 40);
+      const z = rr(-WORLD_SIZE/2 + 40, WORLD_SIZE/2 - 40);
+      const inCityX = x > CITY_BOUNDS.minX - 20 && x < CITY_BOUNDS.maxX + 20;
+      const inCityZ = z > CITY_BOUNDS.minZ - 20 && z < CITY_BOUNDS.maxZ + 20;
+      if (inCityX && inCityZ) continue;
+      const species = rand() < 0.7 ? 'pine' : 'olive';
+      const t = makeTree(species);
+      t.position.set(x, terrainHeight(x, z), z);
+      trees.add(t);
+    }
+    scene.add(trees);
+    scene.add(lamps);
+    return { trees, lamps };
+  }
 
   // Street trees & lamps along every street (except highways — too fast).
   for (const s of STREETS) {

@@ -427,13 +427,19 @@ function makeBuilding(width, depth, floors, color, roofColor) {
     g.add(roof);
   }
 
-  // Occasional rooftop water tanks (very common on Israeli homes)
+  // Occasional rooftop water tanks (very common on Israeli homes).
+  // For pitched roofs, sit the tank on the roof ridge; for flat caps,
+  // just above the parapet.
   if (floors <= 3 && rand() < 0.7) {
     const tank = new THREE.Mesh(
       new THREE.CylinderGeometry(0.4, 0.4, 0.9, 10),
       new THREE.MeshStandardMaterial({ color: 0xdddddd, roughness: 0.7 })
     );
-    tank.position.set(rr(-width / 2 + 1, width / 2 - 1), h + roofH + 0.45, rr(-depth / 2 + 1, depth / 2 - 1));
+    tank.position.set(
+      rr(-width / 2 + 1, width / 2 - 1),
+      h + Math.min(width, depth) * 0.18 + 0.45,
+      rr(-depth / 2 + 1, depth / 2 - 1)
+    );
     g.add(tank);
   }
   return g;

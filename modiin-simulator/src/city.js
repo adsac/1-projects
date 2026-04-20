@@ -216,42 +216,51 @@ export function buildRoads(scene) {
     }
   }
 
-  // Crosswalks wherever two streets cross (rough intersection detection).
+  // Crosswalks: only at major intersections, drawn as a single
+  // striped quad per direction (texture), not per-stripe meshes.
   const crosswalkMat = new THREE.MeshBasicMaterial({
-    color: 0xffffff, transparent: true, opacity: 0.9,
+    map: crosswalkTexture(), transparent: true, opacity: 0.9,
   });
   const crosswalks = new THREE.Group();
   for (let i = 0; i < STREETS.length; i++) {
+    const a = STREETS[i];
+    if (a.type === 'collector') continue;               // skip minor crossings
     for (let j = i + 1; j < STREETS.length; j++) {
-      const isect = findIntersection(STREETS[i], STREETS[j]);
+      const b = STREETS[j];
+      if (b.type === 'highway') continue;
+      const isect = findIntersection(a, b);
       if (!isect) continue;
-      // Draw two hashed strips aligned with each street's tangent.
-      for (const s of [STREETS[i], STREETS[j]]) {
-        if (s.type === 'highway') continue;
-        const { ang } = streetTangentAt(s, isect.x, isect.z);
-        const perpA = ang + Math.PI / 2;
-        const offset = (Math.max(STREETS[i].width, STREETS[j].width) / 2 + 1.5);
-        for (let sgn of [-1, 1]) {
-          for (let k = -3; k <= 3; k++) {
-            const stripe = new THREE.Mesh(
-              new THREE.PlaneGeometry(0.6, 3),
-              crosswalkMat
-            );
-            stripe.rotation.x = -Math.PI / 2;
-            stripe.rotation.z = ang;
-            const cx = isect.x + Math.cos(ang) * offset * sgn + Math.cos(perpA) * k * 0.9;
-            const cz = isect.z + Math.sin(ang) * offset * sgn + Math.sin(perpA) * k * 0.9;
-            stripe.position.set(cx, 0.08, cz);
-            crosswalks.add(stripe);
-          }
-        }
-      }
+      const { ang } = streetTangentAt(a, isect.x, isect.z);
+      const w = Math.max(a.width, b.width);
+      const strip = new THREE.Mesh(
+        new THREE.PlaneGeometry(w, 4),
+        crosswalkMat
+      );
+      strip.rotation.x = -Math.PI / 2;
+      strip.rotation.z = ang + Math.PI / 2;
+      strip.position.set(isect.x, 0.08, isect.z);
+      crosswalks.add(strip);
     }
   }
   group.add(crosswalks);
 
   scene.add(group);
   return group;
+}
+
+let _cwTex = null;
+function crosswalkTexture() {
+  if (_cwTex) return _cwTex;
+  const c = document.createElement('canvas');
+  c.width = 64; c.height = 64;
+  const ctx = c.getContext('2d');
+  ctx.fillStyle = 'rgba(0,0,0,0)';
+  ctx.fillRect(0, 0, 64, 64);
+  ctx.fillStyle = '#ffffff';
+  for (let i = 0; i < 8; i++) ctx.fillRect(i * 8, 0, 4, 64);
+  _cwTex = new THREE.CanvasTexture(c);
+  _cwTex.magFilter = THREE.NearestFilter;
+  return _cwTex;
 }
 
 function findIntersection(a, b) {
@@ -361,35 +370,51 @@ function windowTexture(floors, baseColor) {
   return tex;
 }
 
+// ----- Shared material caches — huge perf win.
+const _bodyMatCache = new Map();      // key: floors|color
+const _solidMatCache = new Map();     // key: color
+function getBodyMaterials(floors, color) {
+  const key = `${floors}|${color}`;
+  if (_bodyMatCache.has(key)) return _bodyMatCache.get(key);
+  const tex = windowTexture(floors, color);
+  const wall = new THREE.MeshStandardMaterial({ map: tex, roughness: 0.85 });
+  const top  = getSolidMat(color);
+  // Box faces order: px, nx, py, ny, pz, nz → [side,side,top,top,side,side].
+  const mats = [wall, wall, top, top, wall, wall];
+  _bodyMatCache.set(key, mats);
+  return mats;
+}
+function getSolidMat(color) {
+  if (_solidMatCache.has(color)) return _solidMatCache.get(color);
+  const m = new THREE.MeshStandardMaterial({ color, roughness: 0.9 });
+  _solidMatCache.set(color, m);
+  return m;
+}
+const _roofMatCache = new Map();
+function getRoofMat(color) {
+  if (_roofMatCache.has(color)) return _roofMatCache.get(color);
+  const m = new THREE.MeshStandardMaterial({ color, roughness: 0.9 });
+  _roofMatCache.set(color, m);
+  return m;
+}
+
 // ----- Procedural buildings -----
 function makeBuilding(width, depth, floors, color, roofColor) {
   const g = new THREE.Group();
   const h = floors * 3.2;
-  const tex = windowTexture(floors, color);
-  tex.repeat.set(Math.max(1, Math.round(width / 4)), 1);
 
   const body = new THREE.Mesh(
     new THREE.BoxGeometry(width, h, depth),
-    [
-      new THREE.MeshStandardMaterial({ map: tex, roughness: 0.85 }),
-      new THREE.MeshStandardMaterial({ map: tex, roughness: 0.85 }),
-      new THREE.MeshStandardMaterial({ color, roughness: 0.9 }),
-      new THREE.MeshStandardMaterial({ color, roughness: 0.9 }),
-      new THREE.MeshStandardMaterial({ map: tex, roughness: 0.85 }),
-      new THREE.MeshStandardMaterial({ map: tex, roughness: 0.85 }),
-    ]
+    getBodyMaterials(floors, color)
   );
   body.position.y = h / 2;
   body.castShadow = true; body.receiveShadow = true;
   g.add(body);
 
-  // Roof: most residential blocks in Modi'in wear a pitched terra-cotta
-  // tile roof (a Safdie signature). Taller buildings get a flat cap.
+  // Roof: pitched terra-cotta tile for low/mid, flat cap for tall.
   if (floors <= 5 && rand() < 0.88) {
-    // Build a gable: two triangular ends + two sloped rectangles.
     const ridgeH = Math.min(width, depth) * 0.35;
-    const roofMat = new THREE.MeshStandardMaterial({ color: roofColor, roughness: 0.9 });
-    // Sloped panels
+    const roofMat = getRoofMat(roofColor);
     const slopeLen = Math.sqrt((width / 2) ** 2 + ridgeH ** 2);
     const slope = new THREE.PlaneGeometry(depth + 0.3, slopeLen);
     for (const sgn of [-1, 1]) {
@@ -398,50 +423,20 @@ function makeBuilding(width, depth, floors, color, roofColor) {
       panel.rotation.x = -sgn * Math.atan2(width / 2, ridgeH);
       panel.position.set(sgn * width / 4, h + ridgeH / 2, 0);
       panel.castShadow = true;
-      panel.receiveShadow = true;
       g.add(panel);
     }
-    // Gable end walls (triangular)
-    const gableMat = new THREE.MeshStandardMaterial({ color, roughness: 0.9 });
-    for (const sgn of [-1, 1]) {
-      const tri = new THREE.Shape();
-      tri.moveTo(-width / 2, 0);
-      tri.lineTo( width / 2, 0);
-      tri.lineTo(0, ridgeH);
-      tri.closePath();
-      const triGeo = new THREE.ShapeGeometry(tri);
-      const end = new THREE.Mesh(triGeo, gableMat);
-      end.position.set(0, h, sgn * depth / 2);
-      end.rotation.y = sgn > 0 ? 0 : Math.PI;
-      g.add(end);
-    }
   } else {
-    // Flat parapet cap for taller / occasional modern buildings.
     const roofH = 0.7;
     const roof = new THREE.Mesh(
       new THREE.BoxGeometry(width + 0.4, roofH, depth + 0.4),
-      new THREE.MeshStandardMaterial({ color: roofColor, roughness: 0.9 })
+      getRoofMat(roofColor)
     );
     roof.position.y = h + roofH / 2;
     roof.castShadow = true;
     g.add(roof);
   }
 
-  // Occasional rooftop water tanks (very common on Israeli homes).
-  // For pitched roofs, sit the tank on the roof ridge; for flat caps,
-  // just above the parapet.
-  if (floors <= 3 && rand() < 0.7) {
-    const tank = new THREE.Mesh(
-      new THREE.CylinderGeometry(0.4, 0.4, 0.9, 10),
-      new THREE.MeshStandardMaterial({ color: 0xdddddd, roughness: 0.7 })
-    );
-    tank.position.set(
-      rr(-width / 2 + 1, width / 2 - 1),
-      h + Math.min(width, depth) * 0.18 + 0.45,
-      rr(-depth / 2 + 1, depth / 2 - 1)
-    );
-    g.add(tank);
-  }
+  // Rooftop water tanks removed for perf — too many extra meshes.
   return g;
 }
 
@@ -450,14 +445,14 @@ function makeBuilding(width, depth, floors, color, roofColor) {
 export function buildBuildings(scene) {
   const group = new THREE.Group();
   group.name = 'buildings';
-  const STEP = 22;
+  const STEP = 36;                                    // was 22 — far fewer buildings
 
   for (const n of NEIGHBORHOODS) {
     const [x0, z0, x1, z1] = n.aabb;
     const isCenter = n.key === 'heart' || n.key === 'mercaz';
     for (let x = x0 + 10; x < x1 - 10; x += STEP) {
       for (let z = z0 + 10; z < z1 - 10; z += STEP) {
-        if (rand() < 0.18) continue;                   // plaza gaps
+        if (rand() < 0.30) continue;                   // plaza gaps
         const jx = rr(-6, 6), jz = rr(-6, 6);
         const px = x + jx, pz = z + jz;
 
@@ -724,75 +719,68 @@ export function buildLandmarks(scene, labels, waterMeshes = []) {
   return group;
 }
 
-// ----- Props: trees, lamp posts --------------------------
+// ----- Shared tree resources (huge perf win) --------------
+const _trunkMat = new THREE.MeshStandardMaterial({ color: 0x6a4a2b, roughness: 1 });
+const _paleTrunkMat = new THREE.MeshStandardMaterial({ color: 0x8d6a3a, roughness: 1 });
+const _cypressMat = new THREE.MeshStandardMaterial({ color: 0x2e5028, roughness: 1 });
+const _oliveMat = new THREE.MeshStandardMaterial({ color: 0x8a9d70, roughness: 1 });
+const _palmFrondMat = new THREE.MeshStandardMaterial({ color: 0x56893a, roughness: 1, side: THREE.DoubleSide });
+const _jacaMat = new THREE.MeshStandardMaterial({ color: 0x8b68c8, roughness: 1 });
+const _pineMat = new THREE.MeshStandardMaterial({ color: 0x3a6a34, roughness: 1 });
+
+const _trunkThin = new THREE.CylinderGeometry(0.18, 0.22, 1.2, 6);
+const _trunkMed  = new THREE.CylinderGeometry(0.22, 0.30, 2.2, 6);
+const _trunkOlive = new THREE.CylinderGeometry(0.28, 0.40, 1.6, 6);
+const _trunkPalm = new THREE.CylinderGeometry(0.22, 0.32, 6.0, 8);
+const _cypressGeo = new THREE.ConeGeometry(0.9, 6.5, 8);
+const _oliveGeo = new THREE.SphereGeometry(1.0, 6, 5);
+const _jacaGeo = new THREE.SphereGeometry(1.9, 8, 6);
+const _pineGeo = [
+  new THREE.ConeGeometry(1.5, 1.8, 6),
+  new THREE.ConeGeometry(1.2, 1.8, 6),
+  new THREE.ConeGeometry(0.9, 1.8, 6),
+];
+
 // Tree species tuned for Mediterranean/Judean look.
 export function makeTree(species = 'pine') {
   const g = new THREE.Group();
-  const trunkMat = new THREE.MeshStandardMaterial({ color: 0x6a4a2b, roughness: 1 });
 
   if (species === 'cypress') {
-    // Tall narrow spire (classic Italian / graveyard cypress).
-    const trunk = new THREE.Mesh(new THREE.CylinderGeometry(0.18, 0.22, 1.2, 6), trunkMat);
+    const trunk = new THREE.Mesh(_trunkThin, _trunkMat);
     trunk.position.y = 0.6; g.add(trunk);
-    const spire = new THREE.Mesh(
-      new THREE.ConeGeometry(0.9, 6.5, 10),
-      new THREE.MeshStandardMaterial({ color: 0x2e5028, roughness: 1 })
-    );
-    spire.position.y = 4.5; spire.castShadow = true; g.add(spire);
+    const spire = new THREE.Mesh(_cypressGeo, _cypressMat);
+    spire.position.y = 4.5; g.add(spire);
   } else if (species === 'olive') {
-    // Short, silvery, gnarled canopy.
-    const trunk = new THREE.Mesh(new THREE.CylinderGeometry(0.28, 0.4, 1.6, 6), trunkMat);
+    const trunk = new THREE.Mesh(_trunkOlive, _trunkMat);
     trunk.position.y = 0.8; g.add(trunk);
-    for (let i = 0; i < 3; i++) {
-      const bunch = new THREE.Mesh(
-        new THREE.SphereGeometry(0.9 + rand() * 0.3, 8, 6),
-        new THREE.MeshStandardMaterial({ color: 0x8a9d70, roughness: 1 })
-      );
-      bunch.position.set(rr(-0.7, 0.7), 2 + rr(-0.2, 0.4), rr(-0.7, 0.7));
-      bunch.castShadow = true;
-      g.add(bunch);
-    }
+    const bunch = new THREE.Mesh(_oliveGeo, _oliveMat);
+    bunch.position.y = 2.2; g.add(bunch);
   } else if (species === 'palm') {
-    // Date palm: tall trunk, spray of fronds.
-    const trunk = new THREE.Mesh(
-      new THREE.CylinderGeometry(0.22, 0.32, 6, 8),
-      new THREE.MeshStandardMaterial({ color: 0x8d6a3a, roughness: 1 })
-    );
-    trunk.position.y = 3; trunk.castShadow = true; g.add(trunk);
-    const frondMat = new THREE.MeshStandardMaterial({ color: 0x56893a, roughness: 1, side: THREE.DoubleSide });
-    for (let i = 0; i < 7; i++) {
-      const frond = new THREE.Mesh(new THREE.PlaneGeometry(2.4, 0.5), frondMat);
-      const a = (i / 7) * Math.PI * 2;
-      frond.position.set(Math.cos(a) * 0.9, 6 + rand() * 0.2, Math.sin(a) * 0.9);
-      frond.rotation.y = a;
-      frond.rotation.z = -0.6;
+    const trunk = new THREE.Mesh(_trunkPalm, _paleTrunkMat);
+    trunk.position.y = 3; g.add(trunk);
+    for (let i = 0; i < 6; i++) {
+      const frond = new THREE.Mesh(new THREE.PlaneGeometry(2.4, 0.5), _palmFrondMat);
+      const a = (i / 6) * Math.PI * 2;
+      frond.position.set(Math.cos(a) * 0.9, 6, Math.sin(a) * 0.9);
+      frond.rotation.y = a; frond.rotation.z = -0.6;
       g.add(frond);
     }
   } else if (species === 'jacaranda') {
-    // Purple-blooming shade tree (street trees in spring).
-    const trunk = new THREE.Mesh(new THREE.CylinderGeometry(0.22, 0.3, 2.4, 6), trunkMat);
+    const trunk = new THREE.Mesh(_trunkMed, _trunkMat);
     trunk.position.y = 1.2; g.add(trunk);
-    const canopy = new THREE.Mesh(
-      new THREE.SphereGeometry(1.8 + rand() * 0.5, 10, 8),
-      new THREE.MeshStandardMaterial({ color: 0x8b68c8, roughness: 1 })
-    );
-    canopy.position.y = 3.3; canopy.castShadow = true; g.add(canopy);
+    const canopy = new THREE.Mesh(_jacaGeo, _jacaMat);
+    canopy.position.y = 3.3; g.add(canopy);
   } else {
-    // Pine (Jerusalem pine default)
-    const trunk = new THREE.Mesh(new THREE.CylinderGeometry(0.22, 0.3, 2.2, 6), trunkMat);
+    const trunk = new THREE.Mesh(_trunkMed, _trunkMat);
     trunk.position.y = 1.1; g.add(trunk);
     for (let i = 0; i < 3; i++) {
-      const cone = new THREE.Mesh(
-        new THREE.ConeGeometry(1.5 - i * 0.3, 1.8, 8),
-        new THREE.MeshStandardMaterial({ color: 0x3a6a34, roughness: 1 })
-      );
+      const cone = new THREE.Mesh(_pineGeo[i], _pineMat);
       cone.position.y = 2 + i * 1.0;
-      cone.castShadow = true;
       g.add(cone);
     }
   }
 
-  const s = rr(0.85, 1.2);
+  const s = rr(0.9, 1.15);
   g.scale.set(s, s, s);
   return g;
 }
@@ -806,71 +794,48 @@ function pickSpecies() {
   return 'palm';
 }
 
+const _bsPoleGeo = new THREE.CylinderGeometry(0.06, 0.08, 3.2, 6);
+const _bsPoleMat = new THREE.MeshStandardMaterial({ color: 0x4a4a4a, roughness: 0.8 });
+const _bsCanopyGeo = new THREE.BoxGeometry(3.2, 0.12, 1.4);
+const _bsCanopyMat = new THREE.MeshStandardMaterial({ color: 0xeaeaea, roughness: 0.5, metalness: 0.2 });
+const _bsBenchGeo = new THREE.BoxGeometry(2.4, 0.2, 0.4);
+const _bsBenchMat = new THREE.MeshStandardMaterial({ color: 0x2a3a55, roughness: 0.9 });
 function makeBusStop() {
   const g = new THREE.Group();
-  const pole = new THREE.Mesh(
-    new THREE.CylinderGeometry(0.06, 0.08, 3.2, 6),
-    new THREE.MeshStandardMaterial({ color: 0x4a4a4a, roughness: 0.8 })
-  );
-  pole.position.y = 1.6;
-  g.add(pole);
-  const canopy = new THREE.Mesh(
-    new THREE.BoxGeometry(3.2, 0.12, 1.4),
-    new THREE.MeshStandardMaterial({ color: 0xeaeaea, roughness: 0.5, metalness: 0.2 })
-  );
-  canopy.position.set(0, 2.5, 0);
-  g.add(canopy);
-  const bench = new THREE.Mesh(
-    new THREE.BoxGeometry(2.4, 0.2, 0.4),
-    new THREE.MeshStandardMaterial({ color: 0x2a3a55, roughness: 0.9 })
-  );
-  bench.position.set(0, 0.6, 0);
-  g.add(bench);
-  const sign = new THREE.Mesh(
-    new THREE.BoxGeometry(0.7, 0.9, 0.04),
-    new THREE.MeshStandardMaterial({ color: 0xffffff, emissive: 0x6688aa, emissiveIntensity: 0.15 })
-  );
-  sign.position.set(1.5, 2.2, 0);
-  g.add(sign);
+  const pole = new THREE.Mesh(_bsPoleGeo, _bsPoleMat); pole.position.y = 1.6; g.add(pole);
+  const canopy = new THREE.Mesh(_bsCanopyGeo, _bsCanopyMat); canopy.position.set(0, 2.5, 0); g.add(canopy);
+  const bench = new THREE.Mesh(_bsBenchGeo, _bsBenchMat); bench.position.set(0, 0.6, 0); g.add(bench);
   return g;
 }
 
+const _pcChassis = new THREE.BoxGeometry(1.8, 0.55, 4.2);
+const _pcCabin = new THREE.BoxGeometry(1.55, 0.6, 2.1);
+const _pcPalette = [0x2c4c8a, 0x8a3a3a, 0xdadada, 0x4a4a4a, 0x2a6a4a, 0xe1a227, 0x6a5a3a];
+const _pcBodyMats = _pcPalette.map(c => new THREE.MeshStandardMaterial({ color: c, roughness: 0.55, metalness: 0.3 }));
 function makeParkedCar() {
   const g = new THREE.Group();
-  const palette = [0x2c4c8a, 0x8a3a3a, 0xdadada, 0x4a4a4a, 0x2a6a4a, 0xe1a227, 0x6a5a3a];
-  const color = palette[ri(0, palette.length - 1)];
-  const chassis = new THREE.Mesh(
-    new THREE.BoxGeometry(1.8, 0.55, 4.2),
-    new THREE.MeshStandardMaterial({ color, roughness: 0.55, metalness: 0.3 })
-  );
+  const mat = _pcBodyMats[ri(0, _pcBodyMats.length - 1)];
+  const chassis = new THREE.Mesh(_pcChassis, mat);
   chassis.position.y = 0.55;
-  chassis.castShadow = true;
   g.add(chassis);
-  const cabin = new THREE.Mesh(
-    new THREE.BoxGeometry(1.55, 0.6, 2.1),
-    new THREE.MeshStandardMaterial({ color, roughness: 0.5 })
-  );
+  const cabin = new THREE.Mesh(_pcCabin, mat);
   cabin.position.set(0, 1.1, -0.1);
   g.add(cabin);
-  const win = new THREE.Mesh(
-    new THREE.BoxGeometry(1.45, 0.55, 2),
-    new THREE.MeshStandardMaterial({ color: 0x1a2330, roughness: 0.3, metalness: 0.7, transparent: true, opacity: 0.8 })
-  );
-  win.position.set(0, 1.15, -0.1);
-  g.add(win);
   return g;
 }
 
+const _lampPoleGeo = new THREE.CylinderGeometry(0.1, 0.12, 6, 6);
+const _lampPoleMat = new THREE.MeshStandardMaterial({ color: 0x222222, roughness: 0.7 });
+const _lampHeadGeo = new THREE.SphereGeometry(0.35, 8, 6);
+// Lamp head material is *per-instance* because its emissiveIntensity is
+// animated by the day/night cycle and must be independent per lamp.
 function makeLampPost() {
   const g = new THREE.Group();
-  const pole = new THREE.Mesh(
-    new THREE.CylinderGeometry(0.1, 0.12, 6, 6),
-    new THREE.MeshStandardMaterial({ color: 0x222222, roughness: 0.7 })
-  );
+  const pole = new THREE.Mesh(_lampPoleGeo, _lampPoleMat);
   pole.position.y = 3;
   g.add(pole);
   const head = new THREE.Mesh(
-    new THREE.SphereGeometry(0.35, 12, 10),
+    _lampHeadGeo,
     new THREE.MeshStandardMaterial({
       color: 0xffe6a8, emissive: 0xffd577, emissiveIntensity: 0.0,
     })
@@ -891,7 +856,7 @@ export function buildProps(scene) {
   for (const s of STREETS) {
     if (s.type === 'highway') continue;
     const totalLen = pathLength(s.path);
-    const spacing = 18;
+    const spacing = 36;                            // was 18 — half as many
     const n = Math.floor(totalLen / spacing);
     const half = s.width / 2 + SIDEWALK_WIDTH + 1;
     for (let i = 0; i < n; i++) {
@@ -936,8 +901,8 @@ export function buildProps(scene) {
   for (const s of STREETS) {
     if (s.type !== 'collector') continue;
     const total = pathLength(s.path);
-    for (let d = 18; d < total; d += rr(14, 28)) {
-      if (rand() < 0.45) continue;
+    for (let d = 18; d < total; d += rr(30, 60)) {
+      if (rand() < 0.75) continue;
       const side = rand() < 0.5 ? 1 : -1;
       const { x, z, tx, tz, nx, nz } = samplePath(s.path, d);
       const px = x + nx * (s.width / 2 + 1.3) * side;
@@ -951,7 +916,7 @@ export function buildProps(scene) {
   }
 
   // Scatter pines + olives in the Judean foothills outside the city.
-  for (let i = 0; i < 420; i++) {
+  for (let i = 0; i < 140; i++) {
     const x = rr(-WORLD_SIZE/2 + 40, WORLD_SIZE/2 - 40);
     const z = rr(-WORLD_SIZE/2 + 40, WORLD_SIZE/2 - 40);
     const inCityX = x > CITY_BOUNDS.minX - 20 && x < CITY_BOUNDS.maxX + 20;

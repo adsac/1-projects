@@ -21,7 +21,7 @@ import * as THREE from 'three';
 
 // ---------- World extents ----------
 export const WORLD_SIZE = 6200;            // terrain plane side (m)
-export const TERRAIN_SEGMENTS = 220;
+export const TERRAIN_SEGMENTS = 110;
 export const CITY_BOUNDS = {
   minX: -2900, maxX: 2100,
   minZ: -1100, maxZ: 1100,
@@ -347,7 +347,7 @@ export const CAR = {
 };
 
 // ---------- Traffic & atmosphere ----------
-export const TRAFFIC_COUNT = 28;
+export const TRAFFIC_COUNT = 12;
 
 export const SKY_DAY   = new THREE.Color(0x8ec6ee);
 export const SKY_DUSK  = new THREE.Color(0xd67a4c);

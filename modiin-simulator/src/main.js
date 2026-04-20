@@ -29,7 +29,7 @@ renderer.toneMappingExposure = 1.0;
 
 const scene = new THREE.Scene();
 scene.background = SKY_DAY.clone();
-scene.fog = new THREE.Fog(FOG_DAY.clone(), 400, 2200);
+scene.fog = new THREE.Fog(FOG_DAY.clone(), 250, 1400);
 
 const camera = new THREE.PerspectiveCamera(
   65, window.innerWidth / window.innerHeight, 0.5, 4000
@@ -43,13 +43,13 @@ scene.add(hemi);
 const sun = new THREE.DirectionalLight(0xfff3d6, 1.6);
 sun.position.set(400, 700, 200);
 sun.castShadow = true;
-sun.shadow.mapSize.set(2048, 2048);
-sun.shadow.camera.left = -400;
-sun.shadow.camera.right = 400;
-sun.shadow.camera.top = 400;
-sun.shadow.camera.bottom = -400;
+sun.shadow.mapSize.set(1024, 1024);                // was 2048 — quarter the pixels
+sun.shadow.camera.left = -220;
+sun.shadow.camera.right = 220;
+sun.shadow.camera.top = 220;
+sun.shadow.camera.bottom = -220;
 sun.shadow.camera.near = 1;
-sun.shadow.camera.far = 2000;
+sun.shadow.camera.far = 1500;
 sun.shadow.bias = -0.0005;
 scene.add(sun);
 scene.add(sun.target);

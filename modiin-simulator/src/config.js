@@ -23,7 +23,7 @@ import * as THREE from 'three';
 export const WORLD_SIZE = 6200;            // terrain plane side (m)
 export const TERRAIN_SEGMENTS = 220;
 export const CITY_BOUNDS = {
-  minX: -2100, maxX: 2100,
+  minX: -2900, maxX: 2100,
   minZ: -1100, maxZ: 1100,
 };
 
@@ -204,22 +204,22 @@ export const STREETS = [
 
 // ---------- Neighborhoods ----------
 // Axis-aligned rectangles approximating the real pod layout.
-// Reference: west-to-east Safdie linear plan. North of the spine
-// (z<0) runs Kaiser → Buchman → Prachim → Avnei Chen; south of
-// the spine (z>0) runs Nofim → Shvatim → HaKramim → Moriah; with
-// the Heart/HaLev at the western end near Azrieli, and Givat C
-// and Reut/Maccabim further west.
+// Reference: west-to-east Safdie linear plan. Maccabim and Re'ut
+// (merged into the Modi'in-Maccabim-Re'ut municipality in 2003)
+// sit as their own neighborhoods on the western side.
 export const NEIGHBORHOODS = [
-  { key: "heart",   name: "The Heart / HaLev", nameHe: "לב העיר",  center: [-1300, -300], aabb: [-1650, -720, -1000,   80] },
-  { key: "kaiser",  name: "Kaiser",            nameHe: "קייזר",    center: [ -750, -500], aabb: [-1100, -800,  -400, -180] },
-  { key: "buchman", name: "Buchman",           nameHe: "בוכמן",    center: [  150, -520], aabb: [ -350, -820,   650, -180] },
-  { key: "prachim", name: "Prachim",           nameHe: "הפרחים",   center: [  850, -500], aabb: [  620, -800,  1150, -180] },
-  { key: "avnei",   name: "Avnei Chen",        nameHe: "אבני חן",  center: [ 1450, -450], aabb: [ 1150, -780,  1800, -160] },
-  { key: "shvatim", name: "Shvatim",           nameHe: "השבטים",   center: [ -200,  400], aabb: [ -500,  180,    80,  700] },
-  { key: "nofim",   name: "Nofim",             nameHe: "הנופים",   center: [-1150,  480], aabb: [-1500,  180,  -820,  780] },
-  { key: "givat-c", name: "Givat C",           nameHe: "גבעת ג׳",  center: [-1750,  420], aabb: [-1950,  180, -1550,  780] },
-  { key: "kramim",  name: "HaKramim",          nameHe: "הכרמים",   center: [  450,  460], aabb: [  100,  180,   820,  780] },
-  { key: "moriah",  name: "Moriah",            nameHe: "מוריה",    center: [ 1100,  430], aabb: [  820,  180,  1500,  760] },
+  { key: "maccabim", name: "Maccabim",         nameHe: "מכבים",    center: [-2550,  150], aabb: [-2850, -200, -2250,  500] },
+  { key: "reut",     name: "Re'ut",            nameHe: "רעות",     center: [-2050,  200], aabb: [-2250, -150, -1850,  600] },
+  { key: "heart",    name: "The Heart / HaLev", nameHe: "לב העיר", center: [-1300, -300], aabb: [-1650, -720, -1000,   80] },
+  { key: "kaiser",   name: "Kaiser",           nameHe: "קייזר",    center: [ -750, -500], aabb: [-1100, -800,  -400, -180] },
+  { key: "buchman",  name: "Buchman",          nameHe: "בוכמן",    center: [  150, -520], aabb: [ -350, -820,   650, -180] },
+  { key: "prachim",  name: "Prachim",          nameHe: "הפרחים",   center: [  850, -500], aabb: [  620, -800,  1150, -180] },
+  { key: "avnei",    name: "Avnei Chen",       nameHe: "אבני חן",  center: [ 1450, -450], aabb: [ 1150, -780,  1800, -160] },
+  { key: "shvatim",  name: "Shvatim",          nameHe: "השבטים",   center: [ -200,  400], aabb: [ -500,  180,    80,  700] },
+  { key: "nofim",    name: "Nofim",            nameHe: "הנופים",   center: [-1150,  480], aabb: [-1500,  180,  -820,  780] },
+  { key: "givat-c",  name: "Givat C",          nameHe: "גבעת ג׳",  center: [-1750,  420], aabb: [-1950,  180, -1550,  780] },
+  { key: "kramim",   name: "HaKramim",         nameHe: "הכרמים",   center: [  450,  460], aabb: [  100,  180,   820,  780] },
+  { key: "moriah",   name: "Moriah",           nameHe: "מוריה",    center: [ 1100,  430], aabb: [  820,  180,  1500,  760] },
 ];
 
 // ---------- Landmarks ----------
@@ -290,38 +290,32 @@ export const LANDMARKS = [
     key: "hashmonaim",
     name: "Hashmonaim",
     nameHe: "חשמונאים",
+    // Separate religious community just north of Modi'in.
     pos: [400, -1500], size: [420, 280], h: 9,
     color: 0xe5d5b3, accent: 0x7d3a2a,
     type: "suburb",
-    description: "Neighboring religious community north of Modi'in.",
+    description: "Separate religious community just north of Modi'in.",
   },
   {
     key: "lapid",
     name: "Lapid",
     nameHe: "לפיד",
+    // Separate moshav north of Modi'in — not part of the city.
     pos: [-800, -1550], size: [300, 220], h: 8,
     color: 0xe0d2b0, accent: 0x7d3a2a,
     type: "suburb",
-    description: "Small moshav on the northern ridge.",
-  },
-  {
-    key: "maccabim-reut",
-    name: "Maccabim-Re'ut",
-    nameHe: "מכבים-רעות",
-    // Older garden suburbs west of main Modi'in (merged 2003).
-    pos: [-2550, 350], size: [650, 550], h: 9,
-    color: 0xe0d2b0, accent: 0x6a4b35,
-    type: "suburb",
-    description: "Garden suburbs merged into the municipality in 2003.",
+    description: "Separate moshav north of Modi'in.",
   },
   {
     key: "modiin-illit",
-    name: "Modi'in Illit (distant)",
+    name: "Modi'in Illit",
     nameHe: "מודיעין עילית",
+    // Separate ultra-Orthodox city on the eastern ridge — not part
+    // of the Modi'in-Maccabim-Re'ut municipality.
     pos: [3200, -400], size: [700, 500], h: 22,
     color: 0xd2c09a, accent: 0x6a4b35,
     type: "distant",
-    description: "Ultra-Orthodox city visible on the eastern ridge.",
+    description: "Separate Ultra-Orthodox city on the eastern ridge.",
   },
 ];
 

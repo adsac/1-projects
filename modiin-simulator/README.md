@@ -101,13 +101,18 @@ their coordinates, footprints and heights are approximations:
 - **Titura Hill** — archaeological mound just north of the spine.
 - **Anabe Park** — lake, amphitheater, boardwalks in the east.
 - **Ben Shemen Forest** — NW exterior.
-- **Hashmonaim** and **Lapid** — neighboring communities to the north.
-- **Maccabim-Re'ut** — garden suburbs west of main Modi'in, merged
-  into the municipality in 2003.
-- **Modi'in Illit** — distant silhouette on the far eastern ridge.
 
-**Neighborhoods modeled (also approximate)** — Heart (HaLev), Kaiser,
-Buchman, Prachim, Avnei Chen, Shvatim, Nofim, Givat C, HaKramim, Moriah.
+**Separate places nearby (NOT part of Modi'in):**
+
+- **Hashmonaim** — religious community north of the city.
+- **Lapid** — moshav on the northern ridge.
+- **Modi'in Illit** — separate Ultra-Orthodox city on the eastern
+  ridge; shares "Modi'in" in its name but is a distinct municipality.
+
+**Neighborhoods modeled** — all part of the Modi'in-Maccabim-Re'ut
+municipality; AABBs approximate: Maccabim, Re'ut (both merged into
+Modi'in in 2003), The Heart (HaLev), Kaiser, Buchman, Prachim,
+Avnei Chen, Shvatim, Nofim, Givat C, HaKramim, Moriah.
 
 **Street names known to be real in Modi'in:** Sderot Dam HaMaccabim,
 Sderot Menachem Begin, Sderot Yitzhak Rabin, Emek Dotan, Emek Zevulun,

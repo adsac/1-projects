@@ -90,33 +90,31 @@ modiin-simulator/
 
 This is a hand-modeled interpretation, not a GIS-sourced reconstruction.
 Positions are placed from memory of the real city and aim for
-*relative* correctness rather than metric accuracy:
+*relative* correctness rather than metric accuracy.
 
-- **Azrieli Mall & Modi'in Central Station** are at the city's NW
-  corner, tucked under Route 443 near the Ayalon Valley exit.
-- **Dam HaMaccabim** is the main east-west spine; **Emek Dotan /
-  Zevulun / HaElah / HaYarden / HaHula** are its parallel siblings.
-- **North of the spine (W→E):** Heart → Kaiser → Buchman → Prachim →
-  Avnei Chen. **South of the spine (W→E):** Givat C → Nofim →
-  Shvatim → HaKramim → Moriah.
-- **Titura Hill** is the small archaeological mound just north of
-  the spine between Kaiser and Prachim.
-- **Anabe Park** with its lake, amphitheatre and boardwalks sits at
-  the eastern end of the city, south of the spine.
-- **Route 443** enters from the SW (from the Ayalon Valley), curves
-  over the city along its northern edge, and exits NE toward
-  Jerusalem via the Beit Horon pass. Two exit ramps (Modi'in Center
-  and Moriah) drop into the city.
-- **Route 431** skirts the south edge.
-- **Maccabim-Re'ut** sits west of the main city (merged in 2003).
-- **Ben Shemen Forest** is NW exterior; **Hashmonaim** is a
-  religious town immediately north; **Modi'in Illit** is a distant
-  silhouette far to the east.
-- Every apartment block wears either cream-limestone cladding or a
-  pitched terra-cotta tile roof — Moshe Safdie's municipal signature.
+**Landmarks modeled** — all of these exist in the real Modi'in, but
+their coordinates, footprints and heights are approximations:
 
-Street polyline paths, neighborhood AABBs and landmark footprints
-remain approximate; do not rely on this to navigate the real city.
+- **Azrieli Mall Modi'in** & **Modi'in Central Station** — the city's
+  NW corner, under Route 443 near the Ayalon Valley exit.
+- **City Hall** (Iriyat Modi'in-Maccabim-Re'ut).
+- **Titura Hill** — archaeological mound just north of the spine.
+- **Anabe Park** — lake, amphitheater, boardwalks in the east.
+- **Ben Shemen Forest** — NW exterior.
+- **Hashmonaim** and **Lapid** — neighboring communities to the north.
+- **Maccabim-Re'ut** — garden suburbs west of main Modi'in, merged
+  into the municipality in 2003.
+- **Modi'in Illit** — distant silhouette on the far eastern ridge.
+
+**Neighborhoods modeled (also approximate)** — Heart (HaLev), Kaiser,
+Buchman, Prachim, Avnei Chen, Shvatim, Nofim, Givat C, HaKramim, Moriah.
+
+**Street names known to be real in Modi'in:** Sderot Dam HaMaccabim,
+Sderot Menachem Begin, Sderot Yitzhak Rabin, Emek Dotan, Emek Zevulun,
+Emek HaElah. Other `Emek ...` and `Derech ...` names in the config are
+plausible-sounding but weren't verified — treat them as placeholders.
+
+Do not rely on this map to navigate the real city.
 
 ### Environment
 

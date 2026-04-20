@@ -223,15 +223,15 @@ export const NEIGHBORHOODS = [
 ];
 
 // ---------- Landmarks ----------
-// All positions roughly reflect real-world placement within
-// Modi'in relative to the city spine.
+// Only landmarks I can verify are real. Positions are still
+// approximate — the goal is relative placement, not GPS accuracy.
 export const LANDMARKS = [
   {
     key: "azrieli",
     name: "Azrieli Mall Modi'in",
     nameHe: "קניון עזריאלי מודיעין",
-    // In reality the mall sits on the city's NW corner, right next
-    // to the Central Station on the south side of Route 443.
+    // Real site: NW corner of the city, on the south side of Route 443,
+    // sharing a plaza with the Central Station.
     pos: [-1550, -620], size: [140, 95], h: 28,
     color: 0xe8dcc0, accent: 0x4a78d0,
     type: "mall",
@@ -241,7 +241,7 @@ export const LANDMARKS = [
     key: "train",
     name: "Modi'in Central Station",
     nameHe: "תחנת הרכבת מודיעין מרכז",
-    // Immediately west of the mall; real site is "Modi'in Center".
+    // Immediately west of the mall.
     pos: [-1780, -620], size: [260, 55], h: 12,
     color: 0xcbc3b2, accent: 0x2b6cb0,
     type: "station",
@@ -251,136 +251,49 @@ export const LANDMARKS = [
     key: "cityhall",
     name: "City Hall",
     nameHe: "עיריית מודיעין-מכבים-רעות",
-    // Sits on Emek HaElah in the civic core, south of the spine.
     pos: [-420, 210], size: [72, 62], h: 24,
     color: 0xd9cfb8, accent: 0xc44545,
     type: "civic",
     description: "Municipality of Modi'in-Maccabim-Re'ut.",
   },
   {
-    key: "heichal",
-    name: "Heichal HaTarbut",
-    nameHe: "היכל התרבות",
-    pos: [-320, 210], size: [70, 60], h: 18,
-    color: 0xe4d5b0, accent: 0x8a3a3a,
-    type: "civic",
-    description: "City performing-arts hall & cultural center.",
-  },
-  {
-    key: "assuta",
-    name: "Assuta Modi'in Hospital",
-    nameHe: "אסותא מודיעין",
-    pos: [-900, -220], size: [110, 80], h: 22,
-    color: 0xf0e8d4, accent: 0xd63d3d,
-    type: "hospital",
-    description: "Regional outpatient hospital & clinics.",
-  },
-  {
     key: "titura",
     name: "Titura Hill",
     nameHe: "תל תיטורה",
-    // Real Titura is a small archaeological mound north-central,
-    // between Kaiser and Prachim, just north of the spine.
+    // Small archaeological mound north of the spine.
     pos: [-80, -320], size: [150, 150], h: 48,
     color: 0xb8a888, accent: 0xffcc55,
     type: "hill",
-    description: "Archaeological hill & lookout north of Dam HaMaccabim.",
+    description: "Archaeological hill with Crusader-era ruins.",
   },
   {
     key: "anabe",
     name: "Anabe Park",
     nameHe: "פארק ענבה",
-    // Occupies the east-of-center valley, bordering Moriah on the
-    // south and the eastern extension on the north.
+    // Eastern valley with lake + amphitheater + boardwalks.
     pos: [1600, 300], size: [460, 380], h: 2,
     color: 0x4f7a3a, accent: 0x5aa3d6,
     type: "park",
-    description: "Flagship municipal park with a lake, amphitheatre & paddle-boats.",
-  },
-  {
-    key: "levhair",
-    name: "Lev Ha'ir",
-    nameHe: "לב העיר",
-    pos: [-1150, -180], size: [75, 60], h: 16,
-    color: 0xe8d8b5, accent: 0x3d8b54,
-    type: "mall",
-    description: "Older open-air shopping center near the city core.",
-  },
-  {
-    key: "country",
-    name: "Modi'in Country Club",
-    nameHe: "קאנטרי קלאב מודיעין",
-    // Sits on the southern fringe between Nofim and HaKramim.
-    pos: [-600, 660], size: [130, 85], h: 10,
-    color: 0xdde6d8, accent: 0x3aa6d0,
-    type: "sport",
-    description: "Pools, gym, outdoor courts — a Modi'in social hub.",
-  },
-  {
-    key: "stadium",
-    name: "Maccabim Stadium",
-    nameHe: "אצטדיון מכבים",
-    // In real life the pitch is near the western suburbs.
-    pos: [-1900, 380], size: [160, 115], h: 18,
-    color: 0xd6d3ca, accent: 0x36b36b,
-    type: "stadium",
-    description: "Football pitch and running track.",
-  },
-  {
-    key: "ronvardi",
-    name: "Ron Vardi High School",
-    nameHe: "תיכון רון ורדי",
-    pos: [1050, -350], size: [95, 70], h: 12,
-    color: 0xd8cba8, accent: 0xb86a2f,
-    type: "school",
-    description: "One of several city high schools.",
-  },
-  {
-    key: "yeshurun",
-    name: "Beit Knesset Yeshurun",
-    nameHe: "בית כנסת ישורון",
-    pos: [130, 320], size: [26, 28], h: 14,
-    color: 0xeadcba, accent: 0xd4b94a,
-    type: "synagogue",
-    description: "Central synagogue with a small rotunda.",
-  },
-  {
-    key: "library",
-    name: "Modi'in Central Library",
-    nameHe: "הספרייה העירונית",
-    pos: [-480, 260], size: [50, 42], h: 14,
-    color: 0xead5a5, accent: 0x3b6bb2,
-    type: "civic",
-    description: "Public library & small exhibition hall.",
-  },
-  {
-    key: "ortschool",
-    name: "Ort 'Sapir' High School",
-    nameHe: "תיכון אורט ספיר",
-    pos: [620, 280], size: [85, 62], h: 10,
-    color: 0xd7cfb8, accent: 0xb86a2f,
-    type: "school",
-    description: "Science & arts high school in Buchman.",
+    description: "Flagship municipal park with a lake and amphitheater.",
   },
   {
     key: "benshemen",
     name: "Ben Shemen Forest",
     nameHe: "יער בן שמן",
-    // Real forest sits NW of the city.
+    // NW of the city.
     pos: [-2300, -1500], size: [1100, 700], h: 1,
     color: 0x3d6a2c, accent: 0x2a4a1d,
     type: "forest",
-    description: "Historic pine forest NW of the city; popular for hiking.",
+    description: "Historic pine forest NW of Modi'in.",
   },
   {
     key: "hashmonaim",
     name: "Hashmonaim",
     nameHe: "חשמונאים",
-    // Religious town just north of Modi'in.
     pos: [400, -1500], size: [420, 280], h: 9,
     color: 0xe5d5b3, accent: 0x7d3a2a,
     type: "suburb",
-    description: "Neighboring religious town north of Modi'in.",
+    description: "Neighboring religious community north of Modi'in.",
   },
   {
     key: "lapid",
@@ -395,7 +308,7 @@ export const LANDMARKS = [
     key: "maccabim-reut",
     name: "Maccabim-Re'ut",
     nameHe: "מכבים-רעות",
-    // Older garden suburbs sit WEST of main Modi'in (merged 2003).
+    // Older garden suburbs west of main Modi'in (merged 2003).
     pos: [-2550, 350], size: [650, 550], h: 9,
     color: 0xe0d2b0, accent: 0x6a4b35,
     type: "suburb",
@@ -409,15 +322,6 @@ export const LANDMARKS = [
     color: 0xd2c09a, accent: 0x6a4b35,
     type: "distant",
     description: "Ultra-Orthodox city visible on the eastern ridge.",
-  },
-  {
-    key: "westgate",
-    name: "Western Gateway",
-    nameHe: "שער המערב",
-    pos: [-2080, 40], size: [14, 14], h: 28,
-    color: 0xd2c09a, accent: 0xffd277,
-    type: "gateway",
-    description: "Landmark sculpture at the city's west entrance.",
   },
 ];
 

@@ -8,23 +8,23 @@
       "transliterationPattern": "[GREETING]",
       "fushaNote": "Most Levantine greetings are MSA-shared (salām, ahlan), but day/night formulas (ṣabāḥ il-khēr / masā il-khēr) and responses (ṣabāḥ in-nūr) are colloquial conventions.",
       "forms": [
-        { "key": "hi", "label": "hi / hello", "arabic": "مرحبا", "transliteration": "marḥaba", "english": "hello" },
-        { "key": "hi.reply", "label": "hello (reply)", "arabic": "مرحبتين", "transliteration": "marḥabtēn", "english": "hello (lit. two hellos — warmer reply)" },
-        { "key": "salam", "label": "peace upon you", "arabic": "السلام عليكم", "transliteration": "as-salāmu ʿalaykum", "english": "peace be upon you (formal/Muslim)" },
-        { "key": "salam.reply", "label": "and peace upon you (reply)", "arabic": "وعليكم السلام", "transliteration": "wa-ʿalaykumu s-salām", "english": "and upon you peace" },
-        { "key": "morning", "label": "good morning", "arabic": "صباح الخير", "transliteration": "ṣabāḥ il-khēr", "english": "good morning" },
-        { "key": "morning.reply", "label": "good morning (reply)", "arabic": "صباح النور", "transliteration": "ṣabāḥ in-nūr", "english": "morning of light (reply)" },
-        { "key": "evening", "label": "good evening", "arabic": "مسا الخير", "transliteration": "masā il-khēr", "english": "good evening" },
-        { "key": "evening.reply", "label": "good evening (reply)", "arabic": "مسا النور", "transliteration": "masā in-nūr", "english": "evening of light (reply)" },
-        { "key": "ahlan", "label": "welcome / hi", "arabic": "أهلاً وسهلاً", "transliteration": "ahlan wa-sahlan", "english": "welcome / hi" },
-        { "key": "ahlan.reply", "label": "welcome (reply)", "arabic": "أهلين", "transliteration": "ahlēn", "english": "welcome (warm reply)" },
-        { "key": "bye", "label": "goodbye", "arabic": "مع السلامة", "transliteration": "maʿ is-salāme", "english": "goodbye (lit. with safety)" },
-        { "key": "bye.reply", "label": "go in peace (reply)", "arabic": "الله يسلّمك", "transliteration": "Allāh ysallmak", "english": "may God keep you safe" },
-        { "key": "yalla", "label": "let's go / bye-ish", "arabic": "يلا باي", "transliteration": "yalla bāy", "english": "alright, bye" },
-        { "key": "see-you", "label": "see you later", "arabic": "بشوفك", "transliteration": "bashūfak", "english": "I'll see you (m)" },
-        { "key": "see-you.f", "label": "see you later (to f)", "arabic": "بشوفِك", "transliteration": "bashūfik", "english": "I'll see you (f)" },
-        { "key": "thanks", "label": "thank you", "arabic": "شكراً", "transliteration": "shukran", "english": "thank you" },
-        { "key": "thanks.reply", "label": "you're welcome", "arabic": "العفو", "transliteration": "il-ʿafu", "english": "you're welcome" }
+        { "key": "hi", "label": "hi / hello", "arabic": "مرحبا", "transliteration": "marḥaba", "english": "Hello." },
+        { "key": "hi.reply", "label": "reply to marḥaba", "arabic": "مرحبتين", "transliteration": "marḥabtēn", "english": "Hello back.", "context": "Reply to: marḥaba (lit. 'two hellos' — warmer)" },
+        { "key": "salam", "label": "peace upon you", "arabic": "السلام عليكم", "transliteration": "as-salāmu ʿalaykum", "english": "Peace be upon you.", "context": "Formal / common Muslim greeting" },
+        { "key": "salam.reply", "label": "reply to as-salāmu ʿalaykum", "arabic": "وعليكم السلام", "transliteration": "wa-ʿalaykumu s-salām", "english": "And upon you peace.", "context": "Reply to: as-salāmu ʿalaykum" },
+        { "key": "morning", "label": "good morning", "arabic": "صباح الخير", "transliteration": "ṣabāḥ il-khēr", "english": "Good morning." },
+        { "key": "morning.reply", "label": "reply to ṣabāḥ il-khēr", "arabic": "صباح النور", "transliteration": "ṣabāḥ in-nūr", "english": "Good morning back.", "context": "Reply to: ṣabāḥ il-khēr (lit. 'morning of light')" },
+        { "key": "evening", "label": "good evening", "arabic": "مسا الخير", "transliteration": "masā il-khēr", "english": "Good evening." },
+        { "key": "evening.reply", "label": "reply to masā il-khēr", "arabic": "مسا النور", "transliteration": "masā in-nūr", "english": "Good evening back.", "context": "Reply to: masā il-khēr (lit. 'evening of light')" },
+        { "key": "ahlan", "label": "welcome / hi", "arabic": "أهلاً وسهلاً", "transliteration": "ahlan wa-sahlan", "english": "Welcome. / Hi." },
+        { "key": "ahlan.reply", "label": "reply to ahlan wa-sahlan", "arabic": "أهلين", "transliteration": "ahlēn", "english": "Hi back.", "context": "Reply to: ahlan wa-sahlan / ahlan (warm reply)" },
+        { "key": "bye", "label": "goodbye", "arabic": "مع السلامة", "transliteration": "maʿ is-salāme", "english": "Goodbye.", "pronunciationNote": "Lit. 'with safety'." },
+        { "key": "bye.reply", "label": "reply to maʿ is-salāme", "arabic": "الله يسلّمك", "transliteration": "Allāh ysallmak", "english": "May God keep you safe.", "context": "Reply to: maʿ is-salāme" },
+        { "key": "yalla", "label": "let's go / bye-ish", "arabic": "يلا باي", "transliteration": "yalla bāy", "english": "Alright, bye." },
+        { "key": "see-you", "label": "see you later (to m)", "arabic": "بشوفك", "transliteration": "bashūfak", "english": "I'll see you.", "context": "Said to a man" },
+        { "key": "see-you.f", "label": "see you later (to f)", "arabic": "بشوفِك", "transliteration": "bashūfik", "english": "I'll see you.", "context": "Said to a woman" },
+        { "key": "thanks", "label": "thank you", "arabic": "شكراً", "transliteration": "shukran", "english": "Thank you." },
+        { "key": "thanks.reply", "label": "reply to shukran", "arabic": "العفو", "transliteration": "il-ʿafu", "english": "You're welcome.", "context": "Reply to: shukran" }
       ],
       "tags": ["rescue", "drivers", "shops", "kids", "family", "work"],
       "status": "draft"
@@ -38,18 +38,18 @@
       "fushaNote": "From بِودّي ('with my desire'). bidd- + pronoun suffix = 'want'. MSA verb: أريد (urīd). Negation in spoken Levantine: mā bidd- or with -sh: mā biddīsh.",
       "forms": [
         { "key": "1sg", "label": "I want", "arabic": "بدّي", "transliteration": "biddi", "english": "I want" },
-        { "key": "2sg.m", "label": "you want (m)", "arabic": "بدّك", "transliteration": "biddak", "english": "you want (m)" },
-        { "key": "2sg.f", "label": "you want (f)", "arabic": "بدِّك", "transliteration": "biddik", "english": "you want (f)" },
+        { "key": "2sg.m", "label": "you want (m)", "arabic": "بدّك", "transliteration": "biddak", "english": "you want", "context": "Said to a man" },
+        { "key": "2sg.f", "label": "you want (f)", "arabic": "بدِّك", "transliteration": "biddik", "english": "you want", "context": "Said to a woman" },
         { "key": "3sg.m", "label": "he wants", "arabic": "بدّه", "transliteration": "biddo", "english": "he wants" },
         { "key": "3sg.f", "label": "she wants", "arabic": "بدّها", "transliteration": "biddha", "english": "she wants" },
         { "key": "1pl", "label": "we want", "arabic": "بدّنا", "transliteration": "biddna", "english": "we want" },
-        { "key": "2pl", "label": "you (pl) want", "arabic": "بدّكم", "transliteration": "biddkum", "english": "you (pl) want" },
+        { "key": "2pl", "label": "you (pl) want", "arabic": "بدّكم", "transliteration": "biddkum", "english": "you want", "context": "Said to a group" },
         { "key": "3pl", "label": "they want", "arabic": "بدّهم", "transliteration": "biddhum", "english": "they want" },
         { "key": "neg.1sg", "label": "I don't want", "arabic": "ما بدّي", "transliteration": "mā biddi", "english": "I don't want" },
         { "key": "neg.1sg.sh", "label": "I don't want (with -sh)", "arabic": "ما بدّيش", "transliteration": "mā biddīsh", "english": "I don't want (emphatic)" },
-        { "key": "neg.2sg.m", "label": "you don't want (m)", "arabic": "ما بدّك", "transliteration": "mā biddak", "english": "you don't want (m)" },
-        { "key": "q.2sg.m", "label": "do you want? (m)", "arabic": "بدّك؟", "transliteration": "biddak?", "english": "do you want? (m)" },
-        { "key": "q.2sg.f", "label": "do you want? (f)", "arabic": "بدِّك؟", "transliteration": "biddik?", "english": "do you want? (f)" }
+        { "key": "neg.2sg.m", "label": "you don't want (m)", "arabic": "ما بدّك", "transliteration": "mā biddak", "english": "you don't want", "context": "Said to a man" },
+        { "key": "q.2sg.m", "label": "do you want? (m)", "arabic": "بدّك؟", "transliteration": "biddak?", "english": "do you want?", "context": "Asking a man" },
+        { "key": "q.2sg.f", "label": "do you want? (f)", "arabic": "بدِّك؟", "transliteration": "biddik?", "english": "do you want?", "context": "Asking a woman" }
       ],
       "slots": [
         {
@@ -81,10 +81,10 @@
       "forms": [
         { "key": "1sg", "label": "could I... (lit. is it possible I...)", "arabic": "ممكن", "transliteration": "mumkin", "english": "may I / can I" },
         { "key": "neg", "label": "not possible", "arabic": "مش ممكن", "transliteration": "mish mumkin", "english": "not possible / no way" },
-        { "key": "law-samaḥt.m", "label": "if you'd allow (m, polite)", "arabic": "لو سمحت", "transliteration": "law samaḥt", "english": "if you please (to m)" },
-        { "key": "law-samaḥt.f", "label": "if you'd allow (f, polite)", "arabic": "لو سمحتي", "transliteration": "law samaḥti", "english": "if you please (to f)" },
-        { "key": "min-faḍlak.m", "label": "please (m)", "arabic": "من فضلك", "transliteration": "min faḍlak", "english": "please (to m)" },
-        { "key": "min-faḍlik.f", "label": "please (f)", "arabic": "من فضلِك", "transliteration": "min faḍlik", "english": "please (to f)" }
+        { "key": "law-samaḥt.m", "label": "if you'd allow (m, polite)", "arabic": "لو سمحت", "transliteration": "law samaḥt", "english": "if you please", "context": "Said to a man (polite)" },
+        { "key": "law-samaḥt.f", "label": "if you'd allow (f, polite)", "arabic": "لو سمحتي", "transliteration": "law samaḥti", "english": "if you please", "context": "Said to a woman (polite)" },
+        { "key": "min-faḍlak.m", "label": "please (m)", "arabic": "من فضلك", "transliteration": "min faḍlak", "english": "please", "context": "Said to a man" },
+        { "key": "min-faḍlik.f", "label": "please (f)", "arabic": "من فضلِك", "transliteration": "min faḍlik", "english": "please", "context": "Said to a woman" }
       ],
       "slots": [
         {
@@ -113,16 +113,16 @@
       "fushaNote": "ʿind- + pronoun suffix = 'at/with [me]', i.e. 'have'. Same construction as MSA. Negation: mā ʿind-. The ʿ is the voiced pharyngeal — don't drop it.",
       "forms": [
         { "key": "1sg", "label": "I have", "arabic": "عندي", "transliteration": "ʿindi", "english": "I have" },
-        { "key": "2sg.m", "label": "you have (m)", "arabic": "عندك", "transliteration": "ʿindak", "english": "you have (m)" },
-        { "key": "2sg.f", "label": "you have (f)", "arabic": "عندِك", "transliteration": "ʿindik", "english": "you have (f)" },
+        { "key": "2sg.m", "label": "you have (m)", "arabic": "عندك", "transliteration": "ʿindak", "english": "you have", "context": "Said to a man" },
+        { "key": "2sg.f", "label": "you have (f)", "arabic": "عندِك", "transliteration": "ʿindik", "english": "you have", "context": "Said to a woman" },
         { "key": "3sg.m", "label": "he has", "arabic": "عنده", "transliteration": "ʿindo", "english": "he has" },
         { "key": "3sg.f", "label": "she has", "arabic": "عندها", "transliteration": "ʿindha", "english": "she has" },
         { "key": "1pl", "label": "we have", "arabic": "عندنا", "transliteration": "ʿindna", "english": "we have" },
-        { "key": "2pl", "label": "you (pl) have", "arabic": "عندكم", "transliteration": "ʿindkum", "english": "you (pl) have" },
+        { "key": "2pl", "label": "you (pl) have", "arabic": "عندكم", "transliteration": "ʿindkum", "english": "you have", "context": "Said to a group" },
         { "key": "3pl", "label": "they have", "arabic": "عندهم", "transliteration": "ʿindhum", "english": "they have" },
         { "key": "neg.1sg", "label": "I don't have", "arabic": "ما عندي", "transliteration": "mā ʿindi", "english": "I don't have" },
-        { "key": "neg.2sg.m", "label": "you don't have (m)", "arabic": "ما عندك", "transliteration": "mā ʿindak", "english": "you don't have (m)" },
-        { "key": "q.2sg.m", "label": "do you have? (m)", "arabic": "عندك؟", "transliteration": "ʿindak?", "english": "do you have? (m)" }
+        { "key": "neg.2sg.m", "label": "you don't have (m)", "arabic": "ما عندك", "transliteration": "mā ʿindak", "english": "you don't have", "context": "Said to a man" },
+        { "key": "q.2sg.m", "label": "do you have? (m)", "arabic": "عندك؟", "transliteration": "ʿindak?", "english": "do you have?", "context": "Asking a man" }
       ],
       "slots": [
         {
@@ -150,12 +150,12 @@
       "fushaNote": "Levantine present-habitual / general present takes b- prefix on the imperfect: barūḥ = 'I go / I'm going'. Without b-, the bare imperfect is used after modals (biddi arūḥ). MSA: أذهب (aḏhab).",
       "forms": [
         { "key": "1sg", "label": "I go", "arabic": "بروح", "transliteration": "barūḥ", "english": "I go / I'm going" },
-        { "key": "2sg.m", "label": "you go (m)", "arabic": "بتروح", "transliteration": "btrūḥ", "english": "you go (m)" },
-        { "key": "2sg.f", "label": "you go (f)", "arabic": "بتروحي", "transliteration": "btrūḥi", "english": "you go (f)" },
+        { "key": "2sg.m", "label": "you go (m)", "arabic": "بتروح", "transliteration": "btrūḥ", "english": "you go", "context": "Said to a man" },
+        { "key": "2sg.f", "label": "you go (f)", "arabic": "بتروحي", "transliteration": "btrūḥi", "english": "you go", "context": "Said to a woman" },
         { "key": "3sg.m", "label": "he goes", "arabic": "بيروح", "transliteration": "byrūḥ", "english": "he goes" },
         { "key": "3sg.f", "label": "she goes", "arabic": "بتروح", "transliteration": "btrūḥ", "english": "she goes" },
         { "key": "1pl", "label": "we go", "arabic": "بنروح", "transliteration": "bnrūḥ", "english": "we go" },
-        { "key": "2pl", "label": "you (pl) go", "arabic": "بتروحوا", "transliteration": "btrūḥu", "english": "you (pl) go" },
+        { "key": "2pl", "label": "you (pl) go", "arabic": "بتروحوا", "transliteration": "btrūḥu", "english": "you go", "context": "Said to a group" },
         { "key": "3pl", "label": "they go", "arabic": "بيروحوا", "transliteration": "byrūḥu", "english": "they go" },
         { "key": "neg.1sg", "label": "I don't go", "arabic": "ما بروح", "transliteration": "mā barūḥ", "english": "I don't go" }
       ],
@@ -184,12 +184,12 @@
       "fushaNote": "Past tense in Levantine takes the same suffix paradigm as MSA, with some pronunciation shifts (e.g. 1sg/2sg.m collapse: ruḥt). MSA: ذهبتُ (ḏahabtu).",
       "forms": [
         { "key": "1sg", "label": "I went", "arabic": "رحت", "transliteration": "ruḥt", "english": "I went" },
-        { "key": "2sg.m", "label": "you went (m)", "arabic": "رحت", "transliteration": "ruḥt", "english": "you went (m)" },
-        { "key": "2sg.f", "label": "you went (f)", "arabic": "رحتي", "transliteration": "ruḥti", "english": "you went (f)" },
+        { "key": "2sg.m", "label": "you went (m)", "arabic": "رحت", "transliteration": "ruḥt", "english": "you went", "context": "Said to a man" },
+        { "key": "2sg.f", "label": "you went (f)", "arabic": "رحتي", "transliteration": "ruḥti", "english": "you went", "context": "Said to a woman" },
         { "key": "3sg.m", "label": "he went", "arabic": "راح", "transliteration": "rāḥ", "english": "he went" },
         { "key": "3sg.f", "label": "she went", "arabic": "راحت", "transliteration": "rāḥat", "english": "she went" },
         { "key": "1pl", "label": "we went", "arabic": "رحنا", "transliteration": "ruḥna", "english": "we went" },
-        { "key": "2pl", "label": "you (pl) went", "arabic": "رحتوا", "transliteration": "ruḥtu", "english": "you (pl) went" },
+        { "key": "2pl", "label": "you (pl) went", "arabic": "رحتوا", "transliteration": "ruḥtu", "english": "you went", "context": "Said to a group" },
         { "key": "3pl", "label": "they went", "arabic": "راحوا", "transliteration": "rāḥu", "english": "they went" },
         { "key": "neg.1sg", "label": "I didn't go", "arabic": "ما رحت", "transliteration": "mā ruḥt", "english": "I didn't go" }
       ],
@@ -216,12 +216,12 @@
       "fushaNote": "Levantine future marker is رح (raḥ), originally from رايح ('going'). It precedes the bare imperfect (no b- prefix). MSA: سـ / سوف.",
       "forms": [
         { "key": "1sg", "label": "I will go", "arabic": "رح أروح", "transliteration": "raḥ arūḥ", "english": "I will go" },
-        { "key": "2sg.m", "label": "you will go (m)", "arabic": "رح تروح", "transliteration": "raḥ trūḥ", "english": "you will go (m)" },
-        { "key": "2sg.f", "label": "you will go (f)", "arabic": "رح تروحي", "transliteration": "raḥ trūḥi", "english": "you will go (f)" },
+        { "key": "2sg.m", "label": "you will go (m)", "arabic": "رح تروح", "transliteration": "raḥ trūḥ", "english": "you will go", "context": "Said to a man" },
+        { "key": "2sg.f", "label": "you will go (f)", "arabic": "رح تروحي", "transliteration": "raḥ trūḥi", "english": "you will go", "context": "Said to a woman" },
         { "key": "3sg.m", "label": "he will go", "arabic": "رح يروح", "transliteration": "raḥ yrūḥ", "english": "he will go" },
         { "key": "3sg.f", "label": "she will go", "arabic": "رح تروح", "transliteration": "raḥ trūḥ", "english": "she will go" },
         { "key": "1pl", "label": "we will go", "arabic": "رح نروح", "transliteration": "raḥ nrūḥ", "english": "we will go" },
-        { "key": "2pl", "label": "you (pl) will go", "arabic": "رح تروحوا", "transliteration": "raḥ trūḥu", "english": "you (pl) will go" },
+        { "key": "2pl", "label": "you (pl) will go", "arabic": "رح تروحوا", "transliteration": "raḥ trūḥu", "english": "you will go", "context": "Said to a group" },
         { "key": "3pl", "label": "they will go", "arabic": "رح يروحوا", "transliteration": "raḥ yrūḥu", "english": "they will go" },
         { "key": "neg.1sg", "label": "I won't go", "arabic": "مش رح أروح", "transliteration": "mish raḥ arūḥ", "english": "I won't go" },
         { "key": "1sg.eat", "label": "I will eat", "arabic": "رح آكل", "transliteration": "raḥ ākul", "english": "I will eat" },
@@ -239,22 +239,22 @@
       "transliterationPattern": "[VERB] / lā t[VERB]",
       "fushaNote": "Levantine imperative drops MSA's initial hamza in many cases (kul not ʾukul). Negative imperative = lā + 2nd-person bare imperfect: lā tākul = 'don't eat'.",
       "forms": [
-        { "key": "imp.come.m", "label": "come! (m)", "arabic": "تعال", "transliteration": "taʿāl", "english": "come! (to m)" },
-        { "key": "imp.come.f", "label": "come! (f)", "arabic": "تعالي", "transliteration": "taʿāli", "english": "come! (to f)" },
-        { "key": "imp.come.pl", "label": "come! (pl)", "arabic": "تعالوا", "transliteration": "taʿālu", "english": "come! (to group)" },
-        { "key": "imp.go.m", "label": "go! (m)", "arabic": "روح", "transliteration": "rūḥ", "english": "go! (to m)" },
-        { "key": "imp.go.f", "label": "go! (f)", "arabic": "روحي", "transliteration": "rūḥi", "english": "go! (to f)" },
-        { "key": "imp.eat.m", "label": "eat! (m)", "arabic": "كُل", "transliteration": "kul", "english": "eat! (to m)" },
-        { "key": "imp.wait.m", "label": "wait! (m)", "arabic": "استنّى", "transliteration": "istanna", "english": "wait! (to m)" },
-        { "key": "imp.wait.f", "label": "wait! (f)", "arabic": "استنّي", "transliteration": "istanni", "english": "wait! (to f)" },
-        { "key": "imp.listen.m", "label": "listen! (m)", "arabic": "اسمع", "transliteration": "ismaʿ", "english": "listen! (to m)" },
-        { "key": "imp.look.m", "label": "look! (m)", "arabic": "شوف", "transliteration": "shūf", "english": "look! (to m)" },
-        { "key": "imp.say.m", "label": "say! (m)", "arabic": "قول", "transliteration": "ʾūl", "english": "say! (to m)" },
-        { "key": "imp.repeat.m", "label": "repeat! (m)", "arabic": "أعِد", "transliteration": "aʿid", "english": "repeat! (to m)" },
-        { "key": "imp.slow.m", "label": "slow down (m)", "arabic": "على مهلك", "transliteration": "ʿala mahlak", "english": "take it easy / slowly (to m)" },
-        { "key": "neg.go.m", "label": "don't go! (m)", "arabic": "لا تروح", "transliteration": "lā trūḥ", "english": "don't go! (to m)" },
-        { "key": "neg.go.f", "label": "don't go! (f)", "arabic": "لا تروحي", "transliteration": "lā trūḥi", "english": "don't go! (to f)" },
-        { "key": "neg.worry.m", "label": "don't worry (m)", "arabic": "لا تقلق", "transliteration": "lā tiʾlaʾ", "english": "don't worry (to m)" }
+        { "key": "imp.come.m", "label": "come! (m)", "arabic": "تعال", "transliteration": "taʿāl", "english": "Come!", "context": "Said to a man" },
+        { "key": "imp.come.f", "label": "come! (f)", "arabic": "تعالي", "transliteration": "taʿāli", "english": "Come!", "context": "Said to a woman" },
+        { "key": "imp.come.pl", "label": "come! (pl)", "arabic": "تعالوا", "transliteration": "taʿālu", "english": "Come!", "context": "Said to a group" },
+        { "key": "imp.go.m", "label": "go! (m)", "arabic": "روح", "transliteration": "rūḥ", "english": "Go!", "context": "Said to a man" },
+        { "key": "imp.go.f", "label": "go! (f)", "arabic": "روحي", "transliteration": "rūḥi", "english": "Go!", "context": "Said to a woman" },
+        { "key": "imp.eat.m", "label": "eat! (m)", "arabic": "كُل", "transliteration": "kul", "english": "Eat!", "context": "Said to a man" },
+        { "key": "imp.wait.m", "label": "wait! (m)", "arabic": "استنّى", "transliteration": "istanna", "english": "Wait!", "context": "Said to a man" },
+        { "key": "imp.wait.f", "label": "wait! (f)", "arabic": "استنّي", "transliteration": "istanni", "english": "Wait!", "context": "Said to a woman" },
+        { "key": "imp.listen.m", "label": "listen! (m)", "arabic": "اسمع", "transliteration": "ismaʿ", "english": "Listen!", "context": "Said to a man" },
+        { "key": "imp.look.m", "label": "look! (m)", "arabic": "شوف", "transliteration": "shūf", "english": "Look!", "context": "Said to a man" },
+        { "key": "imp.say.m", "label": "say! (m)", "arabic": "قول", "transliteration": "ʾūl", "english": "Say!", "context": "Said to a man" },
+        { "key": "imp.repeat.m", "label": "repeat! (m)", "arabic": "أعِد", "transliteration": "aʿid", "english": "Repeat!", "context": "Said to a man" },
+        { "key": "imp.slow.m", "label": "slow down (m)", "arabic": "على مهلك", "transliteration": "ʿala mahlak", "english": "Take it easy / slow down.", "context": "Said to a man" },
+        { "key": "neg.go.m", "label": "don't go! (m)", "arabic": "لا تروح", "transliteration": "lā trūḥ", "english": "Don't go!", "context": "Said to a man" },
+        { "key": "neg.go.f", "label": "don't go! (f)", "arabic": "لا تروحي", "transliteration": "lā trūḥi", "english": "Don't go!", "context": "Said to a woman" },
+        { "key": "neg.worry.m", "label": "don't worry (m)", "arabic": "لا تقلق", "transliteration": "lā tiʾlaʾ", "english": "Don't worry.", "context": "Said to a man (reassurance)" }
       ],
       "tags": ["rescue", "drivers", "kids"],
       "status": "draft"
@@ -269,12 +269,12 @@
       "forms": [
         { "key": "shu", "label": "what?", "arabic": "شو؟", "transliteration": "shū?", "english": "what?" },
         { "key": "shu-hāda", "label": "what is this?", "arabic": "شو هاد؟", "transliteration": "shū hād?", "english": "what is this?" },
-        { "key": "shu-biddak", "label": "what do you (m) want?", "arabic": "شو بدّك؟", "transliteration": "shū biddak?", "english": "what do you (m) want?" },
+        { "key": "shu-biddak", "label": "what do you (m) want?", "arabic": "شو بدّك؟", "transliteration": "shū biddak?", "english": "what do you want?", "context": "Asking a man" },
         { "key": "wen", "label": "where?", "arabic": "وين؟", "transliteration": "wēn?", "english": "where?" },
         { "key": "wen-X", "label": "where is X?", "arabic": "وين [X]؟", "transliteration": "wēn [X]?", "english": "where is [X]?" },
         { "key": "lesh", "label": "why?", "arabic": "ليش؟", "transliteration": "lēsh?", "english": "why?" },
         { "key": "kif", "label": "how?", "arabic": "كيف؟", "transliteration": "kīf?", "english": "how?" },
-        { "key": "kif-ḥalak", "label": "how are you? (m)", "arabic": "كيف حالك؟", "transliteration": "kīf ḥālak?", "english": "how are you? (m)" },
+        { "key": "kif-ḥalak", "label": "how are you? (m)", "arabic": "كيف حالك؟", "transliteration": "kīf ḥālak?", "english": "how are you?", "context": "Asking a man" },
         { "key": "emta", "label": "when?", "arabic": "إيمتى؟", "transliteration": "ēmta?", "english": "when?" },
         { "key": "addesh", "label": "how much?", "arabic": "قدّيش؟", "transliteration": "ʾaddēsh?", "english": "how much?" },
         { "key": "addesh-il-ḥsāb", "label": "how much is the bill?", "arabic": "قدّيش الحساب؟", "transliteration": "ʾaddēsh il-ḥsāb?", "english": "how much is the bill?" },
@@ -307,15 +307,15 @@
       "fushaNote": "بحبّ (baḥebb) = 'I like / love' — same root as MSA أحبّ. The construction [thing] + biʿjibni (literally 'pleases me') is very common for 'I like [thing]', parallel to Spanish 'me gusta'.",
       "forms": [
         { "key": "1sg", "label": "I like / love", "arabic": "بحبّ", "transliteration": "baḥebb", "english": "I like" },
-        { "key": "2sg.m", "label": "you like (m)", "arabic": "بتحبّ", "transliteration": "btḥebb", "english": "you like (m)" },
-        { "key": "2sg.f", "label": "you like (f)", "arabic": "بتحبّي", "transliteration": "btḥebbi", "english": "you like (f)" },
+        { "key": "2sg.m", "label": "you like (m)", "arabic": "بتحبّ", "transliteration": "btḥebb", "english": "you like", "context": "Said to a man" },
+        { "key": "2sg.f", "label": "you like (f)", "arabic": "بتحبّي", "transliteration": "btḥebbi", "english": "you like", "context": "Said to a woman" },
         { "key": "3sg.m", "label": "he likes", "arabic": "بحبّ", "transliteration": "byḥebb", "english": "he likes" },
         { "key": "3sg.f", "label": "she likes", "arabic": "بتحبّ", "transliteration": "btḥebb", "english": "she likes" },
         { "key": "1pl", "label": "we like", "arabic": "بنحبّ", "transliteration": "bnḥebb", "english": "we like" },
         { "key": "neg.1sg", "label": "I don't like", "arabic": "ما بحبّ", "transliteration": "mā baḥebb", "english": "I don't like" },
-        { "key": "ʿjib.1sg.m", "label": "it (m) pleases me", "arabic": "بيعجبني", "transliteration": "byiʿjibni", "english": "I like it (m thing)" },
-        { "key": "ʿjib.1sg.f", "label": "it (f) pleases me", "arabic": "بتعجبني", "transliteration": "btiʿjibni", "english": "I like it (f thing)" },
-        { "key": "ʿjib.neg", "label": "it doesn't please me", "arabic": "ما بيعجبني", "transliteration": "mā byiʿjibni", "english": "I don't like it" }
+        { "key": "ʿjib.1sg.m", "label": "it (m) pleases me", "arabic": "بيعجبني", "transliteration": "byiʿjibni", "english": "I like it.", "context": "About a masculine-gender thing (lit. 'it pleases me')" },
+        { "key": "ʿjib.1sg.f", "label": "it (f) pleases me", "arabic": "بتعجبني", "transliteration": "btiʿjibni", "english": "I like it.", "context": "About a feminine-gender thing (lit. 'it pleases me')" },
+        { "key": "ʿjib.neg", "label": "it doesn't please me", "arabic": "ما بيعجبني", "transliteration": "mā byiʿjibni", "english": "I don't like it." }
       ],
       "slots": [
         {
@@ -340,14 +340,14 @@
       "transliterationPattern": "lāzim [VERB]",
       "fushaNote": "لازم (lāzim) is invariable in spoken Levantine — 'must / have to / should'. The verb following is the bare imperfect (no b-). Negation: mish lāzim ('don't have to / not necessary'). MSA equivalent: يجب أن (yajib an).",
       "forms": [
-        { "key": "1sg.go", "label": "I have to go", "arabic": "لازم أروح", "transliteration": "lāzim arūḥ", "english": "I have to go" },
-        { "key": "2sg.m.go", "label": "you have to go (m)", "arabic": "لازم تروح", "transliteration": "lāzim trūḥ", "english": "you have to go (m)" },
-        { "key": "1sg.eat", "label": "I have to eat", "arabic": "لازم آكل", "transliteration": "lāzim ākul", "english": "I have to eat" },
-        { "key": "1sg.work", "label": "I have to work", "arabic": "لازم اشتغل", "transliteration": "lāzim ashtaghil", "english": "I have to work" },
-        { "key": "1sg.sleep", "label": "I have to sleep", "arabic": "لازم أنام", "transliteration": "lāzim anām", "english": "I have to sleep" },
-        { "key": "neg", "label": "don't have to / not necessary", "arabic": "مش لازم", "transliteration": "mish lāzim", "english": "don't have to / not necessary" },
-        { "key": "noun.water", "label": "I need water", "arabic": "لازمني ميّ", "transliteration": "lāzimni mayy", "english": "I need water" },
-        { "key": "noun.help", "label": "I need help", "arabic": "لازمني مساعدة", "transliteration": "lāzimni musāʿade", "english": "I need help" }
+        { "key": "1sg.go", "label": "I have to go", "arabic": "لازم أروح", "transliteration": "lāzim arūḥ", "english": "I have to go." },
+        { "key": "2sg.m.go", "label": "you have to go (m)", "arabic": "لازم تروح", "transliteration": "lāzim trūḥ", "english": "You have to go.", "context": "Said to a man" },
+        { "key": "1sg.eat", "label": "I have to eat", "arabic": "لازم آكل", "transliteration": "lāzim ākul", "english": "I have to eat." },
+        { "key": "1sg.work", "label": "I have to work", "arabic": "لازم اشتغل", "transliteration": "lāzim ashtaghil", "english": "I have to work." },
+        { "key": "1sg.sleep", "label": "I have to sleep", "arabic": "لازم أنام", "transliteration": "lāzim anām", "english": "I have to sleep." },
+        { "key": "neg", "label": "don't have to / not necessary", "arabic": "مش لازم", "transliteration": "mish lāzim", "english": "Don't have to / not necessary." },
+        { "key": "noun.water", "label": "I need water", "arabic": "لازمني ميّ", "transliteration": "lāzimni mayy", "english": "I need water." },
+        { "key": "noun.help", "label": "I need help", "arabic": "لازمني مساعدة", "transliteration": "lāzimni musāʿade", "english": "I need help." }
       ],
       "slots": [
         {

@@ -64,7 +64,20 @@
             { "arabic": "آكل", "transliteration": "ākul", "english": "to eat" },
             { "arabic": "أشرب", "transliteration": "ashrab", "english": "to drink" },
             { "arabic": "أحكي معك", "transliteration": "aḥki maʿak", "english": "to talk with you (m)" },
-            { "arabic": "أتعلّم عربي", "transliteration": "atʿallam ʿarabi", "english": "to learn Arabic" }
+            { "arabic": "أتعلّم عربي", "transliteration": "atʿallam ʿarabi", "english": "to learn Arabic" },
+            { "arabic": "عصير", "transliteration": "ʿaṣīr", "english": "juice" },
+            { "arabic": "بيرة", "transliteration": "bīra", "english": "beer" },
+            { "arabic": "قهوة بحليب", "transliteration": "ʾahwe bi-ḥalīb", "english": "coffee with milk" },
+            { "arabic": "رزّ", "transliteration": "ruzz", "english": "rice" },
+            { "arabic": "دجاج", "transliteration": "djāj", "english": "chicken" },
+            { "arabic": "سمك", "transliteration": "samak", "english": "fish" },
+            { "arabic": "سلطة", "transliteration": "salaṭa", "english": "salad" },
+            { "arabic": "أنام", "transliteration": "anām", "english": "to sleep" },
+            { "arabic": "أرتاح", "transliteration": "artāḥ", "english": "to rest" },
+            { "arabic": "أجي معك", "transliteration": "aji maʿak", "english": "to come with you (m)" },
+            { "arabic": "أسألك شي", "transliteration": "asʾalak shi", "english": "to ask you (m) something" },
+            { "arabic": "أعرف", "transliteration": "aʿrif", "english": "to know" },
+            { "arabic": "أمشي", "transliteration": "amshi", "english": "to leave / get going" }
           ]
         }
       ],
@@ -97,7 +110,16 @@
             { "arabic": "تحكي شوي شوي", "transliteration": "tiḥki shwayy shwayy", "english": "you speak slowly" },
             { "arabic": "ادفع بالكرت", "transliteration": "adfaʿ bil-kart", "english": "I pay by card" },
             { "arabic": "آخد هاد", "transliteration": "ākhud hād", "english": "I take this" },
-            { "arabic": "أشوف", "transliteration": "ashūf", "english": "I see / look at" }
+            { "arabic": "أشوف", "transliteration": "ashūf", "english": "I see / look at" },
+            { "arabic": "أفوت", "transliteration": "afūt", "english": "I come in / enter" },
+            { "arabic": "أقعد هون", "transliteration": "aʾʿud hōn", "english": "I sit here" },
+            { "arabic": "أشوف هاد", "transliteration": "ashūf hād", "english": "I look at this" },
+            { "arabic": "آخد صورة", "transliteration": "ākhud ṣūra", "english": "I take a picture" },
+            { "arabic": "أشحن تلفوني", "transliteration": "ashḥan talafōni", "english": "I charge my phone" },
+            { "arabic": "أستعمل الحمّام", "transliteration": "astaʿmil il-ḥammām", "english": "I use the bathroom" },
+            { "arabic": "أستنّى هون", "transliteration": "astanna hōn", "english": "I wait here" },
+            { "arabic": "أدفع بعدين", "transliteration": "adfaʿ baʿdēn", "english": "I pay later" },
+            { "arabic": "أجرّب هاد", "transliteration": "ajarrib hād", "english": "I try this" }
           ]
         }
       ],
@@ -134,7 +156,17 @@
             { "arabic": "سؤال", "transliteration": "suʾāl", "english": "a question" },
             { "arabic": "سيّارة", "transliteration": "sayyāra", "english": "a car" },
             { "arabic": "كرت", "transliteration": "kart", "english": "a card" },
-            { "arabic": "مصاري", "transliteration": "maṣāri", "english": "money / cash" }
+            { "arabic": "مصاري", "transliteration": "maṣāri", "english": "money / cash" },
+            { "arabic": "موعد", "transliteration": "mawʿid", "english": "an appointment" },
+            { "arabic": "اجتماع", "transliteration": "ijtimāʿ", "english": "a meeting" },
+            { "arabic": "ولاد", "transliteration": "wlād", "english": "kids" },
+            { "arabic": "أخ", "transliteration": "akh", "english": "a brother" },
+            { "arabic": "أخت", "transliteration": "ukht", "english": "a sister" },
+            { "arabic": "كلب", "transliteration": "kalb", "english": "a dog" },
+            { "arabic": "مشكلة", "transliteration": "mushkile", "english": "a problem" },
+            { "arabic": "جوع", "transliteration": "jūʿ", "english": "hunger (I'm hungry)" },
+            { "arabic": "صداع", "transliteration": "ṣudāʿ", "english": "a headache" },
+            { "arabic": "حساسية", "transliteration": "ḥasāsiyye", "english": "an allergy" }
           ]
         }
       ],
@@ -325,7 +357,17 @@
             { "arabic": "الأكل العربي", "transliteration": "il-ʾakl il-ʿarabi", "english": "Arabic food" },
             { "arabic": "هاد المكان", "transliteration": "hād il-makān", "english": "this place" },
             { "arabic": "الموسيقى", "transliteration": "il-mūsīʾa", "english": "the music" },
-            { "arabic": "اللون الأزرق", "transliteration": "il-lōn il-azraʾ", "english": "the color blue" }
+            { "arabic": "اللون الأزرق", "transliteration": "il-lōn il-azraʾ", "english": "the color blue" },
+            { "arabic": "الجوّ الحامي", "transliteration": "ij-jaww il-ḥāmi", "english": "hot weather" },
+            { "arabic": "الجوّ البارد", "transliteration": "ij-jaww il-bārid", "english": "cold weather" },
+            { "arabic": "هاي الموسيقى", "transliteration": "hāy il-mūsīʾa", "english": "this music" },
+            { "arabic": "هاد الفيلم", "transliteration": "hād il-fīlm", "english": "that movie" },
+            { "arabic": "الأكل العربي", "transliteration": "il-ʾakl il-ʿarabi", "english": "Arabic food" },
+            { "arabic": "العبراني", "transliteration": "il-ʿibrāni", "english": "Hebrew (the language)" },
+            { "arabic": "السباحة", "transliteration": "is-sibāḥa", "english": "swimming" },
+            { "arabic": "المشي", "transliteration": "il-mashi", "english": "walking" },
+            { "arabic": "هاي المنطقة", "transliteration": "hāy il-minṭaʾa", "english": "this neighborhood" },
+            { "arabic": "شغلي", "transliteration": "shughli", "english": "my work" }
           ]
         }
       ],

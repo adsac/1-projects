@@ -6,7 +6,13 @@
       "transliteration": "mumkin tiḥki shwayy shwayy?",
       "english": "Can you speak more slowly?",
       "pronunciationNote": "shwayy shwayy literally 'a little a little' — the standard Levantine way to ask for slow speech.",
-      "tags": ["rescue", "drivers", "shops", "family", "work"],
+      "tags": [
+        "rescue",
+        "drivers",
+        "shops",
+        "family",
+        "work"
+      ],
       "rescue": true,
       "status": "draft"
     },
@@ -16,7 +22,13 @@
       "transliteration": "mā fhimt",
       "english": "I didn't understand.",
       "pronunciationNote": "The cluster fhimt is one syllable; the i is a short helping vowel.",
-      "tags": ["rescue", "drivers", "shops", "family", "work"],
+      "tags": [
+        "rescue",
+        "drivers",
+        "shops",
+        "family",
+        "work"
+      ],
       "rescue": true,
       "status": "draft"
     },
@@ -25,7 +37,11 @@
       "arabic": "ممكن تعيد؟",
       "transliteration": "mumkin tʿīd?",
       "english": "Can you repeat?",
-      "tags": ["rescue", "drivers", "shops"],
+      "tags": [
+        "rescue",
+        "drivers",
+        "shops"
+      ],
       "rescue": true,
       "status": "draft"
     },
@@ -34,7 +50,11 @@
       "arabic": "كمان مرّة، لو سمحت",
       "transliteration": "kamān marra, law samaḥt",
       "english": "One more time, please.",
-      "tags": ["rescue", "shops", "drivers"],
+      "tags": [
+        "rescue",
+        "shops",
+        "drivers"
+      ],
       "rescue": true,
       "status": "draft"
     },
@@ -44,7 +64,13 @@
       "transliteration": "ana batʿallam ʿarabi",
       "english": "I'm learning Arabic.",
       "pronunciationNote": "ʿ in ʿarabi is the pharyngeal — give it weight; don't say 'arabi'.",
-      "tags": ["rescue", "drivers", "shops", "family", "work"],
+      "tags": [
+        "rescue",
+        "drivers",
+        "shops",
+        "family",
+        "work"
+      ],
       "rescue": true,
       "status": "draft"
     },
@@ -53,7 +79,12 @@
       "arabic": "بحكي عربي شوي",
       "transliteration": "baḥki ʿarabi shwayy",
       "english": "I speak a little Arabic.",
-      "tags": ["rescue", "drivers", "shops", "family"],
+      "tags": [
+        "rescue",
+        "drivers",
+        "shops",
+        "family"
+      ],
       "rescue": true,
       "status": "draft"
     },
@@ -62,7 +93,12 @@
       "arabic": "بتحكي إنجليزي؟",
       "transliteration": "btiḥki inglīzi?",
       "english": "Do you speak English?",
-      "tags": ["rescue", "drivers", "shops", "work"],
+      "tags": [
+        "rescue",
+        "drivers",
+        "shops",
+        "work"
+      ],
       "rescue": true,
       "status": "draft"
     },
@@ -72,7 +108,11 @@
       "transliteration": "shū hād bil-ʿarabi?",
       "english": "What is this in Arabic?",
       "fushaNote": "shū ← MSA mā/māḏā; hād ← MSA hāḏā (Levantine drops the final ā).",
-      "tags": ["rescue", "shops", "kids"],
+      "tags": [
+        "rescue",
+        "shops",
+        "kids"
+      ],
       "rescue": true,
       "status": "draft"
     },
@@ -82,7 +122,11 @@
       "transliteration": "kīf btʾūl hād bil-ʿarabi?",
       "english": "How do you say this in Arabic?",
       "pronunciationNote": "btʾūl: the ʾ is a glottal stop (urban ق); pronounce as a sharp catch in the throat.",
-      "tags": ["rescue", "shops", "family"],
+      "tags": [
+        "rescue",
+        "shops",
+        "family"
+      ],
       "rescue": true,
       "status": "draft"
     },
@@ -92,7 +136,14 @@
       "transliteration": "āsif",
       "english": "Sorry.",
       "context": "Said by a male speaker (female: āsfe)",
-      "tags": ["rescue", "drivers", "shops", "kids", "family", "work"],
+      "tags": [
+        "rescue",
+        "drivers",
+        "shops",
+        "kids",
+        "family",
+        "work"
+      ],
       "rescue": true,
       "status": "draft"
     },
@@ -102,7 +153,11 @@
       "transliteration": "laʾ, shukran",
       "english": "No, thank you.",
       "pronunciationNote": "laʾ ends in a glottal stop — short and crisp, not 'la'.",
-      "tags": ["rescue", "shops", "drivers"],
+      "tags": [
+        "rescue",
+        "shops",
+        "drivers"
+      ],
       "rescue": true,
       "status": "draft"
     },
@@ -112,7 +167,13 @@
       "transliteration": "aywa",
       "english": "Yes / yeah.",
       "fushaNote": "Colloquial 'yes'. MSA: نعم (naʿam). Both work; aywa is warmer and more conversational.",
-      "tags": ["rescue", "drivers", "shops", "family", "work"],
+      "tags": [
+        "rescue",
+        "drivers",
+        "shops",
+        "family",
+        "work"
+      ],
       "rescue": true,
       "status": "draft"
     },
@@ -121,7 +182,12 @@
       "arabic": "ما بعرف",
       "transliteration": "mā baʿrif",
       "english": "I don't know.",
-      "tags": ["rescue", "shops", "family", "work"],
+      "tags": [
+        "rescue",
+        "shops",
+        "family",
+        "work"
+      ],
       "rescue": true,
       "status": "draft"
     },
@@ -130,7 +196,11 @@
       "arabic": "ممكن تساعدني؟",
       "transliteration": "mumkin tsāʿidni?",
       "english": "Can you help me?",
-      "tags": ["rescue", "drivers", "shops"],
+      "tags": [
+        "rescue",
+        "drivers",
+        "shops"
+      ],
       "rescue": true,
       "status": "draft"
     },
@@ -140,11 +210,15 @@
       "transliteration": "laḥẓa, law samaḥt",
       "english": "One moment, please.",
       "pronunciationNote": "ẓ in laḥẓa is the emphatic — backs the surrounding vowel a bit.",
-      "tags": ["rescue", "drivers", "shops", "work"],
+      "tags": [
+        "rescue",
+        "drivers",
+        "shops",
+        "work"
+      ],
       "rescue": true,
       "status": "draft"
     },
-
     {
       "id": "drivers-to-modiin",
       "arabic": "ع موديعين، لو سمحت",
@@ -152,7 +226,9 @@
       "english": "To Modi'in, please.",
       "context": "Said to the driver as you get in the taxi",
       "pronunciationNote": "ʿa = 'to' (reduced ʿala). The ʿ before Mōdiʿīn must be sounded.",
-      "tags": ["drivers"],
+      "tags": [
+        "drivers"
+      ],
       "status": "draft"
     },
     {
@@ -161,7 +237,9 @@
       "transliteration": "ʿa l-Quds, law samaḥt",
       "english": "To Jerusalem, please.",
       "context": "Said to the driver as you get in the taxi",
-      "tags": ["drivers"],
+      "tags": [
+        "drivers"
+      ],
       "status": "draft"
     },
     {
@@ -171,7 +249,9 @@
       "english": "Stop here, please.",
       "context": "Said in the taxi when you've arrived",
       "pronunciationNote": "waʾʾif: doubled glottal stop (shadda on ق). The pause after wa- is real.",
-      "tags": ["drivers"],
+      "tags": [
+        "drivers"
+      ],
       "status": "draft"
     },
     {
@@ -180,7 +260,9 @@
       "transliteration": "hōn mnīḥ",
       "english": "Here is good.",
       "context": "Said in the taxi to indicate where to drop you",
-      "tags": ["drivers"],
+      "tags": [
+        "drivers"
+      ],
       "status": "draft"
     },
     {
@@ -189,7 +271,9 @@
       "transliteration": "ʾaddēsh il-ujra?",
       "english": "How much is the fare?",
       "fushaNote": "ʾaddēsh ← MSA كم (kam) for prices. ujra = fare/wage, shared with MSA.",
-      "tags": ["drivers"],
+      "tags": [
+        "drivers"
+      ],
       "status": "draft"
     },
     {
@@ -199,7 +283,10 @@
       "english": "Do you have change?",
       "context": "Asking a driver / shopkeeper (m) when paying",
       "pronunciationNote": "fakke with doubled k (shadda) — clearly held.",
-      "tags": ["drivers", "shops"],
+      "tags": [
+        "drivers",
+        "shops"
+      ],
       "status": "draft"
     },
     {
@@ -208,7 +295,10 @@
       "transliteration": "khalli l-bāʾi ilak",
       "english": "Keep the change.",
       "context": "Said when paying a driver / vendor (m)",
-      "tags": ["drivers", "shops"],
+      "tags": [
+        "drivers",
+        "shops"
+      ],
       "status": "draft"
     },
     {
@@ -217,7 +307,9 @@
       "transliteration": "hād iṭ-ṭarīʾ ʿa Mōdiʿīn?",
       "english": "Is this the way to Modi'in?",
       "pronunciationNote": "ṭarīʾ has emphatic ṭ — backs the ā. Final ʾ for ق.",
-      "tags": ["drivers"],
+      "tags": [
+        "drivers"
+      ],
       "status": "draft"
     },
     {
@@ -226,7 +318,10 @@
       "transliteration": "mumkin adfaʿ bil-kart?",
       "english": "Can I pay by card?",
       "context": "Asking the driver / shopkeeper at point of payment",
-      "tags": ["drivers", "shops"],
+      "tags": [
+        "drivers",
+        "shops"
+      ],
       "status": "draft"
     },
     {
@@ -235,7 +330,10 @@
       "transliteration": "badfaʿ kāsh",
       "english": "I'll pay cash.",
       "context": "Said at point of payment",
-      "tags": ["drivers", "shops"],
+      "tags": [
+        "drivers",
+        "shops"
+      ],
       "status": "draft"
     },
     {
@@ -244,7 +342,10 @@
       "transliteration": "ana mistaʿjil",
       "english": "I'm in a hurry.",
       "context": "Said by a male speaker (female: mistaʿjile)",
-      "tags": ["drivers", "work"],
+      "tags": [
+        "drivers",
+        "work"
+      ],
       "status": "draft"
     },
     {
@@ -253,7 +354,9 @@
       "transliteration": "mā fī ʿajale",
       "english": "There's no rush.",
       "fushaNote": "fī here = 'there is' (Levantine), distinct from MSA preposition fī ('in'). MSA equivalent: لا يوجد (lā yūjad).",
-      "tags": ["drivers"],
+      "tags": [
+        "drivers"
+      ],
       "status": "draft"
     },
     {
@@ -262,7 +365,9 @@
       "transliteration": "ish-shāriʿ ij-jāy",
       "english": "The next street.",
       "context": "Directing the driver",
-      "tags": ["drivers"],
+      "tags": [
+        "drivers"
+      ],
       "status": "draft"
     },
     {
@@ -271,7 +376,9 @@
       "transliteration": "yamīn",
       "english": "Right.",
       "context": "Directing the driver",
-      "tags": ["drivers"],
+      "tags": [
+        "drivers"
+      ],
       "status": "draft"
     },
     {
@@ -281,7 +388,9 @@
       "english": "Left.",
       "context": "Directing the driver",
       "pronunciationNote": "Initial cluster sh+m; the sh isn't preceded by a vowel.",
-      "tags": ["drivers"],
+      "tags": [
+        "drivers"
+      ],
       "status": "draft"
     },
     {
@@ -291,7 +400,9 @@
       "english": "Straight ahead.",
       "context": "Directing the driver",
       "fushaNote": "From Turkish doğru ('straight'). Pan-Levantine, very common in spoken use; MSA would say إلى الأمام (ʾila l-ʾamām).",
-      "tags": ["drivers"],
+      "tags": [
+        "drivers"
+      ],
       "status": "draft"
     },
     {
@@ -300,7 +411,9 @@
       "transliteration": "baʿd il-ishāra",
       "english": "After the traffic light.",
       "context": "Directing the driver",
-      "tags": ["drivers"],
+      "tags": [
+        "drivers"
+      ],
       "status": "draft"
     },
     {
@@ -309,7 +422,9 @@
       "transliteration": "ʾabl il-ishāra",
       "english": "Before the traffic light.",
       "context": "Directing the driver",
-      "tags": ["drivers"],
+      "tags": [
+        "drivers"
+      ],
       "status": "draft"
     },
     {
@@ -318,7 +433,9 @@
       "transliteration": "nazzilni hōn, law samaḥt",
       "english": "Drop me here, please.",
       "context": "Said in the taxi when you want to get out",
-      "tags": ["drivers"],
+      "tags": [
+        "drivers"
+      ],
       "status": "draft"
     },
     {
@@ -327,7 +444,9 @@
       "transliteration": "shukran, Allāh maʿak",
       "english": "Thanks, goodbye.",
       "context": "Warm farewell as you leave the taxi (lit. 'God be with you')",
-      "tags": ["drivers"],
+      "tags": [
+        "drivers"
+      ],
       "status": "draft"
     },
     {
@@ -337,7 +456,9 @@
       "english": "How long will it take?",
       "context": "Asking about journey duration",
       "pronunciationNote": "biddha (lit. 'it [f] wants') is idiomatic for 'it'll take' a duration.",
-      "tags": ["drivers"],
+      "tags": [
+        "drivers"
+      ],
       "status": "draft"
     },
     {
@@ -346,7 +467,9 @@
       "transliteration": "hād il-ʿinwān",
       "english": "This is the address.",
       "context": "Showing the driver an address on your phone",
-      "tags": ["drivers"],
+      "tags": [
+        "drivers"
+      ],
       "status": "draft"
     },
     {
@@ -355,7 +478,9 @@
       "transliteration": "mumkin il-mkayyif, law samaḥt?",
       "english": "Could you turn on the AC, please?",
       "context": "Said in the taxi",
-      "tags": ["drivers"],
+      "tags": [
+        "drivers"
+      ],
       "status": "draft"
     },
     {
@@ -363,7 +488,9 @@
       "arabic": "بعيد؟",
       "transliteration": "bʿīd?",
       "english": "Is it far?",
-      "tags": ["drivers"],
+      "tags": [
+        "drivers"
+      ],
       "status": "draft"
     },
     {
@@ -371,10 +498,11 @@
       "arabic": "قريب",
       "transliteration": "ʾarīb",
       "english": "It's close / near.",
-      "tags": ["drivers"],
+      "tags": [
+        "drivers"
+      ],
       "status": "draft"
     },
-
     {
       "id": "shops-coffee",
       "arabic": "بدّي قهوة، لو سمحت",
@@ -382,7 +510,9 @@
       "english": "I'd like a coffee, please.",
       "context": "Ordering at a café",
       "pronunciationNote": "ʾahwe — ق as glottal stop, then a-h-we. Common Palestinian pronunciation.",
-      "tags": ["shops"],
+      "tags": [
+        "shops"
+      ],
       "status": "draft"
     },
     {
@@ -391,7 +521,9 @@
       "transliteration": "ʾahwe bidūn sukkar",
       "english": "Coffee without sugar.",
       "context": "Ordering coffee",
-      "tags": ["shops"],
+      "tags": [
+        "shops"
+      ],
       "status": "draft"
     },
     {
@@ -401,7 +533,9 @@
       "english": "Coffee plain / medium / sweet.",
       "context": "Ordering Arabic coffee — the standard sweetness ladder",
       "fushaNote": "Standard ordering ladder for Arabic coffee. sāde = no sugar, wasaṭ = medium, ḥilwe = sweet.",
-      "tags": ["shops"],
+      "tags": [
+        "shops"
+      ],
       "status": "draft"
     },
     {
@@ -410,7 +544,9 @@
       "transliteration": "maʿ ḥalīb",
       "english": "With milk.",
       "context": "Add-on while ordering a drink",
-      "tags": ["shops"],
+      "tags": [
+        "shops"
+      ],
       "status": "draft"
     },
     {
@@ -420,7 +556,9 @@
       "english": "I'd like tea with mint.",
       "context": "Ordering at a café",
       "pronunciationNote": "naʿnaʿ has two pharyngeal ʿ — distinctive Levantine sound.",
-      "tags": ["shops"],
+      "tags": [
+        "shops"
+      ],
       "status": "draft"
     },
     {
@@ -429,7 +567,9 @@
       "transliteration": "biddi ʾannīnit mayy",
       "english": "I'd like a bottle of water.",
       "context": "Ordering / buying at a shop or kiosk",
-      "tags": ["shops"],
+      "tags": [
+        "shops"
+      ],
       "status": "draft"
     },
     {
@@ -438,7 +578,9 @@
       "transliteration": "hād, law samaḥt",
       "english": "This one, please.",
       "context": "Pointing at an item in a shop",
-      "tags": ["shops"],
+      "tags": [
+        "shops"
+      ],
       "status": "draft"
     },
     {
@@ -447,7 +589,9 @@
       "transliteration": "lis-safari",
       "english": "To take away / to go.",
       "context": "When ordering food / coffee",
-      "tags": ["shops"],
+      "tags": [
+        "shops"
+      ],
       "status": "draft"
     },
     {
@@ -456,7 +600,9 @@
       "transliteration": "raḥ ākul hōn",
       "english": "I'll eat here.",
       "context": "When ordering — the opposite of take-away",
-      "tags": ["shops"],
+      "tags": [
+        "shops"
+      ],
       "status": "draft"
     },
     {
@@ -466,7 +612,9 @@
       "english": "The bill, please.",
       "context": "Asking the waiter for the check",
       "pronunciationNote": "ḥ is pharyngeal — ḥsāb starts with that sound, no vowel before it.",
-      "tags": ["shops"],
+      "tags": [
+        "shops"
+      ],
       "status": "draft"
     },
     {
@@ -475,7 +623,9 @@
       "transliteration": "ʾaddēsh hād?",
       "english": "How much is this?",
       "context": "Pointing at an item in a shop",
-      "tags": ["shops"],
+      "tags": [
+        "shops"
+      ],
       "status": "draft"
     },
     {
@@ -484,7 +634,9 @@
       "transliteration": "ghāli ktīr",
       "english": "Too expensive.",
       "context": "Reaction to a price — opens haggling in markets",
-      "tags": ["shops"],
+      "tags": [
+        "shops"
+      ],
       "status": "draft"
     },
     {
@@ -493,7 +645,9 @@
       "transliteration": "fī shi arkhaṣ?",
       "english": "Is there something cheaper?",
       "fushaNote": "fī here = 'there is/are', a Levantine existential. MSA: هل يوجد (hal yūjad).",
-      "tags": ["shops"],
+      "tags": [
+        "shops"
+      ],
       "status": "draft"
     },
     {
@@ -502,7 +656,9 @@
       "transliteration": "baʾkhdo",
       "english": "I'll take it.",
       "context": "Committing to buy an item",
-      "tags": ["shops"],
+      "tags": [
+        "shops"
+      ],
       "status": "draft"
     },
     {
@@ -511,7 +667,9 @@
       "transliteration": "mumkin kīs, law samaḥt?",
       "english": "Could I have a bag, please?",
       "context": "At checkout in a shop",
-      "tags": ["shops"],
+      "tags": [
+        "shops"
+      ],
       "status": "draft"
     },
     {
@@ -520,7 +678,9 @@
       "transliteration": "biddi fātūra",
       "english": "I'd like a receipt.",
       "context": "At checkout in a shop",
-      "tags": ["shops"],
+      "tags": [
+        "shops"
+      ],
       "status": "draft"
     },
     {
@@ -530,7 +690,9 @@
       "english": "Just looking, thanks.",
       "context": "Reply when a shopkeeper offers help",
       "fushaNote": "ʿam + imperfect = present continuous in Levantine. ʿam atfarraj = 'I am [in the act of] looking around'.",
-      "tags": ["shops"],
+      "tags": [
+        "shops"
+      ],
       "status": "draft"
     },
     {
@@ -539,7 +701,9 @@
       "transliteration": "wēn il-khubz?",
       "english": "Where is the bread?",
       "context": "Asking a shop employee",
-      "tags": ["shops"],
+      "tags": [
+        "shops"
+      ],
       "status": "draft"
     },
     {
@@ -548,7 +712,10 @@
       "transliteration": "wēn il-ḥammām?",
       "english": "Where is the bathroom?",
       "pronunciationNote": "ḥ pharyngeal; doubled mm. Distinct from English 'hammam'.",
-      "tags": ["rescue", "shops"],
+      "tags": [
+        "rescue",
+        "shops"
+      ],
       "rescue": true,
       "status": "draft"
     },
@@ -559,7 +726,9 @@
       "english": "Half a kilo, please.",
       "context": "Ordering by weight at a market / butcher / produce stall",
       "pronunciationNote": "nuṣṣ has emphatic ṣ + shadda — held a beat.",
-      "tags": ["shops"],
+      "tags": [
+        "shops"
+      ],
       "status": "draft"
     },
     {
@@ -568,7 +737,9 @@
       "transliteration": "kīlo, law samaḥt",
       "english": "One kilo, please.",
       "context": "Ordering by weight at a market / butcher / produce stall",
-      "tags": ["shops"],
+      "tags": [
+        "shops"
+      ],
       "status": "draft"
     },
     {
@@ -578,7 +749,9 @@
       "english": "Is this fresh?",
       "context": "Asking at a market / produce stall",
       "fushaNote": "ṭāza ('fresh') is from Persian/Turkish, used pan-Levantine. MSA equivalent: طازج (ṭāzij).",
-      "tags": ["shops"],
+      "tags": [
+        "shops"
+      ],
       "status": "draft"
     },
     {
@@ -587,7 +760,10 @@
       "transliteration": "ktīr zāki",
       "english": "Very tasty.",
       "context": "Reaction while eating",
-      "tags": ["shops", "family"],
+      "tags": [
+        "shops",
+        "family"
+      ],
       "status": "draft"
     },
     {
@@ -596,7 +772,9 @@
       "transliteration": "hād kull shi",
       "english": "That's everything.",
       "context": "Reply when the vendor asks if you want anything else",
-      "tags": ["shops"],
+      "tags": [
+        "shops"
+      ],
       "status": "draft"
     },
     {
@@ -605,7 +783,9 @@
       "transliteration": "shi tāni?",
       "english": "Anything else?",
       "context": "Said by the shopkeeper to you (good to recognise)",
-      "tags": ["shops"],
+      "tags": [
+        "shops"
+      ],
       "status": "draft"
     },
     {
@@ -614,7 +794,9 @@
       "transliteration": "badfaʿ kart",
       "english": "I'll pay by card.",
       "context": "Said at point of payment",
-      "tags": ["shops"],
+      "tags": [
+        "shops"
+      ],
       "status": "draft"
     },
     {
@@ -623,7 +805,9 @@
       "transliteration": "biddi sandwīshet falāfil",
       "english": "I'd like a falafel sandwich.",
       "context": "Ordering at a falafel stand",
-      "tags": ["shops"],
+      "tags": [
+        "shops"
+      ],
       "status": "draft"
     },
     {
@@ -633,7 +817,9 @@
       "english": "Spicy, please. / Not spicy.",
       "context": "Specifying when ordering food",
       "pronunciationNote": "ḥ pharyngeal + double r — strong word.",
-      "tags": ["shops"],
+      "tags": [
+        "shops"
+      ],
       "status": "draft"
     },
     {
@@ -642,17 +828,21 @@
       "transliteration": "maʿ ṭḥīne",
       "english": "With tahini.",
       "context": "Add-on while ordering food",
-      "tags": ["shops"],
+      "tags": [
+        "shops"
+      ],
       "status": "draft"
     },
-
     {
       "id": "kids-whats-name",
       "arabic": "شو اسمك؟",
       "transliteration": "shū ismak?",
       "english": "What's your name?",
       "context": "Asking a man / boy",
-      "tags": ["kids", "family"],
+      "tags": [
+        "kids",
+        "family"
+      ],
       "status": "draft"
     },
     {
@@ -661,7 +851,10 @@
       "transliteration": "shū ismik?",
       "english": "What's your name?",
       "context": "Asking a woman / girl",
-      "tags": ["kids", "family"],
+      "tags": [
+        "kids",
+        "family"
+      ],
       "status": "draft"
     },
     {
@@ -670,7 +863,11 @@
       "transliteration": "ismi Ādam",
       "english": "My name is Adam.",
       "context": "Reply to: shū ismak?",
-      "tags": ["kids", "family", "work"],
+      "tags": [
+        "kids",
+        "family",
+        "work"
+      ],
       "status": "draft"
     },
     {
@@ -680,7 +877,10 @@
       "english": "How old are you?",
       "context": "Asking a man / boy",
       "pronunciationNote": "ʿumr starts with the pharyngeal ʿ; don't say 'umrak'.",
-      "tags": ["kids", "family"],
+      "tags": [
+        "kids",
+        "family"
+      ],
       "status": "draft"
     },
     {
@@ -689,7 +889,9 @@
       "transliteration": "biddak tilʿab?",
       "english": "Do you want to play?",
       "context": "Asking a boy",
-      "tags": ["kids"],
+      "tags": [
+        "kids"
+      ],
       "status": "draft"
     },
     {
@@ -699,7 +901,9 @@
       "english": "Be careful.",
       "context": "Said to a boy / man",
       "fushaNote": "Lit. 'turn your mind' — idiomatic for 'pay attention / be careful'. Also said as khalli bālak.",
-      "tags": ["kids"],
+      "tags": [
+        "kids"
+      ],
       "status": "draft"
     },
     {
@@ -708,7 +912,9 @@
       "transliteration": "dōrak",
       "english": "Your turn.",
       "context": "Said to a boy / man during a game",
-      "tags": ["kids"],
+      "tags": [
+        "kids"
+      ],
       "status": "draft"
     },
     {
@@ -717,7 +923,10 @@
       "transliteration": "aḥsant!",
       "english": "Well done!",
       "context": "Praising a boy / man",
-      "tags": ["kids", "work"],
+      "tags": [
+        "kids",
+        "work"
+      ],
       "status": "draft"
     },
     {
@@ -726,7 +935,9 @@
       "transliteration": "brāvo ʿalēk",
       "english": "Way to go!",
       "context": "Praising a boy / man",
-      "tags": ["kids"],
+      "tags": [
+        "kids"
+      ],
       "status": "draft"
     },
     {
@@ -735,7 +946,11 @@
       "transliteration": "yalla!",
       "english": "Let's go! / Come on!",
       "fushaNote": "From يا الله (yā Allāh, 'O God'); contracted in spoken Arabic into a general 'come on'.",
-      "tags": ["kids", "family", "drivers"],
+      "tags": [
+        "kids",
+        "family",
+        "drivers"
+      ],
       "status": "draft"
     },
     {
@@ -743,7 +958,9 @@
       "arabic": "تعا لهون",
       "transliteration": "taʿa la-hōn",
       "english": "Come here.",
-      "tags": ["kids"],
+      "tags": [
+        "kids"
+      ],
       "status": "draft"
     },
     {
@@ -752,7 +969,9 @@
       "transliteration": "shūf!",
       "english": "Look!",
       "context": "Said to a boy / man",
-      "tags": ["kids"],
+      "tags": [
+        "kids"
+      ],
       "status": "draft"
     },
     {
@@ -760,7 +979,9 @@
       "arabic": "بسّ",
       "transliteration": "bass",
       "english": "Enough / stop.",
-      "tags": ["kids"],
+      "tags": [
+        "kids"
+      ],
       "status": "draft"
     },
     {
@@ -769,7 +990,9 @@
       "transliteration": "wēn māma?",
       "english": "Where's mom?",
       "context": "Said to a child looking for their mother",
-      "tags": ["kids"],
+      "tags": [
+        "kids"
+      ],
       "status": "draft"
     },
     {
@@ -778,7 +1001,9 @@
       "transliteration": "biddak tilʿab ṭāba?",
       "english": "Do you want to play ball?",
       "context": "Asking a boy",
-      "tags": ["kids"],
+      "tags": [
+        "kids"
+      ],
       "status": "draft"
     },
     {
@@ -786,7 +1011,9 @@
       "arabic": "أحمر",
       "transliteration": "aḥmar",
       "english": "Red.",
-      "tags": ["kids"],
+      "tags": [
+        "kids"
+      ],
       "status": "draft"
     },
     {
@@ -794,7 +1021,9 @@
       "arabic": "أزرق",
       "transliteration": "azraʾ",
       "english": "Blue.",
-      "tags": ["kids"],
+      "tags": [
+        "kids"
+      ],
       "status": "draft"
     },
     {
@@ -802,7 +1031,9 @@
       "arabic": "أخضر",
       "transliteration": "akhḍar",
       "english": "Green.",
-      "tags": ["kids"],
+      "tags": [
+        "kids"
+      ],
       "status": "draft"
     },
     {
@@ -812,7 +1043,10 @@
       "english": "Mashallah, so cute!",
       "context": "Reaction to a cute kid / good news / an achievement — also wards off the evil eye",
       "fushaNote": "ما شاء الله (mā shāʾ Allāh, 'what God has willed') — said when admiring someone, especially a child, to ward off the evil eye. Strongly expected etiquette.",
-      "tags": ["kids", "family"],
+      "tags": [
+        "kids",
+        "family"
+      ],
       "status": "draft"
     },
     {
@@ -821,17 +1055,20 @@
       "transliteration": "bāy bāy",
       "english": "Bye-bye.",
       "context": "Said to / with a small child",
-      "tags": ["kids"],
+      "tags": [
+        "kids"
+      ],
       "status": "draft"
     },
-
     {
       "id": "family-howare-family",
       "arabic": "كيف العيلة؟",
       "transliteration": "kīf il-ʿēle?",
       "english": "How's the family?",
       "context": "Standard small-talk follow-up after kīf ḥālak",
-      "tags": ["family"],
+      "tags": [
+        "family"
+      ],
       "status": "draft"
     },
     {
@@ -840,7 +1077,10 @@
       "transliteration": "il-ḥamdillāh, mnīḥīn",
       "english": "Thank God, we're well.",
       "context": "Reply to: kīf il-ʿēle? / kīf il-aḥwāl?",
-      "tags": ["family", "work"],
+      "tags": [
+        "family",
+        "work"
+      ],
       "status": "draft"
     },
     {
@@ -850,7 +1090,9 @@
       "english": "How many kids do you have?",
       "context": "Asking a man",
       "pronunciationNote": "walad cf. Hebrew yeled — same Semitic root w-l-d / y-l-d.",
-      "tags": ["family"],
+      "tags": [
+        "family"
+      ],
       "status": "draft"
     },
     {
@@ -859,7 +1101,9 @@
       "transliteration": "ʿindi waladēn",
       "english": "I have two kids.",
       "context": "Reply to: kam walad ʿindak?",
-      "tags": ["family"],
+      "tags": [
+        "family"
+      ],
       "status": "draft"
     },
     {
@@ -869,7 +1113,9 @@
       "english": "May God protect them.",
       "context": "Said after someone mentions their kids — almost mandatory etiquette",
       "fushaNote": "Standard reply when someone mentions their kids or family — pious and warm. Almost mandatory after 'how are the kids'.",
-      "tags": ["family"],
+      "tags": [
+        "family"
+      ],
       "status": "draft"
     },
     {
@@ -878,7 +1124,10 @@
       "transliteration": "min wēn inta?",
       "english": "Where are you from?",
       "context": "Asking a man",
-      "tags": ["family", "work"],
+      "tags": [
+        "family",
+        "work"
+      ],
       "status": "draft"
     },
     {
@@ -887,7 +1136,10 @@
       "transliteration": "ana min Amrīka, bass ʿāyish hōn",
       "english": "I'm from America, but I live here.",
       "context": "Reply to: min wēn inta? (m speaker)",
-      "tags": ["family", "work"],
+      "tags": [
+        "family",
+        "work"
+      ],
       "status": "draft"
     },
     {
@@ -896,7 +1148,10 @@
       "transliteration": "sākin fi Mōdiʿīn",
       "english": "I live in Modi'in.",
       "context": "Said by a male speaker (female: sākne)",
-      "tags": ["family", "work"],
+      "tags": [
+        "family",
+        "work"
+      ],
       "status": "draft"
     },
     {
@@ -905,7 +1160,9 @@
       "transliteration": "ana mitzawwaj",
       "english": "I'm married.",
       "context": "Said by a male speaker (female: mitzawwje)",
-      "tags": ["family"],
+      "tags": [
+        "family"
+      ],
       "status": "draft"
     },
     {
@@ -914,7 +1171,9 @@
       "transliteration": "marti",
       "english": "My wife.",
       "fushaNote": "From مرأتي (marʾati). Levantine drops the hamza. Polite alternative: زوجتي (zōjti).",
-      "tags": ["family"],
+      "tags": [
+        "family"
+      ],
       "status": "draft"
     },
     {
@@ -922,7 +1181,9 @@
       "arabic": "ولادي",
       "transliteration": "wlādi",
       "english": "My kids.",
-      "tags": ["family"],
+      "tags": [
+        "family"
+      ],
       "status": "draft"
     },
     {
@@ -931,7 +1192,9 @@
       "transliteration": "ibni",
       "english": "My son.",
       "pronunciationNote": "cf. Hebrew beni — same Semitic root b-n.",
-      "tags": ["family"],
+      "tags": [
+        "family"
+      ],
       "status": "draft"
     },
     {
@@ -939,7 +1202,9 @@
       "arabic": "بنتي",
       "transliteration": "binti",
       "english": "My daughter.",
-      "tags": ["family"],
+      "tags": [
+        "family"
+      ],
       "status": "draft"
     },
     {
@@ -948,7 +1213,10 @@
       "transliteration": "tsharrafna",
       "english": "Nice to meet you.",
       "context": "Said on first introduction (lit. 'we are honored')",
-      "tags": ["family", "work"],
+      "tags": [
+        "family",
+        "work"
+      ],
       "status": "draft"
     },
     {
@@ -957,7 +1225,10 @@
       "transliteration": "ish-sharaf ili",
       "english": "The honor is mine.",
       "context": "Reply to: tsharrafna",
-      "tags": ["family", "work"],
+      "tags": [
+        "family",
+        "work"
+      ],
       "status": "draft"
     },
     {
@@ -966,7 +1237,9 @@
       "transliteration": "ʾaddēsh ʿumr ibnak?",
       "english": "How old is your son?",
       "context": "Asking a man about his son",
-      "tags": ["family"],
+      "tags": [
+        "family"
+      ],
       "status": "draft"
     },
     {
@@ -975,7 +1248,9 @@
       "transliteration": "sallim-li ʿal-ʿēle",
       "english": "Say hi to the family for me.",
       "context": "Said as part of farewell, to a man",
-      "tags": ["family"],
+      "tags": [
+        "family"
+      ],
       "status": "draft"
     },
     {
@@ -985,7 +1260,9 @@
       "english": "Umm Muhammad, how are you?",
       "context": "Greeting a woman by her kunya (mother of [eldest son])",
       "fushaNote": "Adults are commonly addressed as 'Umm/Abu [eldest son's name]' — a respectful kunya. Worth knowing, even if you don't initiate it yourself.",
-      "tags": ["family"],
+      "tags": [
+        "family"
+      ],
       "status": "draft"
     },
     {
@@ -995,7 +1272,10 @@
       "english": "Bon appétit / cheers.",
       "context": "Said before / during eating (lit. 'two healths'). Reply: ʿa albak",
       "fushaNote": "Said before/during eating, or as a generic well-wish. Reply: ʿa albak (ʿala albak), 'and on your heart'.",
-      "tags": ["family", "shops"],
+      "tags": [
+        "family",
+        "shops"
+      ],
       "status": "draft"
     },
     {
@@ -1004,17 +1284,20 @@
       "transliteration": "ahlan wa-sahlan, tfaḍḍal",
       "english": "Welcome, please come in.",
       "context": "Welcoming a male guest into your home",
-      "tags": ["family"],
+      "tags": [
+        "family"
+      ],
       "status": "draft"
     },
-
     {
       "id": "work-i-work-tech",
       "arabic": "بشتغل في التكنولوجيا",
       "transliteration": "bashtaghil fi t-teknolōjya",
       "english": "I work in tech.",
       "context": "Reply to: shū btishtaghil?",
-      "tags": ["work"],
+      "tags": [
+        "work"
+      ],
       "status": "draft"
     },
     {
@@ -1024,7 +1307,9 @@
       "english": "I work as a software engineer.",
       "context": "Reply to: shū btishtaghil?",
       "fushaNote": "Tech vocabulary stays close to MSA in spoken Arabic since it's a register where formal terms dominate.",
-      "tags": ["work"],
+      "tags": [
+        "work"
+      ],
       "status": "draft"
     },
     {
@@ -1033,7 +1318,10 @@
       "transliteration": "wēn btishtaghil?",
       "english": "Where do you work?",
       "context": "Asking a man",
-      "tags": ["work", "family"],
+      "tags": [
+        "work",
+        "family"
+      ],
       "status": "draft"
     },
     {
@@ -1042,7 +1330,10 @@
       "transliteration": "shū btishtaghil?",
       "english": "What do you do for work?",
       "context": "Asking a man",
-      "tags": ["work", "family"],
+      "tags": [
+        "work",
+        "family"
+      ],
       "status": "draft"
     },
     {
@@ -1050,7 +1341,9 @@
       "arabic": "عندي اجتماع",
       "transliteration": "ʿindi ijtimāʿ",
       "english": "I have a meeting.",
-      "tags": ["work"],
+      "tags": [
+        "work"
+      ],
       "status": "draft"
     },
     {
@@ -1059,7 +1352,10 @@
       "transliteration": "ana mashghūl hallaʾ",
       "english": "I'm busy right now.",
       "context": "Said by a male speaker (female: mashghūle)",
-      "tags": ["work", "family"],
+      "tags": [
+        "work",
+        "family"
+      ],
       "status": "draft"
     },
     {
@@ -1068,7 +1364,10 @@
       "transliteration": "baḥkīk baʿdēn",
       "english": "I'll talk to you later.",
       "context": "Said to a man",
-      "tags": ["work", "family"],
+      "tags": [
+        "work",
+        "family"
+      ],
       "status": "draft"
     },
     {
@@ -1077,7 +1376,10 @@
       "transliteration": "bashūfak bukra",
       "english": "See you tomorrow.",
       "context": "Said to a man",
-      "tags": ["work", "family"],
+      "tags": [
+        "work",
+        "family"
+      ],
       "status": "draft"
     },
     {
@@ -1086,7 +1388,10 @@
       "transliteration": "nahārak saʿīd",
       "english": "Have a good day.",
       "context": "Said to a man (parting blessing)",
-      "tags": ["work", "shops"],
+      "tags": [
+        "work",
+        "shops"
+      ],
       "status": "draft"
     },
     {
@@ -1094,7 +1399,11 @@
       "arabic": "ما في مشكلة",
       "transliteration": "mā fī mushkile",
       "english": "No problem.",
-      "tags": ["work", "shops", "drivers"],
+      "tags": [
+        "work",
+        "shops",
+        "drivers"
+      ],
       "status": "draft"
     },
     {
@@ -1102,7 +1411,11 @@
       "arabic": "أكيد",
       "transliteration": "akīd",
       "english": "Of course / for sure.",
-      "tags": ["work", "shops", "family"],
+      "tags": [
+        "work",
+        "shops",
+        "family"
+      ],
       "status": "draft"
     },
     {
@@ -1111,7 +1424,10 @@
       "transliteration": "baẓunn",
       "english": "I think (so).",
       "pronunciationNote": "ẓ is the emphatic — backs the u vowel. Held doubled n.",
-      "tags": ["work", "family"],
+      "tags": [
+        "work",
+        "family"
+      ],
       "status": "draft"
     },
     {
@@ -1120,17 +1436,23 @@
       "transliteration": "bashtaghil min il-bēt",
       "english": "I work from home.",
       "pronunciationNote": "bēt cf. Hebrew bayit — both go back to the same Semitic root.",
-      "tags": ["work"],
+      "tags": [
+        "work"
+      ],
       "status": "draft"
     },
-
     {
       "id": "general-how-are-you",
       "arabic": "كيف حالك؟",
       "transliteration": "kīf ḥālak?",
       "english": "How are you?",
       "context": "Asking a man",
-      "tags": ["family", "work", "drivers", "shops"],
+      "tags": [
+        "family",
+        "work",
+        "drivers",
+        "shops"
+      ],
       "status": "draft"
     },
     {
@@ -1139,7 +1461,11 @@
       "transliteration": "kīf ḥālik?",
       "english": "How are you?",
       "context": "Asking a woman",
-      "tags": ["family", "work", "shops"],
+      "tags": [
+        "family",
+        "work",
+        "shops"
+      ],
       "status": "draft"
     },
     {
@@ -1148,7 +1474,12 @@
       "transliteration": "il-ḥamdillāh, mnīḥ",
       "english": "Thank God, I'm well.",
       "context": "Reply to: kīf ḥālak? (m speaker; female: mnīḥa)",
-      "tags": ["family", "work", "drivers", "shops"],
+      "tags": [
+        "family",
+        "work",
+        "drivers",
+        "shops"
+      ],
       "status": "draft"
     },
     {
@@ -1157,7 +1488,12 @@
       "transliteration": "w-inta?",
       "english": "And you?",
       "context": "Bouncing the question back to a man (e.g. after kīf ḥālak)",
-      "tags": ["family", "work", "drivers", "shops"],
+      "tags": [
+        "family",
+        "work",
+        "drivers",
+        "shops"
+      ],
       "status": "draft"
     },
     {
@@ -1166,7 +1502,13 @@
       "transliteration": "law samaḥt",
       "english": "Please.",
       "context": "Said to a man",
-      "tags": ["rescue", "drivers", "shops", "family", "work"],
+      "tags": [
+        "rescue",
+        "drivers",
+        "shops",
+        "family",
+        "work"
+      ],
       "rescue": true,
       "status": "draft"
     },
@@ -1175,7 +1517,13 @@
       "arabic": "شكراً كتير",
       "transliteration": "shukran ktīr",
       "english": "Thank you very much.",
-      "tags": ["rescue", "drivers", "shops", "family", "work"],
+      "tags": [
+        "rescue",
+        "drivers",
+        "shops",
+        "family",
+        "work"
+      ],
       "status": "draft"
     },
     {
@@ -1185,7 +1533,12 @@
       "english": "Don't worry about it.",
       "context": "Reassurance to a man, e.g. after thanks or apology",
       "fushaNote": "Lit. 'and let it not concern you'. Common reassurance after thanks or apology.",
-      "tags": ["drivers", "shops", "family", "work"],
+      "tags": [
+        "drivers",
+        "shops",
+        "family",
+        "work"
+      ],
       "status": "draft"
     },
     {
@@ -1195,7 +1548,11 @@
       "english": "God willing.",
       "context": "Tagged onto any future intent — skipping it can sound abrupt",
       "fushaNote": "Used for any future intent ('see you tomorrow, in shāʾ Allāh') — both pious and casual. Skipping it can sound abrupt.",
-      "tags": ["family", "work", "drivers"],
+      "tags": [
+        "family",
+        "work",
+        "drivers"
+      ],
       "status": "draft"
     },
     {
@@ -1203,7 +1560,11 @@
       "arabic": "تمام",
       "transliteration": "tamām",
       "english": "OK / great.",
-      "tags": ["drivers", "shops", "work"],
+      "tags": [
+        "drivers",
+        "shops",
+        "work"
+      ],
       "status": "draft"
     },
     {
@@ -1212,7 +1573,12 @@
       "transliteration": "hallaʾ",
       "english": "Now.",
       "fushaNote": "Levantine 'now' ← MSA al-ʾān. Other Levantine variants: hassa, halʾēt.",
-      "tags": ["drivers", "shops", "family", "work"],
+      "tags": [
+        "drivers",
+        "shops",
+        "family",
+        "work"
+      ],
       "status": "draft"
     },
     {
@@ -1220,7 +1586,11 @@
       "arabic": "كتير",
       "transliteration": "ktīr",
       "english": "A lot / very.",
-      "tags": ["shops", "family", "work"],
+      "tags": [
+        "shops",
+        "family",
+        "work"
+      ],
       "status": "draft"
     },
     {
@@ -1228,7 +1598,11 @@
       "arabic": "شوي",
       "transliteration": "shwayy",
       "english": "A little.",
-      "tags": ["rescue", "shops", "family"],
+      "tags": [
+        "rescue",
+        "shops",
+        "family"
+      ],
       "rescue": true,
       "status": "draft"
     },
@@ -1238,7 +1612,11 @@
       "transliteration": "mnīḥ",
       "english": "Good.",
       "context": "Said by / about a male (female form: mnīḥa)",
-      "tags": ["family", "work", "shops"],
+      "tags": [
+        "family",
+        "work",
+        "shops"
+      ],
       "status": "draft"
     },
     {
@@ -1246,7 +1624,10 @@
       "arabic": "مش منيح",
       "transliteration": "mish mnīḥ",
       "english": "Not good.",
-      "tags": ["family", "work"],
+      "tags": [
+        "family",
+        "work"
+      ],
       "status": "draft"
     },
     {
@@ -1254,7 +1635,11 @@
       "arabic": "هون",
       "transliteration": "hōn",
       "english": "Here.",
-      "tags": ["drivers", "shops", "kids"],
+      "tags": [
+        "drivers",
+        "shops",
+        "kids"
+      ],
       "status": "draft"
     },
     {
@@ -1262,17 +1647,24 @@
       "arabic": "هناك",
       "transliteration": "hunāk",
       "english": "There.",
-      "tags": ["drivers", "shops", "kids"],
+      "tags": [
+        "drivers",
+        "shops",
+        "kids"
+      ],
       "status": "draft"
     },
-
     {
       "id": "basics-whats-this",
       "arabic": "شو هاد؟",
       "transliteration": "shū hāda?",
       "english": "What's this?",
       "context": "Pointing at something masculine / unknown",
-      "tags": ["basics", "shops", "kids"],
+      "tags": [
+        "basics",
+        "shops",
+        "kids"
+      ],
       "status": "draft"
     },
     {
@@ -1281,7 +1673,11 @@
       "transliteration": "shū hadāk?",
       "english": "What's that?",
       "context": "Pointing at something further away",
-      "tags": ["basics", "shops", "kids"],
+      "tags": [
+        "basics",
+        "shops",
+        "kids"
+      ],
       "status": "draft"
     },
     {
@@ -1290,7 +1686,10 @@
       "transliteration": "hāda",
       "english": "This one.",
       "context": "Pointing — short, complete answer",
-      "tags": ["basics", "shops"],
+      "tags": [
+        "basics",
+        "shops"
+      ],
       "status": "draft"
     },
     {
@@ -1299,7 +1698,10 @@
       "transliteration": "hadāk",
       "english": "That one.",
       "context": "Pointing further away",
-      "tags": ["basics", "shops"],
+      "tags": [
+        "basics",
+        "shops"
+      ],
       "status": "draft"
     },
     {
@@ -1309,7 +1711,11 @@
       "english": "Like this.",
       "context": "Demonstrating how to do something",
       "fushaNote": "Levantine 'like this/so'. MSA equivalent: هكذا (hākaḏā).",
-      "tags": ["basics", "kids", "work"],
+      "tags": [
+        "basics",
+        "kids",
+        "work"
+      ],
       "status": "draft"
     },
     {
@@ -1318,7 +1724,9 @@
       "transliteration": "hēk zayy hadāk",
       "english": "Like that.",
       "context": "Comparing to something further away",
-      "tags": ["basics"],
+      "tags": [
+        "basics"
+      ],
       "status": "draft"
     },
     {
@@ -1327,7 +1735,11 @@
       "transliteration": "ilī",
       "english": "Mine.",
       "context": "Claiming something — one-word answer",
-      "tags": ["basics", "shops", "neighbours"],
+      "tags": [
+        "basics",
+        "shops",
+        "neighbours"
+      ],
       "status": "draft"
     },
     {
@@ -1336,7 +1748,11 @@
       "transliteration": "ilak",
       "english": "Yours.",
       "context": "Said to a man",
-      "tags": ["basics", "shops", "neighbours"],
+      "tags": [
+        "basics",
+        "shops",
+        "neighbours"
+      ],
       "status": "draft"
     },
     {
@@ -1345,7 +1761,11 @@
       "transliteration": "ilik",
       "english": "Yours.",
       "context": "Said to a woman",
-      "tags": ["basics", "shops", "neighbours"],
+      "tags": [
+        "basics",
+        "shops",
+        "neighbours"
+      ],
       "status": "draft"
     },
     {
@@ -1353,7 +1773,10 @@
       "arabic": "إله",
       "transliteration": "ilo",
       "english": "His.",
-      "tags": ["basics", "neighbours"],
+      "tags": [
+        "basics",
+        "neighbours"
+      ],
       "status": "draft"
     },
     {
@@ -1361,7 +1784,10 @@
       "arabic": "إلها",
       "transliteration": "ilha",
       "english": "Hers.",
-      "tags": ["basics", "neighbours"],
+      "tags": [
+        "basics",
+        "neighbours"
+      ],
       "status": "draft"
     },
     {
@@ -1370,7 +1796,10 @@
       "transliteration": "hāda mish ilī",
       "english": "It's not mine.",
       "context": "Disclaiming a found object",
-      "tags": ["basics", "neighbours"],
+      "tags": [
+        "basics",
+        "neighbours"
+      ],
       "status": "draft"
     },
     {
@@ -1379,7 +1808,11 @@
       "transliteration": "hāda ilak?",
       "english": "Is this yours?",
       "context": "Asking a man — e.g. about a forgotten item",
-      "tags": ["basics", "neighbours", "shops"],
+      "tags": [
+        "basics",
+        "neighbours",
+        "shops"
+      ],
       "status": "draft"
     },
     {
@@ -1389,7 +1822,10 @@
       "english": "I have it.",
       "context": "About a masculine thing",
       "pronunciationNote": "yā = pronoun-suffix-bearing pseudo-particle for direct objects of ʿind- and similar. Common spoken solution.",
-      "tags": ["basics", "shops"],
+      "tags": [
+        "basics",
+        "shops"
+      ],
       "status": "draft"
     },
     {
@@ -1397,7 +1833,10 @@
       "arabic": "ما عندي ياه",
       "transliteration": "mā ʿindi yā",
       "english": "I don't have it.",
-      "tags": ["basics", "shops"],
+      "tags": [
+        "basics",
+        "shops"
+      ],
       "status": "draft"
     },
     {
@@ -1406,7 +1845,11 @@
       "transliteration": "hōn",
       "english": "It's here.",
       "context": "Locating something",
-      "tags": ["basics", "shops", "neighbours"],
+      "tags": [
+        "basics",
+        "shops",
+        "neighbours"
+      ],
       "status": "draft"
     },
     {
@@ -1414,7 +1857,10 @@
       "arabic": "هناك",
       "transliteration": "hunāk",
       "english": "It's there.",
-      "tags": ["basics", "shops"],
+      "tags": [
+        "basics",
+        "shops"
+      ],
       "status": "draft"
     },
     {
@@ -1423,7 +1869,10 @@
       "transliteration": "hunāk bʿīd",
       "english": "Over there.",
       "context": "Pointing further away",
-      "tags": ["basics", "directions"],
+      "tags": [
+        "basics",
+        "directions"
+      ],
       "status": "draft"
     },
     {
@@ -1431,7 +1880,11 @@
       "arabic": "نسيت",
       "transliteration": "nsīt",
       "english": "I forgot.",
-      "tags": ["basics", "work", "neighbours"],
+      "tags": [
+        "basics",
+        "work",
+        "neighbours"
+      ],
       "status": "draft"
     },
     {
@@ -1440,7 +1893,10 @@
       "transliteration": "nsīto fil-bēt",
       "english": "I forgot it at home.",
       "context": "About a masculine thing",
-      "tags": ["basics", "work"],
+      "tags": [
+        "basics",
+        "work"
+      ],
       "status": "draft"
     },
     {
@@ -1450,7 +1906,9 @@
       "english": "I lost it.",
       "context": "About a masculine thing",
       "pronunciationNote": "Emphatic ḍ + doubled y; ʿ pharyngeal.",
-      "tags": ["basics"],
+      "tags": [
+        "basics"
+      ],
       "status": "draft"
     },
     {
@@ -1459,7 +1917,9 @@
       "transliteration": "laʾēto",
       "english": "I found it.",
       "context": "About a masculine thing",
-      "tags": ["basics"],
+      "tags": [
+        "basics"
+      ],
       "status": "draft"
     },
     {
@@ -1468,7 +1928,10 @@
       "transliteration": "nafs ish-shi",
       "english": "Same.",
       "context": "Lit. 'the same thing'",
-      "tags": ["basics", "shops"],
+      "tags": [
+        "basics",
+        "shops"
+      ],
       "status": "draft"
     },
     {
@@ -1477,7 +1940,9 @@
       "transliteration": "nafso",
       "english": "The same one.",
       "context": "About a masculine thing",
-      "tags": ["basics"],
+      "tags": [
+        "basics"
+      ],
       "status": "draft"
     },
     {
@@ -1485,7 +1950,10 @@
       "arabic": "مختلف",
       "transliteration": "mukhtalif",
       "english": "Different.",
-      "tags": ["basics", "shops"],
+      "tags": [
+        "basics",
+        "shops"
+      ],
       "status": "draft"
     },
     {
@@ -1494,7 +1962,11 @@
       "transliteration": "maʿi",
       "english": "With me.",
       "context": "E.g. confirming you have something on you",
-      "tags": ["basics", "drivers", "shops"],
+      "tags": [
+        "basics",
+        "drivers",
+        "shops"
+      ],
       "status": "draft"
     },
     {
@@ -1503,7 +1975,10 @@
       "transliteration": "it-tnēn",
       "english": "Both.",
       "context": "E.g. answering 'this or that?'",
-      "tags": ["basics", "shops"],
+      "tags": [
+        "basics",
+        "shops"
+      ],
       "status": "draft"
     },
     {
@@ -1512,7 +1987,10 @@
       "transliteration": "wala wāḥad",
       "english": "Neither.",
       "context": "Lit. 'not even one'",
-      "tags": ["basics", "shops"],
+      "tags": [
+        "basics",
+        "shops"
+      ],
       "status": "draft"
     },
     {
@@ -1521,7 +1999,11 @@
       "transliteration": "shwayy shwayy",
       "english": "Slowly.",
       "context": "Lit. 'a little a little' — pace marker",
-      "tags": ["basics", "rescue", "kids"],
+      "tags": [
+        "basics",
+        "rescue",
+        "kids"
+      ],
       "status": "draft"
     },
     {
@@ -1529,7 +2011,11 @@
       "arabic": "بسرعة",
       "transliteration": "bi-surʿa",
       "english": "Quickly.",
-      "tags": ["basics", "drivers", "work"],
+      "tags": [
+        "basics",
+        "drivers",
+        "work"
+      ],
       "status": "draft"
     },
     {
@@ -1537,7 +2023,11 @@
       "arabic": "بعدين",
       "transliteration": "baʿdēn",
       "english": "Later.",
-      "tags": ["basics", "work", "family"],
+      "tags": [
+        "basics",
+        "work",
+        "family"
+      ],
       "status": "draft"
     },
     {
@@ -1545,7 +2035,11 @@
       "arabic": "بعد شوي",
       "transliteration": "baʿd shwayy",
       "english": "After a bit.",
-      "tags": ["basics", "drivers", "work"],
+      "tags": [
+        "basics",
+        "drivers",
+        "work"
+      ],
       "status": "draft"
     },
     {
@@ -1554,7 +2048,11 @@
       "transliteration": "istanna laḥẓa",
       "english": "Wait a moment.",
       "context": "Said to a man",
-      "tags": ["basics", "drivers", "work"],
+      "tags": [
+        "basics",
+        "drivers",
+        "work"
+      ],
       "status": "draft"
     },
     {
@@ -1562,7 +2060,11 @@
       "arabic": "مع بعض",
       "transliteration": "maʿ baʿḍ",
       "english": "Together.",
-      "tags": ["basics", "kids", "family"],
+      "tags": [
+        "basics",
+        "kids",
+        "family"
+      ],
       "status": "draft"
     },
     {
@@ -1570,7 +2072,10 @@
       "arabic": "لحالي",
       "transliteration": "la-ḥāli",
       "english": "Alone. / By myself.",
-      "tags": ["basics", "family"],
+      "tags": [
+        "basics",
+        "family"
+      ],
       "status": "draft"
     },
     {
@@ -1579,7 +2084,11 @@
       "transliteration": "fāḍi",
       "english": "Empty.",
       "context": "About a masculine thing (also: free / unoccupied)",
-      "tags": ["basics", "neighbours", "shops"],
+      "tags": [
+        "basics",
+        "neighbours",
+        "shops"
+      ],
       "status": "draft"
     },
     {
@@ -1588,7 +2097,10 @@
       "transliteration": "malyān",
       "english": "Full.",
       "context": "About a masculine thing",
-      "tags": ["basics", "shops"],
+      "tags": [
+        "basics",
+        "shops"
+      ],
       "status": "draft"
     },
     {
@@ -1597,7 +2109,11 @@
       "transliteration": "maftūḥ",
       "english": "Open.",
       "context": "About a shop, door, etc. (m)",
-      "tags": ["basics", "shops", "neighbours"],
+      "tags": [
+        "basics",
+        "shops",
+        "neighbours"
+      ],
       "status": "draft"
     },
     {
@@ -1606,7 +2122,11 @@
       "transliteration": "msakkar",
       "english": "Closed.",
       "context": "About a shop, door, etc. (m)",
-      "tags": ["basics", "shops", "neighbours"],
+      "tags": [
+        "basics",
+        "shops",
+        "neighbours"
+      ],
       "status": "draft"
     },
     {
@@ -1615,7 +2135,10 @@
       "transliteration": "maksūr",
       "english": "Broken.",
       "context": "About a masculine thing (e.g. elevator, phone)",
-      "tags": ["basics", "neighbours"],
+      "tags": [
+        "basics",
+        "neighbours"
+      ],
       "status": "draft"
     },
     {
@@ -1624,7 +2147,10 @@
       "transliteration": "byishtaghil",
       "english": "It works.",
       "context": "About a masculine thing — also 'he works'",
-      "tags": ["basics", "neighbours"],
+      "tags": [
+        "basics",
+        "neighbours"
+      ],
       "status": "draft"
     },
     {
@@ -1633,7 +2159,11 @@
       "transliteration": "mā byishtaghil",
       "english": "It doesn't work.",
       "context": "About a masculine thing",
-      "tags": ["basics", "neighbours", "shops"],
+      "tags": [
+        "basics",
+        "neighbours",
+        "shops"
+      ],
       "status": "draft"
     },
     {
@@ -1642,7 +2172,11 @@
       "transliteration": "jāhiz",
       "english": "Ready.",
       "context": "Said by/about a male (female: jāhze)",
-      "tags": ["basics", "shops", "work"],
+      "tags": [
+        "basics",
+        "shops",
+        "work"
+      ],
       "status": "draft"
     },
     {
@@ -1652,16 +2186,21 @@
       "english": "Not ready yet.",
       "context": "About a masculine thing",
       "fushaNote": "lissa = 'still / yet' — Levantine adverb of incompleteness; from MSA لـ + إس (etymology debated).",
-      "tags": ["basics", "shops", "work"],
+      "tags": [
+        "basics",
+        "shops",
+        "work"
+      ],
       "status": "draft"
     },
-
     {
       "id": "doctor-headache",
       "arabic": "عندي صداع",
       "transliteration": "ʿindi ṣudāʿ",
       "english": "I have a headache.",
-      "tags": ["doctor"],
+      "tags": [
+        "doctor"
+      ],
       "status": "draft"
     },
     {
@@ -1669,7 +2208,9 @@
       "arabic": "عندي وجع بطن",
       "transliteration": "ʿindi wajaʿ baṭn",
       "english": "I have a stomach ache.",
-      "tags": ["doctor"],
+      "tags": [
+        "doctor"
+      ],
       "status": "draft"
     },
     {
@@ -1678,7 +2219,9 @@
       "transliteration": "ʿindi ḥarāra",
       "english": "I have a fever.",
       "pronunciationNote": "ḥarāra — pharyngeal ḥ; lit. 'I have heat'.",
-      "tags": ["doctor"],
+      "tags": [
+        "doctor"
+      ],
       "status": "draft"
     },
     {
@@ -1686,7 +2229,9 @@
       "arabic": "عندي سعلة",
       "transliteration": "ʿindi saʿle",
       "english": "I have a cough.",
-      "tags": ["doctor"],
+      "tags": [
+        "doctor"
+      ],
       "status": "draft"
     },
     {
@@ -1695,7 +2240,9 @@
       "transliteration": "ʿindi wajaʿ ẓahr",
       "english": "I have back pain.",
       "pronunciationNote": "ẓ is the emphatic — backs the a vowel.",
-      "tags": ["doctor"],
+      "tags": [
+        "doctor"
+      ],
       "status": "draft"
     },
     {
@@ -1704,7 +2251,9 @@
       "transliteration": "ʿindkum nūrōfēn?",
       "english": "Do you have ibuprofen?",
       "context": "Asked at a pharmacy. Brand 'Nurofen' is the common Israeli/Levantine name for ibuprofen.",
-      "tags": ["doctor"],
+      "tags": [
+        "doctor"
+      ],
       "status": "draft"
     },
     {
@@ -1713,7 +2262,9 @@
       "transliteration": "ʿindkum akamōl?",
       "english": "Do you have paracetamol?",
       "context": "Asked at a pharmacy. 'Acamol' is the Israeli brand name for paracetamol/acetaminophen — universally understood.",
-      "tags": ["doctor"],
+      "tags": [
+        "doctor"
+      ],
       "status": "draft"
     },
     {
@@ -1721,7 +2272,9 @@
       "arabic": "بدّي موعد",
       "transliteration": "biddi mawʿid",
       "english": "I need an appointment.",
-      "tags": ["doctor"],
+      "tags": [
+        "doctor"
+      ],
       "status": "draft"
     },
     {
@@ -1730,7 +2283,9 @@
       "transliteration": "ʾaddēsh il-ʿilbe?",
       "english": "How much per box?",
       "context": "Asked at a pharmacy",
-      "tags": ["doctor"],
+      "tags": [
+        "doctor"
+      ],
       "status": "draft"
     },
     {
@@ -1738,7 +2293,9 @@
       "arabic": "قدّيش الحبّة؟",
       "transliteration": "ʾaddēsh il-ḥabbe?",
       "english": "How much per pill?",
-      "tags": ["doctor"],
+      "tags": [
+        "doctor"
+      ],
       "status": "draft"
     },
     {
@@ -1746,7 +2303,10 @@
       "arabic": "في صيدليّة قريبة؟",
       "transliteration": "fī ṣaydaliyye ʾarībe?",
       "english": "Is there a pharmacy nearby?",
-      "tags": ["doctor", "directions"],
+      "tags": [
+        "doctor",
+        "directions"
+      ],
       "status": "draft"
     },
     {
@@ -1755,7 +2315,10 @@
       "transliteration": "ʿindi ḥasāsiyye min il-fūl is-sūdāni",
       "english": "I'm allergic to peanuts.",
       "context": "Critical to know — say slowly and clearly",
-      "tags": ["doctor", "shops"],
+      "tags": [
+        "doctor",
+        "shops"
+      ],
       "status": "draft"
     },
     {
@@ -1763,7 +2326,9 @@
       "arabic": "عندي حساسيّة من البنسلين",
       "transliteration": "ʿindi ḥasāsiyye min il-binisilīn",
       "english": "I'm allergic to penicillin.",
-      "tags": ["doctor"],
+      "tags": [
+        "doctor"
+      ],
       "status": "draft"
     },
     {
@@ -1772,7 +2337,9 @@
       "transliteration": "marrtēn bil-yōm",
       "english": "Twice a day.",
       "context": "Dosage instruction (good to recognise)",
-      "tags": ["doctor"],
+      "tags": [
+        "doctor"
+      ],
       "status": "draft"
     },
     {
@@ -1781,7 +2348,9 @@
       "transliteration": "baʿd il-ʾakl",
       "english": "After eating.",
       "context": "Dosage instruction (good to recognise)",
-      "tags": ["doctor"],
+      "tags": [
+        "doctor"
+      ],
       "status": "draft"
     },
     {
@@ -1790,7 +2359,9 @@
       "transliteration": "ʿindi taʾmīn, Kalālīt",
       "english": "I have insurance — Klalit.",
       "context": "Israeli HMO. Pronounced naturally as a borrowed Hebrew name.",
-      "tags": ["doctor"],
+      "tags": [
+        "doctor"
+      ],
       "status": "draft"
     },
     {
@@ -1799,7 +2370,9 @@
       "transliteration": "ʿindi Makābi",
       "english": "I have Maccabi.",
       "context": "Israeli HMO",
-      "tags": ["doctor"],
+      "tags": [
+        "doctor"
+      ],
       "status": "draft"
     },
     {
@@ -1808,7 +2381,9 @@
       "transliteration": "ʿindi Meʾuḥēdet",
       "english": "I have Meuhedet.",
       "context": "Israeli HMO",
-      "tags": ["doctor"],
+      "tags": [
+        "doctor"
+      ],
       "status": "draft"
     },
     {
@@ -1817,7 +2392,9 @@
       "transliteration": "byōjaʿni hōn",
       "english": "It hurts here.",
       "context": "While pointing to the spot",
-      "tags": ["doctor"],
+      "tags": [
+        "doctor"
+      ],
       "status": "draft"
     },
     {
@@ -1826,7 +2403,9 @@
       "transliteration": "min yōmēn",
       "english": "Since two days ago.",
       "context": "Answering 'since when?'",
-      "tags": ["doctor"],
+      "tags": [
+        "doctor"
+      ],
       "status": "draft"
     },
     {
@@ -1834,16 +2413,19 @@
       "arabic": "من الصبح",
       "transliteration": "min iṣ-ṣubḥ",
       "english": "Since this morning.",
-      "tags": ["doctor"],
+      "tags": [
+        "doctor"
+      ],
       "status": "draft"
     },
-
     {
       "id": "directions-is-it-far",
       "arabic": "بعيد؟",
       "transliteration": "bʿīd?",
       "english": "Is it far?",
-      "tags": ["directions"],
+      "tags": [
+        "directions"
+      ],
       "status": "draft"
     },
     {
@@ -1851,7 +2433,9 @@
       "arabic": "قريب؟",
       "transliteration": "ʾarīb?",
       "english": "Is it near?",
-      "tags": ["directions"],
+      "tags": [
+        "directions"
+      ],
       "status": "draft"
     },
     {
@@ -1859,7 +2443,10 @@
       "arabic": "قدّيش بياخد وقت؟",
       "transliteration": "ʾaddēsh byākhud waʾt?",
       "english": "How long does it take?",
-      "tags": ["directions", "drivers"],
+      "tags": [
+        "directions",
+        "drivers"
+      ],
       "status": "draft"
     },
     {
@@ -1868,7 +2455,9 @@
       "transliteration": "mashi walla bis-sayyāra?",
       "english": "Walking or driving?",
       "fushaNote": "walla = 'or' in spoken Levantine, from MSA أَوَلَّا. Used for either/or questions.",
-      "tags": ["directions"],
+      "tags": [
+        "directions"
+      ],
       "status": "draft"
     },
     {
@@ -1877,7 +2466,9 @@
       "transliteration": "ḥadd il-[X]",
       "english": "Next to the [X].",
       "context": "Locating something — e.g. ḥadd il-bank, ḥadd ish-shāriʿ",
-      "tags": ["directions"],
+      "tags": [
+        "directions"
+      ],
       "status": "draft"
     },
     {
@@ -1885,7 +2476,9 @@
       "arabic": "قبال ال[X]",
       "transliteration": "ʾbāl il-[X]",
       "english": "Across from the [X].",
-      "tags": ["directions"],
+      "tags": [
+        "directions"
+      ],
       "status": "draft"
     },
     {
@@ -1893,7 +2486,9 @@
       "arabic": "ورا ال[X]",
       "transliteration": "wara il-[X]",
       "english": "Behind the [X].",
-      "tags": ["directions"],
+      "tags": [
+        "directions"
+      ],
       "status": "draft"
     },
     {
@@ -1901,7 +2496,9 @@
       "arabic": "قدّام ال[X]",
       "transliteration": "ʾuddām il-[X]",
       "english": "In front of the [X].",
-      "tags": ["directions"],
+      "tags": [
+        "directions"
+      ],
       "status": "draft"
     },
     {
@@ -1910,7 +2507,10 @@
       "transliteration": "luff yamīn ʿind il-[X]",
       "english": "Turn right at the [X].",
       "context": "Said to a man — replace [X] with the landmark",
-      "tags": ["directions", "drivers"],
+      "tags": [
+        "directions",
+        "drivers"
+      ],
       "status": "draft"
     },
     {
@@ -1919,7 +2519,10 @@
       "transliteration": "luff shmāl ʿind il-[X]",
       "english": "Turn left at the [X].",
       "context": "Said to a man",
-      "tags": ["directions", "drivers"],
+      "tags": [
+        "directions",
+        "drivers"
+      ],
       "status": "draft"
     },
     {
@@ -1927,7 +2530,10 @@
       "arabic": "دغري، وبعدين شمال",
       "transliteration": "dughri, w-baʿdēn shmāl",
       "english": "Straight, then left.",
-      "tags": ["directions", "drivers"],
+      "tags": [
+        "directions",
+        "drivers"
+      ],
       "status": "draft"
     },
     {
@@ -1935,7 +2541,9 @@
       "arabic": "كيف بوصل ع ال[X]؟",
       "transliteration": "kīf būṣal ʿa l-[X]?",
       "english": "How do I get to the [X]?",
-      "tags": ["directions"],
+      "tags": [
+        "directions"
+      ],
       "status": "draft"
     },
     {
@@ -1944,7 +2552,9 @@
       "transliteration": "law samaḥt, wēn il-[X]?",
       "english": "Excuse me, where is the [X]?",
       "context": "Asking a man",
-      "tags": ["directions"],
+      "tags": [
+        "directions"
+      ],
       "status": "draft"
     },
     {
@@ -1952,7 +2562,9 @@
       "arabic": "هاد الطريق الصحّ؟",
       "transliteration": "hāda ṭ-ṭarīʾ iṣ-ṣaḥḥ?",
       "english": "Is this the right way?",
-      "tags": ["directions"],
+      "tags": [
+        "directions"
+      ],
       "status": "draft"
     },
     {
@@ -1961,7 +2573,9 @@
       "transliteration": "ana tāyih",
       "english": "I'm lost.",
       "context": "Said by a male speaker (female: tāyhe)",
-      "tags": ["directions"],
+      "tags": [
+        "directions"
+      ],
       "status": "draft"
     },
     {
@@ -1971,7 +2585,9 @@
       "english": "Show me on the map.",
       "context": "Said to a man (female imp: warrīni — same)",
       "pronunciationNote": "warrīni — doubled r; literally 'show me'.",
-      "tags": ["directions"],
+      "tags": [
+        "directions"
+      ],
       "status": "draft"
     },
     {
@@ -1979,7 +2595,10 @@
       "arabic": "الشارع",
       "transliteration": "ish-shāriʿ",
       "english": "The street.",
-      "tags": ["directions", "drivers"],
+      "tags": [
+        "directions",
+        "drivers"
+      ],
       "status": "draft"
     },
     {
@@ -1987,7 +2606,9 @@
       "arabic": "الميدان",
       "transliteration": "il-mīdān",
       "english": "The square / plaza.",
-      "tags": ["directions"],
+      "tags": [
+        "directions"
+      ],
       "status": "draft"
     },
     {
@@ -1995,7 +2616,10 @@
       "arabic": "الزاوية",
       "transliteration": "iz-zāwiye",
       "english": "The corner.",
-      "tags": ["directions", "drivers"],
+      "tags": [
+        "directions",
+        "drivers"
+      ],
       "status": "draft"
     },
     {
@@ -2003,7 +2627,10 @@
       "arabic": "المدخل",
       "transliteration": "il-madkhal",
       "english": "The entrance.",
-      "tags": ["directions", "neighbours"],
+      "tags": [
+        "directions",
+        "neighbours"
+      ],
       "status": "draft"
     },
     {
@@ -2011,17 +2638,20 @@
       "arabic": "المخرج",
       "transliteration": "il-makhraj",
       "english": "The exit.",
-      "tags": ["directions"],
+      "tags": [
+        "directions"
+      ],
       "status": "draft"
     },
-
     {
       "id": "neighbours-just-moved-in",
       "arabic": "مرحبا، إحنا لسّا انتقلنا",
       "transliteration": "marḥaba, iḥna lissa intaʾalna",
       "english": "Hello, we just moved in.",
       "context": "Introducing yourself to a neighbour",
-      "tags": ["neighbours"],
+      "tags": [
+        "neighbours"
+      ],
       "status": "draft"
     },
     {
@@ -2030,7 +2660,9 @@
       "transliteration": "sākin fi ṭ-ṭābiʾ it-tālit",
       "english": "I live on the third floor.",
       "context": "Said by a male speaker (female: sākne)",
-      "tags": ["neighbours"],
+      "tags": [
+        "neighbours"
+      ],
       "status": "draft"
     },
     {
@@ -2039,7 +2671,10 @@
       "transliteration": "ibnak nisi hāda",
       "english": "Your kid forgot this.",
       "context": "Returning a forgotten item to a man (about his son)",
-      "tags": ["neighbours", "kids"],
+      "tags": [
+        "neighbours",
+        "kids"
+      ],
       "status": "draft"
     },
     {
@@ -2048,7 +2683,9 @@
       "transliteration": "mumkin tsallifni shwayy sukkar?",
       "english": "Can I borrow some sugar?",
       "context": "Asking a man — classic neighbourly favor",
-      "tags": ["neighbours"],
+      "tags": [
+        "neighbours"
+      ],
       "status": "draft"
     },
     {
@@ -2057,7 +2694,9 @@
       "transliteration": "mumkin tsallifni kam bēḍa?",
       "english": "Can I borrow a few eggs?",
       "context": "Asking a man",
-      "tags": ["neighbours"],
+      "tags": [
+        "neighbours"
+      ],
       "status": "draft"
     },
     {
@@ -2066,7 +2705,9 @@
       "transliteration": "mumkin tsallifni shāḥin?",
       "english": "Can I borrow a charger?",
       "context": "Asking a man",
-      "tags": ["neighbours"],
+      "tags": [
+        "neighbours"
+      ],
       "status": "draft"
     },
     {
@@ -2075,7 +2716,9 @@
       "transliteration": "āsif ʿaḍ-ḍajje",
       "english": "Sorry about the noise.",
       "context": "Said by a male speaker (female: āsfe)",
-      "tags": ["neighbours"],
+      "tags": [
+        "neighbours"
+      ],
       "status": "draft"
     },
     {
@@ -2084,7 +2727,9 @@
       "transliteration": "kānit iḍ-ḍajje ktīre mbāriḥ?",
       "english": "Was the noise too much last night?",
       "context": "Checking in with a neighbour after a loud night",
-      "tags": ["neighbours"],
+      "tags": [
+        "neighbours"
+      ],
       "status": "draft"
     },
     {
@@ -2092,7 +2737,9 @@
       "arabic": "المصعد مكسور؟",
       "transliteration": "il-maṣʿad maksūr?",
       "english": "Is the elevator broken?",
-      "tags": ["neighbours"],
+      "tags": [
+        "neighbours"
+      ],
       "status": "draft"
     },
     {
@@ -2100,7 +2747,9 @@
       "arabic": "وين غرفة الزبالة؟",
       "transliteration": "wēn ghurfit iz-zbāle?",
       "english": "Where's the trash room?",
-      "tags": ["neighbours"],
+      "tags": [
+        "neighbours"
+      ],
       "status": "draft"
     },
     {
@@ -2108,7 +2757,10 @@
       "arabic": "وين بقدر أصفّ؟",
       "transliteration": "wēn baʾdar aṣiff?",
       "english": "Where do I park?",
-      "tags": ["neighbours", "drivers"],
+      "tags": [
+        "neighbours",
+        "drivers"
+      ],
       "status": "draft"
     },
     {
@@ -2117,7 +2769,9 @@
       "transliteration": "hāda l-mawʾaf maḥjūz?",
       "english": "Is this spot taken?",
       "context": "About a parking spot",
-      "tags": ["neighbours"],
+      "tags": [
+        "neighbours"
+      ],
       "status": "draft"
     },
     {
@@ -2126,7 +2780,9 @@
       "transliteration": "iṭ-ṭard ilak? ija l-yōm",
       "english": "The package is yours? It came today.",
       "context": "Said to a man",
-      "tags": ["neighbours"],
+      "tags": [
+        "neighbours"
+      ],
       "status": "draft"
     },
     {
@@ -2135,7 +2791,9 @@
       "transliteration": "ṭāliʿ?",
       "english": "Going up?",
       "context": "In the elevator, asking a man (lit. 'ascending?')",
-      "tags": ["neighbours"],
+      "tags": [
+        "neighbours"
+      ],
       "status": "draft"
     },
     {
@@ -2144,7 +2802,9 @@
       "transliteration": "nāzil?",
       "english": "Going down?",
       "context": "In the elevator, asking a man",
-      "tags": ["neighbours"],
+      "tags": [
+        "neighbours"
+      ],
       "status": "draft"
     },
     {
@@ -2153,7 +2813,10 @@
       "transliteration": "nahārak saʿīd",
       "english": "Have a good day.",
       "context": "Parting blessing to a man",
-      "tags": ["neighbours", "work"],
+      "tags": [
+        "neighbours",
+        "work"
+      ],
       "status": "draft"
     },
     {
@@ -2162,17 +2825,20 @@
       "transliteration": "ahlan wa-sahlan fīkum bil-ʿimāra",
       "english": "Welcome to the building.",
       "context": "Greeting new neighbours (pl)",
-      "tags": ["neighbours"],
+      "tags": [
+        "neighbours"
+      ],
       "status": "draft"
     },
-
     {
       "id": "drivers-wait-minute",
       "arabic": "استنّى دقيقة، لو سمحت",
       "transliteration": "istanna daʾīʾa, law samaḥt",
       "english": "Wait a minute, please.",
       "context": "Said to a male driver",
-      "tags": ["drivers"],
+      "tags": [
+        "drivers"
+      ],
       "status": "draft"
     },
     {
@@ -2181,7 +2847,9 @@
       "transliteration": "iftaḥ ish-shanṭa, law samaḥt",
       "english": "Open the trunk, please.",
       "context": "Said to a male driver. shanṭa here = the car's trunk/boot.",
-      "tags": ["drivers"],
+      "tags": [
+        "drivers"
+      ],
       "status": "draft"
     },
     {
@@ -2190,7 +2858,9 @@
       "transliteration": "raḥ arjaʿ baʿd khams daʾāyiʾ",
       "english": "I'll be back in five minutes.",
       "context": "Telling the driver you'll return shortly",
-      "tags": ["drivers"],
+      "tags": [
+        "drivers"
+      ],
       "status": "draft"
     },
     {
@@ -2199,7 +2869,9 @@
       "transliteration": "shaghghil il-ʿaddād, law samaḥt",
       "english": "Turn on the meter, please.",
       "context": "Said to a male taxi driver",
-      "tags": ["drivers"],
+      "tags": [
+        "drivers"
+      ],
       "status": "draft"
     },
     {
@@ -2208,17 +2880,20 @@
       "transliteration": "mumkin mā tdakhkhin, law samaḥt?",
       "english": "Could you not smoke, please?",
       "context": "Polite ask to a male driver",
-      "tags": ["drivers"],
+      "tags": [
+        "drivers"
+      ],
       "status": "draft"
     },
-
     {
       "id": "shops-no-bag",
       "arabic": "بدون كيس، شكراً",
       "transliteration": "bidūn kīs, shukran",
       "english": "No bag, thanks.",
       "context": "At checkout — refusing a plastic bag",
-      "tags": ["shops"],
+      "tags": [
+        "shops"
+      ],
       "status": "draft"
     },
     {
@@ -2227,7 +2902,9 @@
       "transliteration": "fī ʿindkum wāy fāy?",
       "english": "Do you have wifi?",
       "context": "At a café",
-      "tags": ["shops"],
+      "tags": [
+        "shops"
+      ],
       "status": "draft"
     },
     {
@@ -2236,7 +2913,9 @@
       "transliteration": "shū kilmt is-sirr?",
       "english": "What's the password?",
       "context": "At a café — for wifi",
-      "tags": ["shops"],
+      "tags": [
+        "shops"
+      ],
       "status": "draft"
     },
     {
@@ -2244,7 +2923,9 @@
       "arabic": "هاد حلال؟",
       "transliteration": "hāda ḥalāl?",
       "english": "Is this halal?",
-      "tags": ["shops"],
+      "tags": [
+        "shops"
+      ],
       "status": "draft"
     },
     {
@@ -2253,17 +2934,20 @@
       "transliteration": "ana nabāti",
       "english": "I'm vegetarian.",
       "context": "Said by a male speaker (female: nabātiyye)",
-      "tags": ["shops"],
+      "tags": [
+        "shops"
+      ],
       "status": "draft"
     },
-
     {
       "id": "kids-what-color",
       "arabic": "شو لونه؟",
       "transliteration": "shū lōno?",
       "english": "What color is it?",
       "context": "About a masculine thing — playful prompt for a child",
-      "tags": ["kids"],
+      "tags": [
+        "kids"
+      ],
       "status": "draft"
     },
     {
@@ -2272,7 +2956,9 @@
       "transliteration": "ʿidd la-ʿashara maʿi",
       "english": "Count to ten with me.",
       "context": "Said to a boy (girl: ʿiddi)",
-      "tags": ["kids"],
+      "tags": [
+        "kids"
+      ],
       "status": "draft"
     },
     {
@@ -2281,7 +2967,9 @@
       "transliteration": "biddak tirkab ʿal-marjūḥa?",
       "english": "Do you want to ride the swing?",
       "context": "Asking a boy at the playground",
-      "tags": ["kids"],
+      "tags": [
+        "kids"
+      ],
       "status": "draft"
     },
     {
@@ -2290,7 +2978,9 @@
       "transliteration": "dīr bālak, raḥ tūʾaʿ",
       "english": "Be careful, you'll fall.",
       "context": "Said to a boy",
-      "tags": ["kids"],
+      "tags": [
+        "kids"
+      ],
       "status": "draft"
     },
     {
@@ -2299,17 +2989,20 @@
       "transliteration": "shāṭir",
       "english": "Smart / good boy.",
       "context": "Praising a boy (girl: shāṭra)",
-      "tags": ["kids"],
+      "tags": [
+        "kids"
+      ],
       "status": "draft"
     },
-
     {
       "id": "family-where-do-you-work",
       "arabic": "وين بتشتغل؟",
       "transliteration": "wēn btishtaghil?",
       "english": "Where do you work?",
       "context": "Asking a man — duplicate of work-where-work, kept for family-context surfacing",
-      "tags": ["family"],
+      "tags": [
+        "family"
+      ],
       "status": "draft"
     },
     {
@@ -2318,7 +3011,10 @@
       "transliteration": "min ʾaddēsh sākin hōn?",
       "english": "How long have you lived here?",
       "context": "Asking a man",
-      "tags": ["family", "neighbours"],
+      "tags": [
+        "family",
+        "neighbours"
+      ],
       "status": "draft"
     },
     {
@@ -2327,7 +3023,9 @@
       "transliteration": "sallim-li ʿa marrtak",
       "english": "Say hi to your wife from me.",
       "context": "Said to a man at parting",
-      "tags": ["family"],
+      "tags": [
+        "family"
+      ],
       "status": "draft"
     },
     {
@@ -2336,7 +3034,9 @@
       "transliteration": "min wēn aṣlak?",
       "english": "Where are you originally from?",
       "context": "Asking a man (deeper than min wēn inta)",
-      "tags": ["family"],
+      "tags": [
+        "family"
+      ],
       "status": "draft"
     },
     {
@@ -2345,16 +3045,19 @@
       "transliteration": "ʿindak ikhwe?",
       "english": "Do you have siblings?",
       "context": "Asking a man",
-      "tags": ["family"],
+      "tags": [
+        "family"
+      ],
       "status": "draft"
     },
-
     {
       "id": "work-move-meeting",
       "arabic": "ممكن نأجّل الاجتماع؟",
       "transliteration": "mumkin nʾajjil il-ijtimāʿ?",
       "english": "Can we move the meeting?",
-      "tags": ["work"],
+      "tags": [
+        "work"
+      ],
       "status": "draft"
     },
     {
@@ -2362,7 +3065,9 @@
       "arabic": "رح أتأخّر شوي",
       "transliteration": "raḥ atʾakhkhar shwayy",
       "english": "I'll be a few minutes late.",
-      "tags": ["work"],
+      "tags": [
+        "work"
+      ],
       "status": "draft"
     },
     {
@@ -2370,7 +3075,9 @@
       "arabic": "اليوم بشتغل من البيت",
       "transliteration": "il-yōm bashtaghil min il-bēt",
       "english": "I'm remote today.",
-      "tags": ["work"],
+      "tags": [
+        "work"
+      ],
       "status": "draft"
     },
     {
@@ -2379,7 +3086,9 @@
       "transliteration": "raḥ abʿatlak īmēl",
       "english": "I'll send you an email.",
       "context": "Said to a man",
-      "tags": ["work"],
+      "tags": [
+        "work"
+      ],
       "status": "draft"
     },
     {
@@ -2387,16 +3096,21 @@
       "arabic": "أنا عالتلفون هلّق",
       "transliteration": "ana ʿat-talafōn hallaʾ",
       "english": "I'm on a call right now.",
-      "tags": ["work"],
+      "tags": [
+        "work"
+      ],
       "status": "draft"
     },
-
     {
       "id": "basics-now",
       "arabic": "هلّق",
       "transliteration": "hallaʾ",
       "english": "Now.",
-      "tags": ["basics", "drivers", "work"],
+      "tags": [
+        "basics",
+        "drivers",
+        "work"
+      ],
       "status": "draft"
     },
     {
@@ -2404,7 +3118,10 @@
       "arabic": "كتير",
       "transliteration": "ktīr",
       "english": "A lot.",
-      "tags": ["basics", "shops"],
+      "tags": [
+        "basics",
+        "shops"
+      ],
       "status": "draft"
     },
     {
@@ -2412,7 +3129,10 @@
       "arabic": "شوي",
       "transliteration": "shwayy",
       "english": "A little.",
-      "tags": ["basics", "shops"],
+      "tags": [
+        "basics",
+        "shops"
+      ],
       "status": "draft"
     },
     {
@@ -2421,7 +3141,9 @@
       "transliteration": "hāda kitāb",
       "english": "This is a book.",
       "context": "Equational sentence — no copula",
-      "tags": ["basics"],
+      "tags": [
+        "basics"
+      ],
       "status": "draft"
     },
     {
@@ -2429,7 +3151,10 @@
       "arabic": "هاد مش إلي، هاد إله",
       "transliteration": "hāda mish ilī, hāda ilo",
       "english": "This isn't mine, it's his.",
-      "tags": ["basics", "neighbours"],
+      "tags": [
+        "basics",
+        "neighbours"
+      ],
       "status": "draft"
     },
     {
@@ -2437,7 +3162,10 @@
       "arabic": "لمين هاد؟",
       "transliteration": "la-mīn hāda?",
       "english": "Whose is this?",
-      "tags": ["basics", "neighbours"],
+      "tags": [
+        "basics",
+        "neighbours"
+      ],
       "status": "draft"
     },
     {
@@ -2446,7 +3174,11 @@
       "transliteration": "māshi",
       "english": "OK / fine.",
       "context": "Confirming, going along — very common spoken filler",
-      "tags": ["basics", "work", "drivers"],
+      "tags": [
+        "basics",
+        "work",
+        "drivers"
+      ],
       "status": "draft"
     },
     {
@@ -2454,7 +3186,11 @@
       "arabic": "ما في مشكلة",
       "transliteration": "mā fī mushkile",
       "english": "No problem.",
-      "tags": ["basics", "work", "shops"],
+      "tags": [
+        "basics",
+        "work",
+        "shops"
+      ],
       "status": "draft"
     },
     {
@@ -2462,7 +3198,10 @@
       "arabic": "بظنّ",
       "transliteration": "baẓunn",
       "english": "I think so.",
-      "tags": ["basics", "work"],
+      "tags": [
+        "basics",
+        "work"
+      ],
       "status": "draft"
     },
     {
@@ -2471,7 +3210,10 @@
       "transliteration": "mish mitʾakkid",
       "english": "I'm not sure.",
       "context": "Said by a male speaker (female: mitʾakkde)",
-      "tags": ["basics", "work"],
+      "tags": [
+        "basics",
+        "work"
+      ],
       "status": "draft"
     },
     {
@@ -2479,7 +3221,11 @@
       "arabic": "أكيد",
       "transliteration": "akīd",
       "english": "Of course.",
-      "tags": ["basics", "shops", "work"],
+      "tags": [
+        "basics",
+        "shops",
+        "work"
+      ],
       "status": "draft"
     },
     {
@@ -2487,7 +3233,11 @@
       "arabic": "يمكن",
       "transliteration": "yimkin",
       "english": "Maybe.",
-      "tags": ["basics", "work", "family"],
+      "tags": [
+        "basics",
+        "work",
+        "family"
+      ],
       "status": "draft"
     },
     {
@@ -2496,7 +3246,10 @@
       "transliteration": "ana taʿbān",
       "english": "I'm tired / not feeling well.",
       "context": "Said by a male speaker (female: taʿbāne) — taʿbān covers physical fatigue and feeling sick",
-      "tags": ["doctor", "family"],
+      "tags": [
+        "doctor",
+        "family"
+      ],
       "status": "draft"
     },
     {
@@ -2504,7 +3257,10 @@
       "arabic": "بدّي دكتور",
       "transliteration": "biddi dakatōr",
       "english": "I need a doctor.",
-      "tags": ["doctor", "rescue"],
+      "tags": [
+        "doctor",
+        "rescue"
+      ],
       "status": "draft"
     },
     {
@@ -2513,7 +3269,9 @@
       "transliteration": "ʿindi waṣfe ṭibbiyye",
       "english": "I have a prescription.",
       "context": "At a pharmacy",
-      "tags": ["doctor"],
+      "tags": [
+        "doctor"
+      ],
       "status": "draft"
     },
     {
@@ -2521,7 +3279,10 @@
       "arabic": "أوّل شارع يمين",
       "transliteration": "awwal shāriʿ yamīn",
       "english": "The first street on the right.",
-      "tags": ["directions", "drivers"],
+      "tags": [
+        "directions",
+        "drivers"
+      ],
       "status": "draft"
     },
     {
@@ -2529,7 +3290,10 @@
       "arabic": "تاني شارع شمال",
       "transliteration": "tāni shāriʿ shmāl",
       "english": "The second street on the left.",
-      "tags": ["directions", "drivers"],
+      "tags": [
+        "directions",
+        "drivers"
+      ],
       "status": "draft"
     },
     {
@@ -2537,7 +3301,10 @@
       "arabic": "الإشارة",
       "transliteration": "il-ishāra",
       "english": "The traffic light.",
-      "tags": ["directions", "drivers"],
+      "tags": [
+        "directions",
+        "drivers"
+      ],
       "status": "draft"
     },
     {
@@ -2545,7 +3312,10 @@
       "arabic": "الدوّار",
       "transliteration": "id-dawwār",
       "english": "The roundabout.",
-      "tags": ["directions", "drivers"],
+      "tags": [
+        "directions",
+        "drivers"
+      ],
       "status": "draft"
     },
     {
@@ -2554,7 +3324,9 @@
       "transliteration": "masā il-khēr",
       "english": "Good evening.",
       "context": "Greeting a neighbour in the hall (use ahlēn for a casual hi)",
-      "tags": ["neighbours"],
+      "tags": [
+        "neighbours"
+      ],
       "status": "draft"
     },
     {
@@ -2563,7 +3335,1414 @@
       "transliteration": "fī tasrīb mayy",
       "english": "There's a water leak.",
       "context": "Reporting a building issue",
-      "tags": ["neighbours"],
+      "tags": [
+        "neighbours"
+      ],
+      "status": "draft"
+    },
+    {
+      "id": "pol-conflict",
+      "arabic": "الصراع",
+      "transliteration": "aṣ-ṣirāʿ",
+      "english": "the conflict",
+      "context": "General word for 'the conflict' in Arabic media and conversation. Also heard: an-nizāʿ.",
+      "tags": [
+        "politics"
+      ],
+      "status": "draft"
+    },
+    {
+      "id": "pol-occupation",
+      "arabic": "الاحتلال",
+      "transliteration": "al-iḥtilāl",
+      "english": "the occupation",
+      "context": "The standard term in Arabic and Palestinian discourse for the post-1967 military rule of the West Bank and (formerly) Gaza. Israelis in Hebrew/English mainstream usage typically don't use this word.",
+      "tags": [
+        "politics"
+      ],
+      "status": "draft"
+    },
+    {
+      "id": "pol-peace",
+      "arabic": "السلام",
+      "transliteration": "as-salām",
+      "english": "peace",
+      "context": "Same root as the greeting salām. Also the abstract noun for political peace.",
+      "tags": [
+        "politics"
+      ],
+      "status": "draft"
+    },
+    {
+      "id": "pol-peace-process",
+      "arabic": "عملية السلام",
+      "transliteration": "ʿamaliyyat is-salām",
+      "english": "the peace process",
+      "tags": [
+        "politics"
+      ],
+      "status": "draft"
+    },
+    {
+      "id": "pol-coexistence",
+      "arabic": "التعايش",
+      "transliteration": "at-taʿāyush",
+      "english": "coexistence",
+      "context": "Common in dialogue / shared-society contexts. Some Palestinians find the framing thin — pair it carefully with concrete language about rights and equality.",
+      "tags": [
+        "politics"
+      ],
+      "status": "draft"
+    },
+    {
+      "id": "pol-dialogue",
+      "arabic": "الحوار",
+      "transliteration": "al-ḥiwār",
+      "english": "dialogue",
+      "tags": [
+        "politics"
+      ],
+      "status": "draft"
+    },
+    {
+      "id": "pol-solidarity",
+      "arabic": "التضامن",
+      "transliteration": "at-taḍāmun",
+      "english": "solidarity",
+      "tags": [
+        "politics"
+      ],
+      "status": "draft"
+    },
+    {
+      "id": "pol-human-rights",
+      "arabic": "حقوق الإنسان",
+      "transliteration": "ḥuqūq al-insān",
+      "english": "human rights",
+      "tags": [
+        "politics"
+      ],
+      "status": "draft"
+    },
+    {
+      "id": "pol-equality",
+      "arabic": "المساواة",
+      "transliteration": "al-musāwā",
+      "english": "equality",
+      "tags": [
+        "politics"
+      ],
+      "status": "draft"
+    },
+    {
+      "id": "pol-discrimination",
+      "arabic": "التمييز",
+      "transliteration": "at-tamyīz",
+      "english": "discrimination",
+      "tags": [
+        "politics"
+      ],
+      "status": "draft"
+    },
+    {
+      "id": "pol-racism",
+      "arabic": "العنصرية",
+      "transliteration": "al-ʿunṣuriyya",
+      "english": "racism",
+      "tags": [
+        "politics"
+      ],
+      "status": "draft"
+    },
+    {
+      "id": "pol-racist",
+      "arabic": "عنصري",
+      "transliteration": "ʿunṣuri",
+      "english": "a racist / racist (adj)",
+      "context": "Adjective and noun: ʿunṣuri (m), ʿunṣuriyye (f).",
+      "tags": [
+        "politics"
+      ],
+      "status": "draft"
+    },
+    {
+      "id": "pol-justice",
+      "arabic": "العدالة",
+      "transliteration": "al-ʿadāla",
+      "english": "justice",
+      "tags": [
+        "politics"
+      ],
+      "status": "draft"
+    },
+    {
+      "id": "pol-activist",
+      "arabic": "ناشط",
+      "transliteration": "nāshiṭ",
+      "english": "an activist",
+      "context": "nāshiṭ (m) / nāshiṭa (f). Plural: nāshiṭīn.",
+      "tags": [
+        "politics"
+      ],
+      "status": "draft"
+    },
+    {
+      "id": "pol-demonstration",
+      "arabic": "مظاهرة",
+      "transliteration": "muẓāhara",
+      "english": "a demonstration / protest",
+      "tags": [
+        "politics"
+      ],
+      "status": "draft"
+    },
+    {
+      "id": "pol-nonviolence",
+      "arabic": "اللاعنف",
+      "transliteration": "al-lā-ʿunf",
+      "english": "nonviolence",
+      "context": "lā- prefix = 'non-'. Calque on the Western term; used in human-rights / activist register.",
+      "tags": [
+        "politics"
+      ],
+      "status": "draft"
+    },
+    {
+      "id": "pol-violence",
+      "arabic": "العنف",
+      "transliteration": "al-ʿunf",
+      "english": "violence",
+      "tags": [
+        "politics"
+      ],
+      "status": "draft"
+    },
+    {
+      "id": "pol-refugee",
+      "arabic": "لاجئ",
+      "transliteration": "lājiʾ",
+      "english": "a refugee",
+      "context": "lājiʾ (m) / lājiʾa (f). Plural: lājiʾīn. Politically central in Palestinian conversation given the 1948 displacement.",
+      "tags": [
+        "politics"
+      ],
+      "status": "draft"
+    },
+    {
+      "id": "pol-right-of-return",
+      "arabic": "حق العودة",
+      "transliteration": "ḥaqq il-ʿawda",
+      "english": "the right of return",
+      "context": "The Palestinian claim to return for those displaced in 1948 and their descendants. A core demand in Palestinian discourse; framed as a non-starter or symbolic-only by most Israeli political positions.",
+      "tags": [
+        "politics"
+      ],
+      "status": "draft"
+    },
+    {
+      "id": "pol-settler",
+      "arabic": "مستوطن",
+      "transliteration": "mustawṭin",
+      "english": "a settler",
+      "context": "Standard Arabic term for an Israeli settler in the West Bank. Israeli English-language discourse often uses 'resident'.",
+      "tags": [
+        "politics"
+      ],
+      "status": "draft"
+    },
+    {
+      "id": "pol-settlement",
+      "arabic": "مستوطنة",
+      "transliteration": "mustawṭana",
+      "english": "a settlement",
+      "context": "Standard Arabic term for an Israeli settlement in the West Bank. Israeli English-language discourse often uses 'community' or 'neighbourhood'.",
+      "tags": [
+        "politics",
+        "geography"
+      ],
+      "status": "draft"
+    },
+    {
+      "id": "pol-checkpoint",
+      "arabic": "حاجز",
+      "transliteration": "ḥājiz",
+      "english": "a checkpoint",
+      "context": "Plural: ḥawājiz. Refers to Israeli military checkpoints in and around the West Bank.",
+      "tags": [
+        "politics"
+      ],
+      "status": "draft"
+    },
+    {
+      "id": "pol-wall",
+      "arabic": "الجدار",
+      "transliteration": "il-jidār",
+      "english": "the wall / separation barrier",
+      "context": "Often jidār il-faṣl ('the separation wall'). Palestinian usage standard. Israeli usage: 'the security fence' / gader ha-hafrada in Hebrew.",
+      "tags": [
+        "politics"
+      ],
+      "status": "draft"
+    },
+    {
+      "id": "pol-id-card",
+      "arabic": "هوية",
+      "transliteration": "hawiyye",
+      "english": "an identity card / ID",
+      "context": "Hugely loaded word in Palestinian life — different colours of hawiyye (blue, green, orange) historically signal different legal statuses and freedom of movement.",
+      "tags": [
+        "politics"
+      ],
+      "status": "draft"
+    },
+    {
+      "id": "pol-green-line",
+      "arabic": "الخط الأخضر",
+      "transliteration": "al-khaṭṭ il-akhḍar",
+      "english": "the Green Line",
+      "context": "The 1949 armistice line, the de facto pre-1967 border between Israel and the West Bank.",
+      "tags": [
+        "politics",
+        "geography"
+      ],
+      "status": "draft"
+    },
+    {
+      "id": "pol-two-state",
+      "arabic": "حل الدولتين",
+      "transliteration": "ḥall id-dawlatēn",
+      "english": "the two-state solution",
+      "tags": [
+        "politics"
+      ],
+      "status": "draft"
+    },
+    {
+      "id": "pol-one-state",
+      "arabic": "دولة واحدة",
+      "transliteration": "dawla wāḥda",
+      "english": "one state",
+      "context": "Shorthand for the one-state framing. Means very different things to different speakers — bi-national, secular-democratic, or maximalist on either side.",
+      "tags": [
+        "politics"
+      ],
+      "status": "draft"
+    },
+    {
+      "id": "pol-citizen",
+      "arabic": "مواطن",
+      "transliteration": "mawāṭin",
+      "english": "a citizen",
+      "context": "mawāṭin (m) / mawāṭina (f).",
+      "tags": [
+        "politics"
+      ],
+      "status": "draft"
+    },
+    {
+      "id": "pol-citizenship",
+      "arabic": "الجنسية",
+      "transliteration": "il-jinsiyya",
+      "english": "citizenship",
+      "context": "il-jinsiyya is the everyday word; il-muwāṭana is more formal and emphasizes civic membership over nationality.",
+      "tags": [
+        "politics"
+      ],
+      "status": "draft"
+    },
+    {
+      "id": "pol-elections",
+      "arabic": "انتخابات",
+      "transliteration": "intikhābāt",
+      "english": "election(s)",
+      "tags": [
+        "politics"
+      ],
+      "status": "draft"
+    },
+    {
+      "id": "pol-party",
+      "arabic": "حزب",
+      "transliteration": "ḥizb",
+      "english": "a political party",
+      "context": "Plural: aḥzāb. Same root as Hizballāh ('party of God').",
+      "tags": [
+        "politics"
+      ],
+      "status": "draft"
+    },
+    {
+      "id": "pol-government",
+      "arabic": "الحكومة",
+      "transliteration": "il-ḥukūma",
+      "english": "the government",
+      "tags": [
+        "politics"
+      ],
+      "status": "draft"
+    },
+    {
+      "id": "pol-prime-minister",
+      "arabic": "رئيس الوزراء",
+      "transliteration": "raʾīs il-wuzarāʾ",
+      "english": "the prime minister",
+      "context": "Lit. 'head of the ministers'. raʾīs = head/leader; wuzarāʾ = ministers (plural of wazīr).",
+      "tags": [
+        "politics"
+      ],
+      "status": "draft"
+    },
+    {
+      "id": "pol-knesset",
+      "arabic": "الكنيست",
+      "transliteration": "il-knīsit",
+      "english": "the Knesset",
+      "context": "Hebrew loan, used as-is in Arabic. The Israeli parliament.",
+      "tags": [
+        "politics"
+      ],
+      "status": "draft"
+    },
+    {
+      "id": "pol-pa",
+      "arabic": "السلطة الفلسطينية",
+      "transliteration": "as-sulṭa il-filasṭīniyya",
+      "english": "the Palestinian Authority (PA)",
+      "context": "as-sulṭa on its own = 'the Authority'. Governs parts of the West Bank under the Oslo framework.",
+      "tags": [
+        "politics"
+      ],
+      "status": "draft"
+    },
+    {
+      "id": "pol-party-hadash",
+      "arabic": "الجبهة",
+      "transliteration": "al-Jabha",
+      "english": "Hadash (party)",
+      "context": "Short name for al-Jabha ad-Dīmuqrāṭiyya lis-Salām wal-Musāwā ('the Democratic Front for Peace and Equality'). Joint Arab-Jewish socialist party in the Israeli Knesset.",
+      "tags": [
+        "politics"
+      ],
+      "status": "draft"
+    },
+    {
+      "id": "pol-party-hadash-full",
+      "arabic": "الجبهة الديمقراطية للسلام والمساواة",
+      "transliteration": "al-Jabha ad-Dīmuqrāṭiyya lis-Salām wal-Musāwā",
+      "english": "the Democratic Front for Peace and Equality (Hadash, full name)",
+      "context": "The full Arabic name of Hadash — useful to recognize in news and on ballots.",
+      "tags": [
+        "politics"
+      ],
+      "status": "draft"
+    },
+    {
+      "id": "pol-party-balad",
+      "arabic": "التجمع",
+      "transliteration": "at-Tajammuʿ",
+      "english": "Balad (party)",
+      "context": "Short for at-Tajammuʿ al-Waṭanī ad-Dīmuqrāṭī ('the National Democratic Assembly'). Palestinian-Israeli party in the Knesset oriented around 'a state of all its citizens'.",
+      "tags": [
+        "politics"
+      ],
+      "status": "draft"
+    },
+    {
+      "id": "pol-party-raam",
+      "arabic": "القائمة العربية الموحدة",
+      "transliteration": "al-Qāʾima al-ʿArabiyya al-Muwaḥḥada",
+      "english": "Raam (United Arab List)",
+      "context": "Commonly shortened to al-Muwaḥḥada. Conservative Islamist Palestinian-Israeli party; in 2021 became the first Arab party to formally join an Israeli governing coalition.",
+      "tags": [
+        "politics"
+      ],
+      "status": "draft"
+    },
+    {
+      "id": "pol-party-joint-list",
+      "arabic": "القائمة المشتركة",
+      "transliteration": "al-Qāʾima al-Mushtarka",
+      "english": "the Joint List (historical alliance)",
+      "context": "An electoral alliance of the main Arab parties in the Israeli Knesset (2015–2022). Now fragmented; you'll still hear the name in conversation about that period.",
+      "tags": [
+        "politics"
+      ],
+      "status": "draft"
+    },
+    {
+      "id": "pol-party-fatah",
+      "arabic": "فتح",
+      "transliteration": "Fataḥ",
+      "english": "Fatah (party / movement)",
+      "context": "Reverse acronym from Ḥarakat at-Taḥrīr al-Waṭanī al-Filasṭīnī ('the Palestinian National Liberation Movement'). Dominant party in the PLO and the Palestinian Authority; based in the West Bank.",
+      "tags": [
+        "politics"
+      ],
+      "status": "draft"
+    },
+    {
+      "id": "pol-party-hamas",
+      "arabic": "حماس",
+      "transliteration": "Ḥamās",
+      "english": "Hamas (party / movement)",
+      "context": "Acronym from Ḥarakat al-Muqāwama al-Islāmiyya ('the Islamic Resistance Movement'). Governs Gaza; designated a terrorist organization by Israel, the EU, and the US. Many Palestinians regard it as a political/resistance movement.",
+      "tags": [
+        "politics"
+      ],
+      "status": "draft"
+    },
+    {
+      "id": "pol-party-pflp",
+      "arabic": "الجبهة الشعبية",
+      "transliteration": "al-Jabha ash-Shaʿbiyya",
+      "english": "the PFLP (Popular Front for the Liberation of Palestine)",
+      "context": "Full name: al-Jabha ash-Shaʿbiyya li-Taḥrīr Filasṭīn. Marxist-Leninist Palestinian faction. Designated a terrorist organization by Israel, the EU, and the US.",
+      "tags": [
+        "politics"
+      ],
+      "status": "draft"
+    },
+    {
+      "id": "pol-party-islamic-jihad",
+      "arabic": "الجهاد الإسلامي",
+      "transliteration": "al-Jihād al-Islāmī",
+      "english": "Islamic Jihad",
+      "context": "Full name: Ḥarakat al-Jihād al-Islāmī fī Filasṭīn. Smaller than Hamas, primarily based in Gaza. Designated a terrorist organization by Israel, the EU, and the US.",
+      "tags": [
+        "politics"
+      ],
+      "status": "draft"
+    },
+    {
+      "id": "pol-jew",
+      "arabic": "يهودي",
+      "transliteration": "yahūdi",
+      "english": "a Jew / Jewish",
+      "context": "yahūdi (m) / yahūdiyye (f). Plural: yahūd. Neutral descriptor in Arabic.",
+      "tags": [
+        "politics",
+        "family"
+      ],
+      "status": "draft"
+    },
+    {
+      "id": "pol-arab",
+      "arabic": "عربي",
+      "transliteration": "ʿarabi",
+      "english": "an Arab / Arabic",
+      "context": "ʿarabi (m) / ʿarabiyye (f). Same word also = the Arabic language.",
+      "tags": [
+        "politics",
+        "family"
+      ],
+      "status": "draft"
+    },
+    {
+      "id": "pol-israeli",
+      "arabic": "إسرائيلي",
+      "transliteration": "isrāʾīli",
+      "english": "an Israeli",
+      "context": "isrāʾīli (m) / isrāʾīliyye (f). Standard Arabic form.",
+      "tags": [
+        "politics",
+        "family"
+      ],
+      "status": "draft"
+    },
+    {
+      "id": "pol-palestinian",
+      "arabic": "فلسطيني",
+      "transliteration": "filasṭīni",
+      "english": "a Palestinian",
+      "context": "filasṭīni (m) / filasṭīniyye (f).",
+      "tags": [
+        "politics",
+        "family"
+      ],
+      "status": "draft"
+    },
+    {
+      "id": "pol-muslim",
+      "arabic": "مسلم",
+      "transliteration": "muslim",
+      "english": "a Muslim",
+      "context": "muslim (m) / muslima (f).",
+      "tags": [
+        "politics",
+        "family"
+      ],
+      "status": "draft"
+    },
+    {
+      "id": "pol-christian",
+      "arabic": "مسيحي",
+      "transliteration": "masīḥi",
+      "english": "a Christian",
+      "context": "masīḥi (m) / masīḥiyye (f). From al-Masīḥ ('the Messiah').",
+      "tags": [
+        "politics",
+        "family"
+      ],
+      "status": "draft"
+    },
+    {
+      "id": "pol-druze",
+      "arabic": "درزي",
+      "transliteration": "durzi",
+      "english": "a Druze",
+      "context": "durzi (m) / durziyye (f). Plural: drūz.",
+      "tags": [
+        "politics",
+        "family"
+      ],
+      "status": "draft"
+    },
+    {
+      "id": "pol-bedouin",
+      "arabic": "بدوي",
+      "transliteration": "badawi",
+      "english": "a Bedouin",
+      "context": "badawi (m) / badawiyye (f). Plural: badu.",
+      "tags": [
+        "politics",
+        "family"
+      ],
+      "status": "draft"
+    },
+    {
+      "id": "pol-arab-inside",
+      "arabic": "عرب الداخل",
+      "transliteration": "ʿArab id-dākhil",
+      "english": "Arabs of '48 / Palestinian citizens of Israel",
+      "context": "Lit. 'Arabs of the inside' — i.e. inside the Green Line. Common Palestinian term for Palestinian citizens of Israel. Also heard: Filasṭīniyyīn fī d-dākhil ('Palestinians inside'), ʿArab 48, or in Israeli framing 'Israeli Arabs' / 'Arab citizens of Israel'. Each label encodes a perspective on identity and borders.",
+      "tags": [
+        "politics",
+        "family"
+      ],
+      "status": "draft"
+    },
+    {
+      "id": "pol-nakba",
+      "arabic": "النكبة",
+      "transliteration": "an-Nakba",
+      "english": "the Nakba (1948)",
+      "context": "Lit. 'the catastrophe'. Palestinian term for the displacement and dispossession of 1948. Israelis refer to the same period as 'the War of Independence' (milḥemet ha-ʿaṣmaʾut in Hebrew).",
+      "tags": [
+        "politics"
+      ],
+      "status": "draft"
+    },
+    {
+      "id": "pol-naksa",
+      "arabic": "النكسة",
+      "transliteration": "an-Naksa",
+      "english": "the Naksa (1967)",
+      "context": "Lit. 'the setback'. Palestinian/Arab term for the 1967 defeat in the Six-Day War and the subsequent occupation of the West Bank, Gaza, Sinai, and the Golan.",
+      "tags": [
+        "politics"
+      ],
+      "status": "draft"
+    },
+    {
+      "id": "pol-independence-day",
+      "arabic": "يوم الاستقلال",
+      "transliteration": "yōm il-istiqlāl",
+      "english": "Independence Day (Israeli)",
+      "context": "Israeli national holiday marking 1948 — the same date Palestinians commemorate as the Nakba.",
+      "tags": [
+        "politics"
+      ],
+      "status": "draft"
+    },
+    {
+      "id": "pol-holocaust",
+      "arabic": "المحرقة",
+      "transliteration": "il-mahraqa",
+      "english": "the Holocaust",
+      "context": "Lit. 'the burning / conflagration'. Older Arabic translation. The loanword al-Hōlōkōst is also widely used in modern media.",
+      "tags": [
+        "politics"
+      ],
+      "status": "draft"
+    },
+    {
+      "id": "pol-intifada",
+      "arabic": "انتفاضة",
+      "transliteration": "intifāḍa",
+      "english": "intifada / uprising",
+      "context": "Lit. 'a shaking off'. Palestinian term for the 1987 (First) and 2000 (Second / al-Aqsa) uprisings against the occupation.",
+      "tags": [
+        "politics"
+      ],
+      "status": "draft"
+    },
+    {
+      "id": "pol-resistance",
+      "arabic": "المقاومة",
+      "transliteration": "al-muqāwama",
+      "english": "the resistance",
+      "context": "Palestinian discourse uses muqāwama for armed and non-armed action against the occupation. In Israeli/Western framing, the same actions are often labelled 'terrorism' depending on context. Both meanings exist in the wider conversation — use carefully and read the room.",
+      "tags": [
+        "politics"
+      ],
+      "status": "draft"
+    },
+    {
+      "id": "pol-against-violence",
+      "arabic": "أنا ضد العنف",
+      "transliteration": "ana ḍidd il-ʿunf",
+      "english": "I'm against violence.",
+      "context": "Stating a personal position; works in most conversations.",
+      "tags": [
+        "politics"
+      ],
+      "status": "draft"
+    },
+    {
+      "id": "pol-for-peace",
+      "arabic": "أنا مع السلام",
+      "transliteration": "ana maʿ is-salām",
+      "english": "I'm for peace.",
+      "context": "maʿ = 'with / in favour of'. ḍidd = 'against'.",
+      "tags": [
+        "politics"
+      ],
+      "status": "draft"
+    },
+    {
+      "id": "pol-respect-everyone",
+      "arabic": "أنا بحترم الكل",
+      "transliteration": "ana baḥtirim il-kull",
+      "english": "I respect everyone.",
+      "tags": [
+        "politics"
+      ],
+      "status": "draft"
+    },
+    {
+      "id": "pol-not-religious",
+      "arabic": "أنا مش متديّن",
+      "transliteration": "ana mish mutadayyin",
+      "english": "I'm not religious.",
+      "context": "Female speaker: ana mish mutadayyine.",
+      "tags": [
+        "politics",
+        "family"
+      ],
+      "status": "draft"
+    },
+    {
+      "id": "pol-want-coexistence",
+      "arabic": "بدّي تعايش",
+      "transliteration": "biddi taʿāyush",
+      "english": "I want coexistence.",
+      "tags": [
+        "politics"
+      ],
+      "status": "draft"
+    },
+    {
+      "id": "pol-politics-complicated",
+      "arabic": "السياسة معقّدة",
+      "transliteration": "is-siyāse muʿaʾʾade",
+      "english": "Politics is complicated.",
+      "context": "Useful softener before changing the topic or before saying you'd rather not get into it.",
+      "tags": [
+        "politics",
+        "rescue"
+      ],
+      "status": "draft"
+    },
+    {
+      "id": "pol-sensitive-topic",
+      "arabic": "موضوع حسّاس",
+      "transliteration": "mawḍūʿ ḥassās",
+      "english": "It's a sensitive topic.",
+      "context": "mawḍūʿ ṣaʿb ('a difficult topic') is a near-equivalent.",
+      "tags": [
+        "politics",
+        "rescue"
+      ],
+      "status": "draft"
+    },
+    {
+      "id": "pol-prefer-not-talk",
+      "arabic": "بفضّل ما نحكي سياسة",
+      "transliteration": "bafaḍḍil mā niḥki siyāse",
+      "english": "I'd rather not talk politics.",
+      "context": "Polite deflection — bafaḍḍil = 'I prefer'.",
+      "tags": [
+        "politics",
+        "rescue"
+      ],
+      "status": "draft"
+    },
+    {
+      "id": "pol-talk-something-else",
+      "arabic": "خلّينا نحكي بشي ثاني",
+      "transliteration": "khalīna niḥki bi-shī thāni",
+      "english": "Let's talk about something else.",
+      "context": "Friendly redirection. khalīna = 'let us'.",
+      "tags": [
+        "politics",
+        "rescue"
+      ],
+      "status": "draft"
+    },
+    {
+      "id": "pol-disagree-respect",
+      "arabic": "أنا مش موافق، بس بحترم رأيك",
+      "transliteration": "ana mish muwāfiʾ, bass baḥtirim raʾyak",
+      "english": "I don't agree, but I respect your opinion.",
+      "context": "Female speaker: ana mish muwāfʾa, bass baḥtirim raʾyik.",
+      "tags": [
+        "politics"
+      ],
+      "status": "draft"
+    },
+    {
+      "id": "pol-both-deserve-peace",
+      "arabic": "الشعبين بيستاهلوا يعيشوا بسلام",
+      "transliteration": "ish-shaʿbēn byistāhilū yʿīshū bi-salām",
+      "english": "Both peoples deserve to live in peace.",
+      "context": "ish-shaʿbēn = dual 'the two peoples'. Constructed phrase — verify with a native speaker before using; a more idiomatic version may exist.",
+      "tags": [
+        "politics"
+      ],
+      "status": "draft"
+    },
+    {
+      "id": "pol-here-to-listen",
+      "arabic": "أنا هون لأسمع",
+      "transliteration": "ana hōn la-asmaʿ",
+      "english": "I'm here to listen.",
+      "context": "la- = 'in order to'. Useful when someone is sharing a hard story.",
+      "tags": [
+        "politics"
+      ],
+      "status": "draft"
+    },
+    {
+      "id": "pol-what-do-you-think",
+      "arabic": "شو رأيك في…؟",
+      "transliteration": "shū raʾyak fī …?",
+      "english": "What do you think about…?",
+      "context": "Female addressee: shū raʾyik fī…?",
+      "tags": [
+        "politics"
+      ],
+      "status": "draft"
+    },
+    {
+      "id": "pol-tell-me-about",
+      "arabic": "احكيلي عن ضيعتك / عيلتك / وضعك",
+      "transliteration": "iḥkīli ʿan ḍayʿtak / ʿīltak / waḍʿak",
+      "english": "Tell me about your village / family / situation.",
+      "context": "Female addressee: iḥkīli ʿan ḍayʿtik / ʿīltik / waḍʿik.",
+      "tags": [
+        "politics",
+        "family"
+      ],
+      "status": "draft"
+    },
+    {
+      "id": "pol-safe-to-go",
+      "arabic": "آمن أروح لهناك؟",
+      "transliteration": "āmen arūḥ la-hnāk?",
+      "english": "Is it safe to go there?",
+      "context": "Practical question for travel into the West Bank or to a specific town.",
+      "tags": [
+        "politics",
+        "geography",
+        "drivers"
+      ],
+      "status": "draft"
+    },
+    {
+      "id": "geo-city",
+      "arabic": "مدينة",
+      "transliteration": "madīna",
+      "english": "a city",
+      "context": "Plural: mudun.",
+      "tags": [
+        "geography"
+      ],
+      "status": "draft"
+    },
+    {
+      "id": "geo-town",
+      "arabic": "بلدة",
+      "transliteration": "balda",
+      "english": "a town",
+      "context": "balda is a town; balad alone means 'country' or, colloquially, 'home town / village' depending on context.",
+      "tags": [
+        "geography"
+      ],
+      "status": "draft"
+    },
+    {
+      "id": "geo-village",
+      "arabic": "ضيعة",
+      "transliteration": "ḍayʿa",
+      "english": "a village",
+      "context": "ḍayʿa is the everyday Levantine word. qarya is more MSA / formal but understood.",
+      "tags": [
+        "geography",
+        "family"
+      ],
+      "status": "draft"
+    },
+    {
+      "id": "geo-neighborhood",
+      "arabic": "حارة",
+      "transliteration": "ḥāra",
+      "english": "a neighborhood",
+      "context": "ḥāra is the warm, lived-in word for a neighbourhood; ḥayy is the more neutral / official term.",
+      "tags": [
+        "geography"
+      ],
+      "status": "draft"
+    },
+    {
+      "id": "geo-country",
+      "arabic": "دولة",
+      "transliteration": "dawla",
+      "english": "a country / state",
+      "context": "balad is also used for 'country' in everyday speech — but balad ambiguously also means 'town / home town', so context decides. dawla is unambiguously a (sovereign) state.",
+      "tags": [
+        "geography"
+      ],
+      "status": "draft"
+    },
+    {
+      "id": "geo-region",
+      "arabic": "منطقة",
+      "transliteration": "manṭiqa",
+      "english": "a region / area",
+      "context": "Plural: manāṭiq.",
+      "tags": [
+        "geography"
+      ],
+      "status": "draft"
+    },
+    {
+      "id": "geo-camp",
+      "arabic": "مخيّم",
+      "transliteration": "mukhayyam",
+      "english": "a refugee camp",
+      "context": "In Palestinian context this almost always refers to a Palestinian refugee camp (e.g. Balāṭa, ʿAyda, Shuʿfāṭ). Plural: mukhayyamāt.",
+      "tags": [
+        "geography",
+        "politics"
+      ],
+      "status": "draft"
+    },
+    {
+      "id": "geo-kibbutz",
+      "arabic": "كيبوتس",
+      "transliteration": "kibūts",
+      "english": "a kibbutz",
+      "context": "Hebrew loan, used as-is in Arabic discourse.",
+      "tags": [
+        "geography"
+      ],
+      "status": "draft"
+    },
+    {
+      "id": "geo-moshav",
+      "arabic": "موشاف",
+      "transliteration": "mōshāv",
+      "english": "a moshav",
+      "context": "Hebrew loan for an Israeli cooperative agricultural community.",
+      "tags": [
+        "geography"
+      ],
+      "status": "draft"
+    },
+    {
+      "id": "geo-north",
+      "arabic": "شمال",
+      "transliteration": "shamāl",
+      "english": "north",
+      "tags": [
+        "geography",
+        "directions"
+      ],
+      "status": "draft"
+    },
+    {
+      "id": "geo-south",
+      "arabic": "جنوب",
+      "transliteration": "janūb",
+      "english": "south",
+      "tags": [
+        "geography",
+        "directions"
+      ],
+      "status": "draft"
+    },
+    {
+      "id": "geo-east",
+      "arabic": "شرق",
+      "transliteration": "sharq",
+      "english": "east",
+      "tags": [
+        "geography",
+        "directions"
+      ],
+      "status": "draft"
+    },
+    {
+      "id": "geo-west",
+      "arabic": "غرب",
+      "transliteration": "gharb",
+      "english": "west",
+      "tags": [
+        "geography",
+        "directions"
+      ],
+      "status": "draft"
+    },
+    {
+      "id": "geo-the-inside",
+      "arabic": "الداخل",
+      "transliteration": "ad-dākhil",
+      "english": "the inside (i.e. inside the Green Line)",
+      "context": "In Palestinian discourse, refers to '48 areas / inside the Green Line / Israel proper. Politically loaded — the geographic term itself encodes a perspective on borders.",
+      "tags": [
+        "geography",
+        "politics"
+      ],
+      "status": "draft"
+    },
+    {
+      "id": "geo-the-outside",
+      "arabic": "الخارج",
+      "transliteration": "al-khārij",
+      "english": "the outside / abroad",
+      "context": "General word for 'abroad', also used as the counterpart to ad-dākhil in Palestinian discourse (the diaspora).",
+      "tags": [
+        "geography"
+      ],
+      "status": "draft"
+    },
+    {
+      "id": "geo-mountain",
+      "arabic": "جبل",
+      "transliteration": "jabal",
+      "english": "a mountain",
+      "context": "Plural: jibāl.",
+      "tags": [
+        "geography"
+      ],
+      "status": "draft"
+    },
+    {
+      "id": "geo-valley",
+      "arabic": "وادي",
+      "transliteration": "wādi",
+      "english": "a valley",
+      "context": "Plural: widyān. Source of English 'wadi'.",
+      "tags": [
+        "geography"
+      ],
+      "status": "draft"
+    },
+    {
+      "id": "geo-sea",
+      "arabic": "البحر",
+      "transliteration": "al-baḥr",
+      "english": "the sea",
+      "tags": [
+        "geography"
+      ],
+      "status": "draft"
+    },
+    {
+      "id": "geo-river",
+      "arabic": "نهر",
+      "transliteration": "nahr",
+      "english": "a river",
+      "context": "The Jordan = nahr il-Urdunn.",
+      "tags": [
+        "geography"
+      ],
+      "status": "draft"
+    },
+    {
+      "id": "geo-desert",
+      "arabic": "الصحراء",
+      "transliteration": "aṣ-ṣaḥrāʾ",
+      "english": "the desert",
+      "tags": [
+        "geography"
+      ],
+      "status": "draft"
+    },
+    {
+      "id": "geo-jerusalem",
+      "arabic": "القدس",
+      "transliteration": "al-Quds",
+      "english": "Jerusalem",
+      "context": "Lit. 'the holy'. The standard Arabic name for Jerusalem.",
+      "tags": [
+        "geography"
+      ],
+      "status": "draft"
+    },
+    {
+      "id": "geo-east-jerusalem",
+      "arabic": "القدس الشرقية",
+      "transliteration": "al-Quds ish-sharqiyya",
+      "english": "East Jerusalem",
+      "context": "Predominantly Palestinian, occupied by Israel in 1967 and subsequently annexed (annexation not internationally recognized).",
+      "tags": [
+        "geography",
+        "politics"
+      ],
+      "status": "draft"
+    },
+    {
+      "id": "geo-west-jerusalem",
+      "arabic": "القدس الغربية",
+      "transliteration": "al-Quds il-gharbiyya",
+      "english": "West Jerusalem",
+      "tags": [
+        "geography",
+        "politics"
+      ],
+      "status": "draft"
+    },
+    {
+      "id": "geo-hebron",
+      "arabic": "الخليل",
+      "transliteration": "al-Khalīl",
+      "english": "Hebron",
+      "context": "Lit. 'the friend' — referring to Ibrāhīm (Abraham), 'the friend of God'. Largest city in the southern West Bank.",
+      "tags": [
+        "geography"
+      ],
+      "status": "draft"
+    },
+    {
+      "id": "geo-bethlehem",
+      "arabic": "بيت لحم",
+      "transliteration": "Bayt Laḥm",
+      "english": "Bethlehem",
+      "context": "Lit. 'house of meat / bread' (the same root, depending on the language). Just south of Jerusalem in the West Bank.",
+      "tags": [
+        "geography"
+      ],
+      "status": "draft"
+    },
+    {
+      "id": "geo-jaffa",
+      "arabic": "يافا",
+      "transliteration": "Yāfa",
+      "english": "Jaffa",
+      "context": "Now the southern part of Tel Aviv-Yafo. Historically a major Palestinian Arab city.",
+      "tags": [
+        "geography"
+      ],
+      "status": "draft"
+    },
+    {
+      "id": "geo-acre",
+      "arabic": "عكّا",
+      "transliteration": "ʿAkka",
+      "english": "Acre",
+      "context": "Old port city in the north, on the Mediterranean.",
+      "tags": [
+        "geography"
+      ],
+      "status": "draft"
+    },
+    {
+      "id": "geo-nazareth",
+      "arabic": "الناصرة",
+      "transliteration": "an-Nāṣira",
+      "english": "Nazareth",
+      "context": "Largest Palestinian-Arab city inside the Green Line.",
+      "tags": [
+        "geography"
+      ],
+      "status": "draft"
+    },
+    {
+      "id": "geo-negev",
+      "arabic": "النقب",
+      "transliteration": "an-Naqab",
+      "english": "the Negev",
+      "context": "Hebrew: ha-Negev. Large desert region in southern Israel, home to a sizeable Bedouin population.",
+      "tags": [
+        "geography"
+      ],
+      "status": "draft"
+    },
+    {
+      "id": "geo-galilee",
+      "arabic": "الجليل",
+      "transliteration": "al-Jalīl",
+      "english": "the Galilee",
+      "context": "Northern region of Israel; large Palestinian-Arab population.",
+      "tags": [
+        "geography"
+      ],
+      "status": "draft"
+    },
+    {
+      "id": "geo-beersheva",
+      "arabic": "بئر السبع",
+      "transliteration": "Biʾr is-Sabʿ",
+      "english": "Be'er Sheva",
+      "context": "Lit. 'the well of seven / the well of the oath' — same etymology as the Hebrew. Main city of the Negev.",
+      "tags": [
+        "geography"
+      ],
+      "status": "draft"
+    },
+    {
+      "id": "geo-west-bank",
+      "arabic": "الضفة الغربية",
+      "transliteration": "aḍ-Ḍiffa il-gharbiyya",
+      "english": "the West Bank",
+      "context": "Lit. 'the western bank' (of the Jordan River). Often shortened to aḍ-Ḍiffe in speech.",
+      "tags": [
+        "geography",
+        "politics"
+      ],
+      "status": "draft"
+    },
+    {
+      "id": "geo-gaza-strip",
+      "arabic": "قطاع غزة",
+      "transliteration": "Qiṭāʿ Ghazza",
+      "english": "the Gaza Strip",
+      "context": "qiṭāʿ = 'strip / sector'. Often shortened to il-Qiṭāʿ.",
+      "tags": [
+        "geography",
+        "politics"
+      ],
+      "status": "draft"
+    },
+    {
+      "id": "geo-from-city-or-village",
+      "arabic": "إنت من مدينة ولا ضيعة؟",
+      "transliteration": "inta min madīna willā ḍayʿa?",
+      "english": "Are you from a city or a village?",
+      "context": "Female addressee: inti min madīna willā ḍayʿa?",
+      "tags": [
+        "geography",
+        "family"
+      ],
+      "status": "draft"
+    },
+    {
+      "id": "geo-never-been",
+      "arabic": "عمري ما رحت لهناك",
+      "transliteration": "ʿumri mā ruḥt la-hnāk",
+      "english": "I've never been there.",
+      "context": "ʿumri mā… = 'in my life I've never…'.",
+      "tags": [
+        "geography"
+      ],
+      "status": "draft"
+    },
+    {
+      "id": "geo-beautiful-area",
+      "arabic": "منطقة حلوة",
+      "transliteration": "manṭiʾa ḥilwe",
+      "english": "It's a beautiful area.",
+      "context": "Compliment a place when someone tells you where they're from.",
+      "tags": [
+        "geography",
+        "family"
+      ],
+      "status": "draft"
+    },
+    {
+      "id": "geo-how-far",
+      "arabic": "قدّيش بعيدة من هون؟",
+      "transliteration": "ʾaddēsh biʿīde min hōn?",
+      "english": "How far is it from here?",
+      "tags": [
+        "geography",
+        "directions"
+      ],
+      "status": "draft"
+    },
+    {
+      "id": "geo-its-in-the-north",
+      "arabic": "بالشمال",
+      "transliteration": "bish-shamāl",
+      "english": "It's in the north.",
+      "context": "Same pattern: bil-janūb (south), bish-sharq (east), bil-gharb (west).",
+      "tags": [
+        "geography",
+        "directions"
+      ],
+      "status": "draft"
+    },
+    {
+      "id": "geo-near-x",
+      "arabic": "قريب من…",
+      "transliteration": "ʾarīb min …",
+      "english": "It's near…",
+      "context": "Female form (for places treated as feminine like madīna): ʾarībe min….",
+      "tags": [
+        "geography",
+        "directions"
+      ],
+      "status": "draft"
+    },
+    {
+      "id": "geo-family-there",
+      "arabic": "عنّا عيلة هناك",
+      "transliteration": "ʿinna ʿīle hnāk",
+      "english": "We have family there.",
+      "context": "ʿinna = 'we have'.",
+      "tags": [
+        "geography",
+        "family"
+      ],
+      "status": "draft"
+    },
+    {
+      "id": "pol-border",
+      "arabic": "الحدود",
+      "transliteration": "il-ḥudūd",
+      "english": "the border / the borders",
+      "context": "Singular ḥadd / plural ḥudūd. The plural form is more common in political discourse and is often used with a singular meaning ('the border').",
+      "tags": [
+        "politics",
+        "geography"
+      ],
+      "status": "draft"
+    },
+    {
+      "id": "pol-minister",
+      "arabic": "وزير",
+      "transliteration": "wazīr",
+      "english": "a minister (cabinet)",
+      "tags": [
+        "politics"
+      ],
+      "status": "draft"
+    },
+    {
+      "id": "pol-ministry",
+      "arabic": "وزارة",
+      "transliteration": "wizāra",
+      "english": "a ministry",
+      "context": "E.g. wizārat ad-difāʿ = the Ministry of Defence; wizārat al-khārijiyya = the Foreign Ministry.",
+      "tags": [
+        "politics"
+      ],
+      "status": "draft"
+    },
+    {
+      "id": "pol-foreign-minister",
+      "arabic": "وزير الخارجية",
+      "transliteration": "wazīr al-khārijiyya",
+      "english": "the foreign minister",
+      "tags": [
+        "politics"
+      ],
+      "status": "draft"
+    },
+    {
+      "id": "pol-defence-minister",
+      "arabic": "وزير الدفاع",
+      "transliteration": "wazīr ad-difāʿ",
+      "english": "the defence minister",
+      "tags": [
+        "politics"
+      ],
+      "status": "draft"
+    },
+    {
+      "id": "pol-general",
+      "arabic": "لواء",
+      "transliteration": "liwāʾ",
+      "english": "a general (military rank)",
+      "context": "Generic high officer rank. Specific Arabic ranks differ between militaries; liwāʾ corresponds roughly to major-general / brigadier.",
+      "tags": [
+        "politics"
+      ],
+      "status": "draft"
+    },
+    {
+      "id": "pol-army",
+      "arabic": "الجيش",
+      "transliteration": "il-jaysh",
+      "english": "the army",
+      "context": "In Israeli context, refers to the IDF; in Palestinian context, the term is often used loosely. Specific qualifiers like il-jaysh il-isrāʾīli are common.",
+      "tags": [
+        "politics"
+      ],
+      "status": "draft"
+    },
+    {
+      "id": "pol-soldier",
+      "arabic": "جندي",
+      "transliteration": "jundi",
+      "english": "a soldier",
+      "tags": [
+        "politics"
+      ],
+      "status": "draft"
+    },
+    {
+      "id": "pol-police",
+      "arabic": "الشرطة",
+      "transliteration": "ish-shurṭa",
+      "english": "the police",
+      "tags": [
+        "politics"
+      ],
+      "status": "draft"
+    },
+    {
+      "id": "pol-police-officer",
+      "arabic": "شرطي",
+      "transliteration": "shurṭi",
+      "english": "a police officer",
+      "tags": [
+        "politics"
+      ],
+      "status": "draft"
+    },
+    {
+      "id": "pol-president",
+      "arabic": "الرئيس",
+      "transliteration": "ar-raʾīs",
+      "english": "the president",
+      "context": "Used for heads of state and also colloquially as 'the boss'. In Israeli context: the largely ceremonial head of state. In Palestinian context: head of the Palestinian Authority.",
+      "tags": [
+        "politics"
+      ],
+      "status": "draft"
+    },
+    {
+      "id": "pol-mk",
+      "arabic": "نائب بالكنيست",
+      "transliteration": "nāʾib bil-knīsit",
+      "english": "a member of Knesset",
+      "context": "nāʾib literally means 'deputy / representative'. ʿuḍw knīsit ('Knesset member') is also heard.",
+      "tags": [
+        "politics"
+      ],
+      "status": "draft"
+    },
+    {
+      "id": "pol-mayor",
+      "arabic": "رئيس البلدية",
+      "transliteration": "raʾīs il-baladiyya",
+      "english": "a mayor",
+      "context": "Lit. 'head of the municipality'.",
+      "tags": [
+        "politics"
+      ],
       "status": "draft"
     }
   ]

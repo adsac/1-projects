@@ -12,7 +12,7 @@
 //   10min : 18 items + up to 3 new + 4 scenario items
 //   15min : 25 items + up to 5 new + 6 scenario items + 1 engine drill block
 
-import { isDue, isNew, weakness, newState } from './scheduler.js';
+import { isDue, isNew, weakness, isWeak, isStrong, newState } from './scheduler.js';
 import { shuffle, pick } from './util.js';
 
 const QUOTAS = {
@@ -139,13 +139,14 @@ function interleave(queue) {
 }
 
 export function summarize(content, stateFor, now = Date.now()) {
-  let due = 0, weak = 0, fresh = 0, strong = 0;
+  let due = 0, weak = 0, fresh = 0, strong = 0, seen = 0;
   for (const p of content.phrases) {
     const st = stateFor(p.id);
     if (isNew(st)) { fresh++; continue; }
+    seen++;
     if (isDue(st, now)) due++;
-    if (weakness(st) >= 3) weak++;
-    if (st && st.intervalDays >= 7 && st.lastGrade !== 'again') strong++;
+    if (isWeak(st)) weak++;
+    if (isStrong(st)) strong++;
   }
-  return { due, weak, fresh, strong, total: content.phrases.length };
+  return { due, weak, fresh, strong, seen, total: content.phrases.length };
 }

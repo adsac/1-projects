@@ -88,6 +88,14 @@ export function weakness(state) {
   return w;
 }
 
+const WEAK_THRESHOLD = 2;
+
+/** Has the learner stumbled on this enough that it deserves prioritising? */
+export function isWeak(state) {
+  if (!state) return false;
+  return weakness(state) >= WEAK_THRESHOLD;
+}
+
 /** A "can say now" item — at least 3 successful reviews with intervals ≥ 7 days. */
 export function isStrong(state) {
   if (!state) return false;

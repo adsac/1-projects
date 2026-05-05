@@ -435,21 +435,67 @@ export async function renderProgress() {
   const strong = pool.phrases.filter((p) => scheduler.isStrong(stateFor(p.id)));
   const weak = pool.phrases
     .map((p) => ({ p, st: stateFor(p.id) }))
-    .filter((x) => x.st && scheduler.weakness(x.st) >= 2)
+    .filter((x) => scheduler.isWeak(x.st))
     .sort((a, b) => scheduler.weakness(b.st) - scheduler.weakness(a.st));
 
   const root = el('div', { class: 'col' });
   root.append(appbar('Progress'));
+
+  // Top stats — every number here matches the lists below.
   root.append(el('div', { class: 'card' }, [
     el('div', {}, [
-      el('strong', {}, `${sum.strong}`), ' phrases I can say now · ',
+      el('strong', {}, `${sum.strong}`), ' can say now · ',
       el('strong', {}, `${sum.due}`), ' due · ',
+      el('strong', {}, `${sum.weak}`), ' weak · ',
+      el('strong', {}, `${sum.seen}`), ' seen · ',
       el('strong', {}, `${sum.fresh}`), ' new available',
     ]),
+    el('div', { class: 'progress', style: 'margin-top:10px' }, [
+      el('span', { style: `width:${Math.round((sum.strong / Math.max(1, sum.total)) * 100)}%` }),
+    ]),
+    el('div', { class: 'muted', style: 'margin-top:6px' }, `${sum.strong} / ${sum.total} of the library`),
   ]));
 
+  // Per-scenario breakdown.
+  const byScenario = scenarioBreakdown(pool, app.content.scenarios);
+  if (byScenario.length) {
+    root.append(el('h2', {}, 'By scenario'));
+    const list = el('ul', { class: 'list' });
+    for (const row of byScenario) {
+      list.append(el('li', { class: 'col' }, [
+        el('div', { class: 'row' }, [
+          el('strong', {}, row.name),
+          el('div', { class: 'spacer' }),
+          el('span', { class: 'muted' }, `${row.strong} / ${row.total}`),
+        ]),
+        el('div', { class: 'progress' }, [
+          el('span', { style: `width:${Math.round((row.strong / Math.max(1, row.total)) * 100)}%` }),
+        ]),
+        el('div', { class: 'muted' }, `${row.due} due · ${row.weak} weak · ${row.fresh} new`),
+      ]));
+    }
+    root.append(list);
+  }
+
+  // Recent sessions.
+  const sessions = (await data.listSessions()).sort((a, b) => (b.startedAt || 0) - (a.startedAt || 0)).slice(0, 8);
+  if (sessions.length) {
+    root.append(el('h2', {}, 'Recent sessions'));
+    const list = el('ul', { class: 'list' });
+    for (const s of sessions) {
+      list.append(el('li', { class: 'row' }, [
+        el('div', { class: 'spacer' }, [
+          el('strong', {}, `${s.minutes ?? '?'} min`),
+          el('span', { class: 'muted' }, ` · ${new Date(s.startedAt).toLocaleString()}`),
+        ]),
+        el('span', { class: 'muted' }, `${s.correct ?? 0} good · ${s.lapses ?? 0} again`),
+      ]));
+    }
+    root.append(list);
+  }
+
   if (strong.length) {
-    root.append(el('h2', {}, 'Can say now'));
+    root.append(el('h2', {}, `Can say now (${strong.length})`));
     const list = el('ul', { class: 'list' });
     for (const p of strong.slice(0, 50)) {
       list.append(el('li', {}, [
@@ -462,7 +508,7 @@ export async function renderProgress() {
   }
 
   if (weak.length) {
-    root.append(el('h2', {}, 'Weak — focus on these'));
+    root.append(el('h2', {}, `Weak — focus on these (${weak.length})`));
     const list = el('ul', { class: 'list' });
     for (const { p, st } of weak.slice(0, 20)) {
       list.append(el('li', {}, [
@@ -474,7 +520,30 @@ export async function renderProgress() {
     root.append(list);
   }
 
+  if (!strong.length && !weak.length) {
+    root.append(el('div', { class: 'empty' }, 'No reviewed items yet — run a session and grades will show up here.'));
+  }
+
   mount(root);
+}
+
+function scenarioBreakdown(pool, scenarios) {
+  const rows = [];
+  for (const sc of scenarios) {
+    const items = pool.phrases.filter((p) => (p.tags || []).includes(sc.id));
+    if (items.length === 0) continue;
+    let strong = 0, weak = 0, due = 0, fresh = 0;
+    const now = Date.now();
+    for (const p of items) {
+      const st = stateFor(p.id);
+      if (scheduler.isNew(st)) fresh++;
+      if (scheduler.isStrong(st)) strong++;
+      if (scheduler.isWeak(st)) weak++;
+      if (st && scheduler.isDue(st, now) && !scheduler.isNew(st)) due++;
+    }
+    rows.push({ id: sc.id, name: sc.name, total: items.length, strong, weak, due, fresh });
+  }
+  return rows;
 }
 
 // ---------------- Settings ----------------

@@ -1,6 +1,6 @@
 {
   "name": "Arabic Tutor",
-  "short_name": "Arabic",
+  "short_name": "Arabic Tutor",
   "description": "Personal spoken-Arabic practice (Palestinian Levantine) — sentence engines, spaced repetition, offline.",
   "start_url": "./",
   "scope": "./",

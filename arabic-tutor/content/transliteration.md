@@ -30,7 +30,7 @@ underlying MSA spelling.
 | ع | ʿ | voiced pharyngeal — **not** silent |
 | غ | gh | uvular `r`-like |
 | ف | f |  |
-| ق | ʾ | **In urban Palestinian and many Levantine dialects, ق is realised as a glottal stop.** Some rural/Bedouin speakers keep `q` or `g`. Default to `ʾ`. |
+| ق | ʾ *or* q | **Jerusalem dialect (urban Palestinian) — see "Qāf: dual realization" below.** Default everyday spoken value is the glottal stop `ʾ`; literary retentions are written `q`. |
 | ك | k |  |
 | ل | l |  |
 | م | m |  |
@@ -39,6 +39,21 @@ underlying MSA spelling.
 | و | w / ū / ō | consonantal `w`, or long vowel — see vowels |
 | ي | y / ī / ē | consonantal `y`, or long vowel — see vowels |
 | ء | ʾ | hamza, glottal stop |
+
+## Qāf: dual realization
+
+Jerusalem dialect (and urban Palestinian / Levantine more broadly) realises ق two different ways depending on the word's register:
+
+- **Everyday colloquial → `ʾ` (glottal stop).** This is the default for ordinary spoken vocabulary: `ʾahwe` (قهوة, coffee), `ʾaddēsh` (قدّيش, how much), `ʾarīb` (قريب, near), `ʾalbi` (قلبي, my heart), `ṭarīʾ` (طريق, road), `il-bāʾi` (الباقي, the rest / change), `waʾʾif` (وقّف, stop!), `azraʾ` (أزرق, blue), `būʿ il-ʾalam` (بوق القلم, pen tip).
+- **Literary / formal retention → `q`.** Words felt to belong to a higher register keep the literary qāf. This includes:
+  - **Religious vocabulary**: `al-Qurʾān`, `qiyāma`, `taqwā`.
+  - **Place names with classical resonance**: `al-Quds` (Jerusalem), `al-Qāhira` (Cairo), `an-Naqab` (Negev).
+  - **Formal political / legal / academic terms**: `al-muqāwama` (resistance), `ḥuqūq` (rights), `al-Qāʾima` (the List, in party names), `qiṭāʿ Ghazza` (Gaza Strip), `istiqlāl` (independence), `manṭiqa` (region), `taqaddum` (progress).
+  - **Modern formal nouns absent from everyday speech** in their colloquial form.
+
+When in doubt: say it out loud. If the word feels formal, news-anchorish, or religious, it keeps `q`. If it's something you'd say buying coffee or asking directions, it's `ʾ`. Some words sit on the border (`manṭiqa` vs `manṭiʾa`); in those cases either is heard, and we default to the more formal `q` since the dialect glottal is obvious to a learner from context.
+
+Some rural Palestinian / Bedouin / Druze speakers keep `q` everywhere or use `g` (e.g. `gahwe` for coffee). We don't model those varieties — defaulting to Jerusalem urban norms.
 
 ## Vowels
 

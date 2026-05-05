@@ -82,7 +82,8 @@
  * @property {boolean} showTransliteration
  * @property {boolean} showHebrewHooks
  * @property {('slow'|'normal'|'fast')} newItemSpeed
- * @property {string[]} scenarioPriority   // scenario ids in priority order
+ * @property {boolean} mixRecognition       // if true, ~25% of cards become Arabic→English instead of English→Arabic
+ * @property {string[]} scenarioPriority    // scenario ids in priority order
  */
 
 // ---------------- IndexedDB wrapper ----------------
@@ -147,6 +148,7 @@ export const DEFAULT_SETTINGS = /** @type {Settings} */ ({
   showTransliteration: true,
   showHebrewHooks: false,
   newItemSpeed: 'normal',
+  mixRecognition: false,
   scenarioPriority: ['rescue', 'drivers', 'shops', 'kids', 'family', 'work'],
 });
 

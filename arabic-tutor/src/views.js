@@ -149,8 +149,9 @@ export async function runSession({ minutes }) {
       el('div', { class: 'progress' }, [el('span', { style: `width:${Math.round((i / queue.length) * 100)}%` })]),
     ]);
 
-    if (item.kind === 'recall' || item.kind === 'scenario_drill') {
-      const node = practice.recallCard({
+    if (item.kind === 'recall' || item.kind === 'scenario_drill' || item.kind === 'recognize') {
+      const builder = item.kind === 'recognize' ? practice.recognizeCard : practice.recallCard;
+      const node = builder({
         phrase: item.payload,
         settings: app.settings,
         onGraded: async (g) => {
@@ -487,12 +488,19 @@ export async function renderSettings() {
   showTr.checked = !!s.showTransliteration;
   const showHe = el('input', { type: 'checkbox' });
   showHe.checked = !!s.showHebrewHooks;
+  const mixRec = el('input', { type: 'checkbox' });
+  mixRec.checked = !!s.mixRecognition;
   const speed = el('select', {}, ['slow', 'normal', 'fast'].map((v) => el('option', { value: v }, v)));
   speed.value = s.newItemSpeed;
 
   root.append(el('div', { class: 'card col' }, [
     el('div', { class: 'field' }, [el('label', {}, 'Show transliteration'), showTr]),
     el('div', { class: 'field' }, [el('label', {}, 'Show Hebrew hooks'), showHe]),
+    el('div', { class: 'field' }, [
+      el('label', {}, 'Mix in Arabic → English cards (~25%)'),
+      mixRec,
+      el('div', { class: 'muted' }, 'Default sessions are English → Arabic (production). Turn this on to also exercise comprehension.'),
+    ]),
     el('div', { class: 'field' }, [el('label', {}, 'New-item speed'), speed]),
     el('button', {
       class: 'primary',
@@ -500,6 +508,7 @@ export async function renderSettings() {
         const next = await data.saveSettings({
           showTransliteration: showTr.checked,
           showHebrewHooks: showHe.checked,
+          mixRecognition: mixRec.checked,
           newItemSpeed: speed.value,
         });
         app.settings = next;

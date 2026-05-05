@@ -109,7 +109,18 @@ export function plan(minutes, content, stateFor, settings, now = Date.now()) {
   }
 
   // Light shuffle within kinds to avoid monotony, but keep new items spaced out.
-  return interleave(queue);
+  const ordered = interleave(queue);
+  return settings.mixRecognition ? sprinkleRecognition(ordered) : ordered;
+}
+
+// Flip ~25% of recall/scenario items to ar→en recognition mode so the user
+// also exercises the receptive direction. Keep new_intro and engine_drill alone.
+function sprinkleRecognition(queue, fraction = 0.25) {
+  const flippable = queue.filter((q) => q.kind === 'recall' || q.kind === 'scenario_drill');
+  if (flippable.length === 0) return queue;
+  const target = Math.max(1, Math.round(flippable.length * fraction));
+  const picked = new Set(shuffle(flippable).slice(0, target).map((q) => q.itemId));
+  return queue.map((q) => picked.has(q.itemId) ? { ...q, kind: 'recognize' } : q);
 }
 
 function interleave(queue) {

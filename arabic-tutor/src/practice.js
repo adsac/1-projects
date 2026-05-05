@@ -62,6 +62,55 @@ export function recallCard({ phrase, settings, onGraded, onSkip }) {
 }
 
 /**
+ * Recognition card: Arabic prompt, reveal English. Inverse of recallCard.
+ * @param {{phrase:any, settings:any, onGraded:(grade:string)=>void, onSkip:()=>void}} ctx
+ */
+export function recognizeCard({ phrase, settings, onGraded, onSkip }) {
+  const root = el('div', { class: 'card col' });
+  let revealed = false;
+
+  const tags = phraseTags(phrase);
+  root.append(el('div', { class: 'muted' }, [
+    el('span', { class: 'tag' }, 'Arabic → English'),
+    ...tags,
+  ]));
+  root.append(el('div', { class: 'ar lg' }, phrase.arabic));
+  if (settings.showTransliteration) {
+    root.append(el('div', { class: 'translit' }, phrase.transliteration));
+  }
+
+  const answer = el('div', { class: 'col', hidden: true }, [
+    el('h2', {}, phrase.english),
+    phrase.fushaNote ? el('div', { class: 'note fusha' }, `Fuṣḥā note: ${phrase.fushaNote}`) : null,
+  ]);
+  root.append(answer);
+
+  const revealBtn = el('button', {
+    class: 'primary',
+    onclick: () => {
+      revealed = true;
+      answer.hidden = false;
+      revealBtn.hidden = true;
+      grades.hidden = false;
+    },
+  }, 'Reveal');
+  root.append(revealBtn);
+
+  const grades = el('div', { class: 'grades', hidden: true }, [
+    gradeBtn('again', 'Again', '<1m', () => revealed && onGraded('again')),
+    gradeBtn('hard',  'Hard',  '~1d', () => revealed && onGraded('hard')),
+    gradeBtn('good',  'Good',  '~3d', () => revealed && onGraded('good')),
+    gradeBtn('easy',  'Easy',  '~7d', () => revealed && onGraded('easy')),
+  ]);
+  root.append(grades);
+
+  root.append(el('div', { class: 'row' }, [
+    el('button', { class: 'ghost', onclick: () => onSkip() }, 'Skip'),
+  ]));
+  return root;
+}
+
+/**
  * New-item introduction: show everything up front, user taps "Got it" to enter the review chain.
  */
 export function newIntro({ phrase, settings, onContinue }) {

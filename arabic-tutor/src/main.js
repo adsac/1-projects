@@ -10,7 +10,7 @@ async function boot() {
     data.loadContent(),
     data.getSettings(),
   ]);
-  applyArabicFontSize(settings.arabicFontSize);
+  applyFontSizes(settings);
   await views.setApp({ content, settings, states: new Map() });
 
   router.route('/', views.renderHome);
@@ -66,11 +66,13 @@ function showUpdatePrompt(reg) {
   t.hidden = false;
 }
 
-function applyArabicFontSize(size) {
-  document.body.dataset.arSize = size || 'medium';
+function applyFontSizes(settings) {
+  const root = document.documentElement;
+  root.dataset.arSize = settings.arabicFontSize || 'medium';
+  root.dataset.uiSize = settings.uiFontSize || 'medium';
 }
 // Re-export so views.js can call it after Settings save without reloading.
-window.__applyArabicFontSize = applyArabicFontSize;
+window.__applyFontSizes = applyFontSizes;
 
 window.addEventListener('error', (e) => {
   console.error('app error', e.error || e.message);

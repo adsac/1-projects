@@ -492,14 +492,27 @@ export async function renderSettings() {
   mixRec.checked = !!s.mixRecognition;
   const speed = el('select', {}, ['slow', 'normal', 'fast'].map((v) => el('option', { value: v }, v)));
   speed.value = s.newItemSpeed;
-  const arSize = el('select', {},
-    [['small', 'Small'], ['medium', 'Medium (default)'], ['large', 'Large'], ['xlarge', 'Extra large']]
-      .map(([v, label]) => el('option', { value: v }, label)));
+
+  const sizeOptions = [
+    ['xxsmall', 'XX-small'],
+    ['xsmall',  'X-small'],
+    ['small',   'Small'],
+    ['medium',  'Medium (default)'],
+    ['large',   'Large'],
+    ['xlarge',  'X-large'],
+  ];
+  const arSize = el('select', {}, sizeOptions.map(([v, label]) => el('option', { value: v }, label)));
   arSize.value = s.arabicFontSize || 'medium';
-  arSize.onchange = () => {
-    // Live preview while the menu is open.
-    if (window.__applyArabicFontSize) window.__applyArabicFontSize(arSize.value);
-  };
+  const uiSize = el('select', {}, sizeOptions.map(([v, label]) => el('option', { value: v }, label)));
+  uiSize.value = s.uiFontSize || 'medium';
+
+  function previewSizes() {
+    if (window.__applyFontSizes) {
+      window.__applyFontSizes({ arabicFontSize: arSize.value, uiFontSize: uiSize.value });
+    }
+  }
+  arSize.onchange = previewSizes;
+  uiSize.onchange = previewSizes;
 
   root.append(el('div', { class: 'card col' }, [
     el('div', { class: 'field' }, [el('label', {}, 'Show transliteration'), showTr]),
@@ -511,6 +524,8 @@ export async function renderSettings() {
     ]),
     el('div', { class: 'field' }, [el('label', {}, 'Arabic font size'), arSize]),
     el('div', { class: 'ar', style: 'margin: -4px 0 4px' }, 'مرحبا، كيف حالك؟'),
+    el('div', { class: 'field' }, [el('label', {}, 'English / UI font size'), uiSize]),
+    el('div', { style: 'margin: -4px 0 4px' }, 'How are you? — preview at this UI size.'),
     el('div', { class: 'field' }, [el('label', {}, 'New-item speed'), speed]),
     el('button', {
       class: 'primary',
@@ -521,9 +536,10 @@ export async function renderSettings() {
           mixRecognition: mixRec.checked,
           newItemSpeed: speed.value,
           arabicFontSize: arSize.value,
+          uiFontSize: uiSize.value,
         });
         app.settings = next;
-        if (window.__applyArabicFontSize) window.__applyArabicFontSize(next.arabicFontSize);
+        if (window.__applyFontSizes) window.__applyFontSizes(next);
         toast('Saved');
       },
     }, 'Save'),

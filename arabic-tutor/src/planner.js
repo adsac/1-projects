@@ -16,7 +16,7 @@ import { isDue, isNew, weakness, isWeak, isStrong, newState } from './scheduler.
 import { shuffle, pick } from './util.js';
 
 const QUOTAS = {
-  3:  { total: 7,  newMax: 0, scenarioMax: 0, engineMax: 0 },
+  3:  { total: 7,  newMax: 1, scenarioMax: 1, engineMax: 0 },
   7:  { total: 14, newMax: 2, scenarioMax: 2, engineMax: 1 },
   10: { total: 18, newMax: 3, scenarioMax: 4, engineMax: 1 },
   15: { total: 25, newMax: 5, scenarioMax: 6, engineMax: 2 },
@@ -117,6 +117,22 @@ export function plan(minutes, content, stateFor, settings, now = Date.now(), sco
     for (const { p } of due) {
       if (queue.length >= quota.total) break;
       if (!inQueue.has(p.id)) queue.push({ itemId: p.id, kind: 'recall', payload: p });
+    }
+  }
+
+  // 6. Last-resort fallback: if the queue is still very small (e.g. 3-min when
+  //    nothing is due, or a scoped session in a scenario you've already
+  //    cleared today), top up with new-item intros so the session isn't empty.
+  const minTarget = Math.min(quota.total, Math.max(3, Math.floor(quota.total / 2)));
+  if (queue.length < minTarget && newItems.length > 0) {
+    const inQueue = new Set(queue.map((q) => q.itemId));
+    const ranked = newItems
+      .filter((p) => !inQueue.has(p.id))
+      .map((p) => ({ p, score: scenarioScore(p) }))
+      .sort((a, b) => a.score - b.score);
+    for (const { p } of ranked) {
+      if (queue.length >= minTarget) break;
+      queue.push({ itemId: p.id, kind: 'new_intro', payload: p });
     }
   }
 

@@ -1,6 +1,6 @@
 // Service worker — cache app shell + content for offline use.
 // Bump CACHE_VERSION whenever shell files change so clients pick up updates.
-const CACHE_VERSION = 'v11';
+const CACHE_VERSION = 'v12';
 const SHELL_CACHE = `arabic-tutor-shell-${CACHE_VERSION}`;
 const CONTENT_CACHE = `arabic-tutor-content-${CACHE_VERSION}`;
 

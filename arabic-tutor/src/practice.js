@@ -16,6 +16,7 @@ export function recallCard({ phrase, settings, onGraded, onSkip }) {
 
   const prompt = el('div', { class: 'col' }, [
     el('div', { class: 'muted' }, phraseTags(phrase)),
+    phrase.context ? el('div', { class: 'context' }, phrase.context) : null,
     el('h1', {}, phrase.english),
   ]);
   root.append(prompt);
@@ -81,6 +82,7 @@ export function recognizeCard({ phrase, settings, onGraded, onSkip }) {
 
   const answer = el('div', { class: 'col', hidden: true }, [
     el('h2', {}, phrase.english),
+    phrase.context ? el('div', { class: 'context' }, phrase.context) : null,
     phrase.fushaNote ? el('div', { class: 'note fusha' }, `Fuṣḥā note: ${phrase.fushaNote}`) : null,
   ]);
   root.append(answer);
@@ -116,6 +118,7 @@ export function recognizeCard({ phrase, settings, onGraded, onSkip }) {
 export function newIntro({ phrase, settings, onContinue }) {
   const root = el('div', { class: 'card col' });
   root.append(el('div', { class: 'muted' }, ['New phrase ', ...phraseTags(phrase)]));
+  if (phrase.context) root.append(el('div', { class: 'context' }, phrase.context));
   root.append(el('div', { class: 'ar lg' }, phrase.arabic));
   if (settings.showTransliteration) root.append(el('div', { class: 'translit' }, phrase.transliteration));
   root.append(el('h2', {}, phrase.english));
@@ -176,6 +179,7 @@ export function engineDrill({ engine, settings, onDone }) {
 function renderDrillStep(drill, settings, onNext) {
   const card = el('div', { class: 'card col' });
   card.append(el('div', { class: 'muted' }, drill.label));
+  if (drill.context) card.append(el('div', { class: 'context' }, drill.context));
   card.append(el('h2', {}, drill.english));
   const answer = el('div', { class: 'col', hidden: true }, [
     el('div', { class: 'ar lg' }, drill.arabic),
@@ -194,7 +198,7 @@ function pickEngineDrills(engine, n) {
   const out = [];
   if (Array.isArray(engine.forms)) {
     for (const f of shuffle(engine.forms).slice(0, Math.min(n, engine.forms.length))) {
-      out.push({ label: f.label, english: f.english, arabic: f.arabic, transliteration: f.transliteration, pronunciationNote: f.pronunciationNote });
+      out.push({ label: f.label, english: f.english, arabic: f.arabic, transliteration: f.transliteration, context: f.context, pronunciationNote: f.pronunciationNote });
     }
   }
   // Slot substitutions: replace [SLOT] with options

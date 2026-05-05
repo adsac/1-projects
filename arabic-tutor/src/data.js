@@ -20,6 +20,7 @@
  * @property {string} arabic
  * @property {string} transliteration
  * @property {string} english
+ * @property {string} [context]           // when do you say this? e.g. "Reply to: ṣabāḥ il-khēr"
  * @property {string} [pronunciationNote]
  */
 
@@ -49,6 +50,7 @@
  * @property {string} arabic
  * @property {string} transliteration
  * @property {string} english
+ * @property {string} [context]           // when do you say this? — shown above the english prompt
  * @property {string} [pronunciationNote]
  * @property {string} [fushaNote]
  * @property {string[]} [tags]            // scenario slugs, formality, etc.

@@ -10,7 +10,7 @@ Zero-build static PWA. Plain HTML, CSS, ES modules. No npm, no bundler, no frame
 
 ## Install on Android
 
-1. After this branch is pushed, enable GitHub Pages once: **Settings → Pages → Source: Deploy from a branch → Branch: `claude/arabic-sentence-engines-Hhcx6` → Folder: `/ (root)` → Save**.
+1. Enable GitHub Pages once: **Settings → Pages → Source: Deploy from a branch → Branch: `main` → Folder: `/ (root)` → Save**.
 2. Wait ~1 minute. Open `https://adsac.github.io/1-projects/arabic-tutor/` in Android Chrome.
 3. Chrome menu → **Add to Home screen**. Launch from the icon.
 4. Once it has loaded, the service worker caches everything — works offline from then on.
@@ -77,6 +77,6 @@ When the app shell changes (anything outside `content/`), bump `CACHE_VERSION` i
 - No AI translation in "Add phrase" — manual entry only.
 - No accounts / cloud sync. Everything lives in the device's IndexedDB.
 
-## Branch
+## Workflow
 
-Active development branch: `claude/arabic-sentence-engines-Hhcx6`.
+`main` is the deployable. Pages serves from it directly. Future iteration happens on short-lived feature branches (`claude/...`) merged back to `main` once they pass a sanity check on the phone.

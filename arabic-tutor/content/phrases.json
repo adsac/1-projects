@@ -1,3 +1,1175 @@
 {
-  "items": []
+  "items": [
+    {
+      "id": "rescue-slower",
+      "arabic": "ممكن تحكي شوي شوي؟",
+      "transliteration": "mumkin tiḥki shwayy shwayy?",
+      "english": "Can you speak more slowly?",
+      "pronunciationNote": "shwayy shwayy literally 'a little a little' — the standard Levantine way to ask for slow speech.",
+      "tags": ["rescue", "drivers", "shops", "family", "work"],
+      "rescue": true,
+      "status": "draft"
+    },
+    {
+      "id": "rescue-didnt-understand",
+      "arabic": "ما فهمت",
+      "transliteration": "mā fhimt",
+      "english": "I didn't understand.",
+      "pronunciationNote": "The cluster fhimt is one syllable; the i is a short helping vowel.",
+      "tags": ["rescue", "drivers", "shops", "family", "work"],
+      "rescue": true,
+      "status": "draft"
+    },
+    {
+      "id": "rescue-repeat",
+      "arabic": "ممكن تعيد؟",
+      "transliteration": "mumkin tʿīd?",
+      "english": "Can you repeat?",
+      "tags": ["rescue", "drivers", "shops"],
+      "rescue": true,
+      "status": "draft"
+    },
+    {
+      "id": "rescue-again-please",
+      "arabic": "كمان مرّة، لو سمحت",
+      "transliteration": "kamān marra, law samaḥt",
+      "english": "One more time, please.",
+      "tags": ["rescue", "shops", "drivers"],
+      "rescue": true,
+      "status": "draft"
+    },
+    {
+      "id": "rescue-learning",
+      "arabic": "أنا بتعلّم عربي",
+      "transliteration": "ana batʿallam ʿarabi",
+      "english": "I'm learning Arabic.",
+      "pronunciationNote": "ʿ in ʿarabi is the pharyngeal — give it weight; don't say 'arabi'.",
+      "tags": ["rescue", "drivers", "shops", "family", "work"],
+      "rescue": true,
+      "status": "draft"
+    },
+    {
+      "id": "rescue-little-arabic",
+      "arabic": "بحكي عربي شوي",
+      "transliteration": "baḥki ʿarabi shwayy",
+      "english": "I speak a little Arabic.",
+      "tags": ["rescue", "drivers", "shops", "family"],
+      "rescue": true,
+      "status": "draft"
+    },
+    {
+      "id": "rescue-english",
+      "arabic": "بتحكي إنجليزي؟",
+      "transliteration": "btiḥki inglīzi?",
+      "english": "Do you speak English?",
+      "tags": ["rescue", "drivers", "shops", "work"],
+      "rescue": true,
+      "status": "draft"
+    },
+    {
+      "id": "rescue-whats-this",
+      "arabic": "شو هاد بالعربي؟",
+      "transliteration": "shū hād bil-ʿarabi?",
+      "english": "What is this in Arabic?",
+      "fushaNote": "shū ← MSA mā/māḏā; hād ← MSA hāḏā (Levantine drops the final ā).",
+      "tags": ["rescue", "shops", "kids"],
+      "rescue": true,
+      "status": "draft"
+    },
+    {
+      "id": "rescue-how-say",
+      "arabic": "كيف بتقول هاد بالعربي؟",
+      "transliteration": "kīf btʾūl hād bil-ʿarabi?",
+      "english": "How do you say this in Arabic?",
+      "pronunciationNote": "btʾūl: the ʾ is a glottal stop (urban ق); pronounce as a sharp catch in the throat.",
+      "tags": ["rescue", "shops", "family"],
+      "rescue": true,
+      "status": "draft"
+    },
+    {
+      "id": "rescue-sorry",
+      "arabic": "آسف",
+      "transliteration": "āsif",
+      "english": "Sorry. (m speaker)",
+      "tags": ["rescue", "drivers", "shops", "kids", "family", "work"],
+      "rescue": true,
+      "status": "draft"
+    },
+    {
+      "id": "rescue-no-thanks",
+      "arabic": "لأ، شكراً",
+      "transliteration": "laʾ, shukran",
+      "english": "No, thank you.",
+      "pronunciationNote": "laʾ ends in a glottal stop — short and crisp, not 'la'.",
+      "tags": ["rescue", "shops", "drivers"],
+      "rescue": true,
+      "status": "draft"
+    },
+    {
+      "id": "rescue-yes",
+      "arabic": "أيوه",
+      "transliteration": "aywa",
+      "english": "Yes / yeah.",
+      "fushaNote": "Colloquial 'yes'. MSA: نعم (naʿam). Both work; aywa is warmer and more conversational.",
+      "tags": ["rescue", "drivers", "shops", "family", "work"],
+      "rescue": true,
+      "status": "draft"
+    },
+    {
+      "id": "rescue-i-dont-know",
+      "arabic": "ما بعرف",
+      "transliteration": "mā baʿrif",
+      "english": "I don't know.",
+      "tags": ["rescue", "shops", "family", "work"],
+      "rescue": true,
+      "status": "draft"
+    },
+    {
+      "id": "rescue-help-me",
+      "arabic": "ممكن تساعدني؟",
+      "transliteration": "mumkin tsāʿidni?",
+      "english": "Can you help me?",
+      "tags": ["rescue", "drivers", "shops"],
+      "rescue": true,
+      "status": "draft"
+    },
+    {
+      "id": "rescue-moment",
+      "arabic": "لحظة، لو سمحت",
+      "transliteration": "laḥẓa, law samaḥt",
+      "english": "One moment, please.",
+      "pronunciationNote": "ẓ in laḥẓa is the emphatic — backs the surrounding vowel a bit.",
+      "tags": ["rescue", "drivers", "shops", "work"],
+      "rescue": true,
+      "status": "draft"
+    },
+
+    {
+      "id": "drivers-to-modiin",
+      "arabic": "ع موديعين، لو سمحت",
+      "transliteration": "ʿa Mōdiʿīn, law samaḥt",
+      "english": "To Modi'in, please.",
+      "pronunciationNote": "ʿa = 'to' (reduced ʿala). The ʿ before Mōdiʿīn must be sounded.",
+      "tags": ["drivers"],
+      "status": "draft"
+    },
+    {
+      "id": "drivers-to-jerusalem",
+      "arabic": "ع القدس، لو سمحت",
+      "transliteration": "ʿa l-Quds, law samaḥt",
+      "english": "To Jerusalem, please.",
+      "tags": ["drivers"],
+      "status": "draft"
+    },
+    {
+      "id": "drivers-stop-here",
+      "arabic": "وقّف هون، لو سمحت",
+      "transliteration": "waʾʾif hōn, law samaḥt",
+      "english": "Stop here, please.",
+      "pronunciationNote": "waʾʾif: doubled glottal stop (shadda on ق). The pause after wa- is real.",
+      "tags": ["drivers"],
+      "status": "draft"
+    },
+    {
+      "id": "drivers-here-good",
+      "arabic": "هون منيح",
+      "transliteration": "hōn mnīḥ",
+      "english": "Here is good.",
+      "tags": ["drivers"],
+      "status": "draft"
+    },
+    {
+      "id": "drivers-how-much",
+      "arabic": "قدّيش الأجرة؟",
+      "transliteration": "ʾaddēsh il-ujra?",
+      "english": "How much is the fare?",
+      "fushaNote": "ʾaddēsh ← MSA كم (kam) for prices. ujra = fare/wage, shared with MSA.",
+      "tags": ["drivers"],
+      "status": "draft"
+    },
+    {
+      "id": "drivers-have-change",
+      "arabic": "عندك فكّة؟",
+      "transliteration": "ʿindak fakke?",
+      "english": "Do you have change?",
+      "pronunciationNote": "fakke with doubled k (shadda) — clearly held.",
+      "tags": ["drivers", "shops"],
+      "status": "draft"
+    },
+    {
+      "id": "drivers-keep-change",
+      "arabic": "خلّي الباقي إلك",
+      "transliteration": "khalli l-bāʾi ilak",
+      "english": "Keep the change.",
+      "tags": ["drivers", "shops"],
+      "status": "draft"
+    },
+    {
+      "id": "drivers-this-way",
+      "arabic": "هاد الطريق ع موديعين؟",
+      "transliteration": "hād iṭ-ṭarīʾ ʿa Mōdiʿīn?",
+      "english": "Is this the way to Modi'in?",
+      "pronunciationNote": "ṭarīʾ has emphatic ṭ — backs the ā. Final ʾ for ق.",
+      "tags": ["drivers"],
+      "status": "draft"
+    },
+    {
+      "id": "drivers-by-card",
+      "arabic": "ممكن أدفع بالكرت؟",
+      "transliteration": "mumkin adfaʿ bil-kart?",
+      "english": "Can I pay by card?",
+      "tags": ["drivers", "shops"],
+      "status": "draft"
+    },
+    {
+      "id": "drivers-by-cash",
+      "arabic": "بدفع كاش",
+      "transliteration": "badfaʿ kāsh",
+      "english": "I'll pay cash.",
+      "tags": ["drivers", "shops"],
+      "status": "draft"
+    },
+    {
+      "id": "drivers-in-hurry",
+      "arabic": "أنا مستعجل",
+      "transliteration": "ana mistaʿjil",
+      "english": "I'm in a hurry. (m speaker)",
+      "tags": ["drivers", "work"],
+      "status": "draft"
+    },
+    {
+      "id": "drivers-take-time",
+      "arabic": "ما في عجلة",
+      "transliteration": "mā fī ʿajale",
+      "english": "There's no rush.",
+      "fushaNote": "fī here = 'there is' (Levantine), distinct from MSA preposition fī ('in'). MSA equivalent: لا يوجد (lā yūjad).",
+      "tags": ["drivers"],
+      "status": "draft"
+    },
+    {
+      "id": "drivers-next-street",
+      "arabic": "الشارع الجاي",
+      "transliteration": "ish-shāriʿ ij-jāy",
+      "english": "The next street.",
+      "tags": ["drivers"],
+      "status": "draft"
+    },
+    {
+      "id": "drivers-right",
+      "arabic": "يمين",
+      "transliteration": "yamīn",
+      "english": "Right.",
+      "tags": ["drivers"],
+      "status": "draft"
+    },
+    {
+      "id": "drivers-left",
+      "arabic": "شمال",
+      "transliteration": "shmāl",
+      "english": "Left.",
+      "pronunciationNote": "Initial cluster sh+m; the sh isn't preceded by a vowel.",
+      "tags": ["drivers"],
+      "status": "draft"
+    },
+    {
+      "id": "drivers-straight",
+      "arabic": "دغري",
+      "transliteration": "dughri",
+      "english": "Straight ahead.",
+      "fushaNote": "From Turkish doğru ('straight'). Pan-Levantine, very common in spoken use; MSA would say إلى الأمام (ʾila l-ʾamām).",
+      "tags": ["drivers"],
+      "status": "draft"
+    },
+    {
+      "id": "drivers-after-light",
+      "arabic": "بعد الإشارة",
+      "transliteration": "baʿd il-ishāra",
+      "english": "After the traffic light.",
+      "tags": ["drivers"],
+      "status": "draft"
+    },
+    {
+      "id": "drivers-before-light",
+      "arabic": "قبل الإشارة",
+      "transliteration": "ʾabl il-ishāra",
+      "english": "Before the traffic light.",
+      "tags": ["drivers"],
+      "status": "draft"
+    },
+    {
+      "id": "drivers-here-fine",
+      "arabic": "نزّلني هون، لو سمحت",
+      "transliteration": "nazzilni hōn, law samaḥt",
+      "english": "Drop me here, please.",
+      "tags": ["drivers"],
+      "status": "draft"
+    },
+    {
+      "id": "drivers-thanks-bye",
+      "arabic": "شكراً، الله معك",
+      "transliteration": "shukran, Allāh maʿak",
+      "english": "Thanks, goodbye (lit. God be with you).",
+      "tags": ["drivers"],
+      "status": "draft"
+    },
+    {
+      "id": "drivers-how-long",
+      "arabic": "قدّيش بدّها وقت؟",
+      "transliteration": "ʾaddēsh biddha waʾt?",
+      "english": "How long will it take?",
+      "pronunciationNote": "biddha (lit. 'it [f] wants') is idiomatic for 'it'll take' a duration.",
+      "tags": ["drivers"],
+      "status": "draft"
+    },
+    {
+      "id": "drivers-the-address",
+      "arabic": "هاد العنوان",
+      "transliteration": "hād il-ʿinwān",
+      "english": "This is the address.",
+      "tags": ["drivers"],
+      "status": "draft"
+    },
+    {
+      "id": "drivers-air-cond",
+      "arabic": "ممكن المكيّف، لو سمحت؟",
+      "transliteration": "mumkin il-mkayyif, law samaḥt?",
+      "english": "Could you turn on the AC, please?",
+      "tags": ["drivers"],
+      "status": "draft"
+    },
+    {
+      "id": "drivers-far",
+      "arabic": "بعيد؟",
+      "transliteration": "bʿīd?",
+      "english": "Is it far?",
+      "tags": ["drivers"],
+      "status": "draft"
+    },
+    {
+      "id": "drivers-near",
+      "arabic": "قريب",
+      "transliteration": "ʾarīb",
+      "english": "It's close / near.",
+      "tags": ["drivers"],
+      "status": "draft"
+    },
+
+    {
+      "id": "shops-coffee",
+      "arabic": "بدّي قهوة، لو سمحت",
+      "transliteration": "biddi ʾahwe, law samaḥt",
+      "english": "I'd like a coffee, please.",
+      "pronunciationNote": "ʾahwe — ق as glottal stop, then a-h-we. Common Palestinian pronunciation.",
+      "tags": ["shops"],
+      "status": "draft"
+    },
+    {
+      "id": "shops-coffee-no-sugar",
+      "arabic": "قهوة بدون سكّر",
+      "transliteration": "ʾahwe bidūn sukkar",
+      "english": "Coffee without sugar.",
+      "tags": ["shops"],
+      "status": "draft"
+    },
+    {
+      "id": "shops-coffee-with-sugar",
+      "arabic": "قهوة سادة / وسط / حلوة",
+      "transliteration": "ʾahwe sāde / wasaṭ / ḥilwe",
+      "english": "Coffee plain / medium / sweet.",
+      "fushaNote": "Standard ordering ladder for Arabic coffee. sāde = no sugar, wasaṭ = medium, ḥilwe = sweet.",
+      "tags": ["shops"],
+      "status": "draft"
+    },
+    {
+      "id": "shops-with-milk",
+      "arabic": "مع حليب",
+      "transliteration": "maʿ ḥalīb",
+      "english": "With milk.",
+      "tags": ["shops"],
+      "status": "draft"
+    },
+    {
+      "id": "shops-tea",
+      "arabic": "بدّي شاي مع نعنع",
+      "transliteration": "biddi shāy maʿ naʿnaʿ",
+      "english": "I'd like tea with mint.",
+      "pronunciationNote": "naʿnaʿ has two pharyngeal ʿ — distinctive Levantine sound.",
+      "tags": ["shops"],
+      "status": "draft"
+    },
+    {
+      "id": "shops-water",
+      "arabic": "بدّي قنّينة ميّ",
+      "transliteration": "biddi ʾannīnit mayy",
+      "english": "I'd like a bottle of water.",
+      "tags": ["shops"],
+      "status": "draft"
+    },
+    {
+      "id": "shops-this-please",
+      "arabic": "هاد، لو سمحت",
+      "transliteration": "hād, law samaḥt",
+      "english": "This one, please.",
+      "tags": ["shops"],
+      "status": "draft"
+    },
+    {
+      "id": "shops-take-away",
+      "arabic": "للسفري",
+      "transliteration": "lis-safari",
+      "english": "To take away / to go.",
+      "tags": ["shops"],
+      "status": "draft"
+    },
+    {
+      "id": "shops-stay-here",
+      "arabic": "رح آكل هون",
+      "transliteration": "raḥ ākul hōn",
+      "english": "I'll eat here.",
+      "tags": ["shops"],
+      "status": "draft"
+    },
+    {
+      "id": "shops-bill",
+      "arabic": "الحساب، لو سمحت",
+      "transliteration": "il-ḥsāb, law samaḥt",
+      "english": "The bill, please.",
+      "pronunciationNote": "ḥ is pharyngeal — ḥsāb starts with that sound, no vowel before it.",
+      "tags": ["shops"],
+      "status": "draft"
+    },
+    {
+      "id": "shops-how-much-is-it",
+      "arabic": "قدّيش هاد؟",
+      "transliteration": "ʾaddēsh hād?",
+      "english": "How much is this?",
+      "tags": ["shops"],
+      "status": "draft"
+    },
+    {
+      "id": "shops-too-expensive",
+      "arabic": "غالي كتير",
+      "transliteration": "ghāli ktīr",
+      "english": "Too expensive.",
+      "tags": ["shops"],
+      "status": "draft"
+    },
+    {
+      "id": "shops-cheaper",
+      "arabic": "في شي أرخص؟",
+      "transliteration": "fī shi arkhaṣ?",
+      "english": "Is there something cheaper?",
+      "fushaNote": "fī here = 'there is/are', a Levantine existential. MSA: هل يوجد (hal yūjad).",
+      "tags": ["shops"],
+      "status": "draft"
+    },
+    {
+      "id": "shops-i-take-it",
+      "arabic": "بآخده",
+      "transliteration": "baʾkhdo",
+      "english": "I'll take it.",
+      "tags": ["shops"],
+      "status": "draft"
+    },
+    {
+      "id": "shops-bag",
+      "arabic": "ممكن كيس، لو سمحت؟",
+      "transliteration": "mumkin kīs, law samaḥt?",
+      "english": "Could I have a bag, please?",
+      "tags": ["shops"],
+      "status": "draft"
+    },
+    {
+      "id": "shops-receipt",
+      "arabic": "بدّي فاتورة",
+      "transliteration": "biddi fātūra",
+      "english": "I'd like a receipt.",
+      "tags": ["shops"],
+      "status": "draft"
+    },
+    {
+      "id": "shops-just-looking",
+      "arabic": "بس عم أتفرّج، شكراً",
+      "transliteration": "bass ʿam atfarraj, shukran",
+      "english": "Just looking, thanks.",
+      "fushaNote": "ʿam + imperfect = present continuous in Levantine. ʿam atfarraj = 'I am [in the act of] looking around'.",
+      "tags": ["shops"],
+      "status": "draft"
+    },
+    {
+      "id": "shops-where-is-X",
+      "arabic": "وين الخبز؟",
+      "transliteration": "wēn il-khubz?",
+      "english": "Where is the bread?",
+      "tags": ["shops"],
+      "status": "draft"
+    },
+    {
+      "id": "shops-bathroom",
+      "arabic": "وين الحمّام؟",
+      "transliteration": "wēn il-ḥammām?",
+      "english": "Where is the bathroom?",
+      "pronunciationNote": "ḥ pharyngeal; doubled mm. Distinct from English 'hammam'.",
+      "tags": ["rescue", "shops"],
+      "rescue": true,
+      "status": "draft"
+    },
+    {
+      "id": "shops-half-kilo",
+      "arabic": "نص كيلو، لو سمحت",
+      "transliteration": "nuṣṣ kīlo, law samaḥt",
+      "english": "Half a kilo, please.",
+      "pronunciationNote": "nuṣṣ has emphatic ṣ + shadda — held a beat.",
+      "tags": ["shops"],
+      "status": "draft"
+    },
+    {
+      "id": "shops-one-kilo",
+      "arabic": "كيلو، لو سمحت",
+      "transliteration": "kīlo, law samaḥt",
+      "english": "One kilo, please.",
+      "tags": ["shops"],
+      "status": "draft"
+    },
+    {
+      "id": "shops-fresh",
+      "arabic": "هاد طازة؟",
+      "transliteration": "hād ṭāza?",
+      "english": "Is this fresh?",
+      "fushaNote": "ṭāza ('fresh') is from Persian/Turkish, used pan-Levantine. MSA equivalent: طازج (ṭāzij).",
+      "tags": ["shops"],
+      "status": "draft"
+    },
+    {
+      "id": "shops-delicious",
+      "arabic": "كتير زاكي",
+      "transliteration": "ktīr zāki",
+      "english": "Very tasty.",
+      "tags": ["shops", "family"],
+      "status": "draft"
+    },
+    {
+      "id": "shops-thats-all",
+      "arabic": "هاد كلّ شي",
+      "transliteration": "hād kull shi",
+      "english": "That's everything.",
+      "tags": ["shops"],
+      "status": "draft"
+    },
+    {
+      "id": "shops-anything-else",
+      "arabic": "شي تاني؟",
+      "transliteration": "shi tāni?",
+      "english": "Anything else? (or as a reply: 'something else?')",
+      "tags": ["shops"],
+      "status": "draft"
+    },
+    {
+      "id": "shops-card-please",
+      "arabic": "بدفع كرت",
+      "transliteration": "badfaʿ kart",
+      "english": "I'll pay by card.",
+      "tags": ["shops"],
+      "status": "draft"
+    },
+    {
+      "id": "shops-falafel",
+      "arabic": "بدّي سندويشة فلافل",
+      "transliteration": "biddi sandwīshet falāfil",
+      "english": "I'd like a falafel sandwich.",
+      "tags": ["shops"],
+      "status": "draft"
+    },
+    {
+      "id": "shops-spicy",
+      "arabic": "حارّ، لو سمحت / مش حارّ",
+      "transliteration": "ḥārr, law samaḥt / mish ḥārr",
+      "english": "Spicy, please. / Not spicy.",
+      "pronunciationNote": "ḥ pharyngeal + double r — strong word.",
+      "tags": ["shops"],
+      "status": "draft"
+    },
+    {
+      "id": "shops-tahini",
+      "arabic": "مع طحينة",
+      "transliteration": "maʿ ṭḥīne",
+      "english": "With tahini.",
+      "tags": ["shops"],
+      "status": "draft"
+    },
+
+    {
+      "id": "kids-whats-name",
+      "arabic": "شو اسمك؟",
+      "transliteration": "shū ismak?",
+      "english": "What's your name? (to m)",
+      "tags": ["kids", "family"],
+      "status": "draft"
+    },
+    {
+      "id": "kids-whats-name-f",
+      "arabic": "شو اسمِك؟",
+      "transliteration": "shū ismik?",
+      "english": "What's your name? (to f)",
+      "tags": ["kids", "family"],
+      "status": "draft"
+    },
+    {
+      "id": "kids-my-name",
+      "arabic": "اسمي آدم",
+      "transliteration": "ismi Ādam",
+      "english": "My name is Adam.",
+      "tags": ["kids", "family", "work"],
+      "status": "draft"
+    },
+    {
+      "id": "kids-how-old",
+      "arabic": "قدّيش عمرك؟",
+      "transliteration": "ʾaddēsh ʿumrak?",
+      "english": "How old are you? (to m)",
+      "pronunciationNote": "ʿumr starts with the pharyngeal ʿ; don't say 'umrak'.",
+      "tags": ["kids", "family"],
+      "status": "draft"
+    },
+    {
+      "id": "kids-want-play",
+      "arabic": "بدّك تلعب؟",
+      "transliteration": "biddak tilʿab?",
+      "english": "Do you want to play? (to m)",
+      "tags": ["kids"],
+      "status": "draft"
+    },
+    {
+      "id": "kids-be-careful",
+      "arabic": "دير بالك",
+      "transliteration": "dīr bālak",
+      "english": "Be careful. (to m)",
+      "fushaNote": "Lit. 'turn your mind' — idiomatic for 'pay attention / be careful'. Also said as khalli bālak.",
+      "tags": ["kids"],
+      "status": "draft"
+    },
+    {
+      "id": "kids-your-turn",
+      "arabic": "دورك",
+      "transliteration": "dōrak",
+      "english": "Your turn. (to m)",
+      "tags": ["kids"],
+      "status": "draft"
+    },
+    {
+      "id": "kids-good-job",
+      "arabic": "أحسنت!",
+      "transliteration": "aḥsant!",
+      "english": "Well done! (to m)",
+      "tags": ["kids", "work"],
+      "status": "draft"
+    },
+    {
+      "id": "kids-bravo",
+      "arabic": "برافو عليك",
+      "transliteration": "brāvo ʿalēk",
+      "english": "Way to go! (to m)",
+      "tags": ["kids"],
+      "status": "draft"
+    },
+    {
+      "id": "kids-lets-go",
+      "arabic": "يلا!",
+      "transliteration": "yalla!",
+      "english": "Let's go! / Come on!",
+      "fushaNote": "From يا الله (yā Allāh, 'O God'); contracted in spoken Arabic into a general 'come on'.",
+      "tags": ["kids", "family", "drivers"],
+      "status": "draft"
+    },
+    {
+      "id": "kids-come-here",
+      "arabic": "تعا لهون",
+      "transliteration": "taʿa la-hōn",
+      "english": "Come here.",
+      "tags": ["kids"],
+      "status": "draft"
+    },
+    {
+      "id": "kids-look",
+      "arabic": "شوف!",
+      "transliteration": "shūf!",
+      "english": "Look! (to m)",
+      "tags": ["kids"],
+      "status": "draft"
+    },
+    {
+      "id": "kids-stop",
+      "arabic": "بسّ",
+      "transliteration": "bass",
+      "english": "Enough / stop.",
+      "tags": ["kids"],
+      "status": "draft"
+    },
+    {
+      "id": "kids-where-mom",
+      "arabic": "وين ماما؟",
+      "transliteration": "wēn māma?",
+      "english": "Where's mom?",
+      "tags": ["kids"],
+      "status": "draft"
+    },
+    {
+      "id": "kids-ball",
+      "arabic": "بدّك تلعب طابة؟",
+      "transliteration": "biddak tilʿab ṭāba?",
+      "english": "Do you want to play ball?",
+      "tags": ["kids"],
+      "status": "draft"
+    },
+    {
+      "id": "kids-color-red",
+      "arabic": "أحمر",
+      "transliteration": "aḥmar",
+      "english": "Red.",
+      "tags": ["kids"],
+      "status": "draft"
+    },
+    {
+      "id": "kids-color-blue",
+      "arabic": "أزرق",
+      "transliteration": "azraʾ",
+      "english": "Blue.",
+      "tags": ["kids"],
+      "status": "draft"
+    },
+    {
+      "id": "kids-color-green",
+      "arabic": "أخضر",
+      "transliteration": "akhḍar",
+      "english": "Green.",
+      "tags": ["kids"],
+      "status": "draft"
+    },
+    {
+      "id": "kids-cute",
+      "arabic": "ما شاء الله، حلو كتير",
+      "transliteration": "mā shāʾ Allāh, ḥilu ktīr",
+      "english": "Mashallah, so cute!",
+      "fushaNote": "ما شاء الله (mā shāʾ Allāh, 'what God has willed') — said when admiring someone, especially a child, to ward off the evil eye. Strongly expected etiquette.",
+      "tags": ["kids", "family"],
+      "status": "draft"
+    },
+    {
+      "id": "kids-bye-bye",
+      "arabic": "باي باي",
+      "transliteration": "bāy bāy",
+      "english": "Bye-bye.",
+      "tags": ["kids"],
+      "status": "draft"
+    },
+
+    {
+      "id": "family-howare-family",
+      "arabic": "كيف العيلة؟",
+      "transliteration": "kīf il-ʿēle?",
+      "english": "How's the family?",
+      "tags": ["family"],
+      "status": "draft"
+    },
+    {
+      "id": "family-thank-god",
+      "arabic": "الحمد لله، منيحين",
+      "transliteration": "il-ḥamdillāh, mnīḥīn",
+      "english": "Thank God, we're well.",
+      "tags": ["family", "work"],
+      "status": "draft"
+    },
+    {
+      "id": "family-how-many-kids",
+      "arabic": "كم ولد عندك؟",
+      "transliteration": "kam walad ʿindak?",
+      "english": "How many kids do you have? (to m)",
+      "pronunciationNote": "walad cf. Hebrew yeled — same Semitic root w-l-d / y-l-d.",
+      "tags": ["family"],
+      "status": "draft"
+    },
+    {
+      "id": "family-have-kids",
+      "arabic": "عندي ولدين",
+      "transliteration": "ʿindi waladēn",
+      "english": "I have two kids.",
+      "tags": ["family"],
+      "status": "draft"
+    },
+    {
+      "id": "family-god-protect",
+      "arabic": "الله يحفظهم",
+      "transliteration": "Allāh yḥfaẓhum",
+      "english": "May God protect them.",
+      "fushaNote": "Standard reply when someone mentions their kids or family — pious and warm. Almost mandatory after 'how are the kids'.",
+      "tags": ["family"],
+      "status": "draft"
+    },
+    {
+      "id": "family-where-from",
+      "arabic": "من وين إنت؟",
+      "transliteration": "min wēn inta?",
+      "english": "Where are you from? (to m)",
+      "tags": ["family", "work"],
+      "status": "draft"
+    },
+    {
+      "id": "family-im-from-us",
+      "arabic": "أنا من أمريكا، بس عايش هون",
+      "transliteration": "ana min Amrīka, bass ʿāyish hōn",
+      "english": "I'm from America, but I live here.",
+      "tags": ["family", "work"],
+      "status": "draft"
+    },
+    {
+      "id": "family-live-modiin",
+      "arabic": "ساكن في موديعين",
+      "transliteration": "sākin fi Mōdiʿīn",
+      "english": "I live in Modi'in. (m speaker)",
+      "tags": ["family", "work"],
+      "status": "draft"
+    },
+    {
+      "id": "family-married",
+      "arabic": "أنا متزوّج",
+      "transliteration": "ana mitzawwaj",
+      "english": "I'm married. (m speaker)",
+      "tags": ["family"],
+      "status": "draft"
+    },
+    {
+      "id": "family-my-wife",
+      "arabic": "مرتي",
+      "transliteration": "marti",
+      "english": "My wife.",
+      "fushaNote": "From مرأتي (marʾati). Levantine drops the hamza. Polite alternative: زوجتي (zōjti).",
+      "tags": ["family"],
+      "status": "draft"
+    },
+    {
+      "id": "family-my-kids",
+      "arabic": "ولادي",
+      "transliteration": "wlādi",
+      "english": "My kids.",
+      "tags": ["family"],
+      "status": "draft"
+    },
+    {
+      "id": "family-my-son",
+      "arabic": "ابني",
+      "transliteration": "ibni",
+      "english": "My son.",
+      "pronunciationNote": "cf. Hebrew beni — same Semitic root b-n.",
+      "tags": ["family"],
+      "status": "draft"
+    },
+    {
+      "id": "family-my-daughter",
+      "arabic": "بنتي",
+      "transliteration": "binti",
+      "english": "My daughter.",
+      "tags": ["family"],
+      "status": "draft"
+    },
+    {
+      "id": "family-nice-to-meet",
+      "arabic": "تشرّفنا",
+      "transliteration": "tsharrafna",
+      "english": "Nice to meet you. (lit. we are honored)",
+      "tags": ["family", "work"],
+      "status": "draft"
+    },
+    {
+      "id": "family-likewise",
+      "arabic": "الشرف إلي",
+      "transliteration": "ish-sharaf ili",
+      "english": "The honor is mine.",
+      "tags": ["family", "work"],
+      "status": "draft"
+    },
+    {
+      "id": "family-how-old-kid",
+      "arabic": "قدّيش عمر ابنك؟",
+      "transliteration": "ʾaddēsh ʿumr ibnak?",
+      "english": "How old is your son?",
+      "tags": ["family"],
+      "status": "draft"
+    },
+    {
+      "id": "family-greet-family",
+      "arabic": "سلّم لي على العيلة",
+      "transliteration": "sallim-li ʿal-ʿēle",
+      "english": "Say hi to the family for me.",
+      "tags": ["family"],
+      "status": "draft"
+    },
+    {
+      "id": "family-mother-of",
+      "arabic": "أم محمّد، كيفك؟",
+      "transliteration": "Umm Muḥammad, kīfik?",
+      "english": "Umm Muhammad, how are you?",
+      "fushaNote": "Adults are commonly addressed as 'Umm/Abu [eldest son's name]' — a respectful kunya. Worth knowing, even if you don't initiate it yourself.",
+      "tags": ["family"],
+      "status": "draft"
+    },
+    {
+      "id": "family-blessing-food",
+      "arabic": "صحتين",
+      "transliteration": "ṣaḥtēn",
+      "english": "Bon appétit / cheers (lit. two healths).",
+      "fushaNote": "Said before/during eating, or as a generic well-wish. Reply: ʿa albak (ʿala albak), 'and on your heart'.",
+      "tags": ["family", "shops"],
+      "status": "draft"
+    },
+    {
+      "id": "family-welcome-house",
+      "arabic": "أهلاً وسهلاً، تفضّل",
+      "transliteration": "ahlan wa-sahlan, tfaḍḍal",
+      "english": "Welcome, please come in. (to m)",
+      "tags": ["family"],
+      "status": "draft"
+    },
+
+    {
+      "id": "work-i-work-tech",
+      "arabic": "بشتغل في التكنولوجيا",
+      "transliteration": "bashtaghil fi t-teknolōjya",
+      "english": "I work in tech.",
+      "tags": ["work"],
+      "status": "draft"
+    },
+    {
+      "id": "work-i-work-software",
+      "arabic": "بشتغل مهندس برمجيات",
+      "transliteration": "bashtaghil muhandis barmajiyyāt",
+      "english": "I work as a software engineer.",
+      "fushaNote": "Tech vocabulary stays close to MSA in spoken Arabic since it's a register where formal terms dominate.",
+      "tags": ["work"],
+      "status": "draft"
+    },
+    {
+      "id": "work-where-work",
+      "arabic": "وين بتشتغل؟",
+      "transliteration": "wēn btishtaghil?",
+      "english": "Where do you work? (to m)",
+      "tags": ["work", "family"],
+      "status": "draft"
+    },
+    {
+      "id": "work-what-work",
+      "arabic": "شو بتشتغل؟",
+      "transliteration": "shū btishtaghil?",
+      "english": "What do you do for work? (to m)",
+      "tags": ["work", "family"],
+      "status": "draft"
+    },
+    {
+      "id": "work-meeting",
+      "arabic": "عندي اجتماع",
+      "transliteration": "ʿindi ijtimāʿ",
+      "english": "I have a meeting.",
+      "tags": ["work"],
+      "status": "draft"
+    },
+    {
+      "id": "work-busy",
+      "arabic": "أنا مشغول هلّق",
+      "transliteration": "ana mashghūl hallaʾ",
+      "english": "I'm busy right now.",
+      "tags": ["work", "family"],
+      "status": "draft"
+    },
+    {
+      "id": "work-call-later",
+      "arabic": "بحكيك بعدين",
+      "transliteration": "baḥkīk baʿdēn",
+      "english": "I'll talk to you later. (to m)",
+      "tags": ["work", "family"],
+      "status": "draft"
+    },
+    {
+      "id": "work-see-tomorrow",
+      "arabic": "بشوفك بكرا",
+      "transliteration": "bashūfak bukra",
+      "english": "See you tomorrow. (to m)",
+      "tags": ["work", "family"],
+      "status": "draft"
+    },
+    {
+      "id": "work-good-day",
+      "arabic": "نهارك سعيد",
+      "transliteration": "nahārak saʿīd",
+      "english": "Have a good day. (to m)",
+      "tags": ["work", "shops"],
+      "status": "draft"
+    },
+    {
+      "id": "work-no-problem",
+      "arabic": "ما في مشكلة",
+      "transliteration": "mā fī mushkile",
+      "english": "No problem.",
+      "tags": ["work", "shops", "drivers"],
+      "status": "draft"
+    },
+    {
+      "id": "work-of-course",
+      "arabic": "أكيد",
+      "transliteration": "akīd",
+      "english": "Of course / for sure.",
+      "tags": ["work", "shops", "family"],
+      "status": "draft"
+    },
+    {
+      "id": "work-i-think",
+      "arabic": "بظنّ",
+      "transliteration": "baẓunn",
+      "english": "I think (so).",
+      "pronunciationNote": "ẓ is the emphatic — backs the u vowel. Held doubled n.",
+      "tags": ["work", "family"],
+      "status": "draft"
+    },
+    {
+      "id": "work-from-home",
+      "arabic": "بشتغل من البيت",
+      "transliteration": "bashtaghil min il-bēt",
+      "english": "I work from home.",
+      "pronunciationNote": "bēt cf. Hebrew bayit — both go back to the same Semitic root.",
+      "tags": ["work"],
+      "status": "draft"
+    },
+
+    {
+      "id": "general-how-are-you",
+      "arabic": "كيف حالك؟",
+      "transliteration": "kīf ḥālak?",
+      "english": "How are you? (to m)",
+      "tags": ["family", "work", "drivers", "shops"],
+      "status": "draft"
+    },
+    {
+      "id": "general-how-are-you-f",
+      "arabic": "كيف حالِك؟",
+      "transliteration": "kīf ḥālik?",
+      "english": "How are you? (to f)",
+      "tags": ["family", "work", "shops"],
+      "status": "draft"
+    },
+    {
+      "id": "general-im-fine",
+      "arabic": "الحمد لله، منيح",
+      "transliteration": "il-ḥamdillāh, mnīḥ",
+      "english": "Thank God, I'm well. (m speaker)",
+      "tags": ["family", "work", "drivers", "shops"],
+      "status": "draft"
+    },
+    {
+      "id": "general-and-you",
+      "arabic": "وإنت؟",
+      "transliteration": "w-inta?",
+      "english": "And you? (to m)",
+      "tags": ["family", "work", "drivers", "shops"],
+      "status": "draft"
+    },
+    {
+      "id": "general-please-m",
+      "arabic": "لو سمحت",
+      "transliteration": "law samaḥt",
+      "english": "Please. (to m)",
+      "tags": ["rescue", "drivers", "shops", "family", "work"],
+      "rescue": true,
+      "status": "draft"
+    },
+    {
+      "id": "general-thank-much",
+      "arabic": "شكراً كتير",
+      "transliteration": "shukran ktīr",
+      "english": "Thank you very much.",
+      "tags": ["rescue", "drivers", "shops", "family", "work"],
+      "status": "draft"
+    },
+    {
+      "id": "general-no-worries",
+      "arabic": "ولا يهمّك",
+      "transliteration": "wala yhimmak",
+      "english": "Don't worry about it. (to m)",
+      "fushaNote": "Lit. 'and let it not concern you'. Common reassurance after thanks or apology.",
+      "tags": ["drivers", "shops", "family", "work"],
+      "status": "draft"
+    },
+    {
+      "id": "general-god-willing",
+      "arabic": "إن شاء الله",
+      "transliteration": "in shāʾ Allāh",
+      "english": "God willing.",
+      "fushaNote": "Used for any future intent ('see you tomorrow, in shāʾ Allāh') — both pious and casual. Skipping it can sound abrupt.",
+      "tags": ["family", "work", "drivers"],
+      "status": "draft"
+    },
+    {
+      "id": "general-its-okay",
+      "arabic": "تمام",
+      "transliteration": "tamām",
+      "english": "OK / great.",
+      "tags": ["drivers", "shops", "work"],
+      "status": "draft"
+    },
+    {
+      "id": "general-now",
+      "arabic": "هلّق",
+      "transliteration": "hallaʾ",
+      "english": "Now.",
+      "fushaNote": "Levantine 'now' ← MSA al-ʾān. Other Levantine variants: hassa, halʾēt.",
+      "tags": ["drivers", "shops", "family", "work"],
+      "status": "draft"
+    },
+    {
+      "id": "general-a-lot",
+      "arabic": "كتير",
+      "transliteration": "ktīr",
+      "english": "A lot / very.",
+      "tags": ["shops", "family", "work"],
+      "status": "draft"
+    },
+    {
+      "id": "general-a-little",
+      "arabic": "شوي",
+      "transliteration": "shwayy",
+      "english": "A little.",
+      "tags": ["rescue", "shops", "family"],
+      "rescue": true,
+      "status": "draft"
+    },
+    {
+      "id": "general-good",
+      "arabic": "منيح",
+      "transliteration": "mnīḥ",
+      "english": "Good. (m)",
+      "tags": ["family", "work", "shops"],
+      "status": "draft"
+    },
+    {
+      "id": "general-bad",
+      "arabic": "مش منيح",
+      "transliteration": "mish mnīḥ",
+      "english": "Not good.",
+      "tags": ["family", "work"],
+      "status": "draft"
+    },
+    {
+      "id": "general-here",
+      "arabic": "هون",
+      "transliteration": "hōn",
+      "english": "Here.",
+      "tags": ["drivers", "shops", "kids"],
+      "status": "draft"
+    },
+    {
+      "id": "general-there",
+      "arabic": "هناك",
+      "transliteration": "hunāk",
+      "english": "There.",
+      "tags": ["drivers", "shops", "kids"],
+      "status": "draft"
+    }
+  ]
 }

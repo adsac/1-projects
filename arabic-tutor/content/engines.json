@@ -1,3 +1,440 @@
 {
-  "items": []
+  "items": [
+    {
+      "id": "greetings",
+      "name": "Greetings & farewells",
+      "pattern": "[GREETING]",
+      "arabicPattern": "[GREETING]",
+      "transliterationPattern": "[GREETING]",
+      "fushaNote": "Most Levantine greetings are MSA-shared (salām, ahlan), but day/night formulas (ṣabāḥ il-khēr / masā il-khēr) and responses (ṣabāḥ in-nūr) are colloquial conventions.",
+      "forms": [
+        { "key": "hi", "label": "hi / hello", "arabic": "مرحبا", "transliteration": "marḥaba", "english": "hello" },
+        { "key": "hi.reply", "label": "hello (reply)", "arabic": "مرحبتين", "transliteration": "marḥabtēn", "english": "hello (lit. two hellos — warmer reply)" },
+        { "key": "salam", "label": "peace upon you", "arabic": "السلام عليكم", "transliteration": "as-salāmu ʿalaykum", "english": "peace be upon you (formal/Muslim)" },
+        { "key": "salam.reply", "label": "and peace upon you (reply)", "arabic": "وعليكم السلام", "transliteration": "wa-ʿalaykumu s-salām", "english": "and upon you peace" },
+        { "key": "morning", "label": "good morning", "arabic": "صباح الخير", "transliteration": "ṣabāḥ il-khēr", "english": "good morning" },
+        { "key": "morning.reply", "label": "good morning (reply)", "arabic": "صباح النور", "transliteration": "ṣabāḥ in-nūr", "english": "morning of light (reply)" },
+        { "key": "evening", "label": "good evening", "arabic": "مسا الخير", "transliteration": "masā il-khēr", "english": "good evening" },
+        { "key": "evening.reply", "label": "good evening (reply)", "arabic": "مسا النور", "transliteration": "masā in-nūr", "english": "evening of light (reply)" },
+        { "key": "ahlan", "label": "welcome / hi", "arabic": "أهلاً وسهلاً", "transliteration": "ahlan wa-sahlan", "english": "welcome / hi" },
+        { "key": "ahlan.reply", "label": "welcome (reply)", "arabic": "أهلين", "transliteration": "ahlēn", "english": "welcome (warm reply)" },
+        { "key": "bye", "label": "goodbye", "arabic": "مع السلامة", "transliteration": "maʿ is-salāme", "english": "goodbye (lit. with safety)" },
+        { "key": "bye.reply", "label": "go in peace (reply)", "arabic": "الله يسلّمك", "transliteration": "Allāh ysallmak", "english": "may God keep you safe" },
+        { "key": "yalla", "label": "let's go / bye-ish", "arabic": "يلا باي", "transliteration": "yalla bāy", "english": "alright, bye" },
+        { "key": "see-you", "label": "see you later", "arabic": "بشوفك", "transliteration": "bashūfak", "english": "I'll see you (m)" },
+        { "key": "see-you.f", "label": "see you later (to f)", "arabic": "بشوفِك", "transliteration": "bashūfik", "english": "I'll see you (f)" },
+        { "key": "thanks", "label": "thank you", "arabic": "شكراً", "transliteration": "shukran", "english": "thank you" },
+        { "key": "thanks.reply", "label": "you're welcome", "arabic": "العفو", "transliteration": "il-ʿafu", "english": "you're welcome" }
+      ],
+      "tags": ["rescue", "drivers", "shops", "kids", "family", "work"],
+      "status": "draft"
+    },
+    {
+      "id": "want-biddi",
+      "name": "I want X (biddi)",
+      "pattern": "I want [OBJECT]",
+      "arabicPattern": "بدّي [OBJECT]",
+      "transliterationPattern": "biddi [OBJECT]",
+      "fushaNote": "From بِودّي ('with my desire'). bidd- + pronoun suffix = 'want'. MSA verb: أريد (urīd). Negation in spoken Levantine: mā bidd- or with -sh: mā biddīsh.",
+      "forms": [
+        { "key": "1sg", "label": "I want", "arabic": "بدّي", "transliteration": "biddi", "english": "I want" },
+        { "key": "2sg.m", "label": "you want (m)", "arabic": "بدّك", "transliteration": "biddak", "english": "you want (m)" },
+        { "key": "2sg.f", "label": "you want (f)", "arabic": "بدِّك", "transliteration": "biddik", "english": "you want (f)" },
+        { "key": "3sg.m", "label": "he wants", "arabic": "بدّه", "transliteration": "biddo", "english": "he wants" },
+        { "key": "3sg.f", "label": "she wants", "arabic": "بدّها", "transliteration": "biddha", "english": "she wants" },
+        { "key": "1pl", "label": "we want", "arabic": "بدّنا", "transliteration": "biddna", "english": "we want" },
+        { "key": "2pl", "label": "you (pl) want", "arabic": "بدّكم", "transliteration": "biddkum", "english": "you (pl) want" },
+        { "key": "3pl", "label": "they want", "arabic": "بدّهم", "transliteration": "biddhum", "english": "they want" },
+        { "key": "neg.1sg", "label": "I don't want", "arabic": "ما بدّي", "transliteration": "mā biddi", "english": "I don't want" },
+        { "key": "neg.1sg.sh", "label": "I don't want (with -sh)", "arabic": "ما بدّيش", "transliteration": "mā biddīsh", "english": "I don't want (emphatic)" },
+        { "key": "neg.2sg.m", "label": "you don't want (m)", "arabic": "ما بدّك", "transliteration": "mā biddak", "english": "you don't want (m)" },
+        { "key": "q.2sg.m", "label": "do you want? (m)", "arabic": "بدّك؟", "transliteration": "biddak?", "english": "do you want? (m)" },
+        { "key": "q.2sg.f", "label": "do you want? (f)", "arabic": "بدِّك؟", "transliteration": "biddik?", "english": "do you want? (f)" }
+      ],
+      "slots": [
+        {
+          "name": "OBJECT",
+          "options": [
+            { "arabic": "ميّ", "transliteration": "mayy", "english": "water" },
+            { "arabic": "قهوة", "transliteration": "ʾahwe", "english": "coffee" },
+            { "arabic": "شاي", "transliteration": "shāy", "english": "tea" },
+            { "arabic": "خبز", "transliteration": "khubz", "english": "bread" },
+            { "arabic": "سندويشة", "transliteration": "sandwīshe", "english": "a sandwich" },
+            { "arabic": "أروح", "transliteration": "arūḥ", "english": "to go" },
+            { "arabic": "آكل", "transliteration": "ākul", "english": "to eat" },
+            { "arabic": "أشرب", "transliteration": "ashrab", "english": "to drink" },
+            { "arabic": "أحكي معك", "transliteration": "aḥki maʿak", "english": "to talk with you (m)" },
+            { "arabic": "أتعلّم عربي", "transliteration": "atʿallam ʿarabi", "english": "to learn Arabic" }
+          ]
+        }
+      ],
+      "tags": ["rescue", "drivers", "shops", "kids", "family"],
+      "status": "draft"
+    },
+    {
+      "id": "mumkin",
+      "name": "Can I / could you... (mumkin)",
+      "pattern": "Can [SUBJECT] [VERB]?",
+      "arabicPattern": "ممكن [VERB]؟",
+      "transliterationPattern": "mumkin [VERB]?",
+      "fushaNote": "ممكن is shared with MSA (literally 'possible'). In spoken use it's a soft modal — 'can I...?', 'could you...?'. Polite and very common.",
+      "forms": [
+        { "key": "1sg", "label": "could I... (lit. is it possible I...)", "arabic": "ممكن", "transliteration": "mumkin", "english": "may I / can I" },
+        { "key": "neg", "label": "not possible", "arabic": "مش ممكن", "transliteration": "mish mumkin", "english": "not possible / no way" },
+        { "key": "law-samaḥt.m", "label": "if you'd allow (m, polite)", "arabic": "لو سمحت", "transliteration": "law samaḥt", "english": "if you please (to m)" },
+        { "key": "law-samaḥt.f", "label": "if you'd allow (f, polite)", "arabic": "لو سمحتي", "transliteration": "law samaḥti", "english": "if you please (to f)" },
+        { "key": "min-faḍlak.m", "label": "please (m)", "arabic": "من فضلك", "transliteration": "min faḍlak", "english": "please (to m)" },
+        { "key": "min-faḍlik.f", "label": "please (f)", "arabic": "من فضلِك", "transliteration": "min faḍlik", "english": "please (to f)" }
+      ],
+      "slots": [
+        {
+          "name": "VERB",
+          "options": [
+            { "arabic": "أحكي معك", "transliteration": "aḥki maʿak", "english": "I speak with you (m)" },
+            { "arabic": "أسأل سؤال", "transliteration": "asʾal suʾāl", "english": "I ask a question" },
+            { "arabic": "تساعدني", "transliteration": "tsāʿidni", "english": "you help me" },
+            { "arabic": "تعيد", "transliteration": "tʿīd", "english": "you repeat" },
+            { "arabic": "تحكي شوي شوي", "transliteration": "tiḥki shwayy shwayy", "english": "you speak slowly" },
+            { "arabic": "ادفع بالكرت", "transliteration": "adfaʿ bil-kart", "english": "I pay by card" },
+            { "arabic": "آخد هاد", "transliteration": "ākhud hād", "english": "I take this" },
+            { "arabic": "أشوف", "transliteration": "ashūf", "english": "I see / look at" }
+          ]
+        }
+      ],
+      "tags": ["rescue", "drivers", "shops", "work"],
+      "status": "draft"
+    },
+    {
+      "id": "have-ʿindi",
+      "name": "I have X (ʿindi)",
+      "pattern": "[SUBJECT] have [OBJECT]",
+      "arabicPattern": "عندي [OBJECT]",
+      "transliterationPattern": "ʿindi [OBJECT]",
+      "fushaNote": "ʿind- + pronoun suffix = 'at/with [me]', i.e. 'have'. Same construction as MSA. Negation: mā ʿind-. The ʿ is the voiced pharyngeal — don't drop it.",
+      "forms": [
+        { "key": "1sg", "label": "I have", "arabic": "عندي", "transliteration": "ʿindi", "english": "I have" },
+        { "key": "2sg.m", "label": "you have (m)", "arabic": "عندك", "transliteration": "ʿindak", "english": "you have (m)" },
+        { "key": "2sg.f", "label": "you have (f)", "arabic": "عندِك", "transliteration": "ʿindik", "english": "you have (f)" },
+        { "key": "3sg.m", "label": "he has", "arabic": "عنده", "transliteration": "ʿindo", "english": "he has" },
+        { "key": "3sg.f", "label": "she has", "arabic": "عندها", "transliteration": "ʿindha", "english": "she has" },
+        { "key": "1pl", "label": "we have", "arabic": "عندنا", "transliteration": "ʿindna", "english": "we have" },
+        { "key": "2pl", "label": "you (pl) have", "arabic": "عندكم", "transliteration": "ʿindkum", "english": "you (pl) have" },
+        { "key": "3pl", "label": "they have", "arabic": "عندهم", "transliteration": "ʿindhum", "english": "they have" },
+        { "key": "neg.1sg", "label": "I don't have", "arabic": "ما عندي", "transliteration": "mā ʿindi", "english": "I don't have" },
+        { "key": "neg.2sg.m", "label": "you don't have (m)", "arabic": "ما عندك", "transliteration": "mā ʿindak", "english": "you don't have (m)" },
+        { "key": "q.2sg.m", "label": "do you have? (m)", "arabic": "عندك؟", "transliteration": "ʿindak?", "english": "do you have? (m)" }
+      ],
+      "slots": [
+        {
+          "name": "OBJECT",
+          "options": [
+            { "arabic": "فكّة", "transliteration": "fakke", "english": "change (small bills/coins)" },
+            { "arabic": "ولاد", "transliteration": "wlād", "english": "kids" },
+            { "arabic": "وقت", "transliteration": "waʾt", "english": "time" },
+            { "arabic": "سؤال", "transliteration": "suʾāl", "english": "a question" },
+            { "arabic": "سيّارة", "transliteration": "sayyāra", "english": "a car" },
+            { "arabic": "كرت", "transliteration": "kart", "english": "a card" },
+            { "arabic": "مصاري", "transliteration": "maṣāri", "english": "money / cash" }
+          ]
+        }
+      ],
+      "tags": ["drivers", "shops", "family", "work"],
+      "status": "draft"
+    },
+    {
+      "id": "present-rāḥ",
+      "name": "I go / present tense (b- prefix) — rāḥ",
+      "pattern": "[SUBJECT] go(es) (to [PLACE])",
+      "arabicPattern": "ب-[ROOT-rāḥ] (ع [PLACE])",
+      "transliterationPattern": "b-[ROOT-rāḥ] (ʿa [PLACE])",
+      "fushaNote": "Levantine present-habitual / general present takes b- prefix on the imperfect: barūḥ = 'I go / I'm going'. Without b-, the bare imperfect is used after modals (biddi arūḥ). MSA: أذهب (aḏhab).",
+      "forms": [
+        { "key": "1sg", "label": "I go", "arabic": "بروح", "transliteration": "barūḥ", "english": "I go / I'm going" },
+        { "key": "2sg.m", "label": "you go (m)", "arabic": "بتروح", "transliteration": "btrūḥ", "english": "you go (m)" },
+        { "key": "2sg.f", "label": "you go (f)", "arabic": "بتروحي", "transliteration": "btrūḥi", "english": "you go (f)" },
+        { "key": "3sg.m", "label": "he goes", "arabic": "بيروح", "transliteration": "byrūḥ", "english": "he goes" },
+        { "key": "3sg.f", "label": "she goes", "arabic": "بتروح", "transliteration": "btrūḥ", "english": "she goes" },
+        { "key": "1pl", "label": "we go", "arabic": "بنروح", "transliteration": "bnrūḥ", "english": "we go" },
+        { "key": "2pl", "label": "you (pl) go", "arabic": "بتروحوا", "transliteration": "btrūḥu", "english": "you (pl) go" },
+        { "key": "3pl", "label": "they go", "arabic": "بيروحوا", "transliteration": "byrūḥu", "english": "they go" },
+        { "key": "neg.1sg", "label": "I don't go", "arabic": "ما بروح", "transliteration": "mā barūḥ", "english": "I don't go" }
+      ],
+      "slots": [
+        {
+          "name": "PLACE",
+          "options": [
+            { "arabic": "البيت", "transliteration": "il-bēt", "english": "home / the house" },
+            { "arabic": "الشغل", "transliteration": "ish-shughl", "english": "work" },
+            { "arabic": "موديعين", "transliteration": "Mōdiʿīn", "english": "Modi'in" },
+            { "arabic": "القدس", "transliteration": "il-Quds", "english": "Jerusalem" },
+            { "arabic": "السوبر", "transliteration": "is-sūber", "english": "the supermarket" },
+            { "arabic": "هناك", "transliteration": "hunāk", "english": "there" }
+          ]
+        }
+      ],
+      "tags": ["drivers", "shops", "family", "work"],
+      "status": "draft"
+    },
+    {
+      "id": "past-rāḥ",
+      "name": "I went / past tense — rāḥ",
+      "pattern": "[SUBJECT] went (to [PLACE])",
+      "arabicPattern": "[CONJ-rāḥ] (ع [PLACE])",
+      "transliterationPattern": "[CONJ-rāḥ] (ʿa [PLACE])",
+      "fushaNote": "Past tense in Levantine takes the same suffix paradigm as MSA, with some pronunciation shifts (e.g. 1sg/2sg.m collapse: ruḥt). MSA: ذهبتُ (ḏahabtu).",
+      "forms": [
+        { "key": "1sg", "label": "I went", "arabic": "رحت", "transliteration": "ruḥt", "english": "I went" },
+        { "key": "2sg.m", "label": "you went (m)", "arabic": "رحت", "transliteration": "ruḥt", "english": "you went (m)" },
+        { "key": "2sg.f", "label": "you went (f)", "arabic": "رحتي", "transliteration": "ruḥti", "english": "you went (f)" },
+        { "key": "3sg.m", "label": "he went", "arabic": "راح", "transliteration": "rāḥ", "english": "he went" },
+        { "key": "3sg.f", "label": "she went", "arabic": "راحت", "transliteration": "rāḥat", "english": "she went" },
+        { "key": "1pl", "label": "we went", "arabic": "رحنا", "transliteration": "ruḥna", "english": "we went" },
+        { "key": "2pl", "label": "you (pl) went", "arabic": "رحتوا", "transliteration": "ruḥtu", "english": "you (pl) went" },
+        { "key": "3pl", "label": "they went", "arabic": "راحوا", "transliteration": "rāḥu", "english": "they went" },
+        { "key": "neg.1sg", "label": "I didn't go", "arabic": "ما رحت", "transliteration": "mā ruḥt", "english": "I didn't go" }
+      ],
+      "slots": [
+        {
+          "name": "PLACE",
+          "options": [
+            { "arabic": "ع البيت", "transliteration": "ʿa l-bēt", "english": "home" },
+            { "arabic": "ع الشغل", "transliteration": "ʿa sh-shughl", "english": "to work" },
+            { "arabic": "ع السوق", "transliteration": "ʿa s-sūʾ", "english": "to the market" },
+            { "arabic": "ع القدس", "transliteration": "ʿa l-Quds", "english": "to Jerusalem" }
+          ]
+        }
+      ],
+      "tags": ["drivers", "family", "work"],
+      "status": "draft"
+    },
+    {
+      "id": "future-raḥ",
+      "name": "I will go / future (raḥ + verb)",
+      "pattern": "[SUBJECT] will [VERB]",
+      "arabicPattern": "رح [VERB]",
+      "transliterationPattern": "raḥ [VERB]",
+      "fushaNote": "Levantine future marker is رح (raḥ), originally from رايح ('going'). It precedes the bare imperfect (no b- prefix). MSA: سـ / سوف.",
+      "forms": [
+        { "key": "1sg", "label": "I will go", "arabic": "رح أروح", "transliteration": "raḥ arūḥ", "english": "I will go" },
+        { "key": "2sg.m", "label": "you will go (m)", "arabic": "رح تروح", "transliteration": "raḥ trūḥ", "english": "you will go (m)" },
+        { "key": "2sg.f", "label": "you will go (f)", "arabic": "رح تروحي", "transliteration": "raḥ trūḥi", "english": "you will go (f)" },
+        { "key": "3sg.m", "label": "he will go", "arabic": "رح يروح", "transliteration": "raḥ yrūḥ", "english": "he will go" },
+        { "key": "3sg.f", "label": "she will go", "arabic": "رح تروح", "transliteration": "raḥ trūḥ", "english": "she will go" },
+        { "key": "1pl", "label": "we will go", "arabic": "رح نروح", "transliteration": "raḥ nrūḥ", "english": "we will go" },
+        { "key": "2pl", "label": "you (pl) will go", "arabic": "رح تروحوا", "transliteration": "raḥ trūḥu", "english": "you (pl) will go" },
+        { "key": "3pl", "label": "they will go", "arabic": "رح يروحوا", "transliteration": "raḥ yrūḥu", "english": "they will go" },
+        { "key": "neg.1sg", "label": "I won't go", "arabic": "مش رح أروح", "transliteration": "mish raḥ arūḥ", "english": "I won't go" },
+        { "key": "1sg.eat", "label": "I will eat", "arabic": "رح آكل", "transliteration": "raḥ ākul", "english": "I will eat" },
+        { "key": "1sg.come", "label": "I will come", "arabic": "رح أجي", "transliteration": "raḥ aji", "english": "I will come" },
+        { "key": "1sg.see", "label": "I will see", "arabic": "رح أشوف", "transliteration": "raḥ ashūf", "english": "I will see" }
+      ],
+      "tags": ["drivers", "family", "work"],
+      "status": "draft"
+    },
+    {
+      "id": "imperative",
+      "name": "Do this / don't do this (imperative)",
+      "pattern": "[Do/Don't] [VERB]!",
+      "arabicPattern": "[VERB] / لا ت[VERB]",
+      "transliterationPattern": "[VERB] / lā t[VERB]",
+      "fushaNote": "Levantine imperative drops MSA's initial hamza in many cases (kul not ʾukul). Negative imperative = lā + 2nd-person bare imperfect: lā tākul = 'don't eat'.",
+      "forms": [
+        { "key": "imp.come.m", "label": "come! (m)", "arabic": "تعال", "transliteration": "taʿāl", "english": "come! (to m)" },
+        { "key": "imp.come.f", "label": "come! (f)", "arabic": "تعالي", "transliteration": "taʿāli", "english": "come! (to f)" },
+        { "key": "imp.come.pl", "label": "come! (pl)", "arabic": "تعالوا", "transliteration": "taʿālu", "english": "come! (to group)" },
+        { "key": "imp.go.m", "label": "go! (m)", "arabic": "روح", "transliteration": "rūḥ", "english": "go! (to m)" },
+        { "key": "imp.go.f", "label": "go! (f)", "arabic": "روحي", "transliteration": "rūḥi", "english": "go! (to f)" },
+        { "key": "imp.eat.m", "label": "eat! (m)", "arabic": "كُل", "transliteration": "kul", "english": "eat! (to m)" },
+        { "key": "imp.wait.m", "label": "wait! (m)", "arabic": "استنّى", "transliteration": "istanna", "english": "wait! (to m)" },
+        { "key": "imp.wait.f", "label": "wait! (f)", "arabic": "استنّي", "transliteration": "istanni", "english": "wait! (to f)" },
+        { "key": "imp.listen.m", "label": "listen! (m)", "arabic": "اسمع", "transliteration": "ismaʿ", "english": "listen! (to m)" },
+        { "key": "imp.look.m", "label": "look! (m)", "arabic": "شوف", "transliteration": "shūf", "english": "look! (to m)" },
+        { "key": "imp.say.m", "label": "say! (m)", "arabic": "قول", "transliteration": "ʾūl", "english": "say! (to m)" },
+        { "key": "imp.repeat.m", "label": "repeat! (m)", "arabic": "أعِد", "transliteration": "aʿid", "english": "repeat! (to m)" },
+        { "key": "imp.slow.m", "label": "slow down (m)", "arabic": "على مهلك", "transliteration": "ʿala mahlak", "english": "take it easy / slowly (to m)" },
+        { "key": "neg.go.m", "label": "don't go! (m)", "arabic": "لا تروح", "transliteration": "lā trūḥ", "english": "don't go! (to m)" },
+        { "key": "neg.go.f", "label": "don't go! (f)", "arabic": "لا تروحي", "transliteration": "lā trūḥi", "english": "don't go! (to f)" },
+        { "key": "neg.worry.m", "label": "don't worry (m)", "arabic": "لا تقلق", "transliteration": "lā tiʾlaʾ", "english": "don't worry (to m)" }
+      ],
+      "tags": ["rescue", "drivers", "kids"],
+      "status": "draft"
+    },
+    {
+      "id": "question-words",
+      "name": "Question words (shū, wēn, ēmta, lēsh, kīf, ʾaddēsh)",
+      "pattern": "[Q-WORD] [REST]?",
+      "arabicPattern": "[Q-WORD] [REST]؟",
+      "transliterationPattern": "[Q-WORD] [REST]?",
+      "fushaNote": "Levantine has its own question words diverging from MSA: شو (shū) ← MSA ما/ماذا; وين (wēn) ← MSA أين; ليش (lēsh) ← MSA لماذا; إيمتى (ēmta) ← MSA متى; قدّيش (ʾaddēsh) is dialectal for 'how much/how many'.",
+      "forms": [
+        { "key": "shu", "label": "what?", "arabic": "شو؟", "transliteration": "shū?", "english": "what?" },
+        { "key": "shu-hāda", "label": "what is this?", "arabic": "شو هاد؟", "transliteration": "shū hād?", "english": "what is this?" },
+        { "key": "shu-biddak", "label": "what do you (m) want?", "arabic": "شو بدّك؟", "transliteration": "shū biddak?", "english": "what do you (m) want?" },
+        { "key": "wen", "label": "where?", "arabic": "وين؟", "transliteration": "wēn?", "english": "where?" },
+        { "key": "wen-X", "label": "where is X?", "arabic": "وين [X]؟", "transliteration": "wēn [X]?", "english": "where is [X]?" },
+        { "key": "lesh", "label": "why?", "arabic": "ليش؟", "transliteration": "lēsh?", "english": "why?" },
+        { "key": "kif", "label": "how?", "arabic": "كيف؟", "transliteration": "kīf?", "english": "how?" },
+        { "key": "kif-ḥalak", "label": "how are you? (m)", "arabic": "كيف حالك؟", "transliteration": "kīf ḥālak?", "english": "how are you? (m)" },
+        { "key": "emta", "label": "when?", "arabic": "إيمتى؟", "transliteration": "ēmta?", "english": "when?" },
+        { "key": "addesh", "label": "how much?", "arabic": "قدّيش؟", "transliteration": "ʾaddēsh?", "english": "how much?" },
+        { "key": "addesh-il-ḥsāb", "label": "how much is the bill?", "arabic": "قدّيش الحساب؟", "transliteration": "ʾaddēsh il-ḥsāb?", "english": "how much is the bill?" },
+        { "key": "kam", "label": "how many?", "arabic": "كم؟", "transliteration": "kam?", "english": "how many?" },
+        { "key": "min", "label": "who?", "arabic": "مين؟", "transliteration": "mīn?", "english": "who?" },
+        { "key": "ay", "label": "which?", "arabic": "أيّ؟", "transliteration": "ayy?", "english": "which?" }
+      ],
+      "slots": [
+        {
+          "name": "REST",
+          "options": [
+            { "arabic": "اسمك", "transliteration": "ismak", "english": "your name (m)" },
+            { "arabic": "هاد", "transliteration": "hād", "english": "this" },
+            { "arabic": "الحمّام", "transliteration": "il-ḥammām", "english": "the bathroom" },
+            { "arabic": "الحساب", "transliteration": "il-ḥsāb", "english": "the bill" },
+            { "arabic": "بتشتغل", "transliteration": "btishtaghil", "english": "you (m) work" },
+            { "arabic": "رايح", "transliteration": "rāyiḥ", "english": "going (m)" }
+          ]
+        }
+      ],
+      "tags": ["rescue", "drivers", "shops", "family", "work"],
+      "status": "draft"
+    },
+    {
+      "id": "like-baḥebb",
+      "name": "I like / love (baḥebb, biʿjibni)",
+      "pattern": "I like [OBJECT]",
+      "arabicPattern": "بحبّ [OBJECT] / [OBJECT] بيعجبني",
+      "transliterationPattern": "baḥebb [OBJECT] / [OBJECT] byiʿjibni",
+      "fushaNote": "بحبّ (baḥebb) = 'I like / love' — same root as MSA أحبّ. The construction [thing] + biʿjibni (literally 'pleases me') is very common for 'I like [thing]', parallel to Spanish 'me gusta'.",
+      "forms": [
+        { "key": "1sg", "label": "I like / love", "arabic": "بحبّ", "transliteration": "baḥebb", "english": "I like" },
+        { "key": "2sg.m", "label": "you like (m)", "arabic": "بتحبّ", "transliteration": "btḥebb", "english": "you like (m)" },
+        { "key": "2sg.f", "label": "you like (f)", "arabic": "بتحبّي", "transliteration": "btḥebbi", "english": "you like (f)" },
+        { "key": "3sg.m", "label": "he likes", "arabic": "بحبّ", "transliteration": "byḥebb", "english": "he likes" },
+        { "key": "3sg.f", "label": "she likes", "arabic": "بتحبّ", "transliteration": "btḥebb", "english": "she likes" },
+        { "key": "1pl", "label": "we like", "arabic": "بنحبّ", "transliteration": "bnḥebb", "english": "we like" },
+        { "key": "neg.1sg", "label": "I don't like", "arabic": "ما بحبّ", "transliteration": "mā baḥebb", "english": "I don't like" },
+        { "key": "ʿjib.1sg.m", "label": "it (m) pleases me", "arabic": "بيعجبني", "transliteration": "byiʿjibni", "english": "I like it (m thing)" },
+        { "key": "ʿjib.1sg.f", "label": "it (f) pleases me", "arabic": "بتعجبني", "transliteration": "btiʿjibni", "english": "I like it (f thing)" },
+        { "key": "ʿjib.neg", "label": "it doesn't please me", "arabic": "ما بيعجبني", "transliteration": "mā byiʿjibni", "english": "I don't like it" }
+      ],
+      "slots": [
+        {
+          "name": "OBJECT",
+          "options": [
+            { "arabic": "القهوة", "transliteration": "il-ʾahwe", "english": "coffee" },
+            { "arabic": "الأكل العربي", "transliteration": "il-ʾakl il-ʿarabi", "english": "Arabic food" },
+            { "arabic": "هاد المكان", "transliteration": "hād il-makān", "english": "this place" },
+            { "arabic": "الموسيقى", "transliteration": "il-mūsīʾa", "english": "the music" },
+            { "arabic": "اللون الأزرق", "transliteration": "il-lōn il-azraʾ", "english": "the color blue" }
+          ]
+        }
+      ],
+      "tags": ["shops", "kids", "family"],
+      "status": "draft"
+    },
+    {
+      "id": "lazim",
+      "name": "I have to / need to (lāzim)",
+      "pattern": "[SUBJECT] need(s) to [VERB]",
+      "arabicPattern": "لازم [VERB]",
+      "transliterationPattern": "lāzim [VERB]",
+      "fushaNote": "لازم (lāzim) is invariable in spoken Levantine — 'must / have to / should'. The verb following is the bare imperfect (no b-). Negation: mish lāzim ('don't have to / not necessary'). MSA equivalent: يجب أن (yajib an).",
+      "forms": [
+        { "key": "1sg.go", "label": "I have to go", "arabic": "لازم أروح", "transliteration": "lāzim arūḥ", "english": "I have to go" },
+        { "key": "2sg.m.go", "label": "you have to go (m)", "arabic": "لازم تروح", "transliteration": "lāzim trūḥ", "english": "you have to go (m)" },
+        { "key": "1sg.eat", "label": "I have to eat", "arabic": "لازم آكل", "transliteration": "lāzim ākul", "english": "I have to eat" },
+        { "key": "1sg.work", "label": "I have to work", "arabic": "لازم اشتغل", "transliteration": "lāzim ashtaghil", "english": "I have to work" },
+        { "key": "1sg.sleep", "label": "I have to sleep", "arabic": "لازم أنام", "transliteration": "lāzim anām", "english": "I have to sleep" },
+        { "key": "neg", "label": "don't have to / not necessary", "arabic": "مش لازم", "transliteration": "mish lāzim", "english": "don't have to / not necessary" },
+        { "key": "noun.water", "label": "I need water", "arabic": "لازمني ميّ", "transliteration": "lāzimni mayy", "english": "I need water" },
+        { "key": "noun.help", "label": "I need help", "arabic": "لازمني مساعدة", "transliteration": "lāzimni musāʿade", "english": "I need help" }
+      ],
+      "slots": [
+        {
+          "name": "VERB",
+          "options": [
+            { "arabic": "أروح", "transliteration": "arūḥ", "english": "to go" },
+            { "arabic": "آكل", "transliteration": "ākul", "english": "to eat" },
+            { "arabic": "أنام", "transliteration": "anām", "english": "to sleep" },
+            { "arabic": "اشتغل", "transliteration": "ashtaghil", "english": "to work" },
+            { "arabic": "أتعلّم", "transliteration": "atʿallam", "english": "to learn" },
+            { "arabic": "أتّصل", "transliteration": "attaṣil", "english": "to call" }
+          ]
+        }
+      ],
+      "tags": ["rescue", "drivers", "shops", "work"],
+      "status": "draft"
+    },
+    {
+      "id": "numbers",
+      "name": "Numbers 1–20 (with counter)",
+      "pattern": "[NUMBER] [COUNTER]",
+      "arabicPattern": "[NUMBER] [COUNTER]",
+      "transliterationPattern": "[NUMBER] [COUNTER]",
+      "fushaNote": "Spoken Levantine numbers 1–10 mostly match MSA with phonetic shifts. Numbers 11–19 have a distinctive -ṭaʿsh ending (← MSA -ʿashar). Counter rules differ: shēʾel (sg) for 1, 11+; shawāʾil (pl) for 3–10.",
+      "forms": [
+        { "key": "1", "label": "one", "arabic": "واحد", "transliteration": "wāḥad", "english": "one" },
+        { "key": "2", "label": "two", "arabic": "تنين", "transliteration": "tnēn", "english": "two" },
+        { "key": "3", "label": "three", "arabic": "تلاتة", "transliteration": "tlāte", "english": "three" },
+        { "key": "4", "label": "four", "arabic": "أربعة", "transliteration": "arbaʿa", "english": "four" },
+        { "key": "5", "label": "five", "arabic": "خمسة", "transliteration": "khamse", "english": "five" },
+        { "key": "6", "label": "six", "arabic": "ستّة", "transliteration": "sitte", "english": "six" },
+        { "key": "7", "label": "seven", "arabic": "سبعة", "transliteration": "sabʿa", "english": "seven" },
+        { "key": "8", "label": "eight", "arabic": "تمانية", "transliteration": "tmānye", "english": "eight" },
+        { "key": "9", "label": "nine", "arabic": "تسعة", "transliteration": "tisʿa", "english": "nine" },
+        { "key": "10", "label": "ten", "arabic": "عشرة", "transliteration": "ʿashara", "english": "ten" },
+        { "key": "11", "label": "eleven", "arabic": "إحدعش", "transliteration": "iḥdaʿsh", "english": "eleven" },
+        { "key": "12", "label": "twelve", "arabic": "اتنعش", "transliteration": "itnaʿsh", "english": "twelve" },
+        { "key": "13", "label": "thirteen", "arabic": "تلتعش", "transliteration": "tlaṭṭaʿsh", "english": "thirteen" },
+        { "key": "14", "label": "fourteen", "arabic": "أربعتعش", "transliteration": "arbaʿṭaʿsh", "english": "fourteen" },
+        { "key": "15", "label": "fifteen", "arabic": "خمستعش", "transliteration": "khamsṭaʿsh", "english": "fifteen" },
+        { "key": "16", "label": "sixteen", "arabic": "ستّعش", "transliteration": "sittaʿsh", "english": "sixteen" },
+        { "key": "17", "label": "seventeen", "arabic": "سبعتعش", "transliteration": "sabaʿṭaʿsh", "english": "seventeen" },
+        { "key": "18", "label": "eighteen", "arabic": "تمنتعش", "transliteration": "tmanṭaʿsh", "english": "eighteen" },
+        { "key": "19", "label": "تسعتعش", "arabic": "تسعتعش", "transliteration": "tisaʿṭaʿsh", "english": "nineteen" },
+        { "key": "20", "label": "twenty", "arabic": "عشرين", "transliteration": "ʿishrīn", "english": "twenty" }
+      ],
+      "slots": [
+        {
+          "name": "COUNTER",
+          "options": [
+            { "arabic": "شيكل", "transliteration": "shēʾel", "english": "shekel (sg)" },
+            { "arabic": "شواقل", "transliteration": "shawāʾil", "english": "shekels (pl, after 3–10)" },
+            { "arabic": "ساعة", "transliteration": "sāʿa", "english": "hour" },
+            { "arabic": "دقيقة", "transliteration": "daʾīʾa", "english": "minute" },
+            { "arabic": "ولد", "transliteration": "walad", "english": "boy / kid" },
+            { "arabic": "ولاد", "transliteration": "wlād", "english": "kids (pl)" },
+            { "arabic": "كيلو", "transliteration": "kīlo", "english": "kilo" }
+          ]
+        }
+      ],
+      "tags": ["drivers", "shops", "kids", "family"],
+      "status": "draft"
+    },
+    {
+      "id": "time-when",
+      "name": "Time markers (yesterday, today, tomorrow, now)",
+      "pattern": "[TIME-MARKER]",
+      "arabicPattern": "[TIME-MARKER]",
+      "transliterationPattern": "[TIME-MARKER]",
+      "fushaNote": "Levantine time words: hallaʾ (now) ← MSA al-ʾān; mbāriḥ (yesterday) ← MSA al-bāriḥa; bukra (tomorrow) ← MSA ghadan. il-yōm (today) is shared with MSA but pronounced with the ō diphthong-shift.",
+      "forms": [
+        { "key": "now", "label": "now", "arabic": "هلّق", "transliteration": "hallaʾ", "english": "now" },
+        { "key": "today", "label": "today", "arabic": "اليوم", "transliteration": "il-yōm", "english": "today" },
+        { "key": "tomorrow", "label": "tomorrow", "arabic": "بكرا", "transliteration": "bukra", "english": "tomorrow" },
+        { "key": "yesterday", "label": "yesterday", "arabic": "مبارح", "transliteration": "mbāriḥ", "english": "yesterday" },
+        { "key": "after-tomorrow", "label": "day after tomorrow", "arabic": "بعد بكرا", "transliteration": "baʿd bukra", "english": "day after tomorrow" },
+        { "key": "in-hour", "label": "in an hour", "arabic": "بعد ساعة", "transliteration": "baʿd sāʿa", "english": "in an hour" },
+        { "key": "this-week", "label": "this week", "arabic": "هاد الأسبوع", "transliteration": "hād il-isbūʿ", "english": "this week" },
+        { "key": "next-week", "label": "next week", "arabic": "الأسبوع الجاي", "transliteration": "il-isbūʿ ij-jāy", "english": "next week" },
+        { "key": "morning", "label": "in the morning", "arabic": "الصبح", "transliteration": "iṣ-ṣubḥ", "english": "in the morning" },
+        { "key": "evening", "label": "in the evening", "arabic": "بالليل", "transliteration": "bil-lēl", "english": "at night / in the evening" },
+        { "key": "always", "label": "always", "arabic": "دايماً", "transliteration": "dāyman", "english": "always" },
+        { "key": "sometimes", "label": "sometimes", "arabic": "أحياناً", "transliteration": "aḥyānan", "english": "sometimes" },
+        { "key": "never", "label": "never (with negation)", "arabic": "أبداً", "transliteration": "abadan", "english": "never (with negation)" }
+      ],
+      "tags": ["drivers", "family", "work"],
+      "status": "draft"
+    }
+  ]
 }

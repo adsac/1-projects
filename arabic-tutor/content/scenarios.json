@@ -1,10 +1,114 @@
 {
   "items": [
-    { "id": "rescue",  "name": "Rescue",            "description": "What to say when you're stuck — slow down, repeat, I don't understand." },
-    { "id": "drivers", "name": "Drivers / taxi",    "description": "Talking to taxi and ride drivers in Modi'in / Jerusalem." },
-    { "id": "shops",   "name": "Shops & cafés",     "description": "Ordering, asking prices, paying, basic small talk at shops." },
-    { "id": "kids",    "name": "Kids / play",       "description": "Talking with children at the park or in the building." },
-    { "id": "family",  "name": "Asking about family","description": "Polite questions about family — wife, kids, parents, work." },
-    { "id": "work",    "name": "Work / professional","description": "Workplace small talk and basic professional context." }
+    {
+      "id": "rescue",
+      "name": "Rescue",
+      "description": "What to say when you're stuck — slow down, repeat, I don't understand.",
+      "engineIds": ["greetings", "want-biddi", "mumkin", "imperative", "question-words", "lazim"],
+      "phraseIds": [
+        "rescue-slower",
+        "rescue-didnt-understand",
+        "rescue-repeat",
+        "rescue-learning",
+        "rescue-little-arabic",
+        "rescue-english",
+        "rescue-whats-this",
+        "rescue-how-say",
+        "rescue-i-dont-know",
+        "rescue-help-me"
+      ]
+    },
+    {
+      "id": "drivers",
+      "name": "Drivers / taxi",
+      "description": "Talking to taxi and ride drivers in Modi'in / Jerusalem.",
+      "engineIds": ["greetings", "want-biddi", "mumkin", "have-ʿindi", "present-rāḥ", "past-rāḥ", "future-raḥ", "imperative", "question-words", "lazim", "numbers", "time-when"],
+      "phraseIds": [
+        "drivers-to-modiin",
+        "drivers-to-jerusalem",
+        "drivers-stop-here",
+        "drivers-how-much",
+        "drivers-have-change",
+        "drivers-this-way",
+        "drivers-by-card",
+        "drivers-in-hurry",
+        "drivers-right",
+        "drivers-left",
+        "drivers-straight",
+        "drivers-thanks-bye"
+      ]
+    },
+    {
+      "id": "shops",
+      "name": "Shops & cafés",
+      "description": "Ordering, asking prices, paying, basic small talk at shops.",
+      "engineIds": ["greetings", "want-biddi", "mumkin", "have-ʿindi", "present-rāḥ", "question-words", "like-baḥebb", "lazim", "numbers"],
+      "phraseIds": [
+        "shops-coffee",
+        "shops-coffee-no-sugar",
+        "shops-tea",
+        "shops-this-please",
+        "shops-take-away",
+        "shops-bill",
+        "shops-how-much-is-it",
+        "shops-bathroom",
+        "shops-i-take-it",
+        "shops-bag"
+      ]
+    },
+    {
+      "id": "kids",
+      "name": "Kids / play",
+      "description": "Talking with children at the park or in the building.",
+      "engineIds": ["greetings", "want-biddi", "imperative", "question-words", "like-baḥebb", "numbers"],
+      "phraseIds": [
+        "kids-whats-name",
+        "kids-my-name",
+        "kids-how-old",
+        "kids-want-play",
+        "kids-be-careful",
+        "kids-your-turn",
+        "kids-good-job",
+        "kids-lets-go",
+        "kids-cute",
+        "kids-bye-bye"
+      ]
+    },
+    {
+      "id": "family",
+      "name": "Asking about family",
+      "description": "Polite questions about family — wife, kids, parents, work.",
+      "engineIds": ["greetings", "want-biddi", "have-ʿindi", "present-rāḥ", "past-rāḥ", "future-raḥ", "question-words", "like-baḥebb", "numbers", "time-when"],
+      "phraseIds": [
+        "family-howare-family",
+        "family-thank-god",
+        "family-how-many-kids",
+        "family-have-kids",
+        "family-god-protect",
+        "family-where-from",
+        "family-im-from-us",
+        "family-my-wife",
+        "family-nice-to-meet",
+        "family-greet-family"
+      ]
+    },
+    {
+      "id": "work",
+      "name": "Work / professional",
+      "description": "Workplace small talk and basic professional context.",
+      "engineIds": ["greetings", "mumkin", "have-ʿindi", "present-rāḥ", "past-rāḥ", "future-raḥ", "question-words", "lazim", "time-when"],
+      "phraseIds": [
+        "work-i-work-tech",
+        "work-i-work-software",
+        "work-where-work",
+        "work-meeting",
+        "work-busy",
+        "work-call-later",
+        "work-see-tomorrow",
+        "work-good-day",
+        "work-no-problem",
+        "work-from-home"
+      ]
+    }
   ]
 }

@@ -109,6 +109,34 @@
         "work-no-problem",
         "work-from-home"
       ]
+    },
+    {
+      "id": "basics",
+      "name": "Basics (this/that, mine/yours)",
+      "description": "High-frequency building blocks: pointing, claiming, asking whose. Use these in any situation.",
+      "engineIds": [],
+      "phraseIds": []
+    },
+    {
+      "id": "doctor",
+      "name": "Doctor / pharmacy",
+      "description": "Symptoms, asking for medicine, appointments, basic health vocabulary.",
+      "engineIds": [],
+      "phraseIds": []
+    },
+    {
+      "id": "directions",
+      "name": "Directions / navigation",
+      "description": "Asking how to get somewhere, describing locations relative to landmarks.",
+      "engineIds": [],
+      "phraseIds": []
+    },
+    {
+      "id": "neighbours",
+      "name": "Neighbours / building",
+      "description": "Talking with neighbours in the building or on the street — door, elevator, parking, kids.",
+      "engineIds": [],
+      "phraseIds": []
     }
   ]
 }

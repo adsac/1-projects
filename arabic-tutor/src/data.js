@@ -85,6 +85,7 @@
  * @property {boolean} showHebrewHooks
  * @property {('slow'|'normal'|'fast')} newItemSpeed
  * @property {boolean} mixRecognition       // if true, ~25% of cards become Arabic→English instead of English→Arabic
+ * @property {('small'|'medium'|'large'|'xlarge')} arabicFontSize
  * @property {string[]} scenarioPriority    // scenario ids in priority order
  */
 
@@ -151,6 +152,7 @@ export const DEFAULT_SETTINGS = /** @type {Settings} */ ({
   showHebrewHooks: false,
   newItemSpeed: 'normal',
   mixRecognition: false,
+  arabicFontSize: 'medium',
   scenarioPriority: ['rescue', 'drivers', 'shops', 'kids', 'family', 'work'],
 });
 

@@ -492,6 +492,14 @@ export async function renderSettings() {
   mixRec.checked = !!s.mixRecognition;
   const speed = el('select', {}, ['slow', 'normal', 'fast'].map((v) => el('option', { value: v }, v)));
   speed.value = s.newItemSpeed;
+  const arSize = el('select', {},
+    [['small', 'Small'], ['medium', 'Medium (default)'], ['large', 'Large'], ['xlarge', 'Extra large']]
+      .map(([v, label]) => el('option', { value: v }, label)));
+  arSize.value = s.arabicFontSize || 'medium';
+  arSize.onchange = () => {
+    // Live preview while the menu is open.
+    if (window.__applyArabicFontSize) window.__applyArabicFontSize(arSize.value);
+  };
 
   root.append(el('div', { class: 'card col' }, [
     el('div', { class: 'field' }, [el('label', {}, 'Show transliteration'), showTr]),
@@ -501,6 +509,8 @@ export async function renderSettings() {
       mixRec,
       el('div', { class: 'muted' }, 'Default sessions are English → Arabic (production). Turn this on to also exercise comprehension.'),
     ]),
+    el('div', { class: 'field' }, [el('label', {}, 'Arabic font size'), arSize]),
+    el('div', { class: 'ar', style: 'margin: -4px 0 4px' }, 'مرحبا، كيف حالك؟'),
     el('div', { class: 'field' }, [el('label', {}, 'New-item speed'), speed]),
     el('button', {
       class: 'primary',
@@ -510,8 +520,10 @@ export async function renderSettings() {
           showHebrewHooks: showHe.checked,
           mixRecognition: mixRec.checked,
           newItemSpeed: speed.value,
+          arabicFontSize: arSize.value,
         });
         app.settings = next;
+        if (window.__applyArabicFontSize) window.__applyArabicFontSize(next.arabicFontSize);
         toast('Saved');
       },
     }, 'Save'),

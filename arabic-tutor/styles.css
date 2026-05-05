@@ -138,16 +138,26 @@ button[disabled] { opacity: 0.5; cursor: not-allowed; }
 .appbar .title { font-weight: 600; font-size: 18px; }
 
 /* Arabic blocks */
+:root {
+  --ar-size: 36px;
+  --ar-size-lg: 44px;
+  --ar-size-sm: 24px;
+}
+body[data-ar-size="small"]  { --ar-size: 28px; --ar-size-lg: 34px; --ar-size-sm: 20px; }
+body[data-ar-size="medium"] { --ar-size: 36px; --ar-size-lg: 44px; --ar-size-sm: 24px; }
+body[data-ar-size="large"]  { --ar-size: 44px; --ar-size-lg: 54px; --ar-size-sm: 28px; }
+body[data-ar-size="xlarge"] { --ar-size: 54px; --ar-size-lg: 66px; --ar-size-sm: 32px; }
+
 .ar {
   direction: rtl;
   unicode-bidi: isolate;
   font-family: 'Noto Naskh Arabic', 'Amiri', 'Scheherazade New', serif;
-  font-size: 36px;
+  font-size: var(--ar-size);
   line-height: 1.6;
   text-align: right;
 }
-.ar.lg { font-size: 44px; }
-.ar.sm { font-size: 24px; line-height: 1.5; }
+.ar.lg { font-size: var(--ar-size-lg); }
+.ar.sm { font-size: var(--ar-size-sm); line-height: 1.5; }
 
 .translit { font-style: italic; color: var(--accent); font-size: 18px; }
 .context { font-style: italic; color: var(--muted); font-size: 14px; line-height: 1.4; }

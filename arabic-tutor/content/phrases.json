@@ -1264,6 +1264,1307 @@
       "english": "There.",
       "tags": ["drivers", "shops", "kids"],
       "status": "draft"
+    },
+
+    {
+      "id": "basics-whats-this",
+      "arabic": "شو هاد؟",
+      "transliteration": "shū hāda?",
+      "english": "What's this?",
+      "context": "Pointing at something masculine / unknown",
+      "tags": ["basics", "shops", "kids"],
+      "status": "draft"
+    },
+    {
+      "id": "basics-whats-that",
+      "arabic": "شو هداك؟",
+      "transliteration": "shū hadāk?",
+      "english": "What's that?",
+      "context": "Pointing at something further away",
+      "tags": ["basics", "shops", "kids"],
+      "status": "draft"
+    },
+    {
+      "id": "basics-this-one",
+      "arabic": "هاد",
+      "transliteration": "hāda",
+      "english": "This one.",
+      "context": "Pointing — short, complete answer",
+      "tags": ["basics", "shops"],
+      "status": "draft"
+    },
+    {
+      "id": "basics-that-one",
+      "arabic": "هداك",
+      "transliteration": "hadāk",
+      "english": "That one.",
+      "context": "Pointing further away",
+      "tags": ["basics", "shops"],
+      "status": "draft"
+    },
+    {
+      "id": "basics-like-this",
+      "arabic": "هيك",
+      "transliteration": "hēk",
+      "english": "Like this.",
+      "context": "Demonstrating how to do something",
+      "fushaNote": "Levantine 'like this/so'. MSA equivalent: هكذا (hākaḏā).",
+      "tags": ["basics", "kids", "work"],
+      "status": "draft"
+    },
+    {
+      "id": "basics-like-that",
+      "arabic": "هيك زي هداك",
+      "transliteration": "hēk zayy hadāk",
+      "english": "Like that.",
+      "context": "Comparing to something further away",
+      "tags": ["basics"],
+      "status": "draft"
+    },
+    {
+      "id": "basics-mine",
+      "arabic": "إلي",
+      "transliteration": "ilī",
+      "english": "Mine.",
+      "context": "Claiming something — one-word answer",
+      "tags": ["basics", "shops", "neighbours"],
+      "status": "draft"
+    },
+    {
+      "id": "basics-yours-m",
+      "arabic": "إلك",
+      "transliteration": "ilak",
+      "english": "Yours.",
+      "context": "Said to a man",
+      "tags": ["basics", "shops", "neighbours"],
+      "status": "draft"
+    },
+    {
+      "id": "basics-yours-f",
+      "arabic": "إلِك",
+      "transliteration": "ilik",
+      "english": "Yours.",
+      "context": "Said to a woman",
+      "tags": ["basics", "shops", "neighbours"],
+      "status": "draft"
+    },
+    {
+      "id": "basics-his",
+      "arabic": "إله",
+      "transliteration": "ilo",
+      "english": "His.",
+      "tags": ["basics", "neighbours"],
+      "status": "draft"
+    },
+    {
+      "id": "basics-hers",
+      "arabic": "إلها",
+      "transliteration": "ilha",
+      "english": "Hers.",
+      "tags": ["basics", "neighbours"],
+      "status": "draft"
+    },
+    {
+      "id": "basics-not-mine",
+      "arabic": "هاد مش إلي",
+      "transliteration": "hāda mish ilī",
+      "english": "It's not mine.",
+      "context": "Disclaiming a found object",
+      "tags": ["basics", "neighbours"],
+      "status": "draft"
+    },
+    {
+      "id": "basics-is-this-yours",
+      "arabic": "هاد إلك؟",
+      "transliteration": "hāda ilak?",
+      "english": "Is this yours?",
+      "context": "Asking a man — e.g. about a forgotten item",
+      "tags": ["basics", "neighbours", "shops"],
+      "status": "draft"
+    },
+    {
+      "id": "basics-i-have-it",
+      "arabic": "عندي ياه",
+      "transliteration": "ʿindi yā",
+      "english": "I have it.",
+      "context": "About a masculine thing",
+      "pronunciationNote": "yā = pronoun-suffix-bearing pseudo-particle for direct objects of ʿind- and similar. Common spoken solution.",
+      "tags": ["basics", "shops"],
+      "status": "draft"
+    },
+    {
+      "id": "basics-dont-have-it",
+      "arabic": "ما عندي ياه",
+      "transliteration": "mā ʿindi yā",
+      "english": "I don't have it.",
+      "tags": ["basics", "shops"],
+      "status": "draft"
+    },
+    {
+      "id": "basics-its-here",
+      "arabic": "هون",
+      "transliteration": "hōn",
+      "english": "It's here.",
+      "context": "Locating something",
+      "tags": ["basics", "shops", "neighbours"],
+      "status": "draft"
+    },
+    {
+      "id": "basics-its-there",
+      "arabic": "هناك",
+      "transliteration": "hunāk",
+      "english": "It's there.",
+      "tags": ["basics", "shops"],
+      "status": "draft"
+    },
+    {
+      "id": "basics-over-there",
+      "arabic": "هناك بعيد",
+      "transliteration": "hunāk bʿīd",
+      "english": "Over there.",
+      "context": "Pointing further away",
+      "tags": ["basics", "directions"],
+      "status": "draft"
+    },
+    {
+      "id": "basics-i-forgot",
+      "arabic": "نسيت",
+      "transliteration": "nsīt",
+      "english": "I forgot.",
+      "tags": ["basics", "work", "neighbours"],
+      "status": "draft"
+    },
+    {
+      "id": "basics-forgot-at-home",
+      "arabic": "نسيته في البيت",
+      "transliteration": "nsīto fil-bēt",
+      "english": "I forgot it at home.",
+      "context": "About a masculine thing",
+      "tags": ["basics", "work"],
+      "status": "draft"
+    },
+    {
+      "id": "basics-i-lost-it",
+      "arabic": "ضيّعته",
+      "transliteration": "ḍayyaʿto",
+      "english": "I lost it.",
+      "context": "About a masculine thing",
+      "pronunciationNote": "Emphatic ḍ + doubled y; ʿ pharyngeal.",
+      "tags": ["basics"],
+      "status": "draft"
+    },
+    {
+      "id": "basics-i-found-it",
+      "arabic": "لقيته",
+      "transliteration": "laʾēto",
+      "english": "I found it.",
+      "context": "About a masculine thing",
+      "tags": ["basics"],
+      "status": "draft"
+    },
+    {
+      "id": "basics-same",
+      "arabic": "نفس الشي",
+      "transliteration": "nafs ish-shi",
+      "english": "Same.",
+      "context": "Lit. 'the same thing'",
+      "tags": ["basics", "shops"],
+      "status": "draft"
+    },
+    {
+      "id": "basics-same-one",
+      "arabic": "نفسه",
+      "transliteration": "nafso",
+      "english": "The same one.",
+      "context": "About a masculine thing",
+      "tags": ["basics"],
+      "status": "draft"
+    },
+    {
+      "id": "basics-different",
+      "arabic": "مختلف",
+      "transliteration": "mukhtalif",
+      "english": "Different.",
+      "tags": ["basics", "shops"],
+      "status": "draft"
+    },
+    {
+      "id": "basics-with-me",
+      "arabic": "معي",
+      "transliteration": "maʿi",
+      "english": "With me.",
+      "context": "E.g. confirming you have something on you",
+      "tags": ["basics", "drivers", "shops"],
+      "status": "draft"
+    },
+    {
+      "id": "basics-both",
+      "arabic": "التنين",
+      "transliteration": "it-tnēn",
+      "english": "Both.",
+      "context": "E.g. answering 'this or that?'",
+      "tags": ["basics", "shops"],
+      "status": "draft"
+    },
+    {
+      "id": "basics-neither",
+      "arabic": "ولا واحد",
+      "transliteration": "wala wāḥad",
+      "english": "Neither.",
+      "context": "Lit. 'not even one'",
+      "tags": ["basics", "shops"],
+      "status": "draft"
+    },
+    {
+      "id": "basics-slowly",
+      "arabic": "شوي شوي",
+      "transliteration": "shwayy shwayy",
+      "english": "Slowly.",
+      "context": "Lit. 'a little a little' — pace marker",
+      "tags": ["basics", "rescue", "kids"],
+      "status": "draft"
+    },
+    {
+      "id": "basics-quickly",
+      "arabic": "بسرعة",
+      "transliteration": "bi-surʿa",
+      "english": "Quickly.",
+      "tags": ["basics", "drivers", "work"],
+      "status": "draft"
+    },
+    {
+      "id": "basics-later",
+      "arabic": "بعدين",
+      "transliteration": "baʿdēn",
+      "english": "Later.",
+      "tags": ["basics", "work", "family"],
+      "status": "draft"
+    },
+    {
+      "id": "basics-after-bit",
+      "arabic": "بعد شوي",
+      "transliteration": "baʿd shwayy",
+      "english": "After a bit.",
+      "tags": ["basics", "drivers", "work"],
+      "status": "draft"
+    },
+    {
+      "id": "basics-wait-moment",
+      "arabic": "استنّى لحظة",
+      "transliteration": "istanna laḥẓa",
+      "english": "Wait a moment.",
+      "context": "Said to a man",
+      "tags": ["basics", "drivers", "work"],
+      "status": "draft"
+    },
+    {
+      "id": "basics-together",
+      "arabic": "مع بعض",
+      "transliteration": "maʿ baʿḍ",
+      "english": "Together.",
+      "tags": ["basics", "kids", "family"],
+      "status": "draft"
+    },
+    {
+      "id": "basics-alone",
+      "arabic": "لحالي",
+      "transliteration": "la-ḥāli",
+      "english": "Alone. / By myself.",
+      "tags": ["basics", "family"],
+      "status": "draft"
+    },
+    {
+      "id": "basics-empty",
+      "arabic": "فاضي",
+      "transliteration": "fāḍi",
+      "english": "Empty.",
+      "context": "About a masculine thing (also: free / unoccupied)",
+      "tags": ["basics", "neighbours", "shops"],
+      "status": "draft"
+    },
+    {
+      "id": "basics-full",
+      "arabic": "مليان",
+      "transliteration": "malyān",
+      "english": "Full.",
+      "context": "About a masculine thing",
+      "tags": ["basics", "shops"],
+      "status": "draft"
+    },
+    {
+      "id": "basics-open",
+      "arabic": "مفتوح",
+      "transliteration": "maftūḥ",
+      "english": "Open.",
+      "context": "About a shop, door, etc. (m)",
+      "tags": ["basics", "shops", "neighbours"],
+      "status": "draft"
+    },
+    {
+      "id": "basics-closed",
+      "arabic": "مسكّر",
+      "transliteration": "msakkar",
+      "english": "Closed.",
+      "context": "About a shop, door, etc. (m)",
+      "tags": ["basics", "shops", "neighbours"],
+      "status": "draft"
+    },
+    {
+      "id": "basics-broken",
+      "arabic": "مكسور",
+      "transliteration": "maksūr",
+      "english": "Broken.",
+      "context": "About a masculine thing (e.g. elevator, phone)",
+      "tags": ["basics", "neighbours"],
+      "status": "draft"
+    },
+    {
+      "id": "basics-it-works",
+      "arabic": "بيشتغل",
+      "transliteration": "byishtaghil",
+      "english": "It works.",
+      "context": "About a masculine thing — also 'he works'",
+      "tags": ["basics", "neighbours"],
+      "status": "draft"
+    },
+    {
+      "id": "basics-doesnt-work",
+      "arabic": "ما بيشتغل",
+      "transliteration": "mā byishtaghil",
+      "english": "It doesn't work.",
+      "context": "About a masculine thing",
+      "tags": ["basics", "neighbours", "shops"],
+      "status": "draft"
+    },
+    {
+      "id": "basics-ready",
+      "arabic": "جاهز",
+      "transliteration": "jāhiz",
+      "english": "Ready.",
+      "context": "Said by/about a male (female: jāhze)",
+      "tags": ["basics", "shops", "work"],
+      "status": "draft"
+    },
+    {
+      "id": "basics-not-ready-yet",
+      "arabic": "لسّا مش جاهز",
+      "transliteration": "lissa mish jāhiz",
+      "english": "Not ready yet.",
+      "context": "About a masculine thing",
+      "fushaNote": "lissa = 'still / yet' — Levantine adverb of incompleteness; from MSA لـ + إس (etymology debated).",
+      "tags": ["basics", "shops", "work"],
+      "status": "draft"
+    },
+
+    {
+      "id": "doctor-headache",
+      "arabic": "عندي صداع",
+      "transliteration": "ʿindi ṣudāʿ",
+      "english": "I have a headache.",
+      "tags": ["doctor"],
+      "status": "draft"
+    },
+    {
+      "id": "doctor-stomach-ache",
+      "arabic": "عندي وجع بطن",
+      "transliteration": "ʿindi wajaʿ baṭn",
+      "english": "I have a stomach ache.",
+      "tags": ["doctor"],
+      "status": "draft"
+    },
+    {
+      "id": "doctor-fever",
+      "arabic": "عندي حرارة",
+      "transliteration": "ʿindi ḥarāra",
+      "english": "I have a fever.",
+      "pronunciationNote": "ḥarāra — pharyngeal ḥ; lit. 'I have heat'.",
+      "tags": ["doctor"],
+      "status": "draft"
+    },
+    {
+      "id": "doctor-cough",
+      "arabic": "عندي سعلة",
+      "transliteration": "ʿindi saʿle",
+      "english": "I have a cough.",
+      "tags": ["doctor"],
+      "status": "draft"
+    },
+    {
+      "id": "doctor-back-pain",
+      "arabic": "عندي وجع ظهر",
+      "transliteration": "ʿindi wajaʿ ẓahr",
+      "english": "I have back pain.",
+      "pronunciationNote": "ẓ is the emphatic — backs the a vowel.",
+      "tags": ["doctor"],
+      "status": "draft"
+    },
+    {
+      "id": "doctor-have-ibuprofen",
+      "arabic": "عندكم نوروفين؟",
+      "transliteration": "ʿindkum nūrōfēn?",
+      "english": "Do you have ibuprofen?",
+      "context": "Asked at a pharmacy. Brand 'Nurofen' is the common Israeli/Levantine name for ibuprofen.",
+      "tags": ["doctor"],
+      "status": "draft"
+    },
+    {
+      "id": "doctor-have-paracetamol",
+      "arabic": "عندكم أكامول؟",
+      "transliteration": "ʿindkum akamōl?",
+      "english": "Do you have paracetamol?",
+      "context": "Asked at a pharmacy. 'Acamol' is the Israeli brand name for paracetamol/acetaminophen — universally understood.",
+      "tags": ["doctor"],
+      "status": "draft"
+    },
+    {
+      "id": "doctor-need-appointment",
+      "arabic": "بدّي موعد",
+      "transliteration": "biddi mawʿid",
+      "english": "I need an appointment.",
+      "tags": ["doctor"],
+      "status": "draft"
+    },
+    {
+      "id": "doctor-how-much-box",
+      "arabic": "قدّيش العلبة؟",
+      "transliteration": "ʾaddēsh il-ʿilbe?",
+      "english": "How much per box?",
+      "context": "Asked at a pharmacy",
+      "tags": ["doctor"],
+      "status": "draft"
+    },
+    {
+      "id": "doctor-how-much-pill",
+      "arabic": "قدّيش الحبّة؟",
+      "transliteration": "ʾaddēsh il-ḥabbe?",
+      "english": "How much per pill?",
+      "tags": ["doctor"],
+      "status": "draft"
+    },
+    {
+      "id": "doctor-pharmacy-nearby",
+      "arabic": "في صيدليّة قريبة؟",
+      "transliteration": "fī ṣaydaliyye ʾarībe?",
+      "english": "Is there a pharmacy nearby?",
+      "tags": ["doctor", "directions"],
+      "status": "draft"
+    },
+    {
+      "id": "doctor-allergic-peanuts",
+      "arabic": "عندي حساسيّة من الفول السوداني",
+      "transliteration": "ʿindi ḥasāsiyye min il-fūl is-sūdāni",
+      "english": "I'm allergic to peanuts.",
+      "context": "Critical to know — say slowly and clearly",
+      "tags": ["doctor", "shops"],
+      "status": "draft"
+    },
+    {
+      "id": "doctor-allergic-penicillin",
+      "arabic": "عندي حساسيّة من البنسلين",
+      "transliteration": "ʿindi ḥasāsiyye min il-binisilīn",
+      "english": "I'm allergic to penicillin.",
+      "tags": ["doctor"],
+      "status": "draft"
+    },
+    {
+      "id": "doctor-twice-a-day",
+      "arabic": "مرّتين باليوم",
+      "transliteration": "marrtēn bil-yōm",
+      "english": "Twice a day.",
+      "context": "Dosage instruction (good to recognise)",
+      "tags": ["doctor"],
+      "status": "draft"
+    },
+    {
+      "id": "doctor-after-eating",
+      "arabic": "بعد الأكل",
+      "transliteration": "baʿd il-ʾakl",
+      "english": "After eating.",
+      "context": "Dosage instruction (good to recognise)",
+      "tags": ["doctor"],
+      "status": "draft"
+    },
+    {
+      "id": "doctor-insurance-klalit",
+      "arabic": "عندي تأمين، كلاليت",
+      "transliteration": "ʿindi taʾmīn, Kalālīt",
+      "english": "I have insurance — Klalit.",
+      "context": "Israeli HMO. Pronounced naturally as a borrowed Hebrew name.",
+      "tags": ["doctor"],
+      "status": "draft"
+    },
+    {
+      "id": "doctor-insurance-maccabi",
+      "arabic": "عندي مكابي",
+      "transliteration": "ʿindi Makābi",
+      "english": "I have Maccabi.",
+      "context": "Israeli HMO",
+      "tags": ["doctor"],
+      "status": "draft"
+    },
+    {
+      "id": "doctor-insurance-meuhedet",
+      "arabic": "عندي ميئوحيدت",
+      "transliteration": "ʿindi Meʾuḥēdet",
+      "english": "I have Meuhedet.",
+      "context": "Israeli HMO",
+      "tags": ["doctor"],
+      "status": "draft"
+    },
+    {
+      "id": "doctor-hurts-here",
+      "arabic": "بيوجعني هون",
+      "transliteration": "byōjaʿni hōn",
+      "english": "It hurts here.",
+      "context": "While pointing to the spot",
+      "tags": ["doctor"],
+      "status": "draft"
+    },
+    {
+      "id": "doctor-since-two-days",
+      "arabic": "من يومين",
+      "transliteration": "min yōmēn",
+      "english": "Since two days ago.",
+      "context": "Answering 'since when?'",
+      "tags": ["doctor"],
+      "status": "draft"
+    },
+    {
+      "id": "doctor-since-morning",
+      "arabic": "من الصبح",
+      "transliteration": "min iṣ-ṣubḥ",
+      "english": "Since this morning.",
+      "tags": ["doctor"],
+      "status": "draft"
+    },
+
+    {
+      "id": "directions-is-it-far",
+      "arabic": "بعيد؟",
+      "transliteration": "bʿīd?",
+      "english": "Is it far?",
+      "tags": ["directions"],
+      "status": "draft"
+    },
+    {
+      "id": "directions-is-it-near",
+      "arabic": "قريب؟",
+      "transliteration": "ʾarīb?",
+      "english": "Is it near?",
+      "tags": ["directions"],
+      "status": "draft"
+    },
+    {
+      "id": "directions-how-long",
+      "arabic": "قدّيش بياخد وقت؟",
+      "transliteration": "ʾaddēsh byākhud waʾt?",
+      "english": "How long does it take?",
+      "tags": ["directions", "drivers"],
+      "status": "draft"
+    },
+    {
+      "id": "directions-walk-or-drive",
+      "arabic": "مشي ولّا بالسيّارة؟",
+      "transliteration": "mashi walla bis-sayyāra?",
+      "english": "Walking or driving?",
+      "fushaNote": "walla = 'or' in spoken Levantine, from MSA أَوَلَّا. Used for either/or questions.",
+      "tags": ["directions"],
+      "status": "draft"
+    },
+    {
+      "id": "directions-next-to",
+      "arabic": "حدّ ال[X]",
+      "transliteration": "ḥadd il-[X]",
+      "english": "Next to the [X].",
+      "context": "Locating something — e.g. ḥadd il-bank, ḥadd ish-shāriʿ",
+      "tags": ["directions"],
+      "status": "draft"
+    },
+    {
+      "id": "directions-across-from",
+      "arabic": "قبال ال[X]",
+      "transliteration": "ʾbāl il-[X]",
+      "english": "Across from the [X].",
+      "tags": ["directions"],
+      "status": "draft"
+    },
+    {
+      "id": "directions-behind",
+      "arabic": "ورا ال[X]",
+      "transliteration": "wara il-[X]",
+      "english": "Behind the [X].",
+      "tags": ["directions"],
+      "status": "draft"
+    },
+    {
+      "id": "directions-in-front",
+      "arabic": "قدّام ال[X]",
+      "transliteration": "ʾuddām il-[X]",
+      "english": "In front of the [X].",
+      "tags": ["directions"],
+      "status": "draft"
+    },
+    {
+      "id": "directions-turn-right",
+      "arabic": "لُف يمين عند ال[X]",
+      "transliteration": "luff yamīn ʿind il-[X]",
+      "english": "Turn right at the [X].",
+      "context": "Said to a man — replace [X] with the landmark",
+      "tags": ["directions", "drivers"],
+      "status": "draft"
+    },
+    {
+      "id": "directions-turn-left",
+      "arabic": "لُف شمال عند ال[X]",
+      "transliteration": "luff shmāl ʿind il-[X]",
+      "english": "Turn left at the [X].",
+      "context": "Said to a man",
+      "tags": ["directions", "drivers"],
+      "status": "draft"
+    },
+    {
+      "id": "directions-straight-then-left",
+      "arabic": "دغري، وبعدين شمال",
+      "transliteration": "dughri, w-baʿdēn shmāl",
+      "english": "Straight, then left.",
+      "tags": ["directions", "drivers"],
+      "status": "draft"
+    },
+    {
+      "id": "directions-how-to-get",
+      "arabic": "كيف بوصل ع ال[X]؟",
+      "transliteration": "kīf būṣal ʿa l-[X]?",
+      "english": "How do I get to the [X]?",
+      "tags": ["directions"],
+      "status": "draft"
+    },
+    {
+      "id": "directions-excuse-where",
+      "arabic": "لو سمحت، وين ال[X]؟",
+      "transliteration": "law samaḥt, wēn il-[X]?",
+      "english": "Excuse me, where is the [X]?",
+      "context": "Asking a man",
+      "tags": ["directions"],
+      "status": "draft"
+    },
+    {
+      "id": "directions-right-way",
+      "arabic": "هاد الطريق الصحّ؟",
+      "transliteration": "hāda ṭ-ṭarīʾ iṣ-ṣaḥḥ?",
+      "english": "Is this the right way?",
+      "tags": ["directions"],
+      "status": "draft"
+    },
+    {
+      "id": "directions-im-lost",
+      "arabic": "أنا تايه",
+      "transliteration": "ana tāyih",
+      "english": "I'm lost.",
+      "context": "Said by a male speaker (female: tāyhe)",
+      "tags": ["directions"],
+      "status": "draft"
+    },
+    {
+      "id": "directions-show-map",
+      "arabic": "وريني عالخريطة",
+      "transliteration": "warrīni ʿal-kharīṭa",
+      "english": "Show me on the map.",
+      "context": "Said to a man (female imp: warrīni — same)",
+      "pronunciationNote": "warrīni — doubled r; literally 'show me'.",
+      "tags": ["directions"],
+      "status": "draft"
+    },
+    {
+      "id": "directions-street",
+      "arabic": "الشارع",
+      "transliteration": "ish-shāriʿ",
+      "english": "The street.",
+      "tags": ["directions", "drivers"],
+      "status": "draft"
+    },
+    {
+      "id": "directions-square",
+      "arabic": "الميدان",
+      "transliteration": "il-mīdān",
+      "english": "The square / plaza.",
+      "tags": ["directions"],
+      "status": "draft"
+    },
+    {
+      "id": "directions-corner",
+      "arabic": "الزاوية",
+      "transliteration": "iz-zāwiye",
+      "english": "The corner.",
+      "tags": ["directions", "drivers"],
+      "status": "draft"
+    },
+    {
+      "id": "directions-entrance",
+      "arabic": "المدخل",
+      "transliteration": "il-madkhal",
+      "english": "The entrance.",
+      "tags": ["directions", "neighbours"],
+      "status": "draft"
+    },
+    {
+      "id": "directions-exit",
+      "arabic": "المخرج",
+      "transliteration": "il-makhraj",
+      "english": "The exit.",
+      "tags": ["directions"],
+      "status": "draft"
+    },
+
+    {
+      "id": "neighbours-just-moved-in",
+      "arabic": "مرحبا، إحنا لسّا انتقلنا",
+      "transliteration": "marḥaba, iḥna lissa intaʾalna",
+      "english": "Hello, we just moved in.",
+      "context": "Introducing yourself to a neighbour",
+      "tags": ["neighbours"],
+      "status": "draft"
+    },
+    {
+      "id": "neighbours-third-floor",
+      "arabic": "ساكن في الطابق التالت",
+      "transliteration": "sākin fi ṭ-ṭābiʾ it-tālit",
+      "english": "I live on the third floor.",
+      "context": "Said by a male speaker (female: sākne)",
+      "tags": ["neighbours"],
+      "status": "draft"
+    },
+    {
+      "id": "neighbours-kid-forgot",
+      "arabic": "ابنك نسي هاد",
+      "transliteration": "ibnak nisi hāda",
+      "english": "Your kid forgot this.",
+      "context": "Returning a forgotten item to a man (about his son)",
+      "tags": ["neighbours", "kids"],
+      "status": "draft"
+    },
+    {
+      "id": "neighbours-borrow-sugar",
+      "arabic": "ممكن تسلّفني شوي سكّر؟",
+      "transliteration": "mumkin tsallifni shwayy sukkar?",
+      "english": "Can I borrow some sugar?",
+      "context": "Asking a man — classic neighbourly favor",
+      "tags": ["neighbours"],
+      "status": "draft"
+    },
+    {
+      "id": "neighbours-borrow-eggs",
+      "arabic": "ممكن تسلّفني كم بيضة؟",
+      "transliteration": "mumkin tsallifni kam bēḍa?",
+      "english": "Can I borrow a few eggs?",
+      "context": "Asking a man",
+      "tags": ["neighbours"],
+      "status": "draft"
+    },
+    {
+      "id": "neighbours-borrow-charger",
+      "arabic": "ممكن تسلّفني شاحن؟",
+      "transliteration": "mumkin tsallifni shāḥin?",
+      "english": "Can I borrow a charger?",
+      "context": "Asking a man",
+      "tags": ["neighbours"],
+      "status": "draft"
+    },
+    {
+      "id": "neighbours-sorry-noise",
+      "arabic": "آسف عالضجّة",
+      "transliteration": "āsif ʿaḍ-ḍajje",
+      "english": "Sorry about the noise.",
+      "context": "Said by a male speaker (female: āsfe)",
+      "tags": ["neighbours"],
+      "status": "draft"
+    },
+    {
+      "id": "neighbours-noise-too-much",
+      "arabic": "كانت الضجّة كتيرة مبارح؟",
+      "transliteration": "kānit iḍ-ḍajje ktīre mbāriḥ?",
+      "english": "Was the noise too much last night?",
+      "context": "Checking in with a neighbour after a loud night",
+      "tags": ["neighbours"],
+      "status": "draft"
+    },
+    {
+      "id": "neighbours-elevator-broken",
+      "arabic": "المصعد مكسور؟",
+      "transliteration": "il-maṣʿad maksūr?",
+      "english": "Is the elevator broken?",
+      "tags": ["neighbours"],
+      "status": "draft"
+    },
+    {
+      "id": "neighbours-trash-room",
+      "arabic": "وين غرفة الزبالة؟",
+      "transliteration": "wēn ghurfit iz-zbāle?",
+      "english": "Where's the trash room?",
+      "tags": ["neighbours"],
+      "status": "draft"
+    },
+    {
+      "id": "neighbours-where-park",
+      "arabic": "وين بقدر أصفّ؟",
+      "transliteration": "wēn baʾdar aṣiff?",
+      "english": "Where do I park?",
+      "tags": ["neighbours", "drivers"],
+      "status": "draft"
+    },
+    {
+      "id": "neighbours-spot-taken",
+      "arabic": "هاد الموقف محجوز؟",
+      "transliteration": "hāda l-mawʾaf maḥjūz?",
+      "english": "Is this spot taken?",
+      "context": "About a parking spot",
+      "tags": ["neighbours"],
+      "status": "draft"
+    },
+    {
+      "id": "neighbours-package-yours",
+      "arabic": "الطرد إلك؟ إجى اليوم",
+      "transliteration": "iṭ-ṭard ilak? ija l-yōm",
+      "english": "The package is yours? It came today.",
+      "context": "Said to a man",
+      "tags": ["neighbours"],
+      "status": "draft"
+    },
+    {
+      "id": "neighbours-going-up",
+      "arabic": "طالع؟",
+      "transliteration": "ṭāliʿ?",
+      "english": "Going up?",
+      "context": "In the elevator, asking a man (lit. 'ascending?')",
+      "tags": ["neighbours"],
+      "status": "draft"
+    },
+    {
+      "id": "neighbours-going-down",
+      "arabic": "نازل؟",
+      "transliteration": "nāzil?",
+      "english": "Going down?",
+      "context": "In the elevator, asking a man",
+      "tags": ["neighbours"],
+      "status": "draft"
+    },
+    {
+      "id": "neighbours-have-good-day",
+      "arabic": "نهارك سعيد",
+      "transliteration": "nahārak saʿīd",
+      "english": "Have a good day.",
+      "context": "Parting blessing to a man",
+      "tags": ["neighbours", "work"],
+      "status": "draft"
+    },
+    {
+      "id": "neighbours-welcome-building",
+      "arabic": "أهلاً وسهلاً فيكم بالعمارة",
+      "transliteration": "ahlan wa-sahlan fīkum bil-ʿimāra",
+      "english": "Welcome to the building.",
+      "context": "Greeting new neighbours (pl)",
+      "tags": ["neighbours"],
+      "status": "draft"
+    },
+
+    {
+      "id": "drivers-wait-minute",
+      "arabic": "استنّى دقيقة، لو سمحت",
+      "transliteration": "istanna daʾīʾa, law samaḥt",
+      "english": "Wait a minute, please.",
+      "context": "Said to a male driver",
+      "tags": ["drivers"],
+      "status": "draft"
+    },
+    {
+      "id": "drivers-open-trunk",
+      "arabic": "افتح الشنطة، لو سمحت",
+      "transliteration": "iftaḥ ish-shanṭa, law samaḥt",
+      "english": "Open the trunk, please.",
+      "context": "Said to a male driver. shanṭa here = the car's trunk/boot.",
+      "tags": ["drivers"],
+      "status": "draft"
+    },
+    {
+      "id": "drivers-five-minutes",
+      "arabic": "رح أرجع بعد خمس دقايق",
+      "transliteration": "raḥ arjaʿ baʿd khams daʾāyiʾ",
+      "english": "I'll be back in five minutes.",
+      "context": "Telling the driver you'll return shortly",
+      "tags": ["drivers"],
+      "status": "draft"
+    },
+    {
+      "id": "drivers-meter",
+      "arabic": "شغّل العدّاد، لو سمحت",
+      "transliteration": "shaghghil il-ʿaddād, law samaḥt",
+      "english": "Turn on the meter, please.",
+      "context": "Said to a male taxi driver",
+      "tags": ["drivers"],
+      "status": "draft"
+    },
+    {
+      "id": "drivers-can-smoke",
+      "arabic": "ممكن ما تدخّن، لو سمحت؟",
+      "transliteration": "mumkin mā tdakhkhin, law samaḥt?",
+      "english": "Could you not smoke, please?",
+      "context": "Polite ask to a male driver",
+      "tags": ["drivers"],
+      "status": "draft"
+    },
+
+    {
+      "id": "shops-no-bag",
+      "arabic": "بدون كيس، شكراً",
+      "transliteration": "bidūn kīs, shukran",
+      "english": "No bag, thanks.",
+      "context": "At checkout — refusing a plastic bag",
+      "tags": ["shops"],
+      "status": "draft"
+    },
+    {
+      "id": "shops-wifi",
+      "arabic": "في عندكم واي فاي؟",
+      "transliteration": "fī ʿindkum wāy fāy?",
+      "english": "Do you have wifi?",
+      "context": "At a café",
+      "tags": ["shops"],
+      "status": "draft"
+    },
+    {
+      "id": "shops-wifi-password",
+      "arabic": "شو كلمة السرّ؟",
+      "transliteration": "shū kilmt is-sirr?",
+      "english": "What's the password?",
+      "context": "At a café — for wifi",
+      "tags": ["shops"],
+      "status": "draft"
+    },
+    {
+      "id": "shops-is-halal",
+      "arabic": "هاد حلال؟",
+      "transliteration": "hāda ḥalāl?",
+      "english": "Is this halal?",
+      "tags": ["shops"],
+      "status": "draft"
+    },
+    {
+      "id": "shops-vegetarian",
+      "arabic": "أنا نباتي",
+      "transliteration": "ana nabāti",
+      "english": "I'm vegetarian.",
+      "context": "Said by a male speaker (female: nabātiyye)",
+      "tags": ["shops"],
+      "status": "draft"
+    },
+
+    {
+      "id": "kids-what-color",
+      "arabic": "شو لونه؟",
+      "transliteration": "shū lōno?",
+      "english": "What color is it?",
+      "context": "About a masculine thing — playful prompt for a child",
+      "tags": ["kids"],
+      "status": "draft"
+    },
+    {
+      "id": "kids-count-to-ten",
+      "arabic": "عدّ لعشرة معي",
+      "transliteration": "ʿidd la-ʿashara maʿi",
+      "english": "Count to ten with me.",
+      "context": "Said to a boy (girl: ʿiddi)",
+      "tags": ["kids"],
+      "status": "draft"
+    },
+    {
+      "id": "kids-want-swing",
+      "arabic": "بدّك تركب عالمرجوحة؟",
+      "transliteration": "biddak tirkab ʿal-marjūḥa?",
+      "english": "Do you want to ride the swing?",
+      "context": "Asking a boy at the playground",
+      "tags": ["kids"],
+      "status": "draft"
+    },
+    {
+      "id": "kids-careful-fall",
+      "arabic": "دير بالك، رح توقع",
+      "transliteration": "dīr bālak, raḥ tūʾaʿ",
+      "english": "Be careful, you'll fall.",
+      "context": "Said to a boy",
+      "tags": ["kids"],
+      "status": "draft"
+    },
+    {
+      "id": "kids-good-boy",
+      "arabic": "شاطر",
+      "transliteration": "shāṭir",
+      "english": "Smart / good boy.",
+      "context": "Praising a boy (girl: shāṭra)",
+      "tags": ["kids"],
+      "status": "draft"
+    },
+
+    {
+      "id": "family-where-do-you-work",
+      "arabic": "وين بتشتغل؟",
+      "transliteration": "wēn btishtaghil?",
+      "english": "Where do you work?",
+      "context": "Asking a man — duplicate of work-where-work, kept for family-context surfacing",
+      "tags": ["family"],
+      "status": "draft"
+    },
+    {
+      "id": "family-how-long-here",
+      "arabic": "من قدّيش ساكن هون؟",
+      "transliteration": "min ʾaddēsh sākin hōn?",
+      "english": "How long have you lived here?",
+      "context": "Asking a man",
+      "tags": ["family", "neighbours"],
+      "status": "draft"
+    },
+    {
+      "id": "family-greet-wife",
+      "arabic": "سلّم لي على مرتك",
+      "transliteration": "sallim-li ʿa marrtak",
+      "english": "Say hi to your wife from me.",
+      "context": "Said to a man at parting",
+      "tags": ["family"],
+      "status": "draft"
+    },
+    {
+      "id": "family-from-where-originally",
+      "arabic": "من وين أصلك؟",
+      "transliteration": "min wēn aṣlak?",
+      "english": "Where are you originally from?",
+      "context": "Asking a man (deeper than min wēn inta)",
+      "tags": ["family"],
+      "status": "draft"
+    },
+    {
+      "id": "family-have-siblings",
+      "arabic": "عندك إخوة؟",
+      "transliteration": "ʿindak ikhwe?",
+      "english": "Do you have siblings?",
+      "context": "Asking a man",
+      "tags": ["family"],
+      "status": "draft"
+    },
+
+    {
+      "id": "work-move-meeting",
+      "arabic": "ممكن نأجّل الاجتماع؟",
+      "transliteration": "mumkin nʾajjil il-ijtimāʿ?",
+      "english": "Can we move the meeting?",
+      "tags": ["work"],
+      "status": "draft"
+    },
+    {
+      "id": "work-few-min-late",
+      "arabic": "رح أتأخّر شوي",
+      "transliteration": "raḥ atʾakhkhar shwayy",
+      "english": "I'll be a few minutes late.",
+      "tags": ["work"],
+      "status": "draft"
+    },
+    {
+      "id": "work-remote-today",
+      "arabic": "اليوم بشتغل من البيت",
+      "transliteration": "il-yōm bashtaghil min il-bēt",
+      "english": "I'm remote today.",
+      "tags": ["work"],
+      "status": "draft"
+    },
+    {
+      "id": "work-send-email",
+      "arabic": "رح أبعتلك إيميل",
+      "transliteration": "raḥ abʿatlak īmēl",
+      "english": "I'll send you an email.",
+      "context": "Said to a man",
+      "tags": ["work"],
+      "status": "draft"
+    },
+    {
+      "id": "work-on-call",
+      "arabic": "أنا عالتلفون هلّق",
+      "transliteration": "ana ʿat-talafōn hallaʾ",
+      "english": "I'm on a call right now.",
+      "tags": ["work"],
+      "status": "draft"
+    },
+
+    {
+      "id": "basics-now",
+      "arabic": "هلّق",
+      "transliteration": "hallaʾ",
+      "english": "Now.",
+      "tags": ["basics", "drivers", "work"],
+      "status": "draft"
+    },
+    {
+      "id": "basics-a-lot",
+      "arabic": "كتير",
+      "transliteration": "ktīr",
+      "english": "A lot.",
+      "tags": ["basics", "shops"],
+      "status": "draft"
+    },
+    {
+      "id": "basics-a-little",
+      "arabic": "شوي",
+      "transliteration": "shwayy",
+      "english": "A little.",
+      "tags": ["basics", "shops"],
+      "status": "draft"
+    },
+    {
+      "id": "basics-this-is-a-book",
+      "arabic": "هاد كتاب",
+      "transliteration": "hāda kitāb",
+      "english": "This is a book.",
+      "context": "Equational sentence — no copula",
+      "tags": ["basics"],
+      "status": "draft"
+    },
+    {
+      "id": "basics-this-is-not-mine",
+      "arabic": "هاد مش إلي، هاد إله",
+      "transliteration": "hāda mish ilī, hāda ilo",
+      "english": "This isn't mine, it's his.",
+      "tags": ["basics", "neighbours"],
+      "status": "draft"
+    },
+    {
+      "id": "basics-whose-is-this",
+      "arabic": "لمين هاد؟",
+      "transliteration": "la-mīn hāda?",
+      "english": "Whose is this?",
+      "tags": ["basics", "neighbours"],
+      "status": "draft"
+    },
+    {
+      "id": "basics-its-okay",
+      "arabic": "ماشي",
+      "transliteration": "māshi",
+      "english": "OK / fine.",
+      "context": "Confirming, going along — very common spoken filler",
+      "tags": ["basics", "work", "drivers"],
+      "status": "draft"
+    },
+    {
+      "id": "basics-no-problem",
+      "arabic": "ما في مشكلة",
+      "transliteration": "mā fī mushkile",
+      "english": "No problem.",
+      "tags": ["basics", "work", "shops"],
+      "status": "draft"
+    },
+    {
+      "id": "basics-i-think",
+      "arabic": "بظنّ",
+      "transliteration": "baẓunn",
+      "english": "I think so.",
+      "tags": ["basics", "work"],
+      "status": "draft"
+    },
+    {
+      "id": "basics-not-sure",
+      "arabic": "مش متأكّد",
+      "transliteration": "mish mitʾakkid",
+      "english": "I'm not sure.",
+      "context": "Said by a male speaker (female: mitʾakkde)",
+      "tags": ["basics", "work"],
+      "status": "draft"
+    },
+    {
+      "id": "basics-of-course",
+      "arabic": "أكيد",
+      "transliteration": "akīd",
+      "english": "Of course.",
+      "tags": ["basics", "shops", "work"],
+      "status": "draft"
+    },
+    {
+      "id": "basics-maybe",
+      "arabic": "يمكن",
+      "transliteration": "yimkin",
+      "english": "Maybe.",
+      "tags": ["basics", "work", "family"],
+      "status": "draft"
+    },
+    {
+      "id": "doctor-tired",
+      "arabic": "أنا تعبان",
+      "transliteration": "ana taʿbān",
+      "english": "I'm tired / not feeling well.",
+      "context": "Said by a male speaker (female: taʿbāne) — taʿbān covers physical fatigue and feeling sick",
+      "tags": ["doctor", "family"],
+      "status": "draft"
+    },
+    {
+      "id": "doctor-need-doctor",
+      "arabic": "بدّي دكتور",
+      "transliteration": "biddi dakatōr",
+      "english": "I need a doctor.",
+      "tags": ["doctor", "rescue"],
+      "status": "draft"
+    },
+    {
+      "id": "doctor-prescription",
+      "arabic": "عندي وصفة طبيّة",
+      "transliteration": "ʿindi waṣfe ṭibbiyye",
+      "english": "I have a prescription.",
+      "context": "At a pharmacy",
+      "tags": ["doctor"],
+      "status": "draft"
+    },
+    {
+      "id": "directions-first-street",
+      "arabic": "أوّل شارع يمين",
+      "transliteration": "awwal shāriʿ yamīn",
+      "english": "The first street on the right.",
+      "tags": ["directions", "drivers"],
+      "status": "draft"
+    },
+    {
+      "id": "directions-second-street",
+      "arabic": "تاني شارع شمال",
+      "transliteration": "tāni shāriʿ shmāl",
+      "english": "The second street on the left.",
+      "tags": ["directions", "drivers"],
+      "status": "draft"
+    },
+    {
+      "id": "directions-traffic-light",
+      "arabic": "الإشارة",
+      "transliteration": "il-ishāra",
+      "english": "The traffic light.",
+      "tags": ["directions", "drivers"],
+      "status": "draft"
+    },
+    {
+      "id": "directions-roundabout",
+      "arabic": "الدوّار",
+      "transliteration": "id-dawwār",
+      "english": "The roundabout.",
+      "tags": ["directions", "drivers"],
+      "status": "draft"
+    },
+    {
+      "id": "neighbours-good-evening",
+      "arabic": "مسا الخير",
+      "transliteration": "masā il-khēr",
+      "english": "Good evening.",
+      "context": "Greeting a neighbour in the hall (use ahlēn for a casual hi)",
+      "tags": ["neighbours"],
+      "status": "draft"
+    },
+    {
+      "id": "neighbours-water-leak",
+      "arabic": "في تسريب ميّ",
+      "transliteration": "fī tasrīb mayy",
+      "english": "There's a water leak.",
+      "context": "Reporting a building issue",
+      "tags": ["neighbours"],
+      "status": "draft"
     }
   ]
 }

@@ -477,6 +477,160 @@
       ],
       "tags": ["drivers", "family", "work"],
       "status": "draft"
+    },
+    {
+      "id": "demonstratives",
+      "name": "This / that — pointing & equational sentences",
+      "pattern": "[DEM] (is) [X]",
+      "arabicPattern": "[DEM] [X]",
+      "transliterationPattern": "[DEM] [X]",
+      "fushaNote": "Levantine demonstratives are reduced from MSA: hāda ← hāḏā, hāy/hādi ← hāḏihi, hadōl ← hāʾulāʾ, hadāk ← ḏālika, hadīk ← tilka. Equational sentences need no copula: 'hāda kitāb' = 'this is a book'. Negation uses mish before the predicate.",
+      "forms": [
+        { "key": "this.m", "label": "this (m)", "arabic": "هاد", "transliteration": "hāda", "english": "this", "context": "Pointing at a masculine noun (kitāb, walad, bēt...)" },
+        { "key": "this.f", "label": "this (f)", "arabic": "هاي", "transliteration": "hāy", "english": "this", "context": "Pointing at a feminine noun (sayyāra, sāʿa, binit...)", "pronunciationNote": "Also said hādi; hāy is the more common short form in Palestinian." },
+        { "key": "these", "label": "these", "arabic": "هدول", "transliteration": "hadōl", "english": "these", "context": "Pointing at a plural noun (any gender)", "pronunciationNote": "Also hadōli." },
+        { "key": "that.m", "label": "that (m, distal)", "arabic": "هداك", "transliteration": "hadāk", "english": "that", "context": "Pointing further away — 'that one over there'" },
+        { "key": "that.f", "label": "that (f, distal)", "arabic": "هديك", "transliteration": "hadīk", "english": "that", "context": "Pointing further away — feminine noun" },
+        { "key": "is.m", "label": "this is X (m)", "arabic": "هاد [X]", "transliteration": "hāda [X]", "english": "this is [X]", "context": "Equational — no verb needed" },
+        { "key": "is.f", "label": "this is X (f)", "arabic": "هاي [X]", "transliteration": "hāy [X]", "english": "this is [X]" },
+        { "key": "is.that.m", "label": "that's X (m)", "arabic": "هداك [X]", "transliteration": "hadāk [X]", "english": "that's [X]" },
+        { "key": "q.m", "label": "what's this? (m)", "arabic": "شو هاد؟", "transliteration": "shū hāda?", "english": "what's this?" },
+        { "key": "q.f", "label": "what's this? (f)", "arabic": "شو هاي؟", "transliteration": "shū hāy?", "english": "what's this?", "context": "About a feminine-gender thing" },
+        { "key": "q.that.m", "label": "what's that? (m)", "arabic": "شو هداك؟", "transliteration": "shū hadāk?", "english": "what's that?" },
+        { "key": "neg.m", "label": "this isn't X (m)", "arabic": "هاد مش [X]", "transliteration": "hāda mish [X]", "english": "this isn't [X]" },
+        { "key": "neg.f", "label": "this isn't X (f)", "arabic": "هاي مش [X]", "transliteration": "hāy mish [X]", "english": "this isn't [X]" },
+        { "key": "neg.that.m", "label": "that's not X (m)", "arabic": "هداك مش [X]", "transliteration": "hadāk mish [X]", "english": "that's not [X]" }
+      ],
+      "slots": [
+        {
+          "name": "X",
+          "options": [
+            { "arabic": "كتاب", "transliteration": "kitāb", "english": "book (m)" },
+            { "arabic": "تلفون", "transliteration": "talafōn", "english": "phone (m)" },
+            { "arabic": "ولد", "transliteration": "walad", "english": "kid / boy (m)" },
+            { "arabic": "بنت", "transliteration": "binit", "english": "girl (f)" },
+            { "arabic": "مفتاح", "transliteration": "muftāḥ", "english": "key (m)" },
+            { "arabic": "شنطة", "transliteration": "shanṭa", "english": "bag (f)" },
+            { "arabic": "سيّارة", "transliteration": "sayyāra", "english": "car (f)" },
+            { "arabic": "باب", "transliteration": "bāb", "english": "door (m)" },
+            { "arabic": "مكان", "transliteration": "makān", "english": "place (m)" },
+            { "arabic": "وقت", "transliteration": "waʾt", "english": "time (m)" },
+            { "arabic": "بيت", "transliteration": "bēt", "english": "house (m)" },
+            { "arabic": "كرسي", "transliteration": "kursi", "english": "chair (m)" }
+          ]
+        }
+      ],
+      "tags": ["basics", "shops", "kids", "family", "neighbours"],
+      "status": "draft"
+    },
+    {
+      "id": "possessives",
+      "name": "My / your / his / her — possessive suffixes",
+      "pattern": "[NOUN]-[POSS]",
+      "arabicPattern": "[NOUN][POSS]",
+      "transliterationPattern": "[NOUN][POSS]",
+      "fushaNote": "Same suffix system as MSA, with Levantine vowel adjustments: -i, -ak, -ik, -o (← MSA -hu), -ha, -na, -kum, -hum. Joined directly to the noun, no space. Final tāʾ marbūṭa surfaces as -t- before a suffix (sayyāra → sayyārti).",
+      "forms": [
+        { "key": "1sg.book", "label": "my book", "arabic": "كتابي", "transliteration": "kitābi", "english": "my book" },
+        { "key": "2sg.m.book", "label": "your book (m)", "arabic": "كتابك", "transliteration": "kitābak", "english": "your book", "context": "Said to a man" },
+        { "key": "2sg.f.book", "label": "your book (f)", "arabic": "كتابِك", "transliteration": "kitābik", "english": "your book", "context": "Said to a woman" },
+        { "key": "3sg.m.book", "label": "his book", "arabic": "كتابه", "transliteration": "kitābo", "english": "his book" },
+        { "key": "3sg.f.book", "label": "her book", "arabic": "كتابها", "transliteration": "kitābha", "english": "her book" },
+        { "key": "1pl.book", "label": "our book", "arabic": "كتابنا", "transliteration": "kitābna", "english": "our book" },
+        { "key": "2pl.book", "label": "your (pl) book", "arabic": "كتابكم", "transliteration": "kitābkum", "english": "your book", "context": "Said to a group" },
+        { "key": "3pl.book", "label": "their book", "arabic": "كتابهم", "transliteration": "kitābhum", "english": "their book" },
+        { "key": "1sg.house", "label": "my house", "arabic": "بيتي", "transliteration": "bēti", "english": "my house" },
+        { "key": "2sg.m.house", "label": "your house (m)", "arabic": "بيتك", "transliteration": "bētak", "english": "your house", "context": "Said to a man" },
+        { "key": "1sg.name", "label": "my name", "arabic": "اسمي", "transliteration": "ismi", "english": "my name" },
+        { "key": "2sg.m.name", "label": "your name (m)", "arabic": "اسمك", "transliteration": "ismak", "english": "your name", "context": "Said to a man" },
+        { "key": "1sg.car", "label": "my car", "arabic": "سيّارتي", "transliteration": "sayyārti", "english": "my car", "context": "Note tāʾ marbūṭa → -t- before the suffix" },
+        { "key": "2sg.m.car", "label": "your car (m)", "arabic": "سيّارتك", "transliteration": "sayyārtak", "english": "your car", "context": "Said to a man" }
+      ],
+      "slots": [
+        {
+          "name": "NOUN",
+          "options": [
+            { "arabic": "كتاب", "transliteration": "kitāb", "english": "book" },
+            { "arabic": "تلفون", "transliteration": "talafōn", "english": "phone" },
+            { "arabic": "بيت", "transliteration": "bēt", "english": "house" },
+            { "arabic": "اسم", "transliteration": "ism", "english": "name" },
+            { "arabic": "مفتاح", "transliteration": "muftāḥ", "english": "key" },
+            { "arabic": "شنطة", "transliteration": "shanṭa", "english": "bag (→ shanṭet-)" },
+            { "arabic": "سيّارة", "transliteration": "sayyāra", "english": "car (→ sayyārt-)" },
+            { "arabic": "ولد", "transliteration": "walad", "english": "kid / son" },
+            { "arabic": "أخ", "transliteration": "akh", "english": "brother (→ akhū-)" },
+            { "arabic": "صاحب", "transliteration": "ṣāḥib", "english": "friend / owner" }
+          ]
+        }
+      ],
+      "tags": ["basics", "shops", "kids", "family", "neighbours"],
+      "status": "draft"
+    },
+    {
+      "id": "whose-mine",
+      "name": "Whose? / mine, yours, his (independent possessives)",
+      "pattern": "[Whose] is [DEM]? — it's [POSS]",
+      "arabicPattern": "تبع مين [DEM]؟ — تبعـ[POSS]",
+      "transliterationPattern": "taʿ mīn [DEM]? — taʿ-[POSS]",
+      "fushaNote": "Levantine has two parallel independent possessive sets: تبع (taʿ-) and إل (il-). Both attach the same pronoun suffixes used on nouns. taʿ- is more pan-Levantine; ilī/ilak/etc. is also frequent, especially in shorter answers ('ilī' = 'mine'). MSA uses لـ (li-) similarly.",
+      "forms": [
+        { "key": "q.whose", "label": "whose is this? (lit. for whom)", "arabic": "لمين هاد؟", "transliteration": "la-mīn hāda?", "english": "Whose is this?", "context": "About a masculine thing" },
+        { "key": "q.whose.taʿ", "label": "whose is this? (with taʿ)", "arabic": "تبع مين هاد؟", "transliteration": "taʿ mīn hāda?", "english": "Whose is this?", "pronunciationNote": "taʿ = 'belonging to'; very common spoken alternative to la-mīn." },
+        { "key": "q.whose.f", "label": "whose is this? (f)", "arabic": "لمين هاي؟", "transliteration": "la-mīn hāy?", "english": "Whose is this?", "context": "About a feminine thing" },
+        { "key": "mine", "label": "mine", "arabic": "إلي", "transliteration": "ilī", "english": "Mine.", "pronunciationNote": "Also taʿi. Both common; ilī is shorter, often used as a one-word answer." },
+        { "key": "yours.m", "label": "yours (m)", "arabic": "إلك", "transliteration": "ilak", "english": "Yours.", "context": "Said to a man" },
+        { "key": "yours.f", "label": "yours (f)", "arabic": "إلِك", "transliteration": "ilik", "english": "Yours.", "context": "Said to a woman" },
+        { "key": "his", "label": "his", "arabic": "إله", "transliteration": "ilo", "english": "His." },
+        { "key": "hers", "label": "hers", "arabic": "إلها", "transliteration": "ilha", "english": "Hers." },
+        { "key": "ours", "label": "ours", "arabic": "إلنا", "transliteration": "ilna", "english": "Ours." },
+        { "key": "theirs", "label": "theirs", "arabic": "إلهم", "transliteration": "ilhum", "english": "Theirs." },
+        { "key": "is.mine", "label": "it's mine", "arabic": "هاد إلي", "transliteration": "hāda ilī", "english": "It's mine.", "context": "About a masculine thing" },
+        { "key": "is.yours.m", "label": "is this yours? (m)", "arabic": "هاد إلك؟", "transliteration": "hāda ilak?", "english": "Is this yours?", "context": "Asking a man about a masculine thing" },
+        { "key": "is.yours.f", "label": "is this yours? (f)", "arabic": "هاد إلِك؟", "transliteration": "hāda ilik?", "english": "Is this yours?", "context": "Asking a woman about a masculine thing" },
+        { "key": "neg.mine", "label": "it's not mine", "arabic": "هاد مش إلي", "transliteration": "hāda mish ilī", "english": "It's not mine." },
+        { "key": "is.his", "label": "this is his", "arabic": "هاد إله", "transliteration": "hāda ilo", "english": "This is his." },
+        { "key": "is.hers", "label": "this is hers", "arabic": "هاد إلها", "transliteration": "hāda ilha", "english": "This is hers." },
+        { "key": "is.theirs", "label": "this is theirs", "arabic": "هاد إلهم", "transliteration": "hāda ilhum", "english": "This is theirs." }
+      ],
+      "tags": ["basics", "shops", "neighbours", "family"],
+      "status": "draft"
+    },
+    {
+      "id": "there-is",
+      "name": "There is / there isn't (fī / mā fī)",
+      "pattern": "[There is/isn't] [X]",
+      "arabicPattern": "(ما) في [X]",
+      "transliterationPattern": "(mā) fī [X]",
+      "fushaNote": "Levantine uses في (fī) as an existential 'there is/are' — distinct from the MSA preposition fī ('in'). Negation is mā fī. Past: kān fī / mā kān fī. MSA equivalent: يوجد (yūjad) / لا يوجد (lā yūjad).",
+      "forms": [
+        { "key": "is", "label": "there is / there are", "arabic": "في", "transliteration": "fī", "english": "there is" },
+        { "key": "isnt", "label": "there isn't / there aren't", "arabic": "ما في", "transliteration": "mā fī", "english": "there isn't" },
+        { "key": "q", "label": "is there...?", "arabic": "في [X]؟", "transliteration": "fī [X]?", "english": "is there [X]?" },
+        { "key": "was", "label": "there was", "arabic": "كان في", "transliteration": "kān fī", "english": "there was" },
+        { "key": "wasnt", "label": "there wasn't", "arabic": "ما كان في", "transliteration": "mā kān fī", "english": "there wasn't" },
+        { "key": "is.problem", "label": "there's a problem", "arabic": "في مشكلة", "transliteration": "fī mushkile", "english": "There's a problem." },
+        { "key": "isnt.problem", "label": "no problem", "arabic": "ما في مشكلة", "transliteration": "mā fī mushkile", "english": "No problem." },
+        { "key": "isnt.time", "label": "there's no time", "arabic": "ما في وقت", "transliteration": "mā fī waʾt", "english": "There's no time." },
+        { "key": "q.wifi", "label": "is there wifi?", "arabic": "في واي فاي؟", "transliteration": "fī wāy fāy?", "english": "Is there wifi?" }
+      ],
+      "slots": [
+        {
+          "name": "X",
+          "options": [
+            { "arabic": "فكّة", "transliteration": "fakke", "english": "change" },
+            { "arabic": "مشكلة", "transliteration": "mushkile", "english": "a problem" },
+            { "arabic": "وقت", "transliteration": "waʾt", "english": "time" },
+            { "arabic": "ميّ", "transliteration": "mayy", "english": "water" },
+            { "arabic": "واي فاي", "transliteration": "wāy fāy", "english": "wifi" },
+            { "arabic": "موقف", "transliteration": "mawʾaf", "english": "parking" },
+            { "arabic": "موعد", "transliteration": "mawʿid", "english": "an appointment" },
+            { "arabic": "دكتور", "transliteration": "dakatōr", "english": "a doctor" },
+            { "arabic": "صيدليّة قريبة", "transliteration": "ṣaydaliyye ʾarībe", "english": "a pharmacy nearby" }
+          ]
+        }
+      ],
+      "tags": ["basics", "shops", "drivers", "doctor", "neighbours"],
+      "status": "draft"
     }
   ]
 }

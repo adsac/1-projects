@@ -22,7 +22,7 @@
       "id": "drivers",
       "name": "Drivers / taxi",
       "description": "Talking to taxi and ride drivers in Modi'in / Jerusalem.",
-      "engineIds": ["greetings", "want-biddi", "mumkin", "have-ʿindi", "present-rāḥ", "past-rāḥ", "future-raḥ", "imperative", "question-words", "lazim", "numbers", "time-when"],
+      "engineIds": ["greetings", "want-biddi", "mumkin", "have-ʿindi", "present-rāḥ", "past-rāḥ", "future-raḥ", "imperative", "question-words", "lazim", "numbers", "time-when", "there-is"],
       "phraseIds": [
         "drivers-to-modiin",
         "drivers-to-jerusalem",
@@ -35,14 +35,19 @@
         "drivers-right",
         "drivers-left",
         "drivers-straight",
-        "drivers-thanks-bye"
+        "drivers-thanks-bye",
+        "drivers-wait-minute",
+        "drivers-open-trunk",
+        "drivers-five-minutes",
+        "drivers-meter",
+        "drivers-can-smoke"
       ]
     },
     {
       "id": "shops",
       "name": "Shops & cafés",
       "description": "Ordering, asking prices, paying, basic small talk at shops.",
-      "engineIds": ["greetings", "want-biddi", "mumkin", "have-ʿindi", "present-rāḥ", "question-words", "like-baḥebb", "lazim", "numbers"],
+      "engineIds": ["greetings", "want-biddi", "mumkin", "have-ʿindi", "present-rāḥ", "question-words", "like-baḥebb", "lazim", "numbers", "demonstratives", "possessives", "there-is"],
       "phraseIds": [
         "shops-coffee",
         "shops-coffee-no-sugar",
@@ -53,14 +58,19 @@
         "shops-how-much-is-it",
         "shops-bathroom",
         "shops-i-take-it",
-        "shops-bag"
+        "shops-bag",
+        "shops-no-bag",
+        "shops-wifi",
+        "shops-wifi-password",
+        "shops-is-halal",
+        "shops-vegetarian"
       ]
     },
     {
       "id": "kids",
       "name": "Kids / play",
       "description": "Talking with children at the park or in the building.",
-      "engineIds": ["greetings", "want-biddi", "imperative", "question-words", "like-baḥebb", "numbers"],
+      "engineIds": ["greetings", "want-biddi", "imperative", "question-words", "like-baḥebb", "numbers", "demonstratives", "possessives"],
       "phraseIds": [
         "kids-whats-name",
         "kids-my-name",
@@ -71,14 +81,19 @@
         "kids-good-job",
         "kids-lets-go",
         "kids-cute",
-        "kids-bye-bye"
+        "kids-bye-bye",
+        "kids-what-color",
+        "kids-count-to-ten",
+        "kids-want-swing",
+        "kids-careful-fall",
+        "kids-good-boy"
       ]
     },
     {
       "id": "family",
       "name": "Asking about family",
       "description": "Polite questions about family — wife, kids, parents, work.",
-      "engineIds": ["greetings", "want-biddi", "have-ʿindi", "present-rāḥ", "past-rāḥ", "future-raḥ", "question-words", "like-baḥebb", "numbers", "time-when"],
+      "engineIds": ["greetings", "want-biddi", "have-ʿindi", "present-rāḥ", "past-rāḥ", "future-raḥ", "question-words", "like-baḥebb", "numbers", "time-when", "possessives", "whose-mine"],
       "phraseIds": [
         "family-howare-family",
         "family-thank-god",
@@ -89,7 +104,12 @@
         "family-im-from-us",
         "family-my-wife",
         "family-nice-to-meet",
-        "family-greet-family"
+        "family-greet-family",
+        "family-where-do-you-work",
+        "family-how-long-here",
+        "family-greet-wife",
+        "family-from-where-originally",
+        "family-have-siblings"
       ]
     },
     {
@@ -107,36 +127,103 @@
         "work-see-tomorrow",
         "work-good-day",
         "work-no-problem",
-        "work-from-home"
+        "work-from-home",
+        "work-move-meeting",
+        "work-few-min-late",
+        "work-remote-today",
+        "work-send-email",
+        "work-on-call"
       ]
     },
     {
       "id": "basics",
       "name": "Basics (this/that, mine/yours)",
       "description": "High-frequency building blocks: pointing, claiming, asking whose. Use these in any situation.",
-      "engineIds": [],
-      "phraseIds": []
+      "engineIds": ["demonstratives", "possessives", "whose-mine", "there-is", "want-biddi", "mumkin", "have-ʿindi"],
+      "phraseIds": [
+        "basics-whats-this",
+        "basics-whats-that",
+        "basics-this-one",
+        "basics-mine",
+        "basics-yours-m",
+        "basics-not-mine",
+        "basics-is-this-yours",
+        "basics-i-forgot",
+        "basics-i-lost-it",
+        "basics-i-found-it",
+        "basics-broken",
+        "basics-doesnt-work",
+        "basics-whose-is-this",
+        "basics-its-okay",
+        "basics-of-course",
+        "basics-maybe"
+      ]
     },
     {
       "id": "doctor",
       "name": "Doctor / pharmacy",
       "description": "Symptoms, asking for medicine, appointments, basic health vocabulary.",
-      "engineIds": [],
-      "phraseIds": []
+      "engineIds": ["greetings", "have-ʿindi", "mumkin", "question-words", "there-is", "numbers"],
+      "phraseIds": [
+        "doctor-headache",
+        "doctor-stomach-ache",
+        "doctor-fever",
+        "doctor-back-pain",
+        "doctor-have-ibuprofen",
+        "doctor-have-paracetamol",
+        "doctor-need-appointment",
+        "doctor-pharmacy-nearby",
+        "doctor-allergic-peanuts",
+        "doctor-allergic-penicillin",
+        "doctor-hurts-here",
+        "doctor-since-morning",
+        "doctor-tired",
+        "doctor-need-doctor",
+        "doctor-prescription"
+      ]
     },
     {
       "id": "directions",
       "name": "Directions / navigation",
       "description": "Asking how to get somewhere, describing locations relative to landmarks.",
-      "engineIds": [],
-      "phraseIds": []
+      "engineIds": ["greetings", "question-words", "imperative", "demonstratives", "there-is"],
+      "phraseIds": [
+        "directions-is-it-far",
+        "directions-is-it-near",
+        "directions-how-long",
+        "directions-walk-or-drive",
+        "directions-turn-right",
+        "directions-turn-left",
+        "directions-straight-then-left",
+        "directions-how-to-get",
+        "directions-excuse-where",
+        "directions-im-lost",
+        "directions-show-map",
+        "directions-right-way",
+        "directions-first-street",
+        "directions-roundabout"
+      ]
     },
     {
       "id": "neighbours",
       "name": "Neighbours / building",
       "description": "Talking with neighbours in the building or on the street — door, elevator, parking, kids.",
-      "engineIds": [],
-      "phraseIds": []
+      "engineIds": ["greetings", "mumkin", "have-ʿindi", "demonstratives", "possessives", "whose-mine", "there-is", "question-words"],
+      "phraseIds": [
+        "neighbours-just-moved-in",
+        "neighbours-third-floor",
+        "neighbours-kid-forgot",
+        "neighbours-borrow-sugar",
+        "neighbours-borrow-charger",
+        "neighbours-sorry-noise",
+        "neighbours-elevator-broken",
+        "neighbours-where-park",
+        "neighbours-spot-taken",
+        "neighbours-package-yours",
+        "neighbours-going-up",
+        "neighbours-welcome-building",
+        "neighbours-water-leak"
+      ]
     }
   ]
 }

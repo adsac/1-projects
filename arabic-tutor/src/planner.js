@@ -26,9 +26,18 @@ const QUOTAS = {
  * @param {number} minutes
  * @param {{engines:any[], phrases:any[], scenarios:any[]}} content
  * @param {(id:string)=>(any|null)} stateFor
- * @param {{scenarioPriority:string[], newItemSpeed:string}} settings
+ * @param {{scenarioPriority:string[], newItemSpeed:string, mixRecognition?:boolean}} settings
+ * @param {number} [now]
+ * @param {string|null} [scope]   // optional scenario id to scope the session to
  */
-export function plan(minutes, content, stateFor, settings, now = Date.now()) {
+export function plan(minutes, content, stateFor, settings, now = Date.now(), scope = null) {
+  if (scope) {
+    content = {
+      ...content,
+      phrases: content.phrases.filter((p) => (p.tags || []).includes(scope)),
+      engines: content.engines.filter((e) => (e.tags || []).includes(scope)),
+    };
+  }
   const quota = QUOTAS[minutes] || QUOTAS[10];
   const speedAdj = settings.newItemSpeed === 'fast' ? 1.5 : settings.newItemSpeed === 'slow' ? 0.5 : 1;
   const newMax = Math.round(quota.newMax * speedAdj);
@@ -138,9 +147,12 @@ function interleave(queue) {
   return out;
 }
 
-export function summarize(content, stateFor, now = Date.now()) {
+export function summarize(content, stateFor, now = Date.now(), scope = null) {
+  const phrases = scope
+    ? content.phrases.filter((p) => (p.tags || []).includes(scope))
+    : content.phrases;
   let due = 0, weak = 0, fresh = 0, strong = 0, seen = 0;
-  for (const p of content.phrases) {
+  for (const p of phrases) {
     const st = stateFor(p.id);
     if (isNew(st)) { fresh++; continue; }
     seen++;
@@ -148,5 +160,5 @@ export function summarize(content, stateFor, now = Date.now()) {
     if (isWeak(st)) weak++;
     if (isStrong(st)) strong++;
   }
-  return { due, weak, fresh, strong, seen, total: content.phrases.length };
+  return { due, weak, fresh, strong, seen, total: phrases.length };
 }

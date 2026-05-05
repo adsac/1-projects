@@ -109,15 +109,19 @@ export async function renderHome() {
 
 // ---------------- Practice session ----------------
 
-export async function runSession({ minutes }) {
+export async function runSession({ minutes, scope }) {
   await refreshStates();
   const m = parseInt(minutes, 10);
   const pool = await data.reviewPool(app.content);
-  const queue = plan(m, pool, stateFor, app.settings);
+  const queue = plan(m, pool, stateFor, app.settings, Date.now(), scope || null);
+  const scenario = scope ? app.content.scenarios.find((s) => s.id === scope) : null;
+  const scopeLabel = scenario ? scenario.name : null;
   if (queue.length === 0) {
     mount(el('div', { class: 'col' }, [
-      appbar(`${m} min session`),
-      el('div', { class: 'empty' }, 'Nothing to practice right now. Add a phrase or pick a scenario.'),
+      appbar(scopeLabel ? `${scopeLabel} · ${m} min` : `${m} min session`),
+      el('div', { class: 'empty' }, scopeLabel
+        ? `Nothing to practice in ${scopeLabel} right now. Try a longer time slot or remove the focus.`
+        : 'Nothing to practice right now. Add a phrase or pick a scenario.'),
     ]));
     return;
   }
@@ -131,11 +135,12 @@ export async function runSession({ minutes }) {
 
   async function step() {
     if (i >= queue.length) {
-      await data.logSession({ id: sessionId, startedAt, finishedAt: Date.now(), minutes: m, total: queue.length, correct, lapses });
+      await data.logSession({ id: sessionId, startedAt, finishedAt: Date.now(), minutes: m, scope: scope || null, total: queue.length, correct, lapses });
       mount(el('div', { class: 'col' }, [
         appbar('Session done'),
         el('div', { class: 'card col' }, [
           el('h1', {}, 'Done.'),
+          scopeLabel ? el('div', { class: 'muted' }, `Focused on: ${scopeLabel}`) : null,
           el('p', {}, `${queue.length} items · ${correct} good/easy · ${lapses} again`),
           el('button', { class: 'primary', onclick: () => navigate('/') }, 'Home'),
         ]),
@@ -145,7 +150,9 @@ export async function runSession({ minutes }) {
     }
     const item = queue[i];
     const header = el('div', { class: 'col' }, [
-      appbar(`${i + 1} / ${queue.length} · ${m}min`),
+      appbar(scopeLabel
+        ? `${scopeLabel} · ${i + 1} / ${queue.length}`
+        : `${i + 1} / ${queue.length} · ${m}min`),
       el('div', { class: 'progress' }, [el('span', { style: `width:${Math.round((i / queue.length) * 100)}%` })]),
     ]);
 
@@ -295,11 +302,32 @@ export async function renderScenarios() {
 export async function renderScenario({ id }) {
   const s = app.content.scenarios.find((x) => x.id === id);
   if (!s) { mount(el('div', {}, [appbar('Situation'), el('div', { class: 'empty' }, 'Not found.')])); return; }
+  await refreshStates();
+  const sum = summarize(app.content, stateFor, Date.now(), s.id);
+
   const root = el('div', { class: 'col' });
   root.append(appbar(s.name, { backTo: '/scenarios' }));
   root.append(el('div', { class: 'card col' }, [
     el('p', {}, s.description || ''),
-    el('button', { class: 'primary', onclick: () => navigate('/practice/10') }, 'Practice 10 min, prioritise this'),
+    el('div', { class: 'muted' }, [
+      el('strong', {}, `${sum.strong}`), ' strong · ',
+      el('strong', {}, `${sum.due}`), ' due · ',
+      el('strong', {}, `${sum.weak}`), ' weak · ',
+      el('strong', {}, `${sum.fresh}`), ' new · ',
+      el('strong', {}, `${sum.total}`), ' total',
+    ]),
+  ]));
+
+  root.append(el('h2', {}, 'Practice this scenario'));
+  const tile = (mins, hint) => el('button', { class: 'tile', onclick: () => navigate(`/practice/${mins}/in/${s.id}`) }, [
+    el('span', { class: 'big' }, `${mins} min`),
+    el('small', {}, hint),
+  ]);
+  root.append(el('div', { class: 'grid-2' }, [
+    tile(3, 'quick triage'),
+    tile(7, 'short focused'),
+    tile(10, 'standard'),
+    tile(15, 'longer drill'),
   ]));
 
   const phraseIds = new Set(s.phraseIds || []);

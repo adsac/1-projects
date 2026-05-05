@@ -15,6 +15,7 @@ async function boot() {
 
   router.route('/', views.renderHome);
   router.route('/practice/:minutes', views.runSession);
+  router.route('/practice/:minutes/in/:scope', views.runSession);
   router.route('/engines', views.renderEngines);
   router.route('/engine/:id', views.renderEngine);
   router.route('/scenarios', views.renderScenarios);

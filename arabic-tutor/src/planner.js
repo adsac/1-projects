@@ -88,8 +88,11 @@ export function plan(minutes, content, stateFor, settings, now = Date.now(), sco
 
   // 3. Engine drill block(s): pick an engine the user has touched at least once,
   //    or the first engine in scenario-priority order if cold start.
+  //    Shuffle first so engines tied on scenarioScore (very common — many engines
+  //    share the 'rescue' tag and tie at score 0) rotate across sessions instead
+  //    of always picking the first one in file order (which was always 'greetings').
   if (quota.engineMax > 0 && content.engines.length > 0) {
-    const ranked = content.engines
+    const ranked = shuffle(content.engines)
       .map((e) => ({ e, score: scenarioScore(e) }))
       .sort((a, b) => a.score - b.score);
     for (let i = 0; i < quota.engineMax && i < ranked.length; i++) {

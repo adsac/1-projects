@@ -224,6 +224,20 @@
         "neighbours-welcome-building",
         "neighbours-water-leak"
       ]
+    },
+    {
+      "id": "geography",
+      "name": "Geography & places",
+      "description": "Cities, regions, terrain, and 'where are you from' vocabulary — including Arabic place names that differ from their English/Hebrew forms.",
+      "engineIds": [],
+      "phraseIds": []
+    },
+    {
+      "id": "politics",
+      "name": "Politics & civic life",
+      "description": "Vocabulary for talking about Israeli–Palestinian politics, identity, parties, and history. Includes phrases for engaging respectfully or politely declining the topic.",
+      "engineIds": [],
+      "phraseIds": []
     }
   ]
 }

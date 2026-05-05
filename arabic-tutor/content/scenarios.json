@@ -1,0 +1,10 @@
+{
+  "items": [
+    { "id": "rescue",  "name": "Rescue",            "description": "What to say when you're stuck — slow down, repeat, I don't understand." },
+    { "id": "drivers", "name": "Drivers / taxi",    "description": "Talking to taxi and ride drivers in Modi'in / Jerusalem." },
+    { "id": "shops",   "name": "Shops & cafés",     "description": "Ordering, asking prices, paying, basic small talk at shops." },
+    { "id": "kids",    "name": "Kids / play",       "description": "Talking with children at the park or in the building." },
+    { "id": "family",  "name": "Asking about family","description": "Polite questions about family — wife, kids, parents, work." },
+    { "id": "work",    "name": "Work / professional","description": "Workplace small talk and basic professional context." }
+  ]
+}

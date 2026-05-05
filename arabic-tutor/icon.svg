@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+  <rect width="512" height="512" rx="96" fill="#0f1f1a"/>
+  <rect x="24" y="24" width="464" height="464" rx="80" fill="#1d3a30"/>
+  <text x="256" y="356" text-anchor="middle"
+        font-family="'Noto Naskh Arabic','Amiri',serif"
+        font-size="340" fill="#e8d6a7">ع</text>
+</svg>

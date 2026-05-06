@@ -1,6 +1,9 @@
 // Service worker — cache app shell + content for offline use.
-// Bump CACHE_VERSION whenever shell files change so clients pick up updates.
-const CACHE_VERSION = 'v12';
+// Bump CACHE_VERSION on any user-visible change (shell *or* content).
+// The in-app "Update available · reload" toast only fires when the SW
+// file itself differs from the previously-installed copy, so a content-
+// only change won't be signalled unless the version is bumped here.
+const CACHE_VERSION = 'v13';
 const SHELL_CACHE = `arabic-tutor-shell-${CACHE_VERSION}`;
 const CONTENT_CACHE = `arabic-tutor-content-${CACHE_VERSION}`;
 

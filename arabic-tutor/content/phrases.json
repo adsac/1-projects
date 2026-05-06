@@ -4850,6 +4850,136 @@
         "rescue"
       ],
       "status": "draft"
+    },
+    {
+      "id": "talk-agree",
+      "arabic": "أنا موافق",
+      "transliteration": "ana muwāfiʾ",
+      "english": "I agree.",
+      "context": "Female speaker: ana muwāfʾa (أنا موافقة). muwāfiʾ is the Form III active participle of the root w-f-q ('to agree / to be in accord').",
+      "tags": [
+        "politics",
+        "family",
+        "work",
+        "rescue"
+      ],
+      "status": "draft"
+    },
+    {
+      "id": "talk-disagree",
+      "arabic": "أنا مش موافق",
+      "transliteration": "ana mish muwāfiʾ",
+      "english": "I don't agree.",
+      "context": "Female: ana mish muwāfʾa. mish is the standard Levantine negator for non-verbal predicates (nouns, adjectives, participles).",
+      "tags": [
+        "politics",
+        "family",
+        "work"
+      ],
+      "status": "draft"
+    },
+    {
+      "id": "talk-youre-right",
+      "arabic": "معك حقّ",
+      "transliteration": "maʿak ḥaʾʾ",
+      "english": "You're right. / You have a point.",
+      "context": "To a woman: maʿik ḥaʾʾ. Lit. 'with you (is) the right'. In everyday Jerusalem speech the qāf in ḥaqq is glottalised: ḥaʾʾ. In more formal/religious senses the same word ('right / truth') keeps the q: ḥaqq.",
+      "tags": [
+        "politics",
+        "family",
+        "work",
+        "rescue"
+      ],
+      "status": "draft"
+    },
+    {
+      "id": "talk-exactly",
+      "arabic": "بالضبط",
+      "transliteration": "bi-ẓ-ẓabṭ",
+      "english": "Exactly.",
+      "context": "Sun-letter assimilation in pronunciation: bi-l + ḍabṭ → bi-ẓ-ẓabṭ. (Levantine merges ḍ/ẓ into ẓ in many emphatic contexts.) Used to confirm or strongly agree.",
+      "tags": [
+        "politics",
+        "family",
+        "work",
+        "rescue"
+      ],
+      "status": "draft"
+    },
+    {
+      "id": "talk-i-think",
+      "arabic": "بعتقد",
+      "transliteration": "baʿtaʾid",
+      "english": "I think (so). / I believe so.",
+      "context": "From اعتقد ('to believe / be of the opinion'). To say 'I think so' as a standalone reply: baʿtaʾid hēk ('I think like that'). bafakkir is also used for 'I think' but leans more 'I'm thinking it over'.",
+      "tags": [
+        "politics",
+        "family",
+        "work"
+      ],
+      "status": "draft"
+    },
+    {
+      "id": "talk-dont-think",
+      "arabic": "ما بعتقد",
+      "transliteration": "mā baʿtaʾid",
+      "english": "I don't think so.",
+      "tags": [
+        "politics",
+        "family",
+        "work"
+      ],
+      "status": "draft"
+    },
+    {
+      "id": "talk-in-my-opinion",
+      "arabic": "برأيي",
+      "transliteration": "bi-raʾyi",
+      "english": "In my opinion…",
+      "context": "raʾy = opinion. raʾyi = my opinion. Use to soften a statement: bi-raʾyi, hāda mish ṣaḥ ('in my opinion, this isn't right').",
+      "tags": [
+        "politics",
+        "family",
+        "work"
+      ],
+      "status": "draft"
+    },
+    {
+      "id": "talk-whats-your-opinion",
+      "arabic": "شو رأيك؟",
+      "transliteration": "shū raʾyak?",
+      "english": "What's your opinion? / What do you think?",
+      "context": "To a woman: shū raʾyik? For 'what do you think about X?' use the existing pol-what-do-you-think pattern: shū raʾyak fī…?",
+      "tags": [
+        "politics",
+        "family",
+        "work"
+      ],
+      "status": "draft"
+    },
+    {
+      "id": "talk-i-oppose-this",
+      "arabic": "أنا ضد هاد",
+      "transliteration": "ana ḍidd hāda",
+      "english": "I'm against this. / I oppose this.",
+      "context": "ḍidd = 'against' (the opposite of maʿ 'with / for'). For a feminine referent: ana ḍidd hāy.",
+      "tags": [
+        "politics",
+        "family"
+      ],
+      "status": "draft"
+    },
+    {
+      "id": "talk-argument",
+      "arabic": "نقاش",
+      "transliteration": "niqāsh",
+      "english": "a discussion / an argument",
+      "context": "Slightly formal register; spoken Levantine often glottalises the qāf to niʾāsh. For a heated argument / quarrel, use khilāf ('disagreement') or mushkile ('a problem').",
+      "tags": [
+        "politics",
+        "family"
+      ],
+      "status": "draft"
     }
   ]
 }

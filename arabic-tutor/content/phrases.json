@@ -4744,6 +4744,112 @@
         "politics"
       ],
       "status": "draft"
+    },
+    {
+      "id": "learn-arabic-uni",
+      "arabic": "تعلّمت شوي عربي بالجامعة",
+      "transliteration": "tʿallamt shwayy ʿarabi bi-l-jāmʿa",
+      "english": "I learned a bit of Arabic at university.",
+      "context": "tʿallamt is both 'I learned' and 'you (m) learned' — same form. Prefix ana ('I') to disambiguate when context isn't clear: ana tʿallamt.",
+      "tags": [
+        "family",
+        "work",
+        "basics"
+      ],
+      "status": "draft"
+    },
+    {
+      "id": "learn-where-uni",
+      "arabic": "وين تعلّمت العربي؟",
+      "transliteration": "wēn tʿallamt il-ʿarabi?",
+      "english": "Where did you learn Arabic?",
+      "context": "To a man. To a woman: wēn tʿallamti il-ʿarabi?",
+      "tags": [
+        "family",
+        "work",
+        "basics"
+      ],
+      "status": "draft"
+    },
+    {
+      "id": "pol-extremist",
+      "arabic": "متطرّف",
+      "transliteration": "mutaṭarrif",
+      "english": "an extremist (m)",
+      "context": "Female: mutaṭarrife (متطرّفة). Plural: mutaṭarrifīn (متطرّفين).",
+      "tags": [
+        "politics"
+      ],
+      "status": "draft"
+    },
+    {
+      "id": "pol-extremists",
+      "arabic": "المتطرّفين",
+      "transliteration": "al-mutaṭarrifīn",
+      "english": "the extremists",
+      "context": "Spoken Levantine uses the oblique plural -īn regardless of grammatical case (MSA nominative would be al-mutaṭarrifūn).",
+      "tags": [
+        "politics"
+      ],
+      "status": "draft"
+    },
+    {
+      "id": "pol-extremism",
+      "arabic": "التطرّف",
+      "transliteration": "at-taṭarruf",
+      "english": "extremism",
+      "context": "Sun-letter assimilation: al + t = at-. Formal political vocabulary, MSA-flavoured even in spoken use.",
+      "tags": [
+        "politics"
+      ],
+      "status": "draft"
+    },
+    {
+      "id": "pol-moderate",
+      "arabic": "معتدل",
+      "transliteration": "muʿtadil",
+      "english": "moderate (m) / a moderate (m)",
+      "context": "Female: muʿtadile (معتدلة). Used both as adjective ('a moderate position') and noun ('a moderate person').",
+      "tags": [
+        "politics"
+      ],
+      "status": "draft"
+    },
+    {
+      "id": "pol-extremists-both-sides",
+      "arabic": "في متطرّفين من الطرفين",
+      "transliteration": "fī mutaṭarrifīn min iṭ-ṭarafēn",
+      "english": "There are extremists on both sides.",
+      "context": "iṭ-ṭarafēn — the dual ('two sides'). A common framing for discussing the conflict without taking sides.",
+      "tags": [
+        "politics",
+        "rescue"
+      ],
+      "status": "draft"
+    },
+    {
+      "id": "pol-most-moderate",
+      "arabic": "الأغلبيّة معتدلة",
+      "transliteration": "al-aghlabiyye muʿtadile",
+      "english": "The majority is moderate.",
+      "context": "Useful framing if you want to push back on stereotypes without being argumentative. al-aghlabiyye is feminine, so the predicate takes the f form muʿtadile.",
+      "tags": [
+        "politics",
+        "rescue"
+      ],
+      "status": "draft"
+    },
+    {
+      "id": "pol-im-moderate",
+      "arabic": "أنا معتدل",
+      "transliteration": "ana muʿtadil",
+      "english": "I'm a moderate.",
+      "context": "Female speaker: ana muʿtadile (أنا معتدلة).",
+      "tags": [
+        "politics",
+        "rescue"
+      ],
+      "status": "draft"
     }
   ]
 }

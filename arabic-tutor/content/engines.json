@@ -631,6 +631,167 @@
       ],
       "tags": ["basics", "shops", "drivers", "doctor", "neighbours"],
       "status": "draft"
+    },
+    {
+      "id": "give-aʿṭi",
+      "name": "Give me / I gave (aʿṭa)",
+      "pattern": "[Give/I gave] [OBJECT]",
+      "arabicPattern": "أعطيني [OBJECT]",
+      "transliterationPattern": "aʿṭīni [OBJECT]",
+      "fushaNote": "Levantine 'give' is from MSA أعطى (aʿṭā). The imperative + 1sg object pronoun fuses: aʿṭi + ni → aʿṭīni. Past stem: aʿṭē- (1sg/2sg), aʿṭā- (3sg.m).",
+      "forms": [
+        { "key": "imp.me", "label": "give me", "arabic": "أعطيني", "transliteration": "aʿṭīni", "english": "Give me." },
+        { "key": "imp.me.water", "label": "give me water", "arabic": "أعطيني ميّ", "transliteration": "aʿṭīni mayy", "english": "Give me water." },
+        { "key": "imp.me.one", "label": "give me one", "arabic": "أعطيني واحد", "transliteration": "aʿṭīni wāḥad", "english": "Give me one.", "context": "wāḥad for masculine items; waḥde for feminine items." },
+        { "key": "imp.me.minute", "label": "give me a minute", "arabic": "أعطيني دقيقة", "transliteration": "aʿṭīni daʾīʾa", "english": "Give me a minute.", "context": "Standard request to wait briefly." },
+        { "key": "imp.him", "label": "give him", "arabic": "أعطيه", "transliteration": "aʿṭīh", "english": "Give him." },
+        { "key": "imp.her", "label": "give her", "arabic": "أعطيها", "transliteration": "aʿṭīha", "english": "Give her." },
+        { "key": "imp.us", "label": "give us", "arabic": "أعطينا", "transliteration": "aʿṭīna", "english": "Give us." },
+        { "key": "imp.them", "label": "give them", "arabic": "أعطيهم", "transliteration": "aʿṭīhum", "english": "Give them." },
+        { "key": "1sg.past.it", "label": "I gave it (m)", "arabic": "أعطيته", "transliteration": "aʿṭēto", "english": "I gave it / I gave him.", "context": "-o = 'him/it' (m). For a feminine object: aʿṭētha." },
+        { "key": "1sg.past.you", "label": "I gave you (m)", "arabic": "أعطيتك", "transliteration": "aʿṭētak", "english": "I gave you (m)." },
+        { "key": "3sg.m.past.me", "label": "he gave me", "arabic": "أعطاني", "transliteration": "aʿṭāni", "english": "He gave me." },
+        { "key": "1sg.pres.you", "label": "I'll give you (m)", "arabic": "بعطيك", "transliteration": "baʿṭīk", "english": "I'll give you (m).", "context": "b- prefix on the imperfect = habitual / immediate-future 'I give'." },
+        { "key": "neg.imp.me", "label": "don't give me", "arabic": "ما تعطيني", "transliteration": "mā tiʿṭīni", "english": "Don't give me.", "context": "Negative imperative: mā + 2sg imperfect." }
+      ],
+      "slots": [
+        {
+          "name": "OBJECT",
+          "options": [
+            { "arabic": "ميّ", "transliteration": "mayy", "english": "water" },
+            { "arabic": "فكّة", "transliteration": "fakke", "english": "change" },
+            { "arabic": "الحساب", "transliteration": "il-ḥsāb", "english": "the bill" },
+            { "arabic": "دقيقة", "transliteration": "daʾīʾa", "english": "a minute" },
+            { "arabic": "واحد", "transliteration": "wāḥad", "english": "one (m)" },
+            { "arabic": "كرتين", "transliteration": "kartēn", "english": "two cards" },
+            { "arabic": "شي بارد", "transliteration": "shi bārid", "english": "something cold" },
+            { "arabic": "رقمك", "transliteration": "raʾmak", "english": "your number (m)" }
+          ]
+        }
+      ],
+      "tags": ["rescue", "drivers", "shops", "kids", "family"],
+      "status": "draft"
+    },
+    {
+      "id": "bring-jīb",
+      "name": "Bring me X (jīb / jībli)",
+      "pattern": "Bring me [ITEM]",
+      "arabicPattern": "جبلي [ITEM]",
+      "transliterationPattern": "jībli [ITEM]",
+      "fushaNote": "Levantine jāb / yjīb (root j-y-b) replaces MSA أحضر (ʾaḥḍara) / أتى بـ (ʾatā bi-). The imperative + -li ('to me') contracts: jīb + li → jībli (m), jībi + li → jībīli (f), jību + li → jībūli (pl).",
+      "forms": [
+        { "key": "imp.m", "label": "bring! (m)", "arabic": "جيب", "transliteration": "jīb", "english": "Bring!", "context": "Said to a man." },
+        { "key": "imp.f", "label": "bring! (f)", "arabic": "جيبي", "transliteration": "jībi", "english": "Bring!", "context": "Said to a woman." },
+        { "key": "imp.me.m", "label": "bring me (to m)", "arabic": "جبلي", "transliteration": "jībli", "english": "Bring me.", "context": "Said to a man." },
+        { "key": "imp.me.f", "label": "bring me (to f)", "arabic": "جبيلي", "transliteration": "jībīli", "english": "Bring me.", "context": "Said to a woman." },
+        { "key": "imp.me.water.m", "label": "bring me water (to m)", "arabic": "جبلي ميّ", "transliteration": "jībli mayy", "english": "Bring me water." },
+        { "key": "imp.me.bill.m", "label": "bring me the bill (to m)", "arabic": "جبلي الحساب", "transliteration": "jībli il-ḥsāb", "english": "Bring me the bill." },
+        { "key": "imp.it.m", "label": "bring it (m object)", "arabic": "جيبه", "transliteration": "jībo", "english": "Bring it.", "context": "Object is masculine." },
+        { "key": "imp.it.f", "label": "bring it (f object)", "arabic": "جيبها", "transliteration": "jībha", "english": "Bring it.", "context": "Object is feminine." },
+        { "key": "imp.them", "label": "bring them", "arabic": "جيبهم", "transliteration": "jībhum", "english": "Bring them." },
+        { "key": "1sg.past", "label": "I brought", "arabic": "جبت", "transliteration": "jibt", "english": "I brought." },
+        { "key": "3sg.m.past", "label": "he brought", "arabic": "جاب", "transliteration": "jāb", "english": "He brought." },
+        { "key": "1sg.fut", "label": "I'll bring", "arabic": "رح أجيب", "transliteration": "raḥ ajīb", "english": "I'll bring." },
+        { "key": "mumkin.me.m", "label": "can you bring me? (to m)", "arabic": "ممكن تجبلي؟", "transliteration": "mumkin tjībli?", "english": "Can you bring me?", "context": "Said to a man." },
+        { "key": "neg.dont.m", "label": "don't bring (to m)", "arabic": "لا تجيب", "transliteration": "lā tjīb", "english": "Don't bring.", "context": "Said to a man." }
+      ],
+      "slots": [
+        {
+          "name": "ITEM",
+          "options": [
+            { "arabic": "ميّ", "transliteration": "mayy", "english": "water" },
+            { "arabic": "كاسة ميّ", "transliteration": "kāset mayy", "english": "a glass of water" },
+            { "arabic": "قهوة", "transliteration": "ʾahwe", "english": "coffee" },
+            { "arabic": "المنيو", "transliteration": "il-menu", "english": "the menu" },
+            { "arabic": "الحساب", "transliteration": "il-ḥsāb", "english": "the bill" },
+            { "arabic": "محارم", "transliteration": "maḥārim", "english": "napkins / tissues" },
+            { "arabic": "المفاتيح", "transliteration": "il-mafātīḥ", "english": "the keys" },
+            { "arabic": "الشنطة", "transliteration": "ish-shanṭa", "english": "the bag" }
+          ]
+        }
+      ],
+      "tags": ["drivers", "shops", "kids", "family"],
+      "status": "draft"
+    },
+    {
+      "id": "put-ḥaṭṭ",
+      "name": "Put it here / on the (ḥaṭṭ)",
+      "pattern": "Put it [LOCATION]",
+      "arabicPattern": "حطّه [LOCATION]",
+      "transliterationPattern": "ḥuṭṭo [LOCATION]",
+      "fushaNote": "Levantine ḥaṭṭ / yḥuṭṭ (root ḥ-ṭ-ṭ) replaces MSA وضع (waḍaʿa). Imperative ḥuṭṭ (m), ḥuṭṭi (f), ḥuṭṭu (pl). Object pronouns clitic onto the verb: ḥuṭṭ + o → ḥuṭṭo ('put it'-m), + ha → ḥuṭṭha ('put it'-f).",
+      "forms": [
+        { "key": "imp.m", "label": "put! (m)", "arabic": "حطّ", "transliteration": "ḥuṭṭ", "english": "Put!", "context": "Said to a man." },
+        { "key": "imp.f", "label": "put! (f)", "arabic": "حطّي", "transliteration": "ḥuṭṭi", "english": "Put!", "context": "Said to a woman." },
+        { "key": "imp.it.m", "label": "put it (m object)", "arabic": "حطّه", "transliteration": "ḥuṭṭo", "english": "Put it.", "context": "Object is masculine." },
+        { "key": "imp.it.f", "label": "put it (f object)", "arabic": "حطّها", "transliteration": "ḥuṭṭha", "english": "Put it.", "context": "Object is feminine." },
+        { "key": "imp.them", "label": "put them", "arabic": "حطّهم", "transliteration": "ḥuṭṭhum", "english": "Put them." },
+        { "key": "imp.it.here", "label": "put it here", "arabic": "حطّه هون", "transliteration": "ḥuṭṭo hōn", "english": "Put it here." },
+        { "key": "imp.it.there", "label": "put it over there", "arabic": "حطّه هنيك", "transliteration": "ḥuṭṭo hunīk", "english": "Put it over there.", "context": "hunīk = 'over there', further than hunāk." },
+        { "key": "imp.it.table", "label": "put it on the table", "arabic": "حطّه ع الطاولة", "transliteration": "ḥuṭṭo ʿa ṭ-ṭāwle", "english": "Put it on the table." },
+        { "key": "imp.it.kitchen", "label": "put it in the kitchen", "arabic": "حطّه بالمطبخ", "transliteration": "ḥuṭṭo bil-maṭbakh", "english": "Put it in the kitchen." },
+        { "key": "1sg.pres.it.here", "label": "I'll put it here", "arabic": "بحطّه هون", "transliteration": "baḥuṭṭo hōn", "english": "I'll put it here.", "context": "b- prefix on the imperfect = immediate-future / habitual." },
+        { "key": "1sg.past.it.here", "label": "I put it here (already)", "arabic": "حطّيته هون", "transliteration": "ḥaṭṭēto hōn", "english": "I put it here.", "context": "Past tense — referring to an earlier action." },
+        { "key": "ask.where", "label": "where should I put it?", "arabic": "وين أحطّه؟", "transliteration": "wēn aḥuṭṭo?", "english": "Where should I put it?" },
+        { "key": "mumkin.it.here", "label": "can you put it here?", "arabic": "ممكن تحطّه هون؟", "transliteration": "mumkin tḥuṭṭo hōn?", "english": "Can you put it here?", "context": "Said to a man. To a woman: mumkin tḥuṭṭīh hōn?" },
+        { "key": "neg.dont.m", "label": "don't put (m)", "arabic": "لا تحطّ", "transliteration": "lā tḥuṭṭ", "english": "Don't put.", "context": "Said to a man." }
+      ],
+      "slots": [
+        {
+          "name": "LOCATION",
+          "options": [
+            { "arabic": "هون", "transliteration": "hōn", "english": "here" },
+            { "arabic": "هنيك", "transliteration": "hunīk", "english": "over there" },
+            { "arabic": "ع الطاولة", "transliteration": "ʿa ṭ-ṭāwle", "english": "on the table" },
+            { "arabic": "ع الكرسي", "transliteration": "ʿa l-kursi", "english": "on the chair" },
+            { "arabic": "ع الرفّ", "transliteration": "ʿa r-raff", "english": "on the shelf" },
+            { "arabic": "بالمطبخ", "transliteration": "bil-maṭbakh", "english": "in the kitchen" },
+            { "arabic": "بالبرّاد", "transliteration": "bil-barrād", "english": "in the fridge" },
+            { "arabic": "بالشنطة", "transliteration": "bish-shanṭa", "english": "in the bag" },
+            { "arabic": "حدّ الباب", "transliteration": "ḥadd il-bāb", "english": "next to the door" }
+          ]
+        }
+      ],
+      "tags": ["family", "kids", "neighbours", "shops"],
+      "status": "draft"
+    },
+    {
+      "id": "past-taʿallam",
+      "name": "I learned / past tense — taʿallam",
+      "pattern": "[SUBJECT] learned [COMPLEMENT]",
+      "arabicPattern": "[CONJ-tʿallam] [COMPLEMENT]",
+      "transliterationPattern": "[CONJ-tʿallam] [COMPLEMENT]",
+      "fushaNote": "taʿallam (Form V, تعلّم) is a regular verb that shows the standard Levantine past-tense suffix paradigm without the stem changes hollow verbs like rāḥ have. Use this engine to internalise the suffixes (-t, -ti, -∅, -at, -na, -tu, -u). MSA: تعلّمتُ (taʿallamtu).",
+      "forms": [
+        { "key": "1sg", "label": "I learned", "arabic": "تعلّمت", "transliteration": "tʿallamt", "english": "I learned." },
+        { "key": "2sg.m", "label": "you learned (m)", "arabic": "تعلّمت", "transliteration": "tʿallamt", "english": "You learned.", "context": "Said to a man (same form as 1sg — context distinguishes)." },
+        { "key": "2sg.f", "label": "you learned (f)", "arabic": "تعلّمتي", "transliteration": "tʿallamti", "english": "You learned.", "context": "Said to a woman." },
+        { "key": "3sg.m", "label": "he learned", "arabic": "تعلّم", "transliteration": "tʿallam", "english": "He learned." },
+        { "key": "3sg.f", "label": "she learned", "arabic": "تعلّمت", "transliteration": "tʿallamat", "english": "She learned." },
+        { "key": "1pl", "label": "we learned", "arabic": "تعلّمنا", "transliteration": "tʿallamna", "english": "We learned." },
+        { "key": "2pl", "label": "you (pl) learned", "arabic": "تعلّمتوا", "transliteration": "tʿallamtu", "english": "You (pl) learned." },
+        { "key": "3pl", "label": "they learned", "arabic": "تعلّموا", "transliteration": "tʿallamu", "english": "They learned." },
+        { "key": "neg.1sg", "label": "I didn't learn", "arabic": "ما تعلّمت", "transliteration": "mā tʿallamt", "english": "I didn't learn." },
+        { "key": "q.where.m", "label": "where did you learn? (m)", "arabic": "وين تعلّمت؟", "transliteration": "wēn tʿallamt?", "english": "Where did you learn?", "context": "To a man. To a woman: wēn tʿallamti?" }
+      ],
+      "slots": [
+        {
+          "name": "COMPLEMENT",
+          "options": [
+            { "arabic": "عربي", "transliteration": "ʿarabi", "english": "Arabic" },
+            { "arabic": "شوي عربي", "transliteration": "shwayy ʿarabi", "english": "a little Arabic" },
+            { "arabic": "عبري", "transliteration": "ʿibri", "english": "Hebrew" },
+            { "arabic": "إنجليزي", "transliteration": "inglīzi", "english": "English" },
+            { "arabic": "بالجامعة", "transliteration": "bi-l-jāmʿa", "english": "at university" },
+            { "arabic": "بالمدرسة", "transliteration": "bi-l-madrase", "english": "at school" },
+            { "arabic": "بدورة", "transliteration": "bi-dawra", "english": "in a course" },
+            { "arabic": "شوي عربي بالجامعة", "transliteration": "shwayy ʿarabi bi-l-jāmʿa", "english": "a little Arabic at university" },
+            { "arabic": "كتير بالجامعة", "transliteration": "ktīr bi-l-jāmʿa", "english": "a lot at university" }
+          ]
+        }
+      ],
+      "tags": ["family", "work", "basics"],
+      "status": "draft"
     }
   ]
 }

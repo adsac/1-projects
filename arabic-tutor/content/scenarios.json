@@ -489,7 +489,14 @@
         "pol-police-officer",
         "pol-president",
         "pol-mk",
-        "pol-mayor"
+        "pol-mayor",
+        "pol-extremist",
+        "pol-extremists",
+        "pol-extremism",
+        "pol-moderate",
+        "pol-extremists-both-sides",
+        "pol-most-moderate",
+        "pol-im-moderate"
       ]
     }
   ]

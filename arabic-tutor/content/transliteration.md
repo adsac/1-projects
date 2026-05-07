@@ -121,6 +121,57 @@ shift in one short sentence. Examples:
 Only add a fushaNote when it actually helps memory or disambiguation.
 Don't pad every item with one.
 
+## Literal meanings
+
+When a phrase's idiomatic meaning differs from the word-for-word sum of
+its parts — greetings, set expressions, fixed metaphors, body-part
+idioms — include the literal gloss alongside the natural English. The
+literal gives the learner a hook for memory and a feel for how the
+language puts ideas together.
+
+Format: `Lit. '<word-for-word translation>'.` Place it in `context` (the
+default home for these), or in `pronunciationNote` / `fushaNote` if
+that's where the rest of the note lives. Don't invent a new field.
+
+Examples already in the data:
+
+- `marḥabtēn` → "Hello back." Lit. 'two hellos' (warmer reply).
+- `maʿ is-salāme` → "Goodbye." Lit. 'with safety'.
+- `ṣabāḥ in-nūr` → "Good morning back." Lit. 'morning of light'.
+- `yalla` → "Let's go / Come on." From يا الله, lit. 'O God'.
+- `biddha waʾt` → "It'll take time." Lit. 'it [f] wants time'.
+- `mā shāʾ Allāh` → admiration interjection. Lit. 'what God has willed'.
+- `raʾīs il-baladiyya` → "a mayor." Lit. 'head of the municipality'.
+
+Skip the literal when it would just restate the English (e.g.
+`mā fhimt` = "I didn't understand" — no metaphor, no need). And keep it
+short — one short sentence, not a full etymology. Etymology that crosses
+into MSA goes in `fushaNote`, not here.
+
+## Verb–noun pairing
+
+When a card teaches a verb form (especially in requests / imperatives
+like "help me", "repeat", "wait"), name the related noun in `context`.
+Arabic roots cluster verbs and nouns tightly, so showing the noun
+alongside the verb gives the learner two anchors for the same root.
+
+Format: `noun: <noun-form> ('<gloss>').` (Place inside the existing
+`context` text — don't invent a new field.)
+
+Examples:
+
+- `tsāʿidni` ("help me") — noun: `musāʿada` ('help / assistance').
+- `tʿīd` ("repeat") — noun: `iʿāda` ('a repetition').
+- `baʿtaʾid` ("I think / believe") — noun: `iʿtiqād` ('a belief').
+- `baḥtirim` ("I respect") — noun: `iḥtirām` ('respect').
+- `atʿallam` ("I learn") — noun: `taʿallum` ('learning'); related:
+  `taʿlīm` ('teaching / education').
+
+Skip when the noun shape matches the verb shape so closely that
+naming it adds nothing (most Form I masdars where English uses the
+same word for both — `shaghl` ↔ `shaghal`, both glossed 'work'), or
+when the noun is far less useful than the verb. Don't pad.
+
 ## Status
 
 Every item starts as `"status": "draft"` until the user (Adam) has

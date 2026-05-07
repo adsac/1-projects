@@ -283,7 +283,7 @@
         { "key": "imp.look.m", "label": "look! (m)", "arabic": "شوف", "transliteration": "shūf", "english": "Look!", "context": "Said to a man" },
         { "key": "imp.say.m", "label": "say! (m)", "arabic": "قول", "transliteration": "ʾūl", "english": "Say!", "context": "Said to a man" },
         { "key": "imp.repeat.m", "label": "repeat! (m)", "arabic": "أعِد", "transliteration": "aʿid", "english": "Repeat!", "context": "Said to a man" },
-        { "key": "imp.slow.m", "label": "slow down (m)", "arabic": "على مهلك", "transliteration": "ʿala mahlak", "english": "Take it easy / slow down.", "context": "Said to a man" },
+        { "key": "imp.slow.m", "label": "slow down (m)", "arabic": "على مهلك", "transliteration": "ʿala mahlak", "english": "Take it easy / slow down.", "context": "Lit. 'on your leisure / at your own pace'. Said to a man; to a woman: ʿala mahlik." },
         { "key": "neg.go.m", "label": "don't go! (m)", "arabic": "لا تروح", "transliteration": "lā trūḥ", "english": "Don't go!", "context": "Said to a man" },
         { "key": "neg.go.f", "label": "don't go! (f)", "arabic": "لا تروحي", "transliteration": "lā trūḥi", "english": "Don't go!", "context": "Said to a woman" },
         { "key": "neg.worry.m", "label": "don't worry (m)", "arabic": "لا تقلق", "transliteration": "lā tiʾlaʾ", "english": "Don't worry.", "context": "Said to a man (reassurance)" }

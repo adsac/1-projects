@@ -37,6 +37,7 @@
       "arabic": "ممكن تعيد؟",
       "transliteration": "mumkin tʿīd?",
       "english": "Can you repeat?",
+      "context": "Verb aʿād / yʿīd ('to repeat / do again'). Noun: iʿāda ('a repetition'). To a woman: mumkin tʿīdi?",
       "tags": [
         "rescue",
         "drivers",
@@ -196,6 +197,7 @@
       "arabic": "ممكن تساعدني؟",
       "transliteration": "mumkin tsāʿidni?",
       "english": "Can you help me?",
+      "context": "tsāʿidni = 'you (m) help me'; -ni is the 1sg object clitic. Noun: musāʿada ('help / assistance'). To a woman: mumkin tsāʿdīni?",
       "tags": [
         "rescue",
         "drivers",
@@ -1247,7 +1249,7 @@
       "arabic": "سلّم لي على العيلة",
       "transliteration": "sallim-li ʿal-ʿēle",
       "english": "Say hi to the family for me.",
-      "context": "Said as part of farewell, to a man",
+      "context": "Lit. 'deliver greeting for me onto the family'. Said as part of a farewell, to a man. To a woman: sallmī-li ʿal-ʿēle.",
       "tags": [
         "family"
       ],
@@ -3022,7 +3024,7 @@
       "arabic": "سلّم لي على مرتك",
       "transliteration": "sallim-li ʿa marrtak",
       "english": "Say hi to your wife from me.",
-      "context": "Said to a man at parting",
+      "context": "Lit. 'deliver greeting for me onto your wife'. Said to a man at parting.",
       "tags": [
         "family"
       ],
@@ -4897,7 +4899,7 @@
       "arabic": "بالضبط",
       "transliteration": "bi-ẓ-ẓabṭ",
       "english": "Exactly.",
-      "context": "Sun-letter assimilation in pronunciation: bi-l + ḍabṭ → bi-ẓ-ẓabṭ. (Levantine merges ḍ/ẓ into ẓ in many emphatic contexts.) Used to confirm or strongly agree.",
+      "context": "Lit. 'with the precision'. Sun-letter assimilation: bi-l + ḍabṭ → bi-ẓ-ẓabṭ (Levantine merges ḍ/ẓ into ẓ in many emphatic contexts). Used to confirm or strongly agree.",
       "tags": [
         "politics",
         "family",
@@ -4911,7 +4913,7 @@
       "arabic": "بعتقد",
       "transliteration": "baʿtaʾid",
       "english": "I think (so). / I believe so.",
-      "context": "From اعتقد ('to believe / be of the opinion'). To say 'I think so' as a standalone reply: baʿtaʾid hēk ('I think like that'). bafakkir is also used for 'I think' but leans more 'I'm thinking it over'.",
+      "context": "From اعتقد ('to believe / be of the opinion'). Noun: iʿtiqād ('a belief / conviction'). To say 'I think so' as a standalone reply: baʿtaʾid hēk ('I think like that'). bafakkir is also used for 'I think' but leans more 'I'm thinking it over'.",
       "tags": [
         "politics",
         "family",

@@ -64,6 +64,7 @@
       "arabic": "أنا بتعلّم عربي",
       "transliteration": "ana batʿallam ʿarabi",
       "english": "I'm learning Arabic.",
+      "context": "batʿallam = Form V of ʿ-l-m. Noun: taʿallum ('learning'); related: taʿlīm ('teaching / education').",
       "pronunciationNote": "ʿ in ʿarabi is the pharyngeal — give it weight; don't say 'arabi'.",
       "tags": [
         "rescue",
@@ -249,7 +250,7 @@
       "arabic": "وقّف هون، لو سمحت",
       "transliteration": "waʾʾif hōn, law samaḥt",
       "english": "Stop here, please.",
-      "context": "Said in the taxi when you've arrived",
+      "context": "Said in the taxi when you've arrived. Verb waʾʾaf ('to stop / pull over', Form II of w-q-f); noun: tawʾīf ('stopping').",
       "pronunciationNote": "waʾʾif: doubled glottal stop (shadda on ق). The pause after wa- is real.",
       "tags": [
         "drivers"
@@ -1161,7 +1162,7 @@
       "arabic": "أنا متزوّج",
       "transliteration": "ana mitzawwaj",
       "english": "I'm married.",
-      "context": "Said by a male speaker (female: mitzawwje)",
+      "context": "Said by a male speaker (female: mitzawwje). Noun: zawāj ('marriage').",
       "tags": [
         "family"
       ],
@@ -1503,7 +1504,7 @@
       "arabic": "لو سمحت",
       "transliteration": "law samaḥt",
       "english": "Please.",
-      "context": "Said to a man",
+      "context": "Lit. 'if you (m) would permit'. Said to a man.",
       "tags": [
         "rescue",
         "drivers",
@@ -2049,7 +2050,7 @@
       "arabic": "استنّى لحظة",
       "transliteration": "istanna laḥẓa",
       "english": "Wait a moment.",
-      "context": "Said to a man",
+      "context": "Said to a man. Verb istanna ('to wait', Levantine — same meaning as MSA intaẓara but a different root). MSA-equivalent noun: intiẓār ('waiting').",
       "tags": [
         "basics",
         "drivers",
@@ -2684,7 +2685,7 @@
       "arabic": "ممكن تسلّفني شوي سكّر؟",
       "transliteration": "mumkin tsallifni shwayy sukkar?",
       "english": "Can I borrow some sugar?",
-      "context": "Asking a man — classic neighbourly favor",
+      "context": "Asking a man — classic neighbourly favor. Verb sallaf ('to lend'); the literal sense here is 'can you lend me…?'. Noun: taslīf ('lending / a loan').",
       "tags": [
         "neighbours"
       ],
@@ -2695,7 +2696,7 @@
       "arabic": "ممكن تسلّفني كم بيضة؟",
       "transliteration": "mumkin tsallifni kam bēḍa?",
       "english": "Can I borrow a few eggs?",
-      "context": "Asking a man",
+      "context": "Asking a man. Verb sallaf = 'to lend' — the request literally is 'can you lend me…?'. Noun: taslīf ('lending / a loan').",
       "tags": [
         "neighbours"
       ],
@@ -2706,7 +2707,7 @@
       "arabic": "ممكن تسلّفني شاحن؟",
       "transliteration": "mumkin tsallifni shāḥin?",
       "english": "Can I borrow a charger?",
-      "context": "Asking a man",
+      "context": "Asking a man. Verb sallaf = 'to lend' — the request literally is 'can you lend me…?'. Noun: taslīf ('lending / a loan').",
       "tags": [
         "neighbours"
       ],
@@ -2837,7 +2838,7 @@
       "arabic": "استنّى دقيقة، لو سمحت",
       "transliteration": "istanna daʾīʾa, law samaḥt",
       "english": "Wait a minute, please.",
-      "context": "Said to a male driver",
+      "context": "Said to a male driver. Noun: intiẓār ('waiting').",
       "tags": [
         "drivers"
       ],
@@ -2870,7 +2871,7 @@
       "arabic": "شغّل العدّاد، لو سمحت",
       "transliteration": "shaghghil il-ʿaddād, law samaḥt",
       "english": "Turn on the meter, please.",
-      "context": "Said to a male taxi driver",
+      "context": "Said to a male taxi driver. Verb shaghghal ('to operate / turn on', Form II of sh-gh-l); noun: tashghīl ('operation / turning on').",
       "tags": [
         "drivers"
       ],
@@ -3057,6 +3058,7 @@
       "arabic": "ممكن نأجّل الاجتماع؟",
       "transliteration": "mumkin nʾajjil il-ijtimāʿ?",
       "english": "Can we move the meeting?",
+      "context": "Verb ʾajjal ('to postpone', Form II of ʾ-j-l); noun: taʾjīl ('postponement').",
       "tags": [
         "work"
       ],
@@ -3067,6 +3069,7 @@
       "arabic": "رح أتأخّر شوي",
       "transliteration": "raḥ atʾakhkhar shwayy",
       "english": "I'll be a few minutes late.",
+      "context": "Verb tʾakhkhar ('to be late / delayed', Form V of ʾ-kh-r); noun: taʾakhkhur ('delay / lateness').",
       "tags": [
         "work"
       ],
@@ -3175,7 +3178,7 @@
       "arabic": "ماشي",
       "transliteration": "māshi",
       "english": "OK / fine.",
-      "context": "Confirming, going along — very common spoken filler",
+      "context": "Lit. 'walking / going' — active participle of mishi ('to walk'), used idiomatically for 'it's going / OK'. Confirming, going along — very common spoken filler.",
       "tags": [
         "basics",
         "work",
@@ -4016,6 +4019,7 @@
       "arabic": "أنا بحترم الكل",
       "transliteration": "ana baḥtirim il-kull",
       "english": "I respect everyone.",
+      "context": "baḥtirim = Form VIII of ḥ-r-m. Noun: iḥtirām ('respect').",
       "tags": [
         "politics"
       ],
@@ -4072,7 +4076,7 @@
       "arabic": "بفضّل ما نحكي سياسة",
       "transliteration": "bafaḍḍil mā niḥki siyāse",
       "english": "I'd rather not talk politics.",
-      "context": "Polite deflection — bafaḍḍil = 'I prefer'.",
+      "context": "Polite deflection — bafaḍḍil = 'I prefer' (Form II of f-ḍ-l). Noun: tafḍīl ('preference').",
       "tags": [
         "politics",
         "rescue"
@@ -4096,7 +4100,7 @@
       "arabic": "أنا مش موافق، بس بحترم رأيك",
       "transliteration": "ana mish muwāfiʾ, bass baḥtirim raʾyak",
       "english": "I don't agree, but I respect your opinion.",
-      "context": "Female speaker: ana mish muwāfʾa, bass baḥtirim raʾyik.",
+      "context": "Female speaker: ana mish muwāfʾa, bass baḥtirim raʾyik. Noun: iḥtirām ('respect').",
       "tags": [
         "politics"
       ],
@@ -4752,7 +4756,7 @@
       "arabic": "تعلّمت شوي عربي بالجامعة",
       "transliteration": "tʿallamt shwayy ʿarabi bi-l-jāmʿa",
       "english": "I learned a bit of Arabic at university.",
-      "context": "tʿallamt is both 'I learned' and 'you (m) learned' — same form. Prefix ana ('I') to disambiguate when context isn't clear: ana tʿallamt.",
+      "context": "tʿallamt is both 'I learned' and 'you (m) learned' — same form. Prefix ana ('I') to disambiguate when context isn't clear: ana tʿallamt. Noun: taʿallum ('learning'); related: taʿlīm ('teaching / education').",
       "tags": [
         "family",
         "work",

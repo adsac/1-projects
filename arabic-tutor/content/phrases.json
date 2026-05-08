@@ -51,6 +51,7 @@
       "arabic": "كمان مرّة، لو سمحت",
       "transliteration": "kamān marra, law samaḥt",
       "english": "One more time, please.",
+      "context": "kamān = also / again; marra = time / occasion; law samaḥt = lit. 'if you (m) would permit'.",
       "tags": [
         "rescue",
         "shops",
@@ -297,7 +298,7 @@
       "arabic": "خلّي الباقي إلك",
       "transliteration": "khalli l-bāʾi ilak",
       "english": "Keep the change.",
-      "context": "Said when paying a driver / vendor (m)",
+      "context": "Said when paying a driver / vendor (m). khalli = leave / let; l-bāʾi = the rest / what remains; ilak = for-you (m).",
       "tags": [
         "drivers",
         "shops"
@@ -647,6 +648,7 @@
       "arabic": "في شي أرخص؟",
       "transliteration": "fī shi arkhaṣ?",
       "english": "Is there something cheaper?",
+      "context": "fī = there is; shi = something; arkhaṣ = cheaper (elative of rakhīṣ).",
       "fushaNote": "fī here = 'there is/are', a Levantine existential. MSA: هل يوجد (hal yūjad).",
       "tags": [
         "shops"
@@ -774,7 +776,7 @@
       "arabic": "هاد كلّ شي",
       "transliteration": "hād kull shi",
       "english": "That's everything.",
-      "context": "Reply when the vendor asks if you want anything else",
+      "context": "Reply when the vendor asks if you want anything else. hād = this; kull = all / every; shi = thing.",
       "tags": [
         "shops"
       ],
@@ -841,7 +843,7 @@
       "arabic": "شو اسمك؟",
       "transliteration": "shū ismak?",
       "english": "What's your name?",
-      "context": "Asking a man / boy",
+      "context": "Asking a man / boy. shū = what; ism = name; -ak = your (m). Lit. 'what your-name'.",
       "tags": [
         "kids",
         "family"
@@ -853,7 +855,7 @@
       "arabic": "شو اسمِك؟",
       "transliteration": "shū ismik?",
       "english": "What's your name?",
-      "context": "Asking a woman / girl",
+      "context": "Asking a woman / girl. shū = what; ism = name; -ik = your (f).",
       "tags": [
         "kids",
         "family"
@@ -878,7 +880,7 @@
       "arabic": "قدّيش عمرك؟",
       "transliteration": "ʾaddēsh ʿumrak?",
       "english": "How old are you?",
-      "context": "Asking a man / boy",
+      "context": "Asking a man / boy. ʾaddēsh = how much; ʿumr = age / lifespan; -ak = your (m). Lit. 'how-much your-age'.",
       "pronunciationNote": "ʿumr starts with the pharyngeal ʿ; don't say 'umrak'.",
       "tags": [
         "kids",
@@ -891,7 +893,7 @@
       "arabic": "بدّك تلعب؟",
       "transliteration": "biddak tilʿab?",
       "english": "Do you want to play?",
-      "context": "Asking a boy",
+      "context": "Asking a boy. bidd-ak = you (m) want; tilʿab = you (m) play (bare imperfect after the modal).",
       "tags": [
         "kids"
       ],
@@ -1068,7 +1070,7 @@
       "arabic": "كيف العيلة؟",
       "transliteration": "kīf il-ʿēle?",
       "english": "How's the family?",
-      "context": "Standard small-talk follow-up after kīf ḥālak",
+      "context": "Standard small-talk follow-up after kīf ḥālak. kīf = how; il- = the; ʿēle = family.",
       "tags": [
         "family"
       ],
@@ -1091,7 +1093,7 @@
       "arabic": "كم ولد عندك؟",
       "transliteration": "kam walad ʿindak?",
       "english": "How many kids do you have?",
-      "context": "Asking a man",
+      "context": "Asking a man. kam = how many (takes a singular noun, not plural); walad = kid; ʿind-ak = at-you / you-have.",
       "pronunciationNote": "walad cf. Hebrew yeled — same Semitic root w-l-d / y-l-d.",
       "tags": [
         "family"
@@ -1103,7 +1105,7 @@
       "arabic": "عندي ولدين",
       "transliteration": "ʿindi waladēn",
       "english": "I have two kids.",
-      "context": "Reply to: kam walad ʿindak?",
+      "context": "Reply to: kam walad ʿindak? ʿind-i = at-me / I-have; waladēn = two-boys (the dual ending -ēn on walad).",
       "tags": [
         "family"
       ],
@@ -1126,7 +1128,7 @@
       "arabic": "من وين إنت؟",
       "transliteration": "min wēn inta?",
       "english": "Where are you from?",
-      "context": "Asking a man",
+      "context": "Asking a man. min = from; wēn = where; inta = you (m). Lit. 'from where (are) you'.",
       "tags": [
         "family",
         "work"
@@ -1227,7 +1229,7 @@
       "arabic": "الشرف إلي",
       "transliteration": "ish-sharaf ili",
       "english": "The honor is mine.",
-      "context": "Reply to: tsharrafna",
+      "context": "Reply to: tsharrafna. ish-sharaf = the honor; il-i = to-me / mine. No copula needed.",
       "tags": [
         "family",
         "work"
@@ -1239,7 +1241,7 @@
       "arabic": "قدّيش عمر ابنك؟",
       "transliteration": "ʾaddēsh ʿumr ibnak?",
       "english": "How old is your son?",
-      "context": "Asking a man about his son",
+      "context": "Asking a man about his son. ʾaddēsh = how much; ʿumr ibn-ak = age-of your-son (an iḍāfa: ʿumr governs ibn-ak).",
       "tags": [
         "family"
       ],
@@ -1366,7 +1368,7 @@
       "arabic": "بحكيك بعدين",
       "transliteration": "baḥkīk baʿdēn",
       "english": "I'll talk to you later.",
-      "context": "Said to a man",
+      "context": "Said to a man. b-aḥki = I speak; -k = you (m); baʿdēn = later. The 1sg verb fuses with the 2sg.m object pronoun.",
       "tags": [
         "work",
         "family"
@@ -1378,7 +1380,7 @@
       "arabic": "بشوفك بكرا",
       "transliteration": "bashūfak bukra",
       "english": "See you tomorrow.",
-      "context": "Said to a man",
+      "context": "Said to a man. b-ashūf = I see / I'll see; -ak = you (m); bukra = tomorrow.",
       "tags": [
         "work",
         "family"
@@ -1390,7 +1392,7 @@
       "arabic": "نهارك سعيد",
       "transliteration": "nahārak saʿīd",
       "english": "Have a good day.",
-      "context": "Said to a man (parting blessing)",
+      "context": "Said to a man (parting blessing). nahār = day, -ak = your (m), saʿīd = happy. Lit. 'your-day (be) happy'.",
       "tags": [
         "work",
         "shops"
@@ -1449,7 +1451,7 @@
       "arabic": "كيف حالك؟",
       "transliteration": "kīf ḥālak?",
       "english": "How are you?",
-      "context": "Lit. 'how is your state'. Asking a man.",
+      "context": "Asking a man. kīf = how, ḥāl = state, -ak = your (m). Lit. 'how (is) your-state'.",
       "tags": [
         "family",
         "work",
@@ -1463,7 +1465,7 @@
       "arabic": "كيف حالِك؟",
       "transliteration": "kīf ḥālik?",
       "english": "How are you?",
-      "context": "Asking a woman",
+      "context": "Asking a woman. kīf = how, ḥāl = state, -ik = your (f).",
       "tags": [
         "family",
         "work",
@@ -2063,6 +2065,7 @@
       "arabic": "مع بعض",
       "transliteration": "maʿ baʿḍ",
       "english": "Together.",
+      "context": "maʿ = with; baʿḍ = each other / one another. Lit. 'with each-other'.",
       "tags": [
         "basics",
         "kids",
@@ -2075,6 +2078,7 @@
       "arabic": "لحالي",
       "transliteration": "la-ḥāli",
       "english": "Alone. / By myself.",
+      "context": "la- = to / by; ḥāl-i = my-state. Lit. 'to my-state' = on my own. Inflects: la-ḥālak (m), la-ḥālik (f), la-ḥālo (his), etc.",
       "tags": [
         "basics",
         "family"
@@ -2201,6 +2205,7 @@
       "arabic": "عندي صداع",
       "transliteration": "ʿindi ṣudāʿ",
       "english": "I have a headache.",
+      "context": "ʿind-i = at-me / I-have; ṣudāʿ = headache.",
       "tags": [
         "doctor"
       ],
@@ -2211,6 +2216,7 @@
       "arabic": "عندي وجع بطن",
       "transliteration": "ʿindi wajaʿ baṭn",
       "english": "I have a stomach ache.",
+      "context": "ʿind-i = I have; wajaʿ baṭn = pain-of-stomach (iḍāfa).",
       "tags": [
         "doctor"
       ],
@@ -2394,7 +2400,7 @@
       "arabic": "بيوجعني هون",
       "transliteration": "byōjaʿni hōn",
       "english": "It hurts here.",
-      "context": "While pointing to the spot",
+      "context": "While pointing to the spot. b-y-ōjaʿ = it (m) hurts (b- prefix + 3sg.m imperfect of wajaʿ); -ni = me; hōn = here.",
       "tags": [
         "doctor"
       ],
@@ -2405,7 +2411,7 @@
       "arabic": "من يومين",
       "transliteration": "min yōmēn",
       "english": "Since two days ago.",
-      "context": "Answering 'since when?'",
+      "context": "Answering 'since when?'. min = from / since; yōm-ēn = two-days (the dual ending -ēn on yōm).",
       "tags": [
         "doctor"
       ],
@@ -2509,7 +2515,7 @@
       "arabic": "لُف يمين عند ال[X]",
       "transliteration": "luff yamīn ʿind il-[X]",
       "english": "Turn right at the [X].",
-      "context": "Said to a man — replace [X] with the landmark",
+      "context": "Said to a man — replace [X] with the landmark. luff = turn! (imp m); yamīn = right; ʿind = at / by; il- = the.",
       "tags": [
         "directions",
         "drivers"
@@ -2533,6 +2539,7 @@
       "arabic": "دغري، وبعدين شمال",
       "transliteration": "dughri, w-baʿdēn shmāl",
       "english": "Straight, then left.",
+      "context": "dughri = straight ahead; w- = and; baʿdēn = afterwards / then; shmāl = left.",
       "tags": [
         "directions",
         "drivers"
@@ -2544,6 +2551,7 @@
       "arabic": "كيف بوصل ع ال[X]؟",
       "transliteration": "kīf būṣal ʿa l-[X]?",
       "english": "How do I get to the [X]?",
+      "context": "kīf = how; b-ūṣal = I arrive (b- prefix + 1sg imperfect of waṣal); ʿa l- = to the (ʿala + il-).",
       "tags": [
         "directions"
       ],
@@ -2651,7 +2659,7 @@
       "arabic": "مرحبا، إحنا لسّا انتقلنا",
       "transliteration": "marḥaba, iḥna lissa intaʾalna",
       "english": "Hello, we just moved in.",
-      "context": "Introducing yourself to a neighbour",
+      "context": "Introducing yourself to a neighbour. iḥna = we; lissa = still / just (recently); intaʾal-na = we moved (1pl past of intaʾal, Form VIII of n-q-l).",
       "tags": [
         "neighbours"
       ],
@@ -2729,7 +2737,7 @@
       "arabic": "كانت الضجّة كتيرة مبارح؟",
       "transliteration": "kānit iḍ-ḍajje ktīre mbāriḥ?",
       "english": "Was the noise too much last night?",
-      "context": "Checking in with a neighbour after a loud night",
+      "context": "Checking in with a neighbour after a loud night. kānit = was (3sg.f past of kān); iḍ-ḍajje = the noise (f); ktīre = a lot (f, agreeing with ḍajje); mbāriḥ = yesterday / last night.",
       "tags": [
         "neighbours"
       ],
@@ -2760,6 +2768,7 @@
       "arabic": "وين بقدر أصفّ؟",
       "transliteration": "wēn baʾdar aṣiff?",
       "english": "Where do I park?",
+      "context": "wēn = where; b-aʾdar = I can / am able to; aṣiff = (that) I park (bare imperfect after the modal).",
       "tags": [
         "neighbours",
         "drivers"
@@ -2782,7 +2791,7 @@
       "arabic": "الطرد إلك؟ إجى اليوم",
       "transliteration": "iṭ-ṭard ilak? ija l-yōm",
       "english": "The package is yours? It came today.",
-      "context": "Said to a man",
+      "context": "Said to a man. iṭ-ṭard = the package; il-ak = to-you / yours; ija = he/it came (3sg.m past of ija/yiji); l-yōm = today (lit. 'the day').",
       "tags": [
         "neighbours"
       ],
@@ -2904,7 +2913,7 @@
       "arabic": "في عندكم واي فاي؟",
       "transliteration": "fī ʿindkum wāy fāy?",
       "english": "Do you have wifi?",
-      "context": "At a café",
+      "context": "At a café. fī = there is; ʿind-kum = at-you (pl) / you have; wāy fāy = wifi. The fī + ʿind- combination ('is there with you…?') is a standard polite way to ask about possession.",
       "tags": [
         "shops"
       ],
@@ -2915,7 +2924,7 @@
       "arabic": "شو كلمة السرّ؟",
       "transliteration": "shū kilmt is-sirr?",
       "english": "What's the password?",
-      "context": "At a café — for wifi",
+      "context": "At a café — for wifi. shū = what; kilmt is-sirr = word-of the-secret (iḍāfa: kilme + tāʾ-marbūṭa surfaces as -t- before the second noun).",
       "tags": [
         "shops"
       ],
@@ -2958,7 +2967,7 @@
       "arabic": "عدّ لعشرة معي",
       "transliteration": "ʿidd la-ʿashara maʿi",
       "english": "Count to ten with me.",
-      "context": "Said to a boy (girl: ʿiddi)",
+      "context": "Said to a boy (girl: ʿiddi). ʿidd = count! (imp); la- = to / up to; ʿashara = ten; maʿ-i = with-me.",
       "tags": [
         "kids"
       ],
@@ -2969,7 +2978,7 @@
       "arabic": "بدّك تركب عالمرجوحة؟",
       "transliteration": "biddak tirkab ʿal-marjūḥa?",
       "english": "Do you want to ride the swing?",
-      "context": "Asking a boy at the playground",
+      "context": "Asking a boy at the playground. bidd-ak = you (m) want; tirkab = you (m) ride; ʿa-l- = on the (ʿala + il-); marjūḥa = swing.",
       "tags": [
         "kids"
       ],
@@ -2980,7 +2989,7 @@
       "arabic": "دير بالك، رح توقع",
       "transliteration": "dīr bālak, raḥ tūʾaʿ",
       "english": "Be careful, you'll fall.",
-      "context": "Said to a boy",
+      "context": "Said to a boy. dīr bālak = lit. 'turn your mind' (be careful); raḥ = future marker; tūʾaʿ = you (m) fall.",
       "tags": [
         "kids"
       ],
@@ -3036,7 +3045,7 @@
       "arabic": "من وين أصلك؟",
       "transliteration": "min wēn aṣlak?",
       "english": "Where are you originally from?",
-      "context": "Asking a man (deeper than min wēn inta)",
+      "context": "Asking a man (deeper than min wēn inta). min wēn = from where; aṣl-ak = your-origin.",
       "tags": [
         "family"
       ],
@@ -3047,7 +3056,7 @@
       "arabic": "عندك إخوة؟",
       "transliteration": "ʿindak ikhwe?",
       "english": "Do you have siblings?",
-      "context": "Asking a man",
+      "context": "Asking a man. ʿind-ak = at-you / you-have; ikhwe = siblings (plural of akh).",
       "tags": [
         "family"
       ],
@@ -3090,7 +3099,7 @@
       "arabic": "رح أبعتلك إيميل",
       "transliteration": "raḥ abʿatlak īmēl",
       "english": "I'll send you an email.",
-      "context": "Said to a man",
+      "context": "Said to a man. raḥ = will (future marker); abʿat = I send; -l-ak = to-you (m) (the la- 'to' clitic + -ak); īmēl = email.",
       "tags": [
         "work"
       ],
@@ -3284,6 +3293,7 @@
       "arabic": "أوّل شارع يمين",
       "transliteration": "awwal shāriʿ yamīn",
       "english": "The first street on the right.",
+      "context": "awwal = first (an elative form); shāriʿ = street; yamīn = on the right. The elative + iḍāfa construction (awwal + shāriʿ) is automatically definite, so no il- on shāriʿ.",
       "tags": [
         "directions",
         "drivers"
@@ -4076,7 +4086,7 @@
       "arabic": "بفضّل ما نحكي سياسة",
       "transliteration": "bafaḍḍil mā niḥki siyāse",
       "english": "I'd rather not talk politics.",
-      "context": "Polite deflection — bafaḍḍil = 'I prefer' (Form II of f-ḍ-l). Noun: tafḍīl ('preference').",
+      "context": "Polite deflection — bafaḍḍil = 'I prefer' (Form II of f-ḍ-l); mā = not; niḥki = (that) we speak; siyāse = politics. Noun: tafḍīl ('preference').",
       "tags": [
         "politics",
         "rescue"
@@ -4111,7 +4121,7 @@
       "arabic": "الشعبين بيستاهلوا يعيشوا بسلام",
       "transliteration": "ish-shaʿbēn byistāhilū yʿīshū bi-salām",
       "english": "Both peoples deserve to live in peace.",
-      "context": "ish-shaʿbēn = dual 'the two peoples'. Constructed phrase — verify with a native speaker before using; a more idiomatic version may exist.",
+      "context": "ish-shaʿb-ēn = the two peoples (dual); b-yistāhilū = they deserve (b- prefix + 3pl); yʿīshū = (that) they live (subjunctive, no b-); bi-salām = in peace. Constructed phrase — verify with a native speaker before using; a more idiomatic version may exist.",
       "tags": [
         "politics"
       ],
@@ -4156,7 +4166,7 @@
       "arabic": "آمن أروح لهناك؟",
       "transliteration": "āmen arūḥ la-hnāk?",
       "english": "Is it safe to go there?",
-      "context": "Practical question for travel into the West Bank or to a specific town.",
+      "context": "Practical question for travel into the West Bank or to a specific town. āmen = safe; arūḥ = I go; la- = to; hnāk = there.",
       "tags": [
         "politics",
         "geography",
@@ -4536,7 +4546,7 @@
       "arabic": "إنت من مدينة ولا ضيعة؟",
       "transliteration": "inta min madīna willā ḍayʿa?",
       "english": "Are you from a city or a village?",
-      "context": "Female addressee: inti min madīna willā ḍayʿa?",
+      "context": "Female addressee: inti min madīna willā ḍayʿa? inta = you (m); min = from; madīna = city; willā = or (in either/or questions); ḍayʿa = village.",
       "tags": [
         "geography",
         "family"
@@ -4571,6 +4581,7 @@
       "arabic": "قدّيش بعيدة من هون؟",
       "transliteration": "ʾaddēsh biʿīde min hōn?",
       "english": "How far is it from here?",
+      "context": "ʾaddēsh = how much; biʿīde = far (f, agreeing with an implicit feminine subject like madīna or manṭiqa); min hōn = from here.",
       "tags": [
         "geography",
         "directions"
@@ -4606,7 +4617,7 @@
       "arabic": "عنّا عيلة هناك",
       "transliteration": "ʿinna ʿīle hnāk",
       "english": "We have family there.",
-      "context": "ʿinna = 'we have'.",
+      "context": "ʿind- + -na fuses to ʿinna ('we have'); ʿīle = family; hnāk = there.",
       "tags": [
         "geography",
         "family"

@@ -50,7 +50,7 @@ arabic-tutor/
     recorder.js           MediaRecorder wrapper (record + replay)
     util.js               DOM, time, RNG helpers
   content/
-    transliteration.md    canonical transliteration scheme — read first
+    transliteration.md    content authoring spec (transliteration + note conventions) — read first
     engines.json          sentence engines
     phrases.json          phrase cards
     scenarios.json        situational groupings

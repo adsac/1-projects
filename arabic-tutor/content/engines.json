@@ -409,11 +409,11 @@
     },
     {
       "id": "numbers",
-      "name": "Numbers 1–20 (with counter)",
+      "name": "Numbers 1–1000 + ordinals (with counter)",
       "pattern": "[NUMBER] [COUNTER]",
       "arabicPattern": "[NUMBER] [COUNTER]",
       "transliterationPattern": "[NUMBER] [COUNTER]",
-      "fushaNote": "Spoken Levantine numbers 1–10 mostly match MSA with phonetic shifts. Numbers 11–19 have a distinctive -ṭaʿsh ending (← MSA -ʿashar). Counter rules differ: shēʾel (sg) for 1, 11+; shawāʾil (pl) for 3–10.",
+      "fushaNote": "Spoken Levantine numbers 1–10 mostly match MSA with phonetic shifts. Numbers 11–19 have a distinctive -ṭaʿsh ending (← MSA -ʿashar). Tens 20–90 take a uniform -īn suffix. Counter rules: shēʾel (sg) for 1 and 11+; shawāʾil (pl) for 3–10. Compounds put the unit first, then w- ('and'), then the ten: wāḥad w-ʿishrīn = 21 (lit. 'one and twenty').",
       "forms": [
         { "key": "1", "label": "one", "arabic": "واحد", "transliteration": "wāḥad", "english": "one" },
         { "key": "2", "label": "two", "arabic": "تنين", "transliteration": "tnēn", "english": "two" },
@@ -434,7 +434,20 @@
         { "key": "17", "label": "seventeen", "arabic": "سبعتعش", "transliteration": "sabaʿṭaʿsh", "english": "seventeen" },
         { "key": "18", "label": "eighteen", "arabic": "تمنتعش", "transliteration": "tmanṭaʿsh", "english": "eighteen" },
         { "key": "19", "label": "تسعتعش", "arabic": "تسعتعش", "transliteration": "tisaʿṭaʿsh", "english": "nineteen" },
-        { "key": "20", "label": "twenty", "arabic": "عشرين", "transliteration": "ʿishrīn", "english": "twenty" }
+        { "key": "20", "label": "twenty", "arabic": "عشرين", "transliteration": "ʿishrīn", "english": "twenty" },
+        { "key": "21", "label": "twenty-one", "arabic": "واحد وعشرين", "transliteration": "wāḥad w-ʿishrīn", "english": "twenty-one", "context": "Lit. 'one and twenty'. All compound numbers 21-99 follow this pattern: unit + w- + ten." },
+        { "key": "30", "label": "thirty", "arabic": "تلاتين", "transliteration": "tlātīn", "english": "thirty" },
+        { "key": "40", "label": "forty", "arabic": "أربعين", "transliteration": "arbaʿīn", "english": "forty" },
+        { "key": "50", "label": "fifty", "arabic": "خمسين", "transliteration": "khamsīn", "english": "fifty" },
+        { "key": "60", "label": "sixty", "arabic": "ستّين", "transliteration": "sittīn", "english": "sixty" },
+        { "key": "70", "label": "seventy", "arabic": "سبعين", "transliteration": "sabʿīn", "english": "seventy" },
+        { "key": "80", "label": "eighty", "arabic": "تمانين", "transliteration": "tmānīn", "english": "eighty" },
+        { "key": "90", "label": "ninety", "arabic": "تسعين", "transliteration": "tisʿīn", "english": "ninety" },
+        { "key": "100", "label": "one hundred", "arabic": "ميّة", "transliteration": "miyye", "english": "one hundred", "context": "Spelled مية or مائة. Hundreds 200-900 combine miyye with a number in the construct form (no -e/-a ending): khams miyye = 500, miyyatēn = 200 (dual)." },
+        { "key": "1000", "label": "one thousand", "arabic": "ألف", "transliteration": "alf", "english": "one thousand", "context": "Plural: ālāf. 'Two thousand' = alfēn (dual)." },
+        { "key": "ord.1", "label": "first", "arabic": "أوّل", "transliteration": "awwal", "english": "first", "context": "Feminine: ūla (e.g. il-mara l-ūla = the first time). Also functions as 'beginning of' in iḍāfa: awwal shāriʿ = (the) first street." },
+        { "key": "ord.2", "label": "second", "arabic": "تاني", "transliteration": "tāni", "english": "second", "context": "Feminine: tānye. Also means 'other / another' (shi tāni = something else)." },
+        { "key": "ord.3", "label": "third", "arabic": "تالت", "transliteration": "tālit", "english": "third", "context": "Feminine: tālte." }
       ],
       "slots": [
         {
@@ -451,6 +464,49 @@
         }
       ],
       "tags": ["drivers", "shops", "kids", "family"],
+      "status": "draft"
+    },
+    {
+      "id": "colours",
+      "name": "Colours (with m / f forms)",
+      "pattern": "[COLOUR]",
+      "arabicPattern": "[COLOUR]",
+      "transliterationPattern": "[COLOUR]",
+      "fushaNote": "The six 'classical' colours (white, black, red, green, blue, yellow) follow the af3al / fa3la pattern: masculine starts with a- (aḥmar, akhḍar), feminine drops the initial a- and reshapes the vowels (ḥamra, khaḍra). Newer / loan colours (bunni, rmādi) don't inflect this way — same form for both genders.",
+      "forms": [
+        { "key": "white.m", "label": "white (m)", "arabic": "أبيض", "transliteration": "abyaḍ", "english": "white" },
+        { "key": "white.f", "label": "white (f)", "arabic": "بيضا", "transliteration": "bēḍa", "english": "white", "context": "Feminine — used with feminine nouns: sayyāra bēḍa (a white car)." },
+        { "key": "black.m", "label": "black (m)", "arabic": "أسود", "transliteration": "aswad", "english": "black" },
+        { "key": "black.f", "label": "black (f)", "arabic": "سودا", "transliteration": "sōda", "english": "black", "context": "Feminine — ʾahwe sōda = black coffee (i.e. without milk)." },
+        { "key": "red.m", "label": "red (m)", "arabic": "أحمر", "transliteration": "aḥmar", "english": "red" },
+        { "key": "red.f", "label": "red (f)", "arabic": "حمرا", "transliteration": "ḥamra", "english": "red", "context": "Feminine — il-ishāra l-ḥamra = the red light." },
+        { "key": "green.m", "label": "green (m)", "arabic": "أخضر", "transliteration": "akhḍar", "english": "green" },
+        { "key": "green.f", "label": "green (f)", "arabic": "خضرا", "transliteration": "khaḍra", "english": "green", "context": "Feminine. Also a common woman's name." },
+        { "key": "blue.m", "label": "blue (m)", "arabic": "أزرق", "transliteration": "azraʾ", "english": "blue", "context": "Everyday qāf glottalises here: azraʾ. (Formal / written: azraq.)" },
+        { "key": "blue.f", "label": "blue (f)", "arabic": "زرقا", "transliteration": "zarʾa", "english": "blue" },
+        { "key": "yellow.m", "label": "yellow (m)", "arabic": "أصفر", "transliteration": "aṣfar", "english": "yellow" },
+        { "key": "yellow.f", "label": "yellow (f)", "arabic": "صفرا", "transliteration": "ṣafra", "english": "yellow" },
+        { "key": "brown", "label": "brown", "arabic": "بنّي", "transliteration": "bunni", "english": "brown", "context": "Doesn't inflect strongly by gender — bunni works for both, though some speakers use bunniyye for feminine nouns." },
+        { "key": "grey", "label": "grey", "arabic": "رمادي", "transliteration": "rmādi", "english": "grey", "context": "Lit. 'ash-colour' — from rmād ('ash'). Same form for both genders." },
+        { "key": "light", "label": "light (modifier)", "arabic": "فاتح", "transliteration": "fātiḥ", "english": "light (as a shade)", "context": "Modifier — comes AFTER the colour: aḥmar fātiḥ = light red, azraʾ fātiḥ = light blue." },
+        { "key": "dark", "label": "dark (modifier)", "arabic": "غامق", "transliteration": "ghāmiʾ", "english": "dark (as a shade)", "context": "Modifier — comes AFTER the colour: aḥmar ghāmiʾ = dark red. The qāf glottalises: ghāmiʾ." }
+      ],
+      "slots": [
+        {
+          "name": "COLOUR",
+          "options": [
+            { "arabic": "أبيض", "transliteration": "abyaḍ", "english": "white" },
+            { "arabic": "أسود", "transliteration": "aswad", "english": "black" },
+            { "arabic": "أحمر", "transliteration": "aḥmar", "english": "red" },
+            { "arabic": "أخضر", "transliteration": "akhḍar", "english": "green" },
+            { "arabic": "أزرق", "transliteration": "azraʾ", "english": "blue" },
+            { "arabic": "أصفر", "transliteration": "aṣfar", "english": "yellow" },
+            { "arabic": "بنّي", "transliteration": "bunni", "english": "brown" },
+            { "arabic": "رمادي", "transliteration": "rmādi", "english": "grey" }
+          ]
+        }
+      ],
+      "tags": ["basics", "shops", "kids", "family"],
       "status": "draft"
     },
     {

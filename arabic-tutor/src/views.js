@@ -130,6 +130,9 @@ export async function runSession({ minutes, scope }) {
   const startedAt = Date.now();
   let i = 0;
   let correct = 0, lapses = 0;
+  // Items graded 'hard' get one extra in-session pass for consolidation.
+  // Tracked here to avoid infinite re-shows if the user keeps grading hard.
+  const hardReshown = new Set();
 
   step();
 
@@ -163,7 +166,16 @@ export async function runSession({ minutes, scope }) {
         settings: app.settings,
         onGraded: async (g) => {
           await practice.applyGrade(item.itemId, g);
-          if (g === 'again') { lapses++; queue.push(item); } else { correct++; }
+          if (g === 'again') {
+            lapses++;
+            queue.push(item);
+          } else {
+            correct++;
+            if (g === 'hard' && !hardReshown.has(item.itemId)) {
+              hardReshown.add(item.itemId);
+              queue.push(item);
+            }
+          }
           i++;
           step();
         },

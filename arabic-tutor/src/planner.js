@@ -40,7 +40,6 @@ export function plan(minutes, content, stateFor, settings, now = Date.now(), sco
   }
   const quota = QUOTAS[minutes] || QUOTAS[10];
   const speedAdj = settings.newItemSpeed === 'fast' ? 1.5 : settings.newItemSpeed === 'slow' ? 0.5 : 1;
-  const newMax = Math.round(quota.newMax * speedAdj);
 
   const due = [];
   const newItems = [];
@@ -52,6 +51,14 @@ export function plan(minutes, content, stateFor, settings, now = Date.now(), sco
 
   // Sort due by weakness desc then dueAt asc
   due.sort((a, b) => weakness(b.st) - weakness(a.st) || (a.st?.dueAt || 0) - (b.st?.dueAt || 0));
+
+  // Adaptive new-item throttle: when many due items are already weak
+  // (recent again/hard grades), drop new-item introductions so the session
+  // can consolidate what's struggling rather than piling more on top.
+  // Stacks on newItemSpeed.
+  const weakDueCount = due.filter((d) => isWeak(d.st)).length;
+  const throttle = Math.floor(weakDueCount / 4);
+  const newMax = Math.max(0, Math.round(quota.newMax * speedAdj) - throttle);
 
   // Scenario boost: items tagged with high-priority scenarios sort first within same weakness.
   const scenarioRank = new Map(settings.scenarioPriority.map((s, i) => [s, i]));

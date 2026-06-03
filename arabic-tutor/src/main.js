@@ -24,6 +24,7 @@ async function boot() {
   router.route('/needs-arabic', views.renderNeedsArabic);
   router.route('/progress', views.renderProgress);
   router.route('/settings', views.renderSettings);
+  router.route('/suspended', views.renderSuspended);
   router.route('/browser', views.renderBrowser);
   router.route('/rescue', views.renderRescue);
   router.start();

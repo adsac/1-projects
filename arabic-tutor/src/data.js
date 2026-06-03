@@ -83,11 +83,12 @@
  * @typedef {Object} Settings
  * @property {boolean} showTransliteration
  * @property {boolean} showHebrewHooks
- * @property {('slow'|'normal'|'fast')} newItemSpeed
+ * @property {('none'|'slow'|'normal'|'fast')} newItemSpeed
  * @property {boolean} mixRecognition       // if true, ~25% of cards become Arabic→English instead of English→Arabic
  * @property {('xxsmall'|'xsmall'|'small'|'medium'|'large'|'xlarge')} arabicFontSize
  * @property {('xxsmall'|'xsmall'|'small'|'medium'|'large'|'xlarge')} uiFontSize
  * @property {string[]} scenarioPriority    // scenario ids in priority order
+ * @property {string[]} suspendedIds        // phrase ids hidden from sessions until unsuspended
  */
 
 // ---------------- IndexedDB wrapper ----------------
@@ -156,6 +157,7 @@ export const DEFAULT_SETTINGS = /** @type {Settings} */ ({
   arabicFontSize: 'medium',
   uiFontSize: 'medium',
   scenarioPriority: ['rescue', 'drivers', 'shops', 'kids', 'family', 'work'],
+  suspendedIds: [],
 });
 
 export async function getSettings() {
@@ -168,6 +170,21 @@ export async function saveSettings(patch) {
   const next = { ...cur, ...patch };
   await dbPut('settings', next, 'app');
   return next;
+}
+
+export async function suspendItem(id) {
+  const cur = await getSettings();
+  if ((cur.suspendedIds || []).includes(id)) return cur;
+  return saveSettings({ suspendedIds: [...(cur.suspendedIds || []), id] });
+}
+
+export async function unsuspendItem(id) {
+  const cur = await getSettings();
+  return saveSettings({ suspendedIds: (cur.suspendedIds || []).filter((x) => x !== id) });
+}
+
+export async function unsuspendAll() {
+  return saveSettings({ suspendedIds: [] });
 }
 
 // ---------------- Review state ----------------

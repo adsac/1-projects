@@ -1,8 +1,8 @@
 // Practice controllers — pure session-state machine + view-builders.
 // The controllers return DOM nodes; mutation flows via callbacks back into the session.
 
-import { el, clear, shuffle, pick } from './util.js';
-import { grade, isNew } from './scheduler.js';
+import { el, clear, shuffle } from './util.js';
+import { grade } from './scheduler.js';
 import { putState, getState } from './data.js';
 import * as recorder from './recorder.js';
 
@@ -84,6 +84,7 @@ export function recognizeCard({ phrase, settings, onGraded, onSkip, onSuspend })
   const answer = el('div', { class: 'col', hidden: true }, [
     el('h2', {}, phrase.english),
     phrase.context ? el('div', { class: 'context' }, phrase.context) : null,
+    phrase.pronunciationNote ? el('div', { class: 'note' }, `Pronunciation: ${phrase.pronunciationNote}`) : null,
     phrase.fushaNote ? el('div', { class: 'note fusha' }, `Fuṣḥā note: ${phrase.fushaNote}`) : null,
   ]);
   root.append(answer);
@@ -99,11 +100,12 @@ export function recognizeCard({ phrase, settings, onGraded, onSkip, onSuspend })
   }, 'Reveal');
   root.append(revealBtn);
 
+  function finish(g) { if (revealed) onGraded(g); }
   const grades = el('div', { class: 'grades', hidden: true }, [
-    gradeBtn('again', 'Again', '<1m', () => revealed && onGraded('again')),
-    gradeBtn('hard',  'Hard',  '~1d', () => revealed && onGraded('hard')),
-    gradeBtn('good',  'Good',  '~3d', () => revealed && onGraded('good')),
-    gradeBtn('easy',  'Easy',  '~7d', () => revealed && onGraded('easy')),
+    gradeBtn('again', 'Again', '<1m', () => finish('again')),
+    gradeBtn('hard',  'Hard',  '~1d', () => finish('hard')),
+    gradeBtn('good',  'Good',  '~3d', () => finish('good')),
+    gradeBtn('easy',  'Easy',  '~7d', () => finish('easy')),
   ]);
   root.append(grades);
 

@@ -20,12 +20,14 @@ Zero-build static PWA. Plain HTML, CSS, ES modules. No npm, no bundler, no frame
 The home screen shows status (due / weak / new) and four time tiles: **3 / 7 / 10 / 15 min**. Tap one and start. Cards prompt in English, you say the Arabic out loud, tap **Reveal**, then self-grade **Again / Hard / Good / Easy** (SM-2 lite).
 
 Other entry points:
-- **Situations** — practice scoped to drivers, shops, kids, family, work, rescue.
-- **Engines** — pattern drills (e.g. *I want X*, *I have X*, present-tense verbs, imperative).
+- **Situations** — practice scoped to drivers, shops, kids, family, work, rescue, doctor, directions, neighbours, geography, politics, basics.
+- **Engines** — pattern drills (e.g. *I want X*, *I have X*, present-tense verbs, imperative, colours, numbers).
 - **Add phrase** — capture something you needed today; if you don't have the Arabic yet, it goes to **Needs Arabic** and waits until you fill it in.
 - **Rescue** — quick reference for "say it slower", "I didn't understand", etc.
 - **Progress** — what you can say now, what's weak.
-- **Settings** — toggle transliteration, reorder scenario priorities, reset progress.
+- **Settings** — transliteration on/off, Arabic + UI font sizes, new-item speed (`none`/`slow`/`normal`/`fast`), mix in recognition cards, reorder scenario priorities, view and unsuspend phrases, reset progress.
+
+Every card has **Skip** (just this round) and **Suspend** (never again until I bring it back via Settings → Suspended phrases). Items graded **Hard** also get one extra pass later in the same session for consolidation. When many of your due items are weak the planner trims the new-item budget automatically — fewer new phrases pile on top of what's already struggling.
 
 Every card supports self-recording via your phone mic for replay-and-compare. There's no automatic pronunciation scoring — you grade yourself.
 
@@ -64,11 +66,11 @@ Every seed item starts with `"status": "draft"` until verified.
 
 ## Editing content from the phone
 
-The `content/*.json` files are the only thing you need to touch to add or fix vocabulary. You can edit them directly via the GitHub mobile site or `github.dev`. Commit, wait for Pages to redeploy (~1 min), reopen the app — the service worker fetches the new content with a cache-then-network strategy and prompts to reload.
+The `content/*.json` files are the only thing you need to touch to add or fix vocabulary. The transliteration scheme and the editorial conventions (literal meanings, verb–noun pairing, word-by-word breakdowns, fuṣḥā notes, gender variants) are documented in `content/transliteration.md` — read that first. You can edit the JSON files directly via the GitHub mobile site or `github.dev`. Commit, wait for Pages to redeploy (~1 min), reopen the app — the service worker fetches new content network-first (and falls back to cache when offline), so changes show up on the next load.
 
 ## Update flow
 
-When the app shell changes (anything outside `content/`), bump `CACHE_VERSION` in `sw.js`. On next launch the new SW installs in the background; the app shows a small "update available — reload" toast.
+Bump `CACHE_VERSION` in `sw.js` on any user-visible change — shell *or* content. The "update available — reload" toast only fires when the SW file itself differs from the installed copy, so a content-only push without a version bump won't be signalled.
 
 ## What's intentionally **not** here (v0)
 
@@ -79,4 +81,4 @@ When the app shell changes (anything outside `content/`), bump `CACHE_VERSION` i
 
 ## Workflow
 
-`main` is the deployable. Pages serves from it directly. Future iteration happens on short-lived feature branches (`claude/...`) merged back to `main` once they pass a sanity check on the phone.
+`main` is both the deployable and the test environment — Pages serves from it directly, and there's no separate staging. Iteration happens on short-lived per-feature branches (`claude/<feature-name>`) opened as PRs against `main` and merged via `mcp__github__merge_pull_request`. Local validation (`node -e "JSON.parse(...)"` for content, `python3 -m http.server` for the page) runs before opening the PR. See `/CLAUDE.md` at the repo root for the full branch rules.

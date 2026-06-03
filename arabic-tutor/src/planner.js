@@ -31,15 +31,21 @@ const QUOTAS = {
  * @param {string|null} [scope]   // optional scenario id to scope the session to
  */
 export function plan(minutes, content, stateFor, settings, now = Date.now(), scope = null) {
-  if (scope) {
+  const suspended = new Set(settings.suspendedIds || []);
+  if (scope || suspended.size > 0) {
     content = {
       ...content,
-      phrases: content.phrases.filter((p) => (p.tags || []).includes(scope)),
-      engines: content.engines.filter((e) => (e.tags || []).includes(scope)),
+      phrases: content.phrases
+        .filter((p) => !suspended.has(p.id))
+        .filter((p) => !scope || (p.tags || []).includes(scope)),
+      engines: scope ? content.engines.filter((e) => (e.tags || []).includes(scope)) : content.engines,
     };
   }
   const quota = QUOTAS[minutes] || QUOTAS[10];
-  const speedAdj = settings.newItemSpeed === 'fast' ? 1.5 : settings.newItemSpeed === 'slow' ? 0.5 : 1;
+  const speedAdj = settings.newItemSpeed === 'fast' ? 1.5
+    : settings.newItemSpeed === 'slow' ? 0.5
+    : settings.newItemSpeed === 'none' ? 0
+    : 1;
 
   const due = [];
   const newItems = [];
@@ -173,10 +179,13 @@ function interleave(queue) {
   return out;
 }
 
-export function summarize(content, stateFor, now = Date.now(), scope = null) {
-  const phrases = scope
-    ? content.phrases.filter((p) => (p.tags || []).includes(scope))
-    : content.phrases;
+export function summarize(content, stateFor, now = Date.now(), scope = null, suspendedIds = null) {
+  const suspended = suspendedIds ? new Set(suspendedIds) : null;
+  const phrases = content.phrases.filter((p) => {
+    if (suspended && suspended.has(p.id)) return false;
+    if (scope && !(p.tags || []).includes(scope)) return false;
+    return true;
+  });
   let due = 0, weak = 0, fresh = 0, strong = 0, seen = 0;
   for (const p of phrases) {
     const st = stateFor(p.id);

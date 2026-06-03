@@ -60,7 +60,7 @@ function warningsBanner() {
 export async function renderHome() {
   await refreshStates();
   const pool = await data.reviewPool(app.content);
-  const sum = summarize(pool, stateFor);
+  const sum = summarize(pool, stateFor, Date.now(), null, app.settings.suspendedIds);
 
   const root = el('div', { class: 'col' });
   root.append(el('div', { class: 'appbar' }, [
@@ -152,12 +152,24 @@ export async function runSession({ minutes, scope }) {
       return;
     }
     const item = queue[i];
+    // If the item was suspended mid-session (e.g. earlier in this run, then
+    // re-queued by a hard grade before the suspend), silently skip it.
+    if ((app.settings.suspendedIds || []).includes(item.itemId)) {
+      i++; step();
+      return;
+    }
     const header = el('div', { class: 'col' }, [
       appbar(scopeLabel
         ? `${scopeLabel} · ${i + 1} / ${queue.length}`
         : `${i + 1} / ${queue.length} · ${m}min`),
       el('div', { class: 'progress' }, [el('span', { style: `width:${Math.round((i / queue.length) * 100)}%` })]),
     ]);
+
+    async function suspendCurrent() {
+      app.settings = await data.suspendItem(item.itemId);
+      toast('Suspended — won\'t appear again. See Settings → Suspended.');
+      i++; step();
+    }
 
     if (item.kind === 'recall' || item.kind === 'scenario_drill' || item.kind === 'recognize') {
       const builder = item.kind === 'recognize' ? practice.recognizeCard : practice.recallCard;
@@ -180,6 +192,7 @@ export async function runSession({ minutes, scope }) {
           step();
         },
         onSkip: () => { i++; step(); },
+        onSuspend: suspendCurrent,
       });
       mount(el('div', { class: 'col' }, [header, node]));
     } else if (item.kind === 'new_intro') {
@@ -192,6 +205,7 @@ export async function runSession({ minutes, scope }) {
           correct++;
           i++; step();
         },
+        onSuspend: suspendCurrent,
       });
       mount(el('div', { class: 'col' }, [header, node]));
     } else if (item.kind === 'engine_drill') {
@@ -599,7 +613,13 @@ export async function renderSettings() {
   showHe.checked = !!s.showHebrewHooks;
   const mixRec = el('input', { type: 'checkbox' });
   mixRec.checked = !!s.mixRecognition;
-  const speed = el('select', {}, ['slow', 'normal', 'fast'].map((v) => el('option', { value: v }, v)));
+  const speedOptions = [
+    ['none',   'none — review only'],
+    ['slow',   'slow (fewer)'],
+    ['normal', 'normal'],
+    ['fast',   'fast (more)'],
+  ];
+  const speed = el('select', {}, speedOptions.map(([v, label]) => el('option', { value: v }, label)));
   speed.value = s.newItemSpeed;
 
   const sizeOptions = [
@@ -661,8 +681,10 @@ export async function renderSettings() {
   ]));
 
   root.append(el('h2', {}, 'Data'));
+  const suspendedCount = (s.suspendedIds || []).length;
   root.append(el('div', { class: 'card col' }, [
     el('button', { class: 'ghost', onclick: () => navigate('/browser') }, 'Browse content'),
+    el('button', { class: 'ghost', onclick: () => navigate('/suspended') }, `Suspended phrases (${suspendedCount})`),
     el('button', {
       class: 'ghost',
       onclick: async () => {
@@ -718,6 +740,67 @@ export async function renderSettings() {
   }
 }
 
+// ---------------- Suspended phrases ----------------
+
+export async function renderSuspended() {
+  const root = el('div', { class: 'col' });
+  root.append(appbar('Suspended', { backTo: '/settings' }));
+
+  const ids = [...(app.settings.suspendedIds || [])].reverse(); // most-recent first
+  const pool = await data.reviewPool(app.content); // includes user-added phrases
+  const byId = new Map(pool.phrases.map((p) => [p.id, p]));
+
+  if (ids.length === 0) {
+    root.append(el('div', { class: 'empty' }, 'No suspended phrases. Suspend an item during practice to hide it from sessions.'));
+    mount(root);
+    return;
+  }
+
+  root.append(el('div', { class: 'card row' }, [
+    el('div', { class: 'muted' }, `${ids.length} suspended`),
+    el('div', { class: 'spacer' }),
+    el('button', {
+      class: 'ghost',
+      onclick: async () => {
+        if (!confirm(`Unsuspend all ${ids.length} phrases?`)) return;
+        app.settings = await data.unsuspendAll();
+        toast('All unsuspended');
+        navigate('/suspended');
+      },
+    }, 'Unsuspend all'),
+  ]));
+
+  const list = el('div', { class: 'col' });
+  for (const id of ids) {
+    const p = byId.get(id);
+    if (!p) continue; // user-phrase or removed content; skip
+    list.append(renderSuspendedRow(p));
+  }
+  root.append(list);
+  mount(root);
+
+  function renderSuspendedRow(phrase) {
+    const row = el('div', { class: 'card col' });
+    row.append(el('div', { class: 'muted' }, (phrase.tags || []).map((t) => el('span', { class: 'tag' }, t))));
+    row.append(el('div', { class: 'ar' }, phrase.arabic));
+    if (app.settings.showTransliteration) {
+      row.append(el('div', { class: 'translit' }, phrase.transliteration));
+    }
+    row.append(el('div', {}, phrase.english));
+    row.append(el('div', { class: 'row' }, [
+      el('button', {
+        class: 'ghost',
+        onclick: async () => {
+          app.settings = await data.unsuspendItem(phrase.id);
+          toast('Unsuspended');
+          navigate('/suspended');
+        },
+      }, 'Unsuspend'),
+    ]));
+    return row;
+  }
+}
+
 // ---------------- Browser ----------------
 
 export async function renderBrowser() {
@@ -758,7 +841,8 @@ export async function renderBrowser() {
 export async function renderRescue() {
   const root = el('div', { class: 'col' });
   root.append(appbar('Rescue phrases'));
-  const items = app.content.phrases.filter((p) => p.rescue || (p.tags || []).includes('rescue'));
+  const suspended = new Set(app.settings.suspendedIds || []);
+  const items = app.content.phrases.filter((p) => (p.rescue || (p.tags || []).includes('rescue')) && !suspended.has(p.id));
   if (items.length === 0) {
     root.append(el('div', { class: 'empty' }, 'No rescue phrases yet.'));
   } else {

@@ -8,9 +8,9 @@ import * as recorder from './recorder.js';
 
 /**
  * Build a card view for a phrase recall step.
- * @param {{phrase:any, settings:any, onGraded:(grade:string)=>void, onSkip:()=>void}} ctx
+ * @param {{phrase:any, settings:any, onGraded:(grade:string)=>void, onSkip:()=>void, onSuspend?:()=>void}} ctx
  */
-export function recallCard({ phrase, settings, onGraded, onSkip }) {
+export function recallCard({ phrase, settings, onGraded, onSkip, onSuspend }) {
   const root = el('div', { class: 'card col' });
   let revealed = false;
 
@@ -53,6 +53,7 @@ export function recallCard({ phrase, settings, onGraded, onSkip }) {
 
   root.append(el('div', { class: 'row' }, [
     el('button', { class: 'ghost', onclick: () => onSkip() }, 'Skip'),
+    onSuspend ? el('button', { class: 'ghost', onclick: () => onSuspend() }, 'Suspend') : null,
   ]));
 
   function finish(g) {
@@ -64,9 +65,9 @@ export function recallCard({ phrase, settings, onGraded, onSkip }) {
 
 /**
  * Recognition card: Arabic prompt, reveal English. Inverse of recallCard.
- * @param {{phrase:any, settings:any, onGraded:(grade:string)=>void, onSkip:()=>void}} ctx
+ * @param {{phrase:any, settings:any, onGraded:(grade:string)=>void, onSkip:()=>void, onSuspend?:()=>void}} ctx
  */
-export function recognizeCard({ phrase, settings, onGraded, onSkip }) {
+export function recognizeCard({ phrase, settings, onGraded, onSkip, onSuspend }) {
   const root = el('div', { class: 'card col' });
   let revealed = false;
 
@@ -108,6 +109,7 @@ export function recognizeCard({ phrase, settings, onGraded, onSkip }) {
 
   root.append(el('div', { class: 'row' }, [
     el('button', { class: 'ghost', onclick: () => onSkip() }, 'Skip'),
+    onSuspend ? el('button', { class: 'ghost', onclick: () => onSuspend() }, 'Suspend') : null,
   ]));
   return root;
 }
@@ -115,7 +117,7 @@ export function recognizeCard({ phrase, settings, onGraded, onSkip }) {
 /**
  * New-item introduction: show everything up front, user taps "Got it" to enter the review chain.
  */
-export function newIntro({ phrase, settings, onContinue }) {
+export function newIntro({ phrase, settings, onContinue, onSuspend }) {
   const root = el('div', { class: 'card col' });
   root.append(el('div', { class: 'muted' }, ['New phrase ', ...phraseTags(phrase)]));
   if (phrase.context) root.append(el('div', { class: 'context' }, phrase.context));
@@ -126,6 +128,11 @@ export function newIntro({ phrase, settings, onContinue }) {
   if (phrase.fushaNote) root.append(el('div', { class: 'note fusha' }, `Fuṣḥā note: ${phrase.fushaNote}`));
   root.append(buildRecorderBar());
   root.append(el('button', { class: 'primary', onclick: () => onContinue() }, 'Got it — show me again later'));
+  if (onSuspend) {
+    root.append(el('div', { class: 'row' }, [
+      el('button', { class: 'ghost', onclick: () => onSuspend() }, 'Suspend (don\'t show this again)'),
+    ]));
+  }
   return root;
 }
 

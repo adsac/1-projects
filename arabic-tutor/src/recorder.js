@@ -31,10 +31,6 @@ export function stopRecording() {
   });
 }
 
-export function isRecording() {
-  return recorder && recorder.state === 'recording';
-}
-
 export async function teardown() {
   try {
     if (recorder && recorder.state !== 'inactive') recorder.stop();

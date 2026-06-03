@@ -34,7 +34,7 @@ async function boot() {
 
 function registerSW() {
   if (!('serviceWorker' in navigator)) return;
-  // Skip SW under file:// or localhost-without-https variations during ad-hoc testing.
+  // Skip SW under file:// — it requires http(s).
   if (location.protocol !== 'http:' && location.protocol !== 'https:') return;
   navigator.serviceWorker.register('./sw.js').then((reg) => {
     reg.addEventListener('updatefound', () => {

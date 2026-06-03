@@ -8,12 +8,12 @@
 //
 // Quotas per PRD §10.2 (per-minute targets, soft):
 //   3min  : 7 items, weak focus
-//   7min  : 14 items + up to 2 new
-//   10min : 18 items + up to 3 new + 4 scenario items
-//   15min : 25 items + up to 5 new + 6 scenario items + 1 engine drill block
+//   7min  : 14 items + up to 2 new + 1 engine drill
+//   10min : 18 items + up to 3 new + 4 scenario items + 1 engine drill
+//   15min : 25 items + up to 5 new + 6 scenario items + 2 engine drills
 
-import { isDue, isNew, weakness, isWeak, isStrong, newState } from './scheduler.js';
-import { shuffle, pick } from './util.js';
+import { isDue, isNew, weakness, isWeak, isStrong } from './scheduler.js';
+import { shuffle } from './util.js';
 
 const QUOTAS = {
   3:  { total: 7,  newMax: 1, scenarioMax: 1, engineMax: 0 },
@@ -99,11 +99,11 @@ export function plan(minutes, content, stateFor, settings, now = Date.now(), sco
     }
   }
 
-  // 3. Engine drill block(s): pick an engine the user has touched at least once,
-  //    or the first engine in scenario-priority order if cold start.
-  //    Shuffle first so engines tied on scenarioScore (very common — many engines
-  //    share the 'rescue' tag and tie at score 0) rotate across sessions instead
-  //    of always picking the first one in file order (which was always 'greetings').
+  // 3. Engine drill block(s): pick the top-priority engines by scenarioScore.
+  //    Shuffle first so engines tied at the same score (very common — many
+  //    engines share the 'rescue' tag at score 0) rotate across sessions
+  //    instead of always picking the first one in file order (which was
+  //    always 'greetings').
   if (quota.engineMax > 0 && content.engines.length > 0) {
     const ranked = shuffle(content.engines)
       .map((e) => ({ e, score: scenarioScore(e) }))

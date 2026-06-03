@@ -65,7 +65,6 @@
  * @property {string} description
  * @property {string[]} engineIds         // related engines
  * @property {string[]} phraseIds         // related phrases
- * @property {number} [priority]          // 1 = top, higher = lower priority
  */
 
 /**
@@ -75,14 +74,12 @@
  * @property {string} [arabic]
  * @property {string} [transliteration]
  * @property {string} [scenario]
- * @property {('high'|'normal')} [priority]
  * @property {number} createdAt
  */
 
 /**
  * @typedef {Object} Settings
  * @property {boolean} showTransliteration
- * @property {boolean} showHebrewHooks
  * @property {('none'|'slow'|'normal'|'fast')} newItemSpeed
  * @property {boolean} mixRecognition       // if true, ~25% of cards become Arabic→English instead of English→Arabic
  * @property {('xxsmall'|'xsmall'|'small'|'medium'|'large'|'xlarge')} arabicFontSize
@@ -95,7 +92,6 @@
 
 const DB_NAME = 'arabic-tutor';
 const DB_VERSION = 1;
-const STORES = ['reviewState', 'userPhrases', 'settings', 'sessions'];
 
 let dbPromise = null;
 
@@ -151,7 +147,6 @@ export async function dbAll(store) {
 
 export const DEFAULT_SETTINGS = /** @type {Settings} */ ({
   showTransliteration: true,
-  showHebrewHooks: false,
   newItemSpeed: 'normal',
   mixRecognition: false,
   arabicFontSize: 'medium',

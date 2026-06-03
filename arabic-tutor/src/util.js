@@ -1,7 +1,6 @@
-// Tiny utilities — DOM, time, RNG, string.
+// Tiny utilities — DOM, time, RNG.
 
 export const $ = (sel, root = document) => root.querySelector(sel);
-export const $$ = (sel, root = document) => Array.from(root.querySelectorAll(sel));
 
 export function el(tag, attrs = {}, children = []) {
   const node = document.createElement(tag);
@@ -27,12 +26,6 @@ export function clear(node) {
   while (node.firstChild) node.removeChild(node.firstChild);
 }
 
-export function escapeHtml(s) {
-  return String(s).replace(/[&<>"']/g, (c) => ({
-    '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;'
-  }[c]));
-}
-
 const DAY_MS = 86400000;
 export const day = DAY_MS;
 
@@ -46,11 +39,6 @@ export function fmtRelative(ms, now = Date.now()) {
   if (d === 1) return 'tomorrow';
   if (d < 30) return `in ${d}d`;
   return `in ${Math.round(d / 30)}mo`;
-}
-
-export function todayKey(now = Date.now()) {
-  const d = new Date(now);
-  return `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}-${String(d.getDate()).padStart(2, '0')}`;
 }
 
 export function shuffle(arr, rng = Math.random) {

@@ -1,6 +1,6 @@
 // All view renderers. Each render* function mounts into #app.
 
-import { $, el, clear, fmtRelative, daysFromNow, day, toast, uid } from './util.js';
+import { $, el, clear, fmtRelative, toast, uid } from './util.js';
 import * as data from './data.js';
 import * as scheduler from './scheduler.js';
 import * as practice from './practice.js';
@@ -17,7 +17,7 @@ let app = {
   states: new Map(),
 };
 
-export async function setApp(next) {
+export function setApp(next) {
   app = next;
 }
 
@@ -329,7 +329,8 @@ export async function renderScenario({ id }) {
   const s = app.content.scenarios.find((x) => x.id === id);
   if (!s) { mount(el('div', {}, [appbar('Situation'), el('div', { class: 'empty' }, 'Not found.')])); return; }
   await refreshStates();
-  const sum = summarize(app.content, stateFor, Date.now(), s.id);
+  const pool = await data.reviewPool(app.content);
+  const sum = summarize(pool, stateFor, Date.now(), s.id, app.settings.suspendedIds);
 
   const root = el('div', { class: 'col' });
   root.append(appbar(s.name, { backTo: '/scenarios' }));
@@ -357,7 +358,9 @@ export async function renderScenario({ id }) {
   ]));
 
   const phraseIds = new Set(s.phraseIds || []);
-  const phrases = app.content.phrases.filter((p) => phraseIds.has(p.id) || (p.tags || []).includes(s.id));
+  const suspended = new Set(app.settings.suspendedIds || []);
+  const phrases = pool.phrases.filter((p) =>
+    (phraseIds.has(p.id) || (p.tags || []).includes(s.id)) && !suspended.has(p.id));
   const engineIds = new Set(s.engineIds || []);
   const engines = app.content.engines.filter((e) => engineIds.has(e.id) || (e.tags || []).includes(s.id));
 
@@ -398,16 +401,11 @@ export async function renderAddPhrase() {
     el('option', { value: '' }, '— scenario —'),
     ...app.content.scenarios.map((s) => el('option', { value: s.id }, s.name)),
   ]);
-  const fPriority = el('select', {}, [
-    el('option', { value: 'normal' }, 'Normal'),
-    el('option', { value: 'high' }, 'High priority'),
-  ]);
   const card = el('div', { class: 'card col' }, [
     el('div', { class: 'field' }, [el('label', {}, 'English'), fEnglish]),
     el('div', { class: 'field' }, [el('label', {}, 'Arabic'), fArabic]),
     el('div', { class: 'field' }, [el('label', {}, 'Transliteration'), fTranslit]),
     el('div', { class: 'field' }, [el('label', {}, 'Scenario'), fScenario]),
-    el('div', { class: 'field' }, [el('label', {}, 'Priority'), fPriority]),
     el('button', { class: 'primary', onclick: save }, 'Save phrase'),
     el('button', { class: 'ghost', onclick: () => navigate('/needs-arabic') }, 'See pending phrases'),
   ]);
@@ -423,7 +421,6 @@ export async function renderAddPhrase() {
       arabic: fArabic.value.trim() || undefined,
       transliteration: fTranslit.value.trim() || undefined,
       scenario: fScenario.value || undefined,
-      priority: fPriority.value === 'high' ? 'high' : 'normal',
       createdAt: Date.now(),
     };
     await data.addUserPhrase(p);
@@ -484,10 +481,12 @@ function renderPendingItem(p) {
 export async function renderProgress() {
   await refreshStates();
   const pool = await data.reviewPool(app.content);
-  const sum = summarize(pool, stateFor);
+  const suspended = new Set(app.settings.suspendedIds || []);
+  const sum = summarize(pool, stateFor, Date.now(), null, app.settings.suspendedIds);
 
-  const strong = pool.phrases.filter((p) => scheduler.isStrong(stateFor(p.id)));
-  const weak = pool.phrases
+  const visible = pool.phrases.filter((p) => !suspended.has(p.id));
+  const strong = visible.filter((p) => scheduler.isStrong(stateFor(p.id)));
+  const weak = visible
     .map((p) => ({ p, st: stateFor(p.id) }))
     .filter((x) => scheduler.isWeak(x.st))
     .sort((a, b) => scheduler.weakness(b.st) - scheduler.weakness(a.st));
@@ -582,9 +581,10 @@ export async function renderProgress() {
 }
 
 function scenarioBreakdown(pool, scenarios) {
+  const suspended = new Set(app.settings.suspendedIds || []);
   const rows = [];
   for (const sc of scenarios) {
-    const items = pool.phrases.filter((p) => (p.tags || []).includes(sc.id));
+    const items = pool.phrases.filter((p) => (p.tags || []).includes(sc.id) && !suspended.has(p.id));
     if (items.length === 0) continue;
     let strong = 0, weak = 0, due = 0, fresh = 0;
     const now = Date.now();
@@ -609,8 +609,6 @@ export async function renderSettings() {
 
   const showTr = el('input', { type: 'checkbox' });
   showTr.checked = !!s.showTransliteration;
-  const showHe = el('input', { type: 'checkbox' });
-  showHe.checked = !!s.showHebrewHooks;
   const mixRec = el('input', { type: 'checkbox' });
   mixRec.checked = !!s.mixRecognition;
   const speedOptions = [
@@ -645,7 +643,6 @@ export async function renderSettings() {
 
   root.append(el('div', { class: 'card col' }, [
     el('div', { class: 'field' }, [el('label', {}, 'Show transliteration'), showTr]),
-    el('div', { class: 'field' }, [el('label', {}, 'Show Hebrew hooks'), showHe]),
     el('div', { class: 'field' }, [
       el('label', {}, 'Mix in Arabic → English cards (~25%)'),
       mixRec,
@@ -661,7 +658,6 @@ export async function renderSettings() {
       onclick: async () => {
         const next = await data.saveSettings({
           showTransliteration: showTr.checked,
-          showHebrewHooks: showHe.checked,
           mixRecognition: mixRec.checked,
           newItemSpeed: speed.value,
           arabicFontSize: arSize.value,

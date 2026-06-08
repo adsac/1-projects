@@ -5,6 +5,7 @@
 - **`main` is both the deployable AND the test environment.** GitHub Pages serves projects from `main`, so there is no separate staging — merging to `main` *is* the deploy.
 - **For a brand-new project / initial scaffold**: develop directly on `main`. A feature branch on an empty repo just adds friction.
 - **Once a project exists, work feature-by-feature:**
+  - **Before creating a new branch, verify local `main` is current.** Run `git rev-parse main origin/main` — the two SHAs should match, and they should match the latest merged PR. The working tree can quietly point at a stale HEAD between turns (it has happened); branching from there starts you on top of obsolete content and the merge will look fine until you spot the missing recent work. If the SHAs differ, `git checkout main && git fetch origin main && git reset --hard origin/main` before `git checkout -b`.
   - **Fresh branch per logical change**, named for the feature (e.g. `claude/arabic-add-give-bring-engines`, not the harness-assigned generic name reused across unrelated rounds). One branch = one PR = one logical change.
   - **PR-merge via API is the default landing path.** Use `mcp__github__create_pull_request` then `mcp__github__merge_pull_request` (method: `merge`). Direct pushes to `main` may be blocked at the proxy; don't burn cycles retrying.
   - **No explicit permission needed for each merge.** If a merged change turns out wrong, we revert. Don't gate on "is this approved enough yet" — the cost of a wasted merge is much lower than the cost of waiting.

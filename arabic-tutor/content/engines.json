@@ -535,6 +535,48 @@
       "status": "draft"
     },
     {
+      "id": "connectors",
+      "name": "Connectors (that, so, when, because, if, …)",
+      "pattern": "[CONNECTOR]",
+      "arabicPattern": "[CONNECTOR]",
+      "transliterationPattern": "[CONNECTOR]",
+      "fushaNote": "These small words do most of the heavy lifting for stringing thoughts together in Levantine. The relative pronoun illi covers all of MSA's allaḏī / allatī / allaḏīna (gender + number distinctions are dropped). The complementizer inno covers MSA anna / inna. Conditionals split: iza for real conditions ('if it rains'), law for unreal / hypothetical or polite ('if you would'). And yaʿni functions as 'I mean', 'so', and a filler all at once — you'll hear it in almost every sentence.",
+      "forms": [
+        { "key": "illi", "label": "that / which / who (relative)", "arabic": "اللي", "transliteration": "illi", "english": "that / which / who", "context": "Used to introduce a relative clause: il-walad illi hōn = 'the boy who('s) here'; ish-shi illi biddi = 'the thing that I want'. No gender/number agreement — one form covers all." },
+        { "key": "inno", "label": "that (complementizer)", "arabic": "إنّو", "transliteration": "inno", "english": "that (introduces a clause)", "context": "Used after verbs of thinking, saying, knowing: baʿtaʾid inno jāy = 'I think (that) he's coming'; ʾāl inno mā byaʿrif = 'he said (that) he doesn't know'." },
+        { "key": "lamma", "label": "when (subordinator)", "arabic": "لمّا", "transliteration": "lamma", "english": "when (in a clause)", "context": "Introduces a time clause: lamma ruḥt ʿa s-sūʾ = 'when I went to the market'. Distinct from ēmta? ('when?', the question word)." },
+        { "key": "la-anno", "label": "because", "arabic": "لأنّو", "transliteration": "la-anno", "english": "because", "context": "la- ('for / because') + anno ('that'). la-anno bardān = 'because (it's) cold'. Variant: li-anno." },
+        { "key": "iza", "label": "if (real condition)", "arabic": "إذا", "transliteration": "iza", "english": "if", "context": "Used for real / possible conditions: iza biddak, fīna nrūḥ = 'if you want, we can go'. For unreal / hypothetical or politeness, use law (as in law samaḥt 'if you would')." },
+        { "key": "la-hēk", "label": "so / therefore", "arabic": "لهيك", "transliteration": "la-hēk", "english": "so / therefore", "context": "Lit. 'for this' — la- ('for') + hēk ('this'). kān bardān, la-hēk libist jakēt = 'it was cold, so I wore a jacket'." },
+        { "key": "yaʿni", "label": "I mean / so", "arabic": "يعني", "transliteration": "yaʿni", "english": "I mean / so / it means", "context": "Lit. 'it means' (from MSA يعني). Ubiquitous filler / discourse marker: 'so, basically, you know'. yaʿni shū? = 'so what?' / 'meaning?'. Also literal: hāda yaʿni ʾahwe = 'this means coffee'." },
+        { "key": "willā", "label": "or (in questions)", "arabic": "ولّا", "transliteration": "willā", "english": "or", "context": "The everyday spoken 'or' in either/or questions: shāy willā ʾahwe? = 'tea or coffee?'. Etymologically 'and-not'." },
+        { "key": "aw", "label": "or (formal / either … or)", "arabic": "أو", "transliteration": "aw", "english": "or", "context": "More formal or written 'or'. willā is more common in spoken use; aw shows up in lists and writing: aḥmar aw azraʾ = 'red or blue'." },
+        { "key": "ḥatta", "label": "even", "arabic": "حتّى", "transliteration": "ḥatta", "english": "even", "context": "ḥatta huwwe mā byaʿrif = 'even he doesn't know'. Also means 'until' in time expressions: ḥatta bukra = 'until tomorrow'." },
+        { "key": "yimken", "label": "maybe", "arabic": "يمكن", "transliteration": "yimken", "english": "maybe", "context": "yimken bukra = 'maybe tomorrow'. Lit. 'it is possible'. Variant: balki (more colloquial, leans 'perhaps')." },
+        { "key": "ṭabʿan", "label": "of course", "arabic": "طبعاً", "transliteration": "ṭabʿan", "english": "of course / naturally", "context": "Lit. 'naturally' (from ṭabʿ, 'nature'). Used to agree warmly: ṭabʿan! = 'of course!'." }
+      ],
+      "slots": [
+        {
+          "name": "CONNECTOR",
+          "options": [
+            { "arabic": "اللي", "transliteration": "illi", "english": "that / which / who" },
+            { "arabic": "إنّو", "transliteration": "inno", "english": "that (complementizer)" },
+            { "arabic": "لمّا", "transliteration": "lamma", "english": "when" },
+            { "arabic": "لأنّو", "transliteration": "la-anno", "english": "because" },
+            { "arabic": "إذا", "transliteration": "iza", "english": "if" },
+            { "arabic": "لهيك", "transliteration": "la-hēk", "english": "so / therefore" },
+            { "arabic": "يعني", "transliteration": "yaʿni", "english": "I mean / so" },
+            { "arabic": "ولّا", "transliteration": "willā", "english": "or" },
+            { "arabic": "حتّى", "transliteration": "ḥatta", "english": "even" },
+            { "arabic": "يمكن", "transliteration": "yimken", "english": "maybe" },
+            { "arabic": "طبعاً", "transliteration": "ṭabʿan", "english": "of course" }
+          ]
+        }
+      ],
+      "tags": ["basics", "family", "work", "kids", "shops", "drivers"],
+      "status": "draft"
+    },
+    {
       "id": "demonstratives",
       "name": "This / that — pointing & equational sentences",
       "pattern": "[DEM] (is) [X]",

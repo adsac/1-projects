@@ -319,8 +319,44 @@ function validate(items, required, kind, warnings) {
 }
 
 /**
- * Combine library phrases + user phrases that have arabic filled in
- * into a single review pool.
+ * Expand every engine form into a phrase-shaped record so the planner can
+ * schedule it like any other recall item. The engine's morphological note
+ * (`fushaNote`) carries over as the form's `fushaNote` — that's where the
+ * conjugation context lives — and the engine name shows up in `context`
+ * so the user knows which engine they're drilling without losing the
+ * grammatical hook.
+ *
+ * Slot substitutions are NOT expanded — they're combinatorial and would
+ * explode the SRS pool. Slots stay for the free-form explore drill.
+ */
+function expandEngineForms(engines) {
+  const out = [];
+  for (const e of engines || []) {
+    if (!Array.isArray(e.forms)) continue;
+    for (const f of e.forms) {
+      if (!f.english || !f.arabic || !f.key) continue;
+      const engineLabel = e.name ? `From engine: ${e.name}.` : '';
+      const context = [f.context, engineLabel].filter(Boolean).join(' · ');
+      out.push({
+        id: `engine:${e.id}:${f.key}`,
+        english: f.english,
+        arabic: f.arabic,
+        transliteration: f.transliteration,
+        context: context || undefined,
+        pronunciationNote: f.pronunciationNote,
+        fushaNote: e.fushaNote,
+        tags: e.tags || [],
+        status: e.status || 'draft',
+      });
+    }
+  }
+  return out;
+}
+
+/**
+ * Combine library phrases + user phrases that have arabic filled in +
+ * every individual engine form into a single review pool. The planner
+ * sees all three kinds as interchangeable "phrase" items.
  */
 export async function reviewPool(content) {
   const userPhrases = await listUserPhrases();
@@ -334,8 +370,9 @@ export async function reviewPool(content) {
       tags: u.scenario ? [u.scenario] : [],
       status: 'verified',
     }));
+  const engineForms = expandEngineForms(content.engines);
   return {
-    phrases: [...content.phrases, ...userReady],
+    phrases: [...content.phrases, ...userReady, ...engineForms],
     engines: content.engines,
     scenarios: content.scenarios,
   };

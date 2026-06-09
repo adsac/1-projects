@@ -253,13 +253,6 @@ export async function runSession({ minutes, scope }) {
         onSuspend: suspendCurrent,
       });
       mount(el('div', { class: 'col' }, [header, node]));
-    } else if (item.kind === 'engine_drill') {
-      const node = practice.engineDrill({
-        engine: item.payload,
-        settings: app.settings,
-        onDone: () => { i++; step(); },
-      });
-      mount(el('div', { class: 'col' }, [header, node]));
     } else {
       i++; step();
     }
@@ -300,7 +293,8 @@ export async function renderEngine({ id }) {
     el('div', { class: 'ar lg' }, e.arabicPattern),
     app.settings.showTransliteration ? el('div', { class: 'translit' }, e.transliterationPattern) : null,
     e.fushaNote ? el('div', { class: 'note fusha' }, `Fuṣḥā note: ${e.fushaNote}`) : null,
-    el('button', { class: 'primary', onclick: () => startEngineDrill(e) }, 'Start drill'),
+    el('div', { class: 'muted' }, 'Each form is now drilled individually as part of your regular sessions. The button below is a free-form skim — no grading.'),
+    el('button', { class: 'primary', onclick: () => startEngineDrill(e) }, 'Skim 5 forms'),
   ]));
 
   if (e.forms?.length) {

@@ -2,15 +2,23 @@
 // The controllers return DOM nodes; mutation flows via callbacks back into the session.
 
 import { el, clear, shuffle } from './util.js';
-import { grade } from './scheduler.js';
+import { grade, previewIntervals } from './scheduler.js';
 import { putState, getState } from './data.js';
 import * as recorder from './recorder.js';
 
+function fmtInterval(d) {
+  if (d < 1) return '<1m';
+  if (d === 1) return '1d';
+  if (d < 30) return `${d}d`;
+  if (d < 365) return `${Math.round(d / 30)}mo`;
+  return `${Math.round(d / 365)}y`;
+}
+
 /**
  * Build a card view for a phrase recall step.
- * @param {{phrase:any, settings:any, onGraded:(grade:string)=>void, onSkip:()=>void, onSuspend?:()=>void}} ctx
+ * @param {{phrase:any, state?:any, settings:any, onGraded:(grade:string)=>void, onSkip:()=>void, onSuspend?:()=>void}} ctx
  */
-export function recallCard({ phrase, settings, onGraded, onSkip, onSuspend }) {
+export function recallCard({ phrase, state, settings, onGraded, onSkip, onSuspend }) {
   const root = el('div', { class: 'card col' });
   let revealed = false;
 
@@ -43,12 +51,7 @@ export function recallCard({ phrase, settings, onGraded, onSkip, onSuspend }) {
   }, 'Reveal');
   root.append(revealBtn);
 
-  const grades = el('div', { class: 'grades', hidden: true }, [
-    gradeBtn('again', 'Again', '<1m', () => finish('again')),
-    gradeBtn('hard',  'Hard',  '~1d', () => finish('hard')),
-    gradeBtn('good',  'Good',  '~3d', () => finish('good')),
-    gradeBtn('easy',  'Easy',  '~7d', () => finish('easy')),
-  ]);
+  const grades = el('div', { class: 'grades', hidden: true }, gradeRow(state, finish));
   root.append(grades);
 
   root.append(el('div', { class: 'row' }, [
@@ -65,9 +68,9 @@ export function recallCard({ phrase, settings, onGraded, onSkip, onSuspend }) {
 
 /**
  * Recognition card: Arabic prompt, reveal English. Inverse of recallCard.
- * @param {{phrase:any, settings:any, onGraded:(grade:string)=>void, onSkip:()=>void, onSuspend?:()=>void}} ctx
+ * @param {{phrase:any, state?:any, settings:any, onGraded:(grade:string)=>void, onSkip:()=>void, onSuspend?:()=>void}} ctx
  */
-export function recognizeCard({ phrase, settings, onGraded, onSkip, onSuspend }) {
+export function recognizeCard({ phrase, state, settings, onGraded, onSkip, onSuspend }) {
   const root = el('div', { class: 'card col' });
   let revealed = false;
 
@@ -101,12 +104,7 @@ export function recognizeCard({ phrase, settings, onGraded, onSkip, onSuspend })
   root.append(revealBtn);
 
   function finish(g) { if (revealed) onGraded(g); }
-  const grades = el('div', { class: 'grades', hidden: true }, [
-    gradeBtn('again', 'Again', '<1m', () => finish('again')),
-    gradeBtn('hard',  'Hard',  '~1d', () => finish('hard')),
-    gradeBtn('good',  'Good',  '~3d', () => finish('good')),
-    gradeBtn('easy',  'Easy',  '~7d', () => finish('easy')),
-  ]);
+  const grades = el('div', { class: 'grades', hidden: true }, gradeRow(state, finish));
   root.append(grades);
 
   root.append(el('div', { class: 'row' }, [
@@ -114,6 +112,21 @@ export function recognizeCard({ phrase, settings, onGraded, onSkip, onSuspend })
     onSuspend ? el('button', { class: 'ghost', onclick: () => onSuspend() }, 'Suspend') : null,
   ]));
   return root;
+}
+
+/**
+ * Build the four grade buttons with intervals computed from the current
+ * state. For a card with no prior state, this still works — the scheduler
+ * uses fresh defaults under the hood.
+ */
+function gradeRow(state, finish) {
+  const iv = previewIntervals(state || null);
+  return [
+    gradeBtn('again', 'Again', fmtInterval(iv.again), () => finish('again')),
+    gradeBtn('hard',  'Hard',  fmtInterval(iv.hard),  () => finish('hard')),
+    gradeBtn('good',  'Good',  fmtInterval(iv.good),  () => finish('good')),
+    gradeBtn('easy',  'Easy',  fmtInterval(iv.easy),  () => finish('easy')),
+  ];
 }
 
 /**

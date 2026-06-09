@@ -133,8 +133,24 @@ export async function runSession({ minutes, scope }) {
   // Items graded 'hard' get one extra in-session pass for consolidation.
   // Tracked here to avoid infinite re-shows if the user keeps grading hard.
   const hardReshown = new Set();
+  // New-item re-test: when a phrase has been freshly introduced, push a recall
+  // card a few items later in the same session — one retrieval attempt after
+  // intro is worth more than the intro alone.
+  const newIntroReshown = new Set();
+  // For Undo: remember the state of the most recently graded item before the
+  // grade was applied. Cleared after each undo or when the next grade happens.
+  let lastUndoable = null; // { itemId, prevState | null }
 
   step();
+
+  /** Insert an item to be re-shown later in the same session, a few cards
+   *  ahead of where we are. Used for hard re-shows and new-item re-tests.
+   *  Lands at i + 4..7, capped by queue length. */
+  function insertLater(entry) {
+    const offset = 4 + Math.floor(Math.random() * 4);
+    const pos = Math.min(queue.length, i + offset);
+    queue.splice(pos, 0, entry);
+  }
 
   async function step() {
     if (i >= queue.length) {
@@ -158,26 +174,50 @@ export async function runSession({ minutes, scope }) {
       i++; step();
       return;
     }
+    const undoBtn = lastUndoable
+      ? el('button', { class: 'ghost', onclick: undo }, '↶ Undo')
+      : null;
     const header = el('div', { class: 'col' }, [
       appbar(scopeLabel
         ? `${scopeLabel} · ${i + 1} / ${queue.length}`
-        : `${i + 1} / ${queue.length} · ${m}min`),
+        : `${i + 1} / ${queue.length} · ${m}min`,
+        { right: undoBtn }),
       el('div', { class: 'progress' }, [el('span', { style: `width:${Math.round((i / queue.length) * 100)}%` })]),
     ]);
 
     async function suspendCurrent() {
       app.settings = await data.suspendItem(item.itemId);
+      lastUndoable = null;
       toast('Suspended — won\'t appear again. See Settings → Suspended.');
       i++; step();
+    }
+
+    async function undo() {
+      if (!lastUndoable) return;
+      const { itemId, prevState } = lastUndoable;
+      if (prevState) {
+        await data.putState(prevState);
+      } else {
+        await data.deleteState(itemId);
+      }
+      lastUndoable = null;
+      // Rewind: re-render the previous card. Note: this doesn't unwind queue
+      // mutations (re-queued hard / again / new-intro pushbacks) — those stay
+      // in the queue. The point is to fix the grade, not the queue order.
+      i = Math.max(0, i - 1);
+      step();
     }
 
     if (item.kind === 'recall' || item.kind === 'scenario_drill' || item.kind === 'recognize') {
       const builder = item.kind === 'recognize' ? practice.recognizeCard : practice.recallCard;
       const node = builder({
         phrase: item.payload,
+        state: stateFor(item.itemId),
         settings: app.settings,
         onGraded: async (g) => {
+          const prevState = await data.getState(item.itemId);
           await practice.applyGrade(item.itemId, g);
+          lastUndoable = { itemId: item.itemId, prevState };
           if (g === 'again') {
             lapses++;
             queue.push(item);
@@ -185,7 +225,7 @@ export async function runSession({ minutes, scope }) {
             correct++;
             if (g === 'hard' && !hardReshown.has(item.itemId)) {
               hardReshown.add(item.itemId);
-              queue.push(item);
+              insertLater(item);
             }
           }
           i++;
@@ -199,10 +239,15 @@ export async function runSession({ minutes, scope }) {
       const node = practice.newIntro({
         phrase: item.payload,
         settings: app.settings,
-        onContinue: async () => {
-          // Treat as "good" first rep so it enters the schedule.
-          await practice.applyGrade(item.itemId, 'good');
-          correct++;
+        onContinue: () => {
+          // Don't grade yet — push a real recall card a few items later so the
+          // user has to actually retrieve the Arabic from English. Whatever
+          // grade they assign at that point becomes the first review.
+          if (!newIntroReshown.has(item.itemId)) {
+            newIntroReshown.add(item.itemId);
+            insertLater({ itemId: item.itemId, kind: 'recall', payload: item.payload });
+          }
+          lastUndoable = null; // intro doesn't create state — nothing to undo
           i++; step();
         },
         onSuspend: suspendCurrent,
@@ -678,9 +723,54 @@ export async function renderSettings() {
 
   root.append(el('h2', {}, 'Data'));
   const suspendedCount = (s.suspendedIds || []).length;
+  const importFile = el('input', { type: 'file', accept: 'application/json,.json', hidden: true });
+  importFile.onchange = async () => {
+    const f = importFile.files && importFile.files[0];
+    if (!f) return;
+    try {
+      const text = await f.text();
+      const snap = JSON.parse(text);
+      if (!confirm('Import will REPLACE your current review state, user phrases, and session log. Continue?')) {
+        importFile.value = '';
+        return;
+      }
+      const counts = await data.importSnapshot(snap);
+      app.settings = await data.getSettings();
+      if (window.__applyFontSizes) window.__applyFontSizes(app.settings);
+      toast(`Imported: ${counts.reviewStates} reviews · ${counts.userPhrases} phrases · ${counts.sessions} sessions`);
+      navigate('/');
+    } catch (err) {
+      console.error('import failed', err);
+      toast('Import failed: ' + (err.message || 'invalid file'));
+    } finally {
+      importFile.value = '';
+    }
+  };
   root.append(el('div', { class: 'card col' }, [
     el('button', { class: 'ghost', onclick: () => navigate('/browser') }, 'Browse content'),
     el('button', { class: 'ghost', onclick: () => navigate('/suspended') }, `Suspended phrases (${suspendedCount})`),
+    el('button', {
+      class: 'ghost',
+      onclick: async () => {
+        const snap = await data.exportSnapshot();
+        const blob = new Blob([JSON.stringify(snap, null, 2)], { type: 'application/json' });
+        const url = URL.createObjectURL(blob);
+        const stamp = new Date().toISOString().slice(0, 10);
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = `arabic-tutor-${stamp}.json`;
+        document.body.append(a);
+        a.click();
+        a.remove();
+        setTimeout(() => URL.revokeObjectURL(url), 1000);
+        toast('Snapshot downloaded');
+      },
+    }, 'Export progress (download JSON)'),
+    el('button', {
+      class: 'ghost',
+      onclick: () => importFile.click(),
+    }, 'Import progress (replace from JSON)'),
+    importFile,
     el('button', {
       class: 'ghost',
       onclick: async () => {

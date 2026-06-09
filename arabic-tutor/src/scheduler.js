@@ -74,6 +74,21 @@ export function isDue(state, now = Date.now()) {
   return state.dueAt <= now;
 }
 
+/**
+ * Compute what intervalDays each grade would produce given the current state.
+ * Used to label the grade buttons with honest "next interval" hints rather
+ * than the static defaults. Doesn't mutate.
+ * @returns {{again:number, hard:number, good:number, easy:number}}
+ */
+export function previewIntervals(state, now = Date.now()) {
+  return {
+    again: grade(state, 'again', now).intervalDays,
+    hard:  grade(state, 'hard',  now).intervalDays,
+    good:  grade(state, 'good',  now).intervalDays,
+    easy:  grade(state, 'easy',  now).intervalDays,
+  };
+}
+
 export function isNew(state) {
   return !state || state.repCount === 0;
 }

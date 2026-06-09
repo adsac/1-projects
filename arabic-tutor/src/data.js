@@ -196,6 +196,10 @@ export async function allStates() {
   return dbAll('reviewState');
 }
 
+export async function deleteState(itemId) {
+  return dbDel('reviewState', itemId);
+}
+
 // ---------------- User phrases ----------------
 
 export async function addUserPhrase(p) {
@@ -216,6 +220,61 @@ export async function logSession(s) {
 }
 export async function listSessions() {
   return dbAll('sessions');
+}
+
+// ---------------- Export / import ----------------
+
+const EXPORT_FORMAT = 'arabic-tutor-export-v1';
+
+/**
+ * Serialize everything in IndexedDB (review state, user phrases, sessions log,
+ * settings) into a single JSON blob the user can download. Doesn't include the
+ * content files (engines / phrases / scenarios) — those live in the repo.
+ */
+export async function exportSnapshot() {
+  const [reviewState, userPhrases, sessions, settings] = await Promise.all([
+    dbAll('reviewState'),
+    dbAll('userPhrases'),
+    dbAll('sessions'),
+    getSettings(),
+  ]);
+  return {
+    format: EXPORT_FORMAT,
+    exportedAt: Date.now(),
+    reviewState,
+    userPhrases,
+    sessions,
+    settings,
+  };
+}
+
+/**
+ * Restore a snapshot. Replaces the existing review state, user phrases, and
+ * sessions log entirely. Merges settings (so users on a newer build don't lose
+ * defaults the older snapshot didn't know about).
+ */
+export async function importSnapshot(snapshot) {
+  if (!snapshot || snapshot.format !== EXPORT_FORMAT) {
+    throw new Error('Not a valid Arabic Tutor export.');
+  }
+  const db = await openDb();
+  await Promise.all(['reviewState', 'userPhrases', 'sessions'].map((store) => new Promise((resolve, reject) => {
+    const tx = db.transaction(store, 'readwrite');
+    const os = tx.objectStore(store);
+    os.clear();
+    const items = snapshot[store] || [];
+    for (const item of items) os.put(item);
+    tx.oncomplete = () => resolve();
+    tx.onerror = () => reject(tx.error);
+  })));
+  if (snapshot.settings) {
+    await saveSettings(snapshot.settings);
+  }
+  return {
+    reviewStates: (snapshot.reviewState || []).length,
+    userPhrases: (snapshot.userPhrases || []).length,
+    sessions: (snapshot.sessions || []).length,
+  };
 }
 
 // ---------------- Content loader ----------------

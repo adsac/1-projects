@@ -1,25 +1,27 @@
 // Session planner. Pure function over content + review states.
 //
 // Output: ordered queue of { itemId, kind, payload? } where kind is one of:
-//   recall          — phrase recall card
-//   engine_drill    — engine slot/form drill
-//   new_intro       — new phrase introduction (counts toward new-item budget)
-//   scenario_drill  — phrase pulled by scenario priority
+//   recall          — phrase recall card (includes engine forms, which the
+//                     pool expands into phrase-shaped items)
+//   new_intro       — new item introduction (counts toward new-item budget)
+//   scenario_drill  — item pulled by scenario priority
 //
-// Quotas per PRD §10.2 (per-minute targets, soft):
+// Quotas per PRD §10.2 (per-minute targets, soft). Slots previously reserved
+// for the block engine_drill have been reabsorbed into reviewSlots — engine
+// forms now flow through the same recall channel as phrases.
 //   3min  : 7 items, weak focus
-//   7min  : 14 items + up to 2 new + 1 engine drill
-//   10min : 18 items + up to 3 new + 4 scenario items + 1 engine drill
-//   15min : 25 items + up to 5 new + 6 scenario items + 2 engine drills
+//   7min  : 14 items + up to 2 new + 2 scenario items
+//   10min : 18 items + up to 3 new + 4 scenario items
+//   15min : 25 items + up to 5 new + 6 scenario items
 
 import { isDue, isNew, weakness, isWeak, isStrong } from './scheduler.js';
 import { shuffle } from './util.js';
 
 const QUOTAS = {
-  3:  { total: 7,  newMax: 1, scenarioMax: 1, engineMax: 0 },
-  7:  { total: 14, newMax: 2, scenarioMax: 2, engineMax: 1 },
-  10: { total: 18, newMax: 3, scenarioMax: 4, engineMax: 1 },
-  15: { total: 25, newMax: 5, scenarioMax: 6, engineMax: 2 },
+  3:  { total: 7,  newMax: 1, scenarioMax: 1 },
+  7:  { total: 14, newMax: 2, scenarioMax: 2 },
+  10: { total: 18, newMax: 3, scenarioMax: 4 },
+  15: { total: 25, newMax: 5, scenarioMax: 6 },
 };
 
 /**
@@ -79,8 +81,8 @@ export function plan(minutes, content, stateFor, settings, now = Date.now(), sco
 
   // Build the queue.
   const queue = [];
-  // 1. Reviews (most-needed first), capped to total - newMax - engineMax slots.
-  const reviewSlots = Math.max(0, quota.total - newMax - quota.engineMax);
+  // 1. Reviews (most-needed first), leaving room for newMax intros.
+  const reviewSlots = Math.max(0, quota.total - newMax);
   for (const { p } of due.slice(0, reviewSlots)) {
     queue.push({ itemId: p.id, kind: 'recall', payload: p });
   }
@@ -99,22 +101,7 @@ export function plan(minutes, content, stateFor, settings, now = Date.now(), sco
     }
   }
 
-  // 3. Engine drill block(s): pick the top-priority engines by scenarioScore.
-  //    Shuffle first so engines tied at the same score (very common — many
-  //    engines share the 'rescue' tag at score 0) rotate across sessions
-  //    instead of always picking the first one in file order (which was
-  //    always 'greetings').
-  if (quota.engineMax > 0 && content.engines.length > 0) {
-    const ranked = shuffle(content.engines)
-      .map((e) => ({ e, score: scenarioScore(e) }))
-      .sort((a, b) => a.score - b.score);
-    for (let i = 0; i < quota.engineMax && i < ranked.length; i++) {
-      const e = ranked[i].e;
-      queue.push({ itemId: `engine:${e.id}`, kind: 'engine_drill', payload: e });
-    }
-  }
-
-  // 4. New introductions, capped by newMax.
+  // 3. New introductions, capped by newMax.
   if (newMax > 0 && newItems.length > 0) {
     const ranked = newItems
       .map((p) => ({ p, score: scenarioScore(p) }))
@@ -124,7 +111,7 @@ export function plan(minutes, content, stateFor, settings, now = Date.now(), sco
     }
   }
 
-  // 5. If still under quota, top up with more reviews (less weak).
+  // 4. If still under quota, top up with more reviews (less weak).
   if (queue.length < quota.total) {
     const inQueue = new Set(queue.map((q) => q.itemId));
     for (const { p } of due) {
@@ -133,7 +120,7 @@ export function plan(minutes, content, stateFor, settings, now = Date.now(), sco
     }
   }
 
-  // 6. Last-resort fallback: if the queue is still very small (e.g. 3-min when
+  // 5. Last-resort fallback: if the queue is still very small (e.g. 3-min when
   //    nothing is due, or a scoped session in a scenario you've already
   //    cleared today), top up with new-item intros so the session isn't empty.
   const minTarget = Math.min(quota.total, Math.max(3, Math.floor(quota.total / 2)));

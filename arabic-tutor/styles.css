@@ -171,6 +171,12 @@ button[disabled] { opacity: 0.5; cursor: not-allowed; }
 .ar.sm { font-size: var(--ar-size-sm); line-height: 1.5; }
 
 .translit { font-style: italic; color: var(--accent); font-size: calc(18px * var(--ui-scale)); }
+
+/* Building-blocks list shown in the multi-step new-item intro */
+.components { display: flex; flex-direction: column; gap: 6px; padding: 8px 0; }
+.components-row { display: flex; gap: 4px; align-items: baseline; flex-wrap: wrap; }
+.components-row .translit { font-size: calc(17px * var(--ui-scale)); }
+
 .context { font-style: italic; color: var(--muted); font-size: calc(14px * var(--ui-scale)); line-height: 1.4; }
 .context::before { content: '↳ '; opacity: 0.6; }
 .note { background: var(--surface-2); border-left: 3px solid var(--accent); padding: 8px 12px; border-radius: var(--radius-sm); margin-top: 8px; font-size: calc(14px * var(--ui-scale)); color: var(--muted); }

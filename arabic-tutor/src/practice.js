@@ -130,9 +130,19 @@ function gradeRow(state, finish) {
 }
 
 /**
- * New-item introduction: show everything up front, user taps "Got it" to enter the review chain.
+ * New-item introduction. If the phrase's context carries a parseable
+ * word-by-word breakdown ("kīf = how, ḥāl = state, -ak = your (m)."),
+ * we show the components first and the assembled phrase only after a
+ * tap — i+1 ramp instead of i+4 wall. Otherwise the single-step intro.
  */
-export function newIntro({ phrase, settings, onContinue, onSuspend }) {
+export function newIntro(ctx) {
+  const components = parseWordByWord(ctx.phrase.context);
+  return components && components.length >= 2
+    ? twoStepIntro({ ...ctx, components })
+    : singleStepIntro(ctx);
+}
+
+function singleStepIntro({ phrase, settings, onContinue, onSuspend }) {
   const root = el('div', { class: 'card col' });
   root.append(el('div', { class: 'muted' }, ['New phrase ', ...phraseTags(phrase)]));
   if (phrase.context) root.append(el('div', { class: 'context' }, phrase.context));
@@ -149,6 +159,109 @@ export function newIntro({ phrase, settings, onContinue, onSuspend }) {
     ]));
   }
   return root;
+}
+
+function twoStepIntro({ phrase, components, settings, onContinue, onSuspend }) {
+  const root = el('div', { class: 'col' });
+
+  // Step 1: meaning + building blocks. No Arabic answer yet.
+  const step1 = el('div', { class: 'card col' });
+  step1.append(el('div', { class: 'muted' }, ['New phrase · components first ', ...phraseTags(phrase)]));
+  step1.append(el('h2', {}, phrase.english));
+  step1.append(el('div', { class: 'muted' }, 'Building blocks:'));
+  const list = el('div', { class: 'components' });
+  for (const c of components) {
+    list.append(el('div', { class: 'components-row' }, [
+      el('span', { class: 'translit' }, c.token),
+      el('span', { class: 'muted' }, ' — '),
+      el('span', {}, c.gloss),
+    ]));
+  }
+  step1.append(list);
+
+  // Step 2: assembled phrase, hidden until step 1 is acknowledged.
+  const step2 = el('div', { class: 'card col', hidden: true });
+  step2.append(el('div', { class: 'muted' }, 'Assembled:'));
+  step2.append(el('div', { class: 'ar lg' }, phrase.arabic));
+  if (settings.showTransliteration) step2.append(el('div', { class: 'translit' }, phrase.transliteration));
+  step2.append(el('h2', {}, phrase.english));
+  if (phrase.pronunciationNote) step2.append(el('div', { class: 'note' }, `Pronunciation: ${phrase.pronunciationNote}`));
+  if (phrase.fushaNote) step2.append(el('div', { class: 'note fusha' }, `Fuṣḥā note: ${phrase.fushaNote}`));
+  step2.append(buildRecorderBar());
+  step2.append(el('button', { class: 'primary', onclick: () => onContinue() }, 'Got it — show me again later'));
+
+  const revealBtn = el('button', {
+    class: 'primary',
+    onclick: () => { step2.hidden = false; revealBtn.hidden = true; },
+  }, 'Show the assembled phrase');
+  step1.append(revealBtn);
+
+  if (onSuspend) {
+    step1.append(el('div', { class: 'row' }, [
+      el('button', { class: 'ghost', onclick: () => onSuspend() }, 'Suspend (don\'t show this again)'),
+    ]));
+  }
+  root.append(step1);
+  root.append(step2);
+  return root;
+}
+
+/**
+ * Parse a context string for word-by-word breakdowns of the form
+ *   "X = how, Y = state, -ak = your (m)."
+ * or with semicolons. Returns an array of {token, gloss} or null.
+ *
+ * Handles prose before / after the breakdown:
+ *  - "At a café. fī = there is; ..."  -> drops "At a café. " prefix
+ *  - "your (m). Lit. 'how (is) your-state'." -> truncates after "your (m)"
+ *    only when the next sentence starts with a capital letter, so
+ *    "law samaḥt = lit. 'if you...would permit'" stays intact.
+ */
+function parseWordByWord(context) {
+  if (!context) return null;
+  const parts = splitOutsideParens(context);
+  const components = [];
+  for (const part of parts) {
+    const eq = part.indexOf('=');
+    if (eq < 0) continue;
+    let token = part.slice(0, eq).trim();
+    let gloss = part.slice(eq + 1).trim();
+    // Strip prose prefix on the token (e.g. "At a café. fī" -> "fī"):
+    const dotInToken = token.lastIndexOf('. ');
+    if (dotInToken >= 0) token = token.slice(dotInToken + 2).trim();
+    // Strip prose suffix on the gloss, but only when the next sentence starts
+    // with a capital letter (so "lit. 'if you...'" stays intact while
+    // "your (m). Lit. ..." gets cut):
+    const sentenceBreak = gloss.match(/\.\s+(?=[A-Z])/);
+    if (sentenceBreak && sentenceBreak.index > 0) {
+      gloss = gloss.slice(0, sentenceBreak.index).trim();
+    }
+    gloss = gloss.replace(/\.$/, '').trim();
+    if (!token || !gloss) continue;
+    if (token.length > 30) continue;
+    if (token.split(/\s+/).length > 3) continue;
+    components.push({ token, gloss });
+  }
+  return components.length >= 2 ? components : null;
+}
+
+/** Split a string on top-level commas / semicolons only — commas inside
+ *  parens (like "(subjunctive, no b-)") stay attached to their part. */
+function splitOutsideParens(s) {
+  const parts = [];
+  let depth = 0;
+  let start = 0;
+  for (let i = 0; i < s.length; i++) {
+    const c = s[i];
+    if (c === '(') depth++;
+    else if (c === ')') depth = Math.max(0, depth - 1);
+    else if (depth === 0 && (c === ',' || c === ';')) {
+      parts.push(s.slice(start, i).trim());
+      start = i + 1;
+    }
+  }
+  if (start < s.length) parts.push(s.slice(start).trim());
+  return parts.filter((p) => p.length > 0);
 }
 
 /**

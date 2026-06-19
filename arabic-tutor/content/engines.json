@@ -688,7 +688,20 @@
         { "key": "neg.mine", "label": "it's not mine", "arabic": "هاد مش إلي", "transliteration": "hāda mish ilī", "english": "It's not mine." },
         { "key": "is.his", "label": "this is his", "arabic": "هاد إله", "transliteration": "hāda ilo", "english": "This is his." },
         { "key": "is.hers", "label": "this is hers", "arabic": "هاد إلها", "transliteration": "hāda ilha", "english": "This is hers." },
-        { "key": "is.theirs", "label": "this is theirs", "arabic": "هاد إلهم", "transliteration": "hāda ilhum", "english": "This is theirs." }
+        { "key": "is.theirs", "label": "this is theirs", "arabic": "هاد إلهم", "transliteration": "hāda ilhum", "english": "This is theirs." },
+        { "key": "yours.pl", "label": "yours (pl)", "arabic": "إلكم", "transliteration": "ilkum", "english": "Yours.", "context": "Said to a group." },
+        { "key": "is.that.mine", "label": "that is mine (m)", "arabic": "هداك إلي", "transliteration": "hadāk ilī", "english": "That is mine.", "context": "About a masculine thing further away. Use hadīk ilī for a feminine thing." },
+        { "key": "is.that.his", "label": "that is his (m)", "arabic": "هداك إله", "transliteration": "hadāk ilo", "english": "That is his." },
+        { "key": "is.that.yours.m", "label": "is that yours? (to m, m)", "arabic": "هداك إلك؟", "transliteration": "hadāk ilak?", "english": "Is that yours?", "context": "Asking a man about a masculine thing further away." },
+        { "key": "neg.that.mine", "label": "that's not mine (m)", "arabic": "هداك مش إلي", "transliteration": "hadāk mish ilī", "english": "That's not mine." },
+        { "key": "is.fmine", "label": "this (f) is mine", "arabic": "هاي إلي", "transliteration": "hāy ilī", "english": "This is mine.", "context": "About a feminine thing (sayyāra, shanṭa, …). Same il-i suffix — possessor pronoun doesn't agree with the thing's gender." },
+        { "key": "is.fyours.m", "label": "is this (f) yours? (to m)", "arabic": "هاي إلك؟", "transliteration": "hāy ilak?", "english": "Is this yours?", "context": "Asking a man about a feminine thing." },
+        { "key": "is.fhers", "label": "this (f) is hers", "arabic": "هاي إلها", "transliteration": "hāy ilha", "english": "This is hers.", "context": "About a feminine thing." },
+        { "key": "is.fthat.hers", "label": "that (f) is hers", "arabic": "هديك إلها", "transliteration": "hadīk ilha", "english": "That is hers.", "context": "About a feminine thing further away." },
+        { "key": "is.these.ours", "label": "these are ours", "arabic": "هدول إلنا", "transliteration": "hadōl ilna", "english": "These are ours." },
+        { "key": "is.these.yours.m", "label": "are these yours? (to m)", "arabic": "هدول إلك؟", "transliteration": "hadōl ilak?", "english": "Are these yours?", "context": "Asking a man." },
+        { "key": "is.taʿi", "label": "this is mine (with taʿ)", "arabic": "هاد تبعي", "transliteration": "hāda taʿi", "english": "This is mine.", "context": "taʿi = ilī, just the other independent-possessive set. Both heard daily." },
+        { "key": "is.taʿo", "label": "this is his (with taʿ)", "arabic": "هاد تبعه", "transliteration": "hāda taʿo", "english": "This is his.", "context": "taʿ + pronoun suffix, parallel to ilo." }
       ],
       "tags": ["basics", "shops", "neighbours", "family"],
       "status": "draft"

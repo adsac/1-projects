@@ -19,7 +19,21 @@ let app = {
 
 export function setApp(next) {
   app = { ...app, ...next };
-  app.dictMap = new Map((app.content?.dictionary || []).map((e) => [e.headword, e]));
+  rebuildDictMap();
+}
+
+/** Combined lookup table: bundled dictionary + user-added vocab.
+ *  User vocab wins on collision (so you can correct a bundled entry). */
+async function rebuildDictMap() {
+  const m = new Map();
+  for (const e of (app.content?.dictionary || [])) m.set(e.headword, e);
+  try {
+    const user = await data.listUserVocab();
+    for (const e of user) m.set(e.headword, { ...e, _user: true });
+  } catch {
+    // pre-DB-open contexts: fall back to bundled only.
+  }
+  app.dictMap = m;
 }
 
 async function refreshStates() {
@@ -337,8 +351,41 @@ function renderGloss(hit, close) {
 function renderNotFound(rawWord, close) {
   const rows = el('div', { class: 'col' });
   rows.append(el('div', { class: 'ar lg' }, rawWord));
-  rows.append(el('div', { class: 'muted' }, 'Not in the dictionary yet. PR 6 will let you save your own entries.'));
+  rows.append(el('div', { class: 'muted' }, 'Not in the dictionary yet — add it as a personal entry.'));
+
+  const fGloss = el('input', { type: 'text', placeholder: 'English gloss (required)' });
+  const fRoot  = el('input', { type: 'text', placeholder: 'Root (e.g. k-t-b) — optional' });
+  const fForm  = el('input', { type: 'text', placeholder: 'Form / pattern — optional' });
+  const fHeb   = el('input', { type: 'text', placeholder: 'Hebrew cognate — optional' });
+
+  rows.append(el('div', { class: 'col' }, [
+    el('div', { class: 'field' }, [el('label', {}, 'Gloss'), fGloss]),
+    el('div', { class: 'field' }, [el('label', {}, 'Root'),  fRoot]),
+    el('div', { class: 'field' }, [el('label', {}, 'Form'),  fForm]),
+    el('div', { class: 'field' }, [el('label', {}, 'Hebrew'), fHeb]),
+  ]));
+
   rows.append(el('div', { class: 'actions' }, [
+    el('button', { class: 'primary', onclick: async () => {
+      const gloss = fGloss.value.trim();
+      if (!gloss) { toast('Gloss is required'); return; }
+      // Strip ḥarakāt + non-Arabic from the headword key so it matches what
+      // the tokenizer hands the lookup.
+      const headword = rawWord.replace(/[ً-ٰ]/g, '').replace(/ـ/g, '').trim();
+      const entry = {
+        headword,
+        vocalized: rawWord,
+        gloss,
+        root: fRoot.value.trim(),
+        form: fForm.value.trim(),
+        hebrew: fHeb.value.trim(),
+        status: 'verified', // user-authored = trusted
+      };
+      await data.addUserVocab(entry);
+      await rebuildDictMap();
+      toast(`Saved: ${headword}`);
+      close();
+    } }, '＋ Add to my dictionary'),
     el('button', { class: 'ghost', onclick: close }, 'Close'),
   ]));
   return rows;
@@ -790,6 +837,55 @@ export async function renderPaste() {
   mount(root);
 }
 
+// ---------------- Suspended list ----------------
+
+export async function renderSuspended() {
+  const root = el('div', { class: 'col' });
+  root.append(appbar('Suspended', { backTo: '/settings' }));
+
+  const ids = [...(app.settings.suspendedIds || [])].reverse();
+  if (ids.length === 0) {
+    root.append(el('div', { class: 'empty' }, 'Nothing suspended. Suspend a card during Review to hide it from future sessions.'));
+    mount(root); return;
+  }
+
+  root.append(el('div', { class: 'card row' }, [
+    el('div', { class: 'muted', style: 'flex:1' }, `${ids.length} suspended`),
+    el('button', {
+      class: 'ghost',
+      onclick: async () => {
+        if (!confirm(`Unsuspend all ${ids.length}?`)) return;
+        app.settings = await data.unsuspendAll();
+        toast('All unsuspended');
+        renderSuspended();
+      },
+    }, 'Unsuspend all'),
+  ]));
+
+  const list = el('div', { class: 'col' });
+  for (const id of ids) {
+    const entry = app.dictMap.get(id);
+    const row = el('div', { class: 'card col' });
+    row.append(el('div', { class: 'ar' }, entry?.vocalized || id));
+    if (entry) row.append(el('div', {}, entry.gloss));
+    row.append(el('div', { class: 'row' }, [
+      el('button', {
+        class: 'ghost',
+        onclick: async () => {
+          app.settings = await data.unsuspendItem(id);
+          toast('Unsuspended');
+          renderSuspended();
+        },
+      }, 'Unsuspend'),
+    ]));
+    list.append(row);
+  }
+  root.append(list);
+  mount(root);
+}
+
+// ---------------- Settings ----------------
+
 export async function renderSettings() {
   const s = app.settings;
 
@@ -819,6 +915,31 @@ export async function renderSettings() {
   arSize.onchange = previewSizes;
   uiSize.onchange = previewSizes;
 
+  // ---- Data section: suspended list, export/import, reset ----
+  const suspendedCount = (s.suspendedIds || []).length;
+  const importFile = el('input', { type: 'file', accept: 'application/json,.json', hidden: true });
+  importFile.onchange = async () => {
+    const f = importFile.files && importFile.files[0];
+    if (!f) return;
+    try {
+      const snap = JSON.parse(await f.text());
+      if (!confirm('Import will REPLACE your current review state, user vocab, and saved articles. Continue?')) {
+        importFile.value = ''; return;
+      }
+      const counts = await data.importSnapshot(snap);
+      app.settings = await data.getSettings();
+      await rebuildDictMap();
+      if (window.__applyFontSizes) window.__applyFontSizes(app.settings);
+      toast(`Imported: ${counts.reviewStates} reviews · ${counts.userVocab} vocab · ${counts.savedArticles} articles`);
+      navigate('/');
+    } catch (err) {
+      console.error('import failed', err);
+      toast('Import failed: ' + (err.message || 'invalid file'));
+    } finally {
+      importFile.value = '';
+    }
+  };
+
   mount(el('div', { class: 'col' }, [
     appbar('Settings'),
     el('div', { class: 'card col' }, [
@@ -842,6 +963,39 @@ export async function renderSettings() {
         },
       }, 'Save'),
     ]),
-    el('div', { class: 'muted' }, 'Export / import + more settings land in PR 6.'),
+    el('h2', {}, 'Data'),
+    el('div', { class: 'card col' }, [
+      el('button', { class: 'ghost', onclick: () => navigate('/suspended') }, `Suspended (${suspendedCount})`),
+      el('button', {
+        class: 'ghost',
+        onclick: async () => {
+          const snap = await data.exportSnapshot();
+          const blob = new Blob([JSON.stringify(snap, null, 2)], { type: 'application/json' });
+          const url = URL.createObjectURL(blob);
+          const stamp = new Date().toISOString().slice(0, 10);
+          const a = document.createElement('a');
+          a.href = url;
+          a.download = `msa-reader-${stamp}.json`;
+          document.body.append(a);
+          a.click();
+          a.remove();
+          setTimeout(() => URL.revokeObjectURL(url), 1000);
+          toast('Snapshot downloaded');
+        },
+      }, 'Export progress (download JSON)'),
+      el('button', { class: 'ghost', onclick: () => importFile.click() }, 'Import progress (replace from JSON)'),
+      importFile,
+      el('button', {
+        class: 'ghost',
+        onclick: async () => {
+          if (!confirm('Reset review state, user vocab, saved articles, and session log? Settings are kept.')) return;
+          await data.resetProgress();
+          await rebuildDictMap();
+          await refreshStates();
+          toast('Reset');
+          navigate('/');
+        },
+      }, 'Reset progress'),
+    ]),
   ]));
 }

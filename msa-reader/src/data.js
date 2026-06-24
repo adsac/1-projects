@@ -117,6 +117,67 @@ export async function unsuspendItem(id) {
   const cur = await getSettings();
   return saveSettings({ suspendedIds: (cur.suspendedIds || []).filter((x) => x !== id) });
 }
+export async function unsuspendAll() {
+  return saveSettings({ suspendedIds: [] });
+}
+
+// ---------------- Export / import ----------------
+
+const EXPORT_FORMAT = 'msa-reader-export-v1';
+
+/** Serialize the entire IndexedDB (review state + user vocab + saved
+ *  articles + settings) as a JSON snapshot the user can download.
+ *  Doesn't include the bundled content (dictionary / graded / patterns)
+ *  — those live in the repo. */
+export async function exportSnapshot() {
+  const [reviewState, userVocab, savedArticles, sessions, settings] = await Promise.all([
+    dbAll('reviewState'),
+    dbAll('userVocab'),
+    dbAll('savedArticles'),
+    dbAll('sessions'),
+    getSettings(),
+  ]);
+  return {
+    format: EXPORT_FORMAT,
+    exportedAt: Date.now(),
+    reviewState, userVocab, savedArticles, sessions, settings,
+  };
+}
+
+/** Restore from a snapshot. Replaces existing review state + user vocab
+ *  + saved articles + sessions wholesale. Merges settings so newer
+ *  defaults survive. */
+export async function importSnapshot(snapshot) {
+  if (!snapshot || snapshot.format !== EXPORT_FORMAT) {
+    throw new Error('Not a valid MSA Reader export.');
+  }
+  const db = await openDb();
+  await Promise.all(['reviewState', 'userVocab', 'savedArticles', 'sessions'].map((store) => new Promise((resolve, reject) => {
+    const txn = db.transaction(store, 'readwrite');
+    const os = txn.objectStore(store);
+    os.clear();
+    for (const item of (snapshot[store] || [])) os.put(item);
+    txn.oncomplete = () => resolve();
+    txn.onerror = () => reject(txn.error);
+  })));
+  if (snapshot.settings) await saveSettings(snapshot.settings);
+  return {
+    reviewStates: (snapshot.reviewState || []).length,
+    userVocab: (snapshot.userVocab || []).length,
+    savedArticles: (snapshot.savedArticles || []).length,
+    sessions: (snapshot.sessions || []).length,
+  };
+}
+
+/** Wipe review state + user vocab + saved articles + sessions. Settings
+ *  preserved. Used by the Reset button in Settings. */
+export async function resetProgress() {
+  const db = await openDb();
+  await Promise.all(['reviewState', 'userVocab', 'savedArticles', 'sessions'].map((store) => new Promise((resolve) => {
+    const req = db.transaction(store, 'readwrite').objectStore(store).clear();
+    req.onsuccess = req.onerror = () => resolve();
+  })));
+}
 
 // ---------------- Review state (stubs — used from PR 3) ----------------
 

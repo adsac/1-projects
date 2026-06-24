@@ -19,8 +19,9 @@ async function boot() {
   router.route('/article/:id',   views.renderArticle);
   router.route('/paste',         views.renderPaste);
   router.route('/review',        views.renderReview);
-  router.route('/patterns', views.renderPatterns);
-  router.route('/settings', views.renderSettings);
+  router.route('/patterns',      views.renderPatterns);
+  router.route('/settings',      views.renderSettings);
+  router.route('/suspended',     views.renderSuspended);
   router.start();
 
   registerSW();

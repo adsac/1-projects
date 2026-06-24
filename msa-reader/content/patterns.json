@@ -1,0 +1,120 @@
+{
+  "_doc": "Root + form recognition material. Each root carries the derivations a newspaper reader actually encounters — verbs across binyans, masdars, active and passive participles, place nouns. 'pattern' is the abstract template (faʿala / mafʿūl / fiʿāl etc.); 'form' is the human label shown on the card. Hebrew cognate at the root level when there's a clean cognate.",
+  "items": [
+    {
+      "root": "k-t-b",
+      "rootMeaning": "writing",
+      "hebrew": "כתב (k-t-v, write)",
+      "derivations": [
+        { "form": "Form I verb (past)",        "vocalized": "كَتَبَ",   "unvocalized": "كتب",    "gloss": "wrote / to write",      "pattern": "faʿala" },
+        { "form": "Form I masdar",             "vocalized": "كِتابة",   "unvocalized": "كتابة",  "gloss": "writing",                "pattern": "fiʿāla" },
+        { "form": "Form I active participle",  "vocalized": "كاتِب",    "unvocalized": "كاتب",   "gloss": "writer; clerk",          "pattern": "fāʿil" },
+        { "form": "Form I passive participle", "vocalized": "مَكْتوب",  "unvocalized": "مكتوب",  "gloss": "written; letter",        "pattern": "mafʿūl" },
+        { "form": "Form I concrete noun",      "vocalized": "كِتاب",    "unvocalized": "كتاب",   "gloss": "book",                   "pattern": "fiʿāl" },
+        { "form": "Form III verb",             "vocalized": "كاتَبَ",   "unvocalized": "كاتب",   "gloss": "to correspond with",     "pattern": "fāʿala" },
+        { "form": "place noun",                "vocalized": "مَكْتَب",  "unvocalized": "مكتب",   "gloss": "office; desk",           "pattern": "mafʿal" },
+        { "form": "place noun (fem)",          "vocalized": "مَكْتَبة",  "unvocalized": "مكتبة",  "gloss": "library; bookshop",      "pattern": "mafʿala" }
+      ]
+    },
+    {
+      "root": "q-r-ʾ",
+      "rootMeaning": "reading; recitation",
+      "hebrew": "קרא (q-r-ʾ, read / call)",
+      "derivations": [
+        { "form": "Form I verb (past)",        "vocalized": "قَرَأَ",    "unvocalized": "قرأ",    "gloss": "read / to read",        "pattern": "faʿala" },
+        { "form": "Form I masdar",             "vocalized": "قِراءة",   "unvocalized": "قراءة",  "gloss": "reading",                "pattern": "fiʿāla" },
+        { "form": "Form I active participle",  "vocalized": "قارِئ",    "unvocalized": "قارئ",   "gloss": "reader",                 "pattern": "fāʿil" },
+        { "form": "Form I passive participle", "vocalized": "مَقْروء",  "unvocalized": "مقروء",  "gloss": "(that which is) read",   "pattern": "mafʿūl" },
+        { "form": "Form III masdar",           "vocalized": "مُقارَنة", "unvocalized": "مقارنة", "gloss": "comparison (sister root q-r-n; included to contrast pattern fāʿala / mufāʿala)", "pattern": "mufāʿala" },
+        { "form": "Form VIII masdar (variant)","vocalized": "اقْتِراء", "unvocalized": "اقتراء", "gloss": "reading aloud (rare)",   "pattern": "iftiʿāl" }
+      ]
+    },
+    {
+      "root": "ʿ-l-m",
+      "rootMeaning": "knowledge; learning",
+      "hebrew": "",
+      "derivations": [
+        { "form": "Form I verb (past)",        "vocalized": "عَلِمَ",   "unvocalized": "علم",    "gloss": "to know",                "pattern": "faʿila" },
+        { "form": "Form I noun",               "vocalized": "عِلْم",    "unvocalized": "علم",    "gloss": "knowledge; science",     "pattern": "fiʿl" },
+        { "form": "Form II verb",              "vocalized": "عَلَّمَ",   "unvocalized": "علّم",   "gloss": "to teach",               "pattern": "faʿʿala" },
+        { "form": "Form II masdar",            "vocalized": "تَعْليم",   "unvocalized": "تعليم",  "gloss": "teaching; education",    "pattern": "tafʿīl" },
+        { "form": "Form V verb",               "vocalized": "تَعَلَّمَ",  "unvocalized": "تعلّم",  "gloss": "to learn",               "pattern": "tafaʿʿala" },
+        { "form": "Form V masdar",             "vocalized": "تَعَلُّم",   "unvocalized": "تعلّم",  "gloss": "learning",               "pattern": "tafaʿʿul" },
+        { "form": "Form X verb",               "vocalized": "اسْتَعْلَمَ","unvocalized": "استعلم", "gloss": "to inquire / seek info", "pattern": "istafʿala" },
+        { "form": "place noun",                "vocalized": "مَعْلَم",   "unvocalized": "معلم",   "gloss": "landmark; sign",         "pattern": "mafʿal" },
+        { "form": "Form II active participle", "vocalized": "مُعَلِّم",   "unvocalized": "معلّم",  "gloss": "teacher",                "pattern": "mufaʿʿil" }
+      ]
+    },
+    {
+      "root": "ḥ-k-m",
+      "rootMeaning": "rule; judgment; wisdom",
+      "hebrew": "חכם (chacham, wise)",
+      "derivations": [
+        { "form": "Form I verb (past)",        "vocalized": "حَكَمَ",   "unvocalized": "حكم",    "gloss": "to rule; to judge",      "pattern": "faʿala" },
+        { "form": "Form I noun",               "vocalized": "حُكْم",    "unvocalized": "حكم",    "gloss": "rule; judgment",         "pattern": "fuʿl" },
+        { "form": "Form I noun (fem -ūma)",    "vocalized": "حُكومة",   "unvocalized": "حكومة",  "gloss": "government",             "pattern": "fuʿūla" },
+        { "form": "Form I active participle",  "vocalized": "حاكِم",    "unvocalized": "حاكم",   "gloss": "ruler; governor",        "pattern": "fāʿil" },
+        { "form": "Form I noun (wisdom)",      "vocalized": "حِكْمة",   "unvocalized": "حكمة",   "gloss": "wisdom; maxim",          "pattern": "fiʿla" },
+        { "form": "place noun",                "vocalized": "مَحْكَمة",  "unvocalized": "محكمة",  "gloss": "court (of law)",         "pattern": "mafʿala" },
+        { "form": "Form II verb",              "vocalized": "حَكَّمَ",   "unvocalized": "حكّم",   "gloss": "to arbitrate; appoint as judge", "pattern": "faʿʿala" }
+      ]
+    },
+    {
+      "root": "ʿ-m-l",
+      "rootMeaning": "work; doing",
+      "hebrew": "עמל (amal, toil)",
+      "derivations": [
+        { "form": "Form I verb (past)",        "vocalized": "عَمِلَ",   "unvocalized": "عمل",    "gloss": "to work; do",            "pattern": "faʿila" },
+        { "form": "Form I noun",               "vocalized": "عَمَل",    "unvocalized": "عمل",    "gloss": "work; deed",             "pattern": "faʿal" },
+        { "form": "Form I active participle",  "vocalized": "عامِل",    "unvocalized": "عامل",   "gloss": "worker; factor",         "pattern": "fāʿil" },
+        { "form": "Form I noun, broken pl",    "vocalized": "عُمّال",   "unvocalized": "عمّال",  "gloss": "workers",                "pattern": "fuʿʿāl" },
+        { "form": "Form II verb",              "vocalized": "عَمَّلَ",   "unvocalized": "عمّل",   "gloss": "to employ; put to work", "pattern": "faʿʿala" },
+        { "form": "Form X verb",               "vocalized": "اسْتَعْمَلَ","unvocalized": "استعمل", "gloss": "to use",                 "pattern": "istafʿala" },
+        { "form": "Form X masdar",             "vocalized": "اسْتِعْمال","unvocalized": "استعمال","gloss": "use; usage",             "pattern": "istifʿāl" },
+        { "form": "place noun (fem)",          "vocalized": "مَعْمَل",   "unvocalized": "معمل",   "gloss": "factory; workshop",      "pattern": "mafʿal" }
+      ]
+    },
+    {
+      "root": "ḥ-d-th",
+      "rootMeaning": "happening; speech",
+      "hebrew": "",
+      "derivations": [
+        { "form": "Form I verb (past)",        "vocalized": "حَدَثَ",   "unvocalized": "حدث",    "gloss": "to happen; occur",       "pattern": "faʿala" },
+        { "form": "Form I noun",               "vocalized": "حَدَث",    "unvocalized": "حدث",    "gloss": "event; incident",        "pattern": "faʿal" },
+        { "form": "Form II verb",              "vocalized": "حَدَّثَ",   "unvocalized": "حدّث",   "gloss": "to tell; narrate",       "pattern": "faʿʿala" },
+        { "form": "Form V verb",               "vocalized": "تَحَدَّثَ",  "unvocalized": "تحدّث",  "gloss": "to speak; talk",         "pattern": "tafaʿʿala" },
+        { "form": "Form V active participle",  "vocalized": "مُتَحَدِّث","unvocalized": "متحدّث", "gloss": "spokesperson; speaker",  "pattern": "mutafaʿʿil" },
+        { "form": "Form V passive participle", "vocalized": "مُحَدَّث",  "unvocalized": "محدّث",  "gloss": "updated; modernized",    "pattern": "mufaʿʿal" },
+        { "form": "Form VI verb",              "vocalized": "تَحادَثَ",  "unvocalized": "تحادث",  "gloss": "to converse together",   "pattern": "tafāʿala" }
+      ]
+    },
+    {
+      "root": "k-w-n",
+      "rootMeaning": "being; existence",
+      "hebrew": "כון (k-w-n, be established)",
+      "derivations": [
+        { "form": "Form I verb (past)",        "vocalized": "كانَ",    "unvocalized": "كان",    "gloss": "to be (past)",           "pattern": "faʿala (hollow)" },
+        { "form": "Form I imperfect",          "vocalized": "يَكونُ",   "unvocalized": "يكون",   "gloss": "is / will be",           "pattern": "yafʿulu (hollow)" },
+        { "form": "Form II verb",              "vocalized": "كَوَّنَ",   "unvocalized": "كوّن",   "gloss": "to form; constitute",    "pattern": "faʿʿala" },
+        { "form": "Form II masdar",            "vocalized": "تَكْوين",   "unvocalized": "تكوين",  "gloss": "formation; constitution","pattern": "tafʿīl" },
+        { "form": "place noun",                "vocalized": "مَكان",    "unvocalized": "مكان",   "gloss": "place; location",        "pattern": "mafʿal" },
+        { "form": "Form X verb",               "vocalized": "اسْتَكانَ", "unvocalized": "استكان", "gloss": "to submit; be quiet",    "pattern": "istafʿala (hollow)" }
+      ]
+    },
+    {
+      "root": "j-m-ʿ",
+      "rootMeaning": "gathering; collection",
+      "hebrew": "",
+      "derivations": [
+        { "form": "Form I verb (past)",        "vocalized": "جَمَعَ",   "unvocalized": "جمع",    "gloss": "to gather; collect",     "pattern": "faʿala" },
+        { "form": "Form I noun",               "vocalized": "جَمْع",    "unvocalized": "جمع",    "gloss": "gathering; plural",      "pattern": "faʿl" },
+        { "form": "Form I active participle",  "vocalized": "جامِع",    "unvocalized": "جامع",   "gloss": "comprehensive; (Fri.) mosque", "pattern": "fāʿil" },
+        { "form": "Form I noun (fem, university)","vocalized": "جامِعة","unvocalized": "جامعة",  "gloss": "university; community",  "pattern": "fāʿila" },
+        { "form": "Form VIII verb",            "vocalized": "اجْتَمَعَ","unvocalized": "اجتمع",  "gloss": "to meet; convene",       "pattern": "iftaʿala" },
+        { "form": "Form VIII masdar",          "vocalized": "اجْتِماع", "unvocalized": "اجتماع", "gloss": "meeting",                "pattern": "iftiʿāl" },
+        { "form": "Form VIII active participle","vocalized":"مُجْتَمِع","unvocalized":"مجتمع",  "gloss":"convened; assembled",      "pattern": "muftaʿil" },
+        { "form": "Form VIII passive participle (noun)","vocalized":"مُجْتَمَع","unvocalized":"مجتمع","gloss":"society; community",  "pattern": "muftaʿal" }
+      ]
+    }
+  ]
+}

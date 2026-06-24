@@ -548,11 +548,138 @@ function fmtInterval(d) {
   return `${Math.round(d / 365)}y`;
 }
 
+// ---------------- Patterns ----------------
+
 export async function renderPatterns() {
-  mount(el('div', { class: 'col' }, [
-    appbar('Patterns'),
-    el('div', { class: 'empty' }, 'Root + form recognition drills land in PR 5. ~20 high-frequency roots × 5-8 forms each.'),
+  const root = el('div', { class: 'col' });
+  root.append(appbar('Patterns'));
+
+  const roots = app.content.patterns || [];
+  if (roots.length === 0) {
+    root.append(el('div', { class: 'empty' }, 'No patterns loaded.'));
+    mount(root); return;
+  }
+
+  const totalCards = roots.reduce((n, r) => n + (r.derivations || []).length, 0);
+  root.append(el('div', { class: 'card col' }, [
+    el('div', { class: 'muted' }, [
+      `${roots.length} roots · ${totalCards} derivation cards. Reveal-only — drill through forms to reactivate pattern recognition.`,
+    ]),
+    el('button', { class: 'primary', onclick: () => startPatternDrill(mixedDeck(roots, 10), 'Mixed') }, 'Drill 10 mixed'),
   ]));
+
+  root.append(el('h2', {}, 'By root'));
+  const list = el('div', { class: 'col' });
+  for (const r of roots) {
+    const card = el('div', {
+      class: 'card col',
+      onclick: () => startPatternDrill(deckForRoot(r), r.root),
+      style: 'cursor: pointer',
+    });
+    card.append(el('div', { class: 'row' }, [
+      el('strong', { style: 'flex:1' }, r.root),
+      el('span', { class: 'muted' }, `${(r.derivations || []).length} forms`),
+    ]));
+    card.append(el('div', { class: 'muted' }, r.rootMeaning || ''));
+    if (r.hebrew && app.settings.showHebrewCognates) {
+      card.append(el('div', { class: 'gloss-row' }, [
+        el('span', { class: 'gloss-label' }, 'Hebrew'),
+        el('span', { class: 'gloss-val he' }, r.hebrew),
+      ]));
+    }
+    list.append(card);
+  }
+  root.append(list);
+  mount(root);
+}
+
+function deckForRoot(r) {
+  return (r.derivations || []).map((d) => ({ ...d, root: r.root, rootMeaning: r.rootMeaning, hebrew: r.hebrew }));
+}
+
+function mixedDeck(roots, n) {
+  const all = [];
+  for (const r of roots) all.push(...deckForRoot(r));
+  // Fisher-Yates shuffle, slice n
+  for (let i = all.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [all[i], all[j]] = [all[j], all[i]];
+  }
+  return all.slice(0, n);
+}
+
+function startPatternDrill(deck, label) {
+  if (!deck.length) {
+    mount(el('div', {}, [appbar('Patterns'), el('div', { class: 'empty' }, 'Empty deck.')]));
+    return;
+  }
+  let i = 0;
+
+  function step() {
+    if (i >= deck.length) {
+      mount(el('div', { class: 'col' }, [
+        appbar('Patterns done'),
+        el('div', { class: 'card col' }, [
+          el('h1', {}, 'Done.'),
+          el('p', {}, `${deck.length} cards · ${label}`),
+          el('button', { class: 'primary', onclick: () => navigate('/patterns') }, 'Back to roots'),
+          el('button', { class: 'ghost', onclick: () => navigate('/') }, 'Home'),
+        ]),
+      ]));
+      return;
+    }
+    const d = deck[i];
+
+    const header = el('div', { class: 'col' }, [
+      appbar(`${label} · ${i + 1} / ${deck.length}`, { backTo: '/patterns' }),
+      el('div', { class: 'progress' }, [el('span', { style: `width:${Math.round((i / deck.length) * 100)}%` })]),
+    ]);
+
+    const card = el('div', { class: 'card col' });
+    card.append(el('div', { class: 'muted' }, [
+      'Root ',
+      el('strong', {}, d.root),
+      d.rootMeaning ? ` · ${d.rootMeaning}` : '',
+    ]));
+    card.append(el('div', { class: 'ar lg' }, d.unvocalized));
+
+    const answer = el('div', { class: 'col', hidden: true });
+    if (d.vocalized && d.vocalized !== d.unvocalized) {
+      answer.append(el('div', { class: 'ar' }, d.vocalized));
+    }
+    answer.append(el('h2', {}, d.gloss));
+    answer.append(el('div', { class: 'gloss-row' }, [
+      el('span', { class: 'gloss-label' }, 'Form'),
+      el('span', { class: 'gloss-val' }, d.form),
+    ]));
+    if (d.pattern) {
+      answer.append(el('div', { class: 'gloss-row' }, [
+        el('span', { class: 'gloss-label' }, 'Pattern'),
+        el('span', { class: 'gloss-val' }, d.pattern),
+      ]));
+    }
+    if (d.hebrew && app.settings.showHebrewCognates) {
+      answer.append(el('div', { class: 'gloss-row' }, [
+        el('span', { class: 'gloss-label' }, 'Hebrew'),
+        el('span', { class: 'gloss-val he' }, d.hebrew),
+      ]));
+    }
+    card.append(answer);
+
+    const nextBtn = el('button', { class: 'primary', hidden: true, onclick: () => { i++; step(); } }, i + 1 < deck.length ? 'Next' : 'Done');
+    const revealBtn = el('button', {
+      class: 'primary',
+      onclick: () => { answer.hidden = false; revealBtn.hidden = true; nextBtn.hidden = false; },
+    }, 'Reveal');
+    card.append(revealBtn);
+    card.append(nextBtn);
+    card.append(el('div', { class: 'row' }, [
+      el('button', { class: 'ghost', onclick: () => { i++; step(); } }, 'Skip'),
+    ]));
+
+    mount(el('div', { class: 'col' }, [header, card]));
+  }
+  step();
 }
 
 // ---------------- Library ----------------

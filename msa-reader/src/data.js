@@ -142,11 +142,12 @@ export async function deleteSavedArticle(id)   { return dbDel('savedArticles', i
  */
 export async function loadContent() {
   const warnings = [];
-  const [dictionary, graded] = await Promise.all([
+  const [dictionary, graded, patterns] = await Promise.all([
     fetchJson('./content/dictionary.json', warnings),
     fetchJson('./content/graded.json', warnings),
+    fetchJson('./content/patterns.json', warnings),
   ]);
-  return { dictionary, graded, warnings };
+  return { dictionary, graded, patterns, warnings };
 }
 
 async function fetchJson(url, warnings) {

@@ -63,6 +63,7 @@ const SUFFIXES = [
   'ه', 'ك', 'ي',
   'ت',            // verb past 3sg.f / 2sg / iḍāfa-form tāʾ
   'ة',            // tāʾ marbūṭa — peel for nisba-fem and some derivations
+  'و',            // iḍāfa-form sound masc plural -ū (← -ūn)
   'ا',            // accusative orthographic alif (low confidence; last)
 ];
 
@@ -161,10 +162,12 @@ export function candidateStems(word) {
   // Tier 5: Form-IV imperfect → past bridge. The imperfect stem
   // (e.g. علن after stripping ت from تعلن) doesn't match the dict's past
   // headword (أعلن); add أ-prefixed candidates so the bridge works.
+  // Also try plain alif so Form VII/VIII/X stems land (استمر, اجتمع, …).
   const bridge = [];
   for (const c of out) {
-    if (c.length >= 3 && c.length <= 5 && !/^[أإاآ]/.test(c)) {
+    if (c.length >= 3 && c.length <= 6 && !/^[أإاآ]/.test(c)) {
       bridge.push('أ' + c);
+      bridge.push('ا' + c);
     }
   }
   for (const c of bridge) push(c);

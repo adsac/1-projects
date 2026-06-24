@@ -2,7 +2,7 @@
 // Bump CACHE_VERSION on any user-visible change (shell *or* content).
 // The in-app "Update available · reload" toast only fires when the SW
 // file itself differs from the previously-installed copy.
-const CACHE_VERSION = 'v2';
+const CACHE_VERSION = 'v3';
 const SHELL_CACHE = `msa-reader-shell-${CACHE_VERSION}`;
 const CONTENT_CACHE = `msa-reader-content-${CACHE_VERSION}`;
 
@@ -19,6 +19,7 @@ const SHELL_FILES = [
   './src/router.js',
   './src/util.js',
   './src/parser.js',
+  './src/scheduler.js',
 ];
 
 self.addEventListener('install', (event) => {

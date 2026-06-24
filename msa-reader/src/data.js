@@ -48,7 +48,7 @@
 
 // ---------------- IndexedDB wrapper ----------------
 
-const DB_NAME = 'arabic-newspaper';
+const DB_NAME = 'msa-reader';
 const DB_VERSION = 1;
 
 let dbPromise = null;

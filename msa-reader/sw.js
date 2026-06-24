@@ -2,7 +2,7 @@
 // Bump CACHE_VERSION on any user-visible change (shell *or* content).
 // The in-app "Update available · reload" toast only fires when the SW
 // file itself differs from the previously-installed copy.
-const CACHE_VERSION = 'v7';
+const CACHE_VERSION = 'v8';
 const SHELL_CACHE = `msa-reader-shell-${CACHE_VERSION}`;
 const CONTENT_CACHE = `msa-reader-content-${CACHE_VERSION}`;
 

@@ -1,13 +1,8 @@
 // All view renderers. Each render* mounts into #app.
-//
-// PR 1 ships:
-//   - renderHome   — tile navigation
-//   - renderReader — hardcoded sample paragraph, tokenized into tappable
-//                    spans; tap shows a "PR 2 will gloss this" toast.
-//   - stubs for Review / Patterns / Library / Settings.
 
 import { $, el, clear, toast } from './util.js';
 import * as data from './data.js';
+import { lookup } from './parser.js';
 import { navigate } from './router.js';
 
 let app = {
@@ -15,10 +10,13 @@ let app = {
   settings: data.DEFAULT_SETTINGS,
   /** @type {{dictionary:any[], graded:any[], warnings:string[]}} */
   content: { dictionary: [], graded: [], warnings: [] },
+  /** @type {Map<string, any>} */
+  dictMap: new Map(),
 };
 
 export function setApp(next) {
-  app = next;
+  app = { ...app, ...next };
+  app.dictMap = new Map((app.content?.dictionary || []).map((e) => [e.headword, e]));
 }
 
 function mount(node) {
@@ -26,6 +24,7 @@ function mount(node) {
   clear(root);
   root.append(node);
   window.scrollTo(0, 0);
+  closePopup();
 }
 
 function appbar(title, opts = {}) {
@@ -48,7 +47,10 @@ export async function renderHome() {
   ]));
 
   root.append(el('div', { class: 'card' }, [
-    el('div', { class: 'muted' }, 'Read newspaper Arabic. Tap any word for a gloss; long-press to add it to review.'),
+    el('div', { class: 'muted' }, [
+      'Read newspaper Arabic. Tap any word for a gloss; long-press will add it to review (PR 3). ',
+      el('strong', {}, `${app.content.dictionary.length} words loaded.`),
+    ]),
   ]));
 
   const tile = (path, big, hint) =>
@@ -69,9 +71,6 @@ export async function renderHome() {
 
 // ---------------- Reader ----------------
 
-// Hello-world content for PR 1. A short, newspaper-register paragraph
-// written in the style of a wire-service lede — neutral subject so it
-// doesn't anchor the dictionary work in PR 2 to one topic.
 const SAMPLE_PARAGRAPHS = [
   'أعلنت السلطات اليوم عن اجتماع جديد سيُعقد في الأسبوع المقبل لمناقشة الوضع الاقتصادي في المنطقة.',
   'وقال متحدث رسمي إن الاجتماع سيضم ممثلين عن عدة وزارات، مشيراً إلى أن النتائج ستُعلن في وقت لاحق.',
@@ -80,11 +79,7 @@ const SAMPLE_PARAGRAPHS = [
 export async function renderReader() {
   const root = el('div', { class: 'col' });
   root.append(appbar('Sample article'));
-
-  root.append(el('div', { class: 'muted' }, [
-    'Tap any word for a gloss. ',
-    el('strong', {}, 'PR 1 wires the UI; PR 2 plugs in the dictionary.'),
-  ]));
+  root.append(el('div', { class: 'muted' }, 'Tap any word for the gloss.'));
 
   const reader = el('div', { class: 'reader ar' });
   for (const p of SAMPLE_PARAGRAPHS) {
@@ -99,29 +94,134 @@ export async function renderReader() {
   mount(root);
 }
 
-/** Render a paragraph as a <p> of tappable .tok spans, splitting on
- *  whitespace. Punctuation tucks inside the adjacent token for now —
- *  the morphology-aware split lands in PR 2. */
+/** Render a paragraph as a <p> of tappable .tok spans. Whitespace is
+ *  preserved as text; punctuation rides with the adjacent token (the
+ *  tokenizer ignores ḥarakāt and non-Arabic chars at lookup time). */
 function renderParagraph(text) {
   const p = el('p', {});
-  const tokens = text.split(/(\s+)/); // keep whitespace as separators
-  for (const t of tokens) {
+  const parts = text.split(/(\s+)/);
+  for (const t of parts) {
+    if (!t) continue;
     if (/^\s+$/.test(t)) {
       p.append(document.createTextNode(t));
-    } else if (t.length === 0) {
-      // skip
-    } else {
-      const span = el('span', { class: 'tok', onclick: () => handleTokenTap(span, t) }, t);
-      p.append(span);
+      continue;
     }
+    // Strip surrounding punctuation for the lookup but keep the original
+    // glyphs in place so the rendered text reads naturally.
+    const m = t.match(/^([^\p{L}]*)(.+?)([^\p{L}]*)$/u);
+    const lead = m ? m[1] : '';
+    const core = m ? m[2] : t;
+    const trail = m ? m[3] : '';
+    if (lead) p.append(document.createTextNode(lead));
+    const span = el('span', { class: 'tok', onclick: () => handleTokenTap(span, core) }, core);
+    applyFamiliarity(span, core);
+    p.append(span);
+    if (trail) p.append(document.createTextNode(trail));
   }
   return p;
+}
+
+function applyFamiliarity(span, word) {
+  if (!app.settings.showFamiliarityHints) return;
+  const hit = lookup(word, app.dictMap);
+  if (!hit) span.classList.add('unknown');
+  // PR 3 will distinguish "in your SRS with positive history" from
+  // "in dict but never reviewed" — for now anything in the dict is
+  // neutral; anything missed is unknown.
 }
 
 function handleTokenTap(span, raw) {
   document.querySelectorAll('.tok.active').forEach((n) => n.classList.remove('active'));
   span.classList.add('active');
-  toast(`"${raw}" — dictionary lookup coming in PR 2`);
+  const hit = lookup(raw, app.dictMap);
+  showPopup(raw, hit);
+}
+
+// ---------------- Word popup (gloss sheet) ----------------
+
+function showPopup(rawWord, hit) {
+  const popup = document.getElementById('popup');
+  if (!popup) return;
+  clear(popup);
+
+  const close = () => closePopup();
+  document.removeEventListener('click', onOutsideClick);
+  // Defer attaching so the click that opened the popup doesn't immediately
+  // close it.
+  setTimeout(() => document.addEventListener('click', onOutsideClick), 0);
+
+  if (!hit) {
+    popup.append(renderNotFound(rawWord, close));
+  } else {
+    popup.append(renderGloss(hit, close));
+  }
+  popup.hidden = false;
+}
+
+function onOutsideClick(e) {
+  const popup = document.getElementById('popup');
+  if (!popup || popup.hidden) return;
+  if (popup.contains(e.target)) return;
+  if (e.target.closest('.tok')) return; // taps on other tokens route through their own handler
+  closePopup();
+}
+
+function closePopup() {
+  const popup = document.getElementById('popup');
+  if (popup) popup.hidden = true;
+  document.removeEventListener('click', onOutsideClick);
+  document.querySelectorAll('.tok.active').forEach((n) => n.classList.remove('active'));
+}
+
+function renderGloss(hit, close) {
+  const e = hit.entry;
+  const rows = el('div', { class: 'col' });
+  rows.append(el('div', { class: 'ar lg' }, e.vocalized || e.headword));
+  rows.append(el('h2', {}, e.gloss));
+
+  if (e.root) {
+    rows.append(el('div', { class: 'gloss-row' }, [
+      el('span', { class: 'gloss-label' }, 'Root'),
+      el('span', { class: 'gloss-val' }, e.root),
+    ]));
+  }
+  if (e.form) {
+    rows.append(el('div', { class: 'gloss-row' }, [
+      el('span', { class: 'gloss-label' }, 'Form'),
+      el('span', { class: 'gloss-val' }, e.form),
+    ]));
+  }
+  if (e.hebrew && app.settings.showHebrewCognates) {
+    rows.append(el('div', { class: 'gloss-row' }, [
+      el('span', { class: 'gloss-label' }, 'Hebrew'),
+      el('span', { class: 'gloss-val he' }, e.hebrew),
+    ]));
+  }
+  if (hit.matchedStem !== hit.original) {
+    rows.append(el('div', { class: 'muted' }, [
+      'Matched stem: ',
+      el('span', { class: 'gloss-val' }, hit.matchedStem),
+      ' (you tapped ',
+      el('span', { class: 'ar sm', style: 'display:inline' }, hit.original),
+      ')',
+    ]));
+  }
+
+  rows.append(el('div', { class: 'actions' }, [
+    el('button', { class: 'primary', onclick: () => toast('Add-to-review lands in PR 3') }, '＋ Add to review'),
+    el('button', { class: 'ghost', onclick: close }, 'Close'),
+  ]));
+  return rows;
+}
+
+function renderNotFound(rawWord, close) {
+  const rows = el('div', { class: 'col' });
+  rows.append(el('div', { class: 'ar lg' }, rawWord));
+  rows.append(el('div', { class: 'muted' }, 'Not in the dictionary yet. PR 6 will let you save your own entries.'));
+  rows.append(el('div', { class: 'actions' }, [
+    el('button', { class: 'ghost', onclick: close }, 'Close'),
+  ]));
+  return rows;
 }
 
 // ---------------- Stubs ----------------
@@ -184,7 +284,7 @@ export async function renderSettings() {
       el('div', { class: 'ar' }, 'الاجتماع المُنعقد في عمّان'),
       el('div', { class: 'field' }, [el('label', {}, 'English / UI font size'), uiSize]),
       el('div', { class: 'field' }, [el('label', {}, 'Show Hebrew cognate in gloss popup'), heCog]),
-      el('div', { class: 'field' }, [el('label', {}, 'Colour-code familiar / unfamiliar words in Reader'), famHints]),
+      el('div', { class: 'field' }, [el('label', {}, 'Colour-code unfamiliar words in Reader'), famHints]),
       el('button', {
         class: 'primary',
         onclick: async () => {
@@ -200,6 +300,6 @@ export async function renderSettings() {
         },
       }, 'Save'),
     ]),
-    el('div', { class: 'muted' }, 'Export / import and more settings land in PR 6.'),
+    el('div', { class: 'muted' }, 'Export / import + more settings land in PR 6.'),
   ]));
 }

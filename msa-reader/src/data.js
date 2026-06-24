@@ -1,7 +1,7 @@
 // Data layer — IndexedDB wrapper, content loader, settings.
 //
-// Schema is set up for the full feature set even though PR 1 only uses
-// `settings`. Later PRs fill in reviewState, savedArticles, userVocab.
+// Schema is set up for the full feature set even though early PRs only use
+// `settings` + content. Later PRs fill in reviewState, savedArticles, userVocab.
 
 /**
  * @typedef {Object} Settings
@@ -30,8 +30,8 @@
  * @property {string} vocalized       // with diacritics
  * @property {string} gloss           // English gloss
  * @property {string} [root]          // e.g. "k-t-b"
- * @property {string} [form]          // e.g. "I masdar", "II active participle"
- * @property {string} [hebrew]        // Hebrew cognate (no nikkud needed)
+ * @property {string} [form]          // e.g. "Form I masdar", "Form IV active participle"
+ * @property {string} [hebrew]        // Hebrew cognate (Hebrew letters + transliteration)
  * @property {string[]} [tags]
  * @property {('verified'|'draft')} [status]
  */
@@ -41,8 +41,7 @@
  * @property {string} id
  * @property {string} title
  * @property {string} sourceLabel     // free text — "BBC Arabic", "pasted on 2026-06-14"
- * @property {string[]} paragraphs    // unvocalized; line-broken into paragraphs
- * @property {string[][]} [tokens]    // optional pre-tokenized form per paragraph
+ * @property {string[]} paragraphs    // unvocalized; line-broken
  * @property {number} createdAt
  */
 
@@ -114,7 +113,7 @@ export async function putState(state)   { return dbPut('reviewState', state); }
 export async function allStates()       { return dbAll('reviewState'); }
 export async function deleteState(id)   { return dbDel('reviewState', id); }
 
-// ---------------- User vocab + saved articles (stubs — used from PR 2/4) ----------------
+// ---------------- User vocab + saved articles (used from PR 2/4) ----------------
 
 export async function addUserVocab(entry)      { return dbPut('userVocab', entry); }
 export async function listUserVocab()          { return dbAll('userVocab'); }
@@ -125,11 +124,24 @@ export async function deleteSavedArticle(id)   { return dbDel('savedArticles', i
 // ---------------- Content loader ----------------
 
 /**
- * Loads bundled content. PR 1 returns empty arrays — PR 2 fills dictionary,
- * PR 4 fills graded articles, PR 5 fills patterns.
+ * Load bundled content. Dictionary lands in PR 2, graded articles in PR 4,
+ * patterns in PR 5.
  * @returns {Promise<{dictionary: DictEntry[], graded: SavedArticle[], warnings: string[]}>}
  */
 export async function loadContent() {
   const warnings = [];
-  return { dictionary: [], graded: [], warnings };
+  const dictionary = await fetchJson('./content/dictionary.json', warnings);
+  return { dictionary, graded: [], warnings };
+}
+
+async function fetchJson(url, warnings) {
+  try {
+    const res = await fetch(url, { cache: 'no-cache' });
+    if (!res.ok) throw new Error(`HTTP ${res.status}`);
+    const data = await res.json();
+    return Array.isArray(data) ? data : data.items || [];
+  } catch (err) {
+    warnings.push(`Failed to load ${url}: ${err.message}`);
+    return [];
+  }
 }

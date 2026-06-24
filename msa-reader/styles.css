@@ -204,3 +204,30 @@ button[disabled] { opacity: 0.5; cursor: not-allowed; }
 .toast[hidden] { display: none; }
 
 .empty { text-align: center; color: var(--muted); padding: 32px 16px; }
+
+/* Grade buttons (Again / Hard / Good / Easy) */
+.grades { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; margin-top: 12px; }
+.grades button { padding: 14px 8px; min-height: 64px; border-radius: var(--radius); font-weight: 600; }
+.grades .again { background: color-mix(in srgb, var(--again) 16%, var(--surface)); border-color: var(--again); }
+.grades .hard  { background: color-mix(in srgb, var(--hard)  16%, var(--surface)); border-color: var(--hard);  }
+.grades .good  { background: color-mix(in srgb, var(--good)  18%, var(--surface)); border-color: var(--good);  }
+.grades .easy  { background: color-mix(in srgb, var(--easy)  16%, var(--surface)); border-color: var(--easy);  }
+.grades small  { display: block; font-weight: 400; color: var(--muted); font-size: calc(11px * var(--ui-scale)); margin-top: 2px; }
+
+/* Progress bar on the review header */
+.progress { height: 8px; background: var(--surface-2); border-radius: 999px; overflow: hidden; }
+.progress > span { display: block; height: 100%; background: var(--accent); transition: width 200ms ease; }
+
+/* Form / inputs (Settings, eventually paste-in in PR 4) */
+.field { margin-bottom: 12px; }
+label  { display: block; font-size: calc(14px * var(--ui-scale)); color: var(--muted); margin-bottom: 4px; }
+input, textarea, select {
+  font: inherit;
+  background: var(--surface);
+  color: var(--text);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  padding: 12px;
+  width: 100%;
+}
+input[type="checkbox"] { width: auto; }

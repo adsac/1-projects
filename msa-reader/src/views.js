@@ -1,7 +1,8 @@
 // All view renderers. Each render* mounts into #app.
 
-import { $, el, clear, toast } from './util.js';
+import { $, el, clear, toast, uid } from './util.js';
 import * as data from './data.js';
+import * as scheduler from './scheduler.js';
 import { lookup } from './parser.js';
 import { navigate } from './router.js';
 
@@ -12,11 +13,38 @@ let app = {
   content: { dictionary: [], graded: [], warnings: [] },
   /** @type {Map<string, any>} */
   dictMap: new Map(),
+  /** @type {Map<string, any>} */
+  states: new Map(),
 };
 
 export function setApp(next) {
   app = { ...app, ...next };
   app.dictMap = new Map((app.content?.dictionary || []).map((e) => [e.headword, e]));
+}
+
+async function refreshStates() {
+  const all = await data.allStates();
+  app.states = new Map(all.map((s) => [s.itemId, s]));
+}
+function stateFor(id) { return app.states.get(id) || null; }
+function entryById(id) {
+  return app.dictMap.get(id) || null;
+}
+
+/** Add a dictionary entry to the review queue. Idempotent — if it's
+ *  already in the SRS we just toast a hint. */
+async function addToReview(headword) {
+  const entry = entryById(headword);
+  if (!entry) { toast('Not in dictionary'); return; }
+  const existing = await data.getState(headword);
+  if (existing) {
+    toast('Already in review');
+    return;
+  }
+  const fresh = scheduler.newState(headword);
+  await data.putState(fresh);
+  app.states.set(headword, fresh);
+  toast(`Added: ${entry.vocalized || headword}`);
 }
 
 function mount(node) {
@@ -77,9 +105,15 @@ const SAMPLE_PARAGRAPHS = [
 ];
 
 export async function renderReader() {
+  await refreshStates();
   const root = el('div', { class: 'col' });
-  root.append(appbar('Sample article'));
-  root.append(el('div', { class: 'muted' }, 'Tap any word for the gloss.'));
+  const dueCount = countDue();
+  root.append(appbar('Sample article', {
+    right: dueCount > 0
+      ? el('button', { class: 'ghost', onclick: () => navigate('/review') }, `Review (${dueCount})`)
+      : null,
+  }));
+  root.append(el('div', { class: 'muted' }, 'Tap for gloss. Long-press to add to review.'));
 
   const reader = el('div', { class: 'reader ar' });
   for (const p of SAMPLE_PARAGRAPHS) {
@@ -92,6 +126,16 @@ export async function renderReader() {
   ]));
 
   mount(root);
+}
+
+function countDue() {
+  const suspended = new Set(app.settings.suspendedIds || []);
+  let due = 0;
+  for (const s of app.states.values()) {
+    if (suspended.has(s.itemId)) continue;
+    if (scheduler.isDue(s)) due++;
+  }
+  return due;
 }
 
 /** Render a paragraph as a <p> of tappable .tok spans. Whitespace is
@@ -113,7 +157,8 @@ function renderParagraph(text) {
     const core = m ? m[2] : t;
     const trail = m ? m[3] : '';
     if (lead) p.append(document.createTextNode(lead));
-    const span = el('span', { class: 'tok', onclick: () => handleTokenTap(span, core) }, core);
+    const span = el('span', { class: 'tok' }, core);
+    bindTokenInteractions(span, core);
     applyFamiliarity(span, core);
     p.append(span);
     if (trail) p.append(document.createTextNode(trail));
@@ -121,13 +166,55 @@ function renderParagraph(text) {
   return p;
 }
 
+/** Wire tap and long-press onto a token span. Long-press (500 ms) adds
+ *  the matched stem to the SRS; a shorter press opens the gloss popup.
+ *  Uses pointer events so touch + mouse work uniformly. */
+function bindTokenInteractions(span, raw) {
+  let lpTimer = null;
+  let didLongPress = false;
+  let startX = 0, startY = 0;
+  const LP_MS = 500;
+  const MOVE_TOLERANCE = 10;
+
+  span.addEventListener('pointerdown', (e) => {
+    didLongPress = false;
+    startX = e.clientX; startY = e.clientY;
+    lpTimer = setTimeout(async () => {
+      lpTimer = null;
+      didLongPress = true;
+      const hit = lookup(raw, app.dictMap);
+      if (hit) {
+        await addToReview(hit.entry.headword);
+        span.classList.add('known');
+        span.classList.remove('unknown');
+      } else {
+        toast('Not in dictionary — can\'t add yet');
+      }
+    }, LP_MS);
+  });
+  const cancel = () => { if (lpTimer) { clearTimeout(lpTimer); lpTimer = null; } };
+  span.addEventListener('pointermove', (e) => {
+    if (Math.abs(e.clientX - startX) > MOVE_TOLERANCE || Math.abs(e.clientY - startY) > MOVE_TOLERANCE) cancel();
+  });
+  span.addEventListener('pointerup', () => cancel());
+  span.addEventListener('pointercancel', () => cancel());
+  span.addEventListener('pointerleave', () => cancel());
+  // Tap = the standard click event. If a long-press fired first, swallow
+  // the click so we don't also open the popup.
+  span.addEventListener('click', (e) => {
+    if (didLongPress) { e.stopPropagation(); didLongPress = false; return; }
+    handleTokenTap(span, raw);
+  });
+}
+
 function applyFamiliarity(span, word) {
   if (!app.settings.showFamiliarityHints) return;
   const hit = lookup(word, app.dictMap);
-  if (!hit) span.classList.add('unknown');
-  // PR 3 will distinguish "in your SRS with positive history" from
-  // "in dict but never reviewed" — for now anything in the dict is
-  // neutral; anything missed is unknown.
+  if (!hit) { span.classList.add('unknown'); return; }
+  // In your SRS with at least one successful review → known.
+  // In the dictionary but never added or never recalled → neutral.
+  const st = app.states.get(hit.entry.headword);
+  if (st && st.repCount > 0 && st.lastGrade !== 'again') span.classList.add('known');
 }
 
 function handleTokenTap(span, raw) {
@@ -207,8 +294,14 @@ function renderGloss(hit, close) {
     ]));
   }
 
+  const inSrs = !!app.states.get(e.headword);
   rows.append(el('div', { class: 'actions' }, [
-    el('button', { class: 'primary', onclick: () => toast('Add-to-review lands in PR 3') }, '＋ Add to review'),
+    inSrs
+      ? el('button', { class: 'ghost', disabled: true }, '✓ In review')
+      : el('button', { class: 'primary', onclick: async () => {
+          await addToReview(e.headword);
+          closePopup();
+        } }, '＋ Add to review'),
     el('button', { class: 'ghost', onclick: close }, 'Close'),
   ]));
   return rows;
@@ -226,11 +319,206 @@ function renderNotFound(rawWord, close) {
 
 // ---------------- Stubs ----------------
 
+// ---------------- Review session ----------------
+
 export async function renderReview() {
-  mount(el('div', { class: 'col' }, [
-    appbar('Review'),
-    el('div', { class: 'empty' }, 'Recognition-only SRS lands in PR 3. Long-press a word in the Reader to queue it for review.'),
+  await refreshStates();
+  const queue = buildReviewQueue();
+  if (queue.length === 0) {
+    mount(el('div', { class: 'col' }, [
+      appbar('Review'),
+      el('div', { class: 'empty' }, 'No reviews due. Tap a word in the Reader and long-press to add it.'),
+      el('button', { class: 'primary', onclick: () => navigate('/read') }, 'Open sample article'),
+    ]));
+    return;
+  }
+  runReviewSession(queue);
+}
+
+/** Pull every SRS state that is currently due (and not suspended).
+ *  Sort by weakness desc so weak items front-load. */
+function buildReviewQueue() {
+  const suspended = new Set(app.settings.suspendedIds || []);
+  const out = [];
+  for (const st of app.states.values()) {
+    if (suspended.has(st.itemId)) continue;
+    if (!scheduler.isDue(st)) continue;
+    const entry = entryById(st.itemId);
+    if (!entry) continue; // headword no longer in dict (shouldn't normally happen)
+    out.push({ st, entry });
+  }
+  out.sort((a, b) => scheduler.weakness(b.st) - scheduler.weakness(a.st));
+  return out;
+}
+
+function runReviewSession(queue) {
+  let i = 0;
+  let correct = 0, lapses = 0;
+  const hardReshown = new Set();
+  let lastUndoable = null;
+
+  function insertLater(entry) {
+    const offset = 4 + Math.floor(Math.random() * 4);
+    queue.splice(Math.min(queue.length, i + offset), 0, entry);
+  }
+
+  async function suspendCurrent(item) {
+    app.settings = await data.suspendItem(item.entry.headword);
+    lastUndoable = null;
+    toast('Suspended — won\'t appear in review again.');
+    i++; step();
+  }
+
+  async function undo() {
+    if (!lastUndoable) return;
+    const { itemId, prevState } = lastUndoable;
+    if (prevState) {
+      await data.putState(prevState);
+      app.states.set(itemId, prevState);
+    } else {
+      await data.deleteState(itemId);
+      app.states.delete(itemId);
+    }
+    lastUndoable = null;
+    i = Math.max(0, i - 1);
+    step();
+  }
+
+  function step() {
+    if (i >= queue.length) {
+      mount(el('div', { class: 'col' }, [
+        appbar('Review done'),
+        el('div', { class: 'card col' }, [
+          el('h1', {}, 'Done.'),
+          el('p', {}, `${queue.length} cards · ${correct} good/easy · ${lapses} again`),
+          el('button', { class: 'primary', onclick: () => navigate('/') }, 'Home'),
+          el('button', { class: 'ghost', onclick: () => navigate('/read') }, 'Back to Reader'),
+        ]),
+      ]));
+      return;
+    }
+    const item = queue[i];
+
+    // Skip mid-session if a previous-card suspend hit this same id (via hard re-show).
+    if ((app.settings.suspendedIds || []).includes(item.entry.headword)) {
+      i++; step(); return;
+    }
+
+    const header = el('div', { class: 'col' }, [
+      appbar(`${i + 1} / ${queue.length}`, {
+        right: lastUndoable ? el('button', { class: 'ghost', onclick: undo }, '↶ Undo') : null,
+      }),
+      el('div', { class: 'progress' }, [el('span', { style: `width:${Math.round((i / queue.length) * 100)}%` })]),
+    ]);
+
+    const card = renderReviewCard(item, {
+      onGraded: async (g) => {
+        const prevState = await data.getState(item.entry.headword);
+        const next = scheduler.grade(prevState, g);
+        next.itemId = item.entry.headword;
+        await data.putState(next);
+        app.states.set(item.entry.headword, next);
+        lastUndoable = { itemId: item.entry.headword, prevState };
+        if (g === 'again') {
+          lapses++;
+          queue.push(item);
+        } else {
+          correct++;
+          if (g === 'hard' && !hardReshown.has(item.entry.headword)) {
+            hardReshown.add(item.entry.headword);
+            insertLater(item);
+          }
+        }
+        i++; step();
+      },
+      onSkip: () => { i++; step(); },
+      onSuspend: () => suspendCurrent(item),
+    });
+
+    mount(el('div', { class: 'col' }, [header, card]));
+  }
+  step();
+}
+
+function renderReviewCard(item, { onGraded, onSkip, onSuspend }) {
+  const root = el('div', { class: 'card col' });
+  let revealed = false;
+
+  // Prompt — unvocalised headword (this is what you'll see in a newspaper).
+  root.append(el('div', { class: 'muted' }, 'Recognise this'));
+  root.append(el('div', { class: 'ar lg' }, item.entry.headword));
+
+  const answer = el('div', { class: 'col', hidden: true });
+  if (item.entry.vocalized && item.entry.vocalized !== item.entry.headword) {
+    answer.append(el('div', { class: 'ar' }, item.entry.vocalized));
+  }
+  answer.append(el('h2', {}, item.entry.gloss));
+  if (item.entry.root) {
+    answer.append(el('div', { class: 'gloss-row' }, [
+      el('span', { class: 'gloss-label' }, 'Root'),
+      el('span', { class: 'gloss-val' }, item.entry.root),
+    ]));
+  }
+  if (item.entry.form) {
+    answer.append(el('div', { class: 'gloss-row' }, [
+      el('span', { class: 'gloss-label' }, 'Form'),
+      el('span', { class: 'gloss-val' }, item.entry.form),
+    ]));
+  }
+  if (item.entry.hebrew && app.settings.showHebrewCognates) {
+    answer.append(el('div', { class: 'gloss-row' }, [
+      el('span', { class: 'gloss-label' }, 'Hebrew'),
+      el('span', { class: 'gloss-val he' }, item.entry.hebrew),
+    ]));
+  }
+  root.append(answer);
+
+  const grades = el('div', { class: 'grades', hidden: true }, gradeRow(item.st, finish));
+  root.append(grades);
+
+  const revealBtn = el('button', {
+    class: 'primary',
+    onclick: () => {
+      revealed = true;
+      answer.hidden = false;
+      revealBtn.hidden = true;
+      grades.hidden = false;
+    },
+  }, 'Reveal');
+  root.append(revealBtn);
+
+  root.append(el('div', { class: 'row' }, [
+    el('button', { class: 'ghost', onclick: () => onSkip() }, 'Skip'),
+    el('button', { class: 'ghost', onclick: () => onSuspend() }, 'Suspend'),
   ]));
+
+  function finish(g) { if (revealed) onGraded(g); }
+  return root;
+}
+
+function gradeRow(state, finish) {
+  const iv = scheduler.previewIntervals(state || null);
+  return [
+    gradeBtn('again', 'Again', fmtInterval(iv.again), () => finish('again')),
+    gradeBtn('hard',  'Hard',  fmtInterval(iv.hard),  () => finish('hard')),
+    gradeBtn('good',  'Good',  fmtInterval(iv.good),  () => finish('good')),
+    gradeBtn('easy',  'Easy',  fmtInterval(iv.easy),  () => finish('easy')),
+  ];
+}
+
+function gradeBtn(kind, label, sub, onClick) {
+  return el('button', { class: kind, onclick: onClick }, [
+    el('span', {}, label),
+    el('small', {}, sub),
+  ]);
+}
+
+function fmtInterval(d) {
+  if (d < 1) return '<1m';
+  if (d === 1) return '1d';
+  if (d < 30) return `${d}d`;
+  if (d < 365) return `${Math.round(d / 30)}mo`;
+  return `${Math.round(d / 365)}y`;
 }
 
 export async function renderPatterns() {

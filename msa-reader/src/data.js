@@ -9,6 +9,7 @@
  * @property {('xxsmall'|'xsmall'|'small'|'medium'|'large'|'xlarge')} uiFontSize
  * @property {boolean} showHebrewCognates       // gloss popup includes Hebrew cognate
  * @property {boolean} showFamiliarityHints     // colour-code known/unknown words in Reader
+ * @property {string[]} suspendedIds            // headwords hidden from reviews
  */
 
 /**
@@ -92,6 +93,7 @@ export const DEFAULT_SETTINGS = /** @type {Settings} */ ({
   uiFontSize: 'medium',
   showHebrewCognates: true,
   showFamiliarityHints: true,
+  suspendedIds: [],
 });
 
 export async function getSettings() {
@@ -104,6 +106,16 @@ export async function saveSettings(patch) {
   const next = { ...cur, ...patch };
   await dbPut('settings', next, 'app');
   return next;
+}
+
+export async function suspendItem(id) {
+  const cur = await getSettings();
+  if ((cur.suspendedIds || []).includes(id)) return cur;
+  return saveSettings({ suspendedIds: [...(cur.suspendedIds || []), id] });
+}
+export async function unsuspendItem(id) {
+  const cur = await getSettings();
+  return saveSettings({ suspendedIds: (cur.suspendedIds || []).filter((x) => x !== id) });
 }
 
 // ---------------- Review state (stubs — used from PR 3) ----------------

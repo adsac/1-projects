@@ -14,9 +14,11 @@ async function boot() {
   views.setApp({ content, settings });
 
   router.route('/',         views.renderHome);
-  router.route('/read',     views.renderReader);
-  router.route('/library',  views.renderLibrary);
-  router.route('/review',   views.renderReview);
+  router.route('/read',          views.renderReader);
+  router.route('/library',       views.renderLibrary);
+  router.route('/article/:id',   views.renderArticle);
+  router.route('/paste',         views.renderPaste);
+  router.route('/review',        views.renderReview);
   router.route('/patterns', views.renderPatterns);
   router.route('/settings', views.renderSettings);
   router.start();

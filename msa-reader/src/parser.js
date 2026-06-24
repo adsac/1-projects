@@ -57,9 +57,12 @@ const SUFFIXES = [
   'ون', 'ين',     // sound masc plurals (-ūn / -īn)
   'ات',           // sound fem plurals
   'ان',           // dual / -ān
+  // nisba feminine
+  'ية',
   // single-letter clitics & inflections
   'ه', 'ك', 'ي',
   'ت',            // verb past 3sg.f / 2sg / iḍāfa-form tāʾ
+  'ة',            // tāʾ marbūṭa — peel for nisba-fem and some derivations
   'ا',            // accusative orthographic alif (low confidence; last)
 ];
 

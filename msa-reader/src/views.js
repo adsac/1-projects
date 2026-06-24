@@ -104,26 +104,53 @@ const SAMPLE_PARAGRAPHS = [
   'وقال متحدث رسمي إن الاجتماع سيضم ممثلين عن عدة وزارات، مشيراً إلى أن النتائج ستُعلن في وقت لاحق.',
 ];
 
+const SAMPLE_ARTICLE = {
+  id: 'sample',
+  title: 'Sample article',
+  sourceLabel: 'Sample · level 1',
+  paragraphs: SAMPLE_PARAGRAPHS,
+};
+
+/** Lookup an article by id across graded + saved. /read defaults to the
+ *  sample, /article/:id resolves to graded or saved. */
+async function resolveArticle(id) {
+  if (!id || id === 'sample') return SAMPLE_ARTICLE;
+  const graded = (app.content.graded || []).find((a) => a.id === id);
+  if (graded) return graded;
+  const saved = await data.listSavedArticles();
+  return saved.find((a) => a.id === id) || null;
+}
+
 export async function renderReader() {
+  return renderArticle({ id: 'sample' });
+}
+
+export async function renderArticle({ id }) {
   await refreshStates();
+  const article = await resolveArticle(id);
+  if (!article) {
+    mount(el('div', {}, [appbar('Article'), el('div', { class: 'empty' }, 'Article not found.')]));
+    return;
+  }
+
   const root = el('div', { class: 'col' });
   const dueCount = countDue();
-  root.append(appbar('Sample article', {
+  root.append(appbar(article.title, {
+    backTo: '/library',
     right: dueCount > 0
       ? el('button', { class: 'ghost', onclick: () => navigate('/review') }, `Review (${dueCount})`)
       : null,
   }));
-  root.append(el('div', { class: 'muted' }, 'Tap for gloss. Long-press to add to review.'));
+  root.append(el('div', { class: 'muted' }, [
+    article.sourceLabel,
+    ' · tap for gloss, long-press to add to review.',
+  ]));
 
   const reader = el('div', { class: 'reader ar' });
-  for (const p of SAMPLE_PARAGRAPHS) {
+  for (const p of (article.paragraphs || [])) {
     reader.append(renderParagraph(p));
   }
   root.append(reader);
-
-  root.append(el('div', { class: 'row' }, [
-    el('button', { class: 'ghost', onclick: () => navigate('/') }, '← Home'),
-  ]));
 
   mount(root);
 }
@@ -528,12 +555,112 @@ export async function renderPatterns() {
   ]));
 }
 
+// ---------------- Library ----------------
+
 export async function renderLibrary() {
-  mount(el('div', { class: 'col' }, [
-    appbar('Library'),
-    el('div', { class: 'empty' }, 'Graded articles and paste-in land in PR 4. For now, the Reader has one sample paragraph.'),
-    el('button', { class: 'primary', onclick: () => navigate('/read') }, 'Open sample article'),
+  const root = el('div', { class: 'col' });
+  root.append(appbar('Library'));
+
+  root.append(el('div', { class: 'row' }, [
+    el('button', { class: 'primary', onclick: () => navigate('/paste') }, '＋ Paste an article'),
+    el('button', { class: 'ghost', onclick: () => navigate('/article/sample') }, 'Sample paragraph'),
   ]));
+
+  // Graded articles section
+  const graded = app.content.graded || [];
+  if (graded.length) {
+    root.append(el('h2', {}, 'Graded'));
+    const list = el('div', { class: 'col' });
+    for (const a of graded) {
+      list.append(renderArticleCard(a, false));
+    }
+    root.append(list);
+  }
+
+  // Saved articles section
+  const saved = await data.listSavedArticles();
+  saved.sort((a, b) => (b.createdAt || 0) - (a.createdAt || 0));
+  root.append(el('h2', {}, `Saved (${saved.length})`));
+  if (saved.length === 0) {
+    root.append(el('div', { class: 'empty' }, 'Nothing saved yet. Paste any Arabic text above.'));
+  } else {
+    const list = el('div', { class: 'col' });
+    for (const a of saved) {
+      list.append(renderArticleCard(a, true));
+    }
+    root.append(list);
+  }
+
+  mount(root);
+}
+
+function renderArticleCard(article, isSaved) {
+  const card = el('div', {
+    class: 'card col',
+    onclick: () => navigate(`/article/${encodeURIComponent(article.id)}`),
+    style: 'cursor: pointer',
+  });
+  const titleRow = el('div', { class: 'row' }, [
+    el('div', { style: 'flex:1' }, el('strong', {}, article.title)),
+    isSaved ? el('button', {
+      class: 'ghost',
+      onclick: async (e) => {
+        e.stopPropagation();
+        if (!confirm(`Delete "${article.title}"?`)) return;
+        await data.deleteSavedArticle(article.id);
+        toast('Deleted');
+        renderLibrary();
+      },
+    }, '×') : null,
+  ]);
+  card.append(titleRow);
+  if (article.sourceLabel) card.append(el('div', { class: 'muted' }, article.sourceLabel));
+  const firstLine = (article.paragraphs && article.paragraphs[0]) || '';
+  if (firstLine) {
+    card.append(el('div', { class: 'ar sm', style: 'opacity:0.8' },
+      firstLine.length > 90 ? firstLine.slice(0, 90) + '…' : firstLine));
+  }
+  return card;
+}
+
+// ---------------- Paste-in ----------------
+
+export async function renderPaste() {
+  const root = el('div', { class: 'col' });
+  root.append(appbar('Paste an article', { backTo: '/library' }));
+
+  const fTitle = el('input', { type: 'text', placeholder: 'Title — e.g. al-Jazeera 14 Jun 2026' });
+  const fSource = el('input', { type: 'text', placeholder: 'Source label (optional)' });
+  const fBody = el('textarea', { rows: 14, dir: 'rtl', class: 'ar', placeholder: 'Paste the Arabic text here. Blank lines separate paragraphs.' });
+
+  async function save() {
+    const title = fTitle.value.trim();
+    const body = fBody.value.trim();
+    if (!title) { toast('Title is required'); return; }
+    if (!body)  { toast('Paste some text'); return; }
+    const paragraphs = body.split(/\n\s*\n+/).map((p) => p.replace(/\s+/g, ' ').trim()).filter(Boolean);
+    const article = {
+      id: uid(),
+      title,
+      sourceLabel: fSource.value.trim() || `Pasted ${new Date().toISOString().slice(0, 10)}`,
+      paragraphs,
+      createdAt: Date.now(),
+    };
+    await data.saveArticle(article);
+    toast(`Saved · ${paragraphs.length} paragraph${paragraphs.length === 1 ? '' : 's'}`);
+    navigate(`/article/${encodeURIComponent(article.id)}`);
+  }
+
+  root.append(el('div', { class: 'card col' }, [
+    el('div', { class: 'field' }, [el('label', {}, 'Title'), fTitle]),
+    el('div', { class: 'field' }, [el('label', {}, 'Source label (optional)'), fSource]),
+    el('div', { class: 'field' }, [el('label', {}, 'Body'), fBody]),
+    el('div', { class: 'row' }, [
+      el('button', { class: 'primary', onclick: save }, 'Save + open'),
+      el('button', { class: 'ghost', onclick: () => navigate('/library') }, 'Cancel'),
+    ]),
+  ]));
+  mount(root);
 }
 
 export async function renderSettings() {

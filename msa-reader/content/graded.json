@@ -1,0 +1,65 @@
+{
+  "_doc": "Hand-authored graded articles for first reads. Original prose written in newspaper / wire-service register (al-Jazeera / BBC Arabic / al-Hayat style), not transcriptions of real articles. Ordered easiest first. Each article's vocabulary mostly lives in dictionary.json so tap-to-gloss feels good from the start; the few words deliberately outside the dict mimic the experience of real news (unknown words tap-to-search-by-root in PR 6).",
+  "items": [
+    {
+      "id": "01-meeting",
+      "title": "اجتماع جديد",
+      "level": 1,
+      "sourceLabel": "Graded · level 1",
+      "paragraphs": [
+        "التقى رئيس الحكومة اليوم مع وزير جديد.",
+        "ناقشا الوضع الاقتصادي في المنطقة.",
+        "أكد الرئيس أن الاجتماع كان مهماً."
+      ],
+      "tags": ["politics", "graded"]
+    },
+    {
+      "id": "02-visit",
+      "title": "زيارة إلى لبنان",
+      "level": 2,
+      "sourceLabel": "Graded · level 2",
+      "paragraphs": [
+        "زار وزير الخارجية لبنان أمس.",
+        "التقى مع الرئيس وناقشا الوضع الإقليمي.",
+        "أكد الوزير أن العلاقات بين البلدين قوية."
+      ],
+      "tags": ["politics", "regional", "graded"]
+    },
+    {
+      "id": "03-conference",
+      "title": "مؤتمر اقتصادي إقليمي",
+      "level": 3,
+      "sourceLabel": "Graded · level 3",
+      "paragraphs": [
+        "أعلنت الحكومة الأردنية أنها ستعقد مؤتمراً اقتصادياً في الأسبوع المقبل.",
+        "سيضم المؤتمر ممثلين عن عدة دول في المنطقة.",
+        "وقال مصدر رسمي إن النتائج ستُعلن في وقت لاحق."
+      ],
+      "tags": ["politics", "economy", "graded"]
+    },
+    {
+      "id": "04-law",
+      "title": "قانون جديد",
+      "level": 4,
+      "sourceLabel": "Graded · level 4",
+      "paragraphs": [
+        "عقد الرئيس اجتماعاً مع وزراء الحكومة لمناقشة قانون جديد.",
+        "أعلن متحدث رسمي أن الحكومة ستصدر القانون في وقت لاحق.",
+        "أشار المتحدث إلى أن القانون مهم للأمن الوطني."
+      ],
+      "tags": ["politics", "law", "graded"]
+    },
+    {
+      "id": "05-statement",
+      "title": "تصريح للصحفيين",
+      "level": 5,
+      "sourceLabel": "Graded · level 5",
+      "paragraphs": [
+        "في تصريح للصحفيين على هامش الاجتماع، أكد الرئيس أن السلام في المنطقة هدف رئيسي.",
+        "أوضح أن الحكومة تعمل على تحسين العلاقات مع الدول المجاورة.",
+        "وأشار إلى أن النتائج ستظهر خلال السنة المقبلة."
+      ],
+      "tags": ["politics", "diplomacy", "graded"]
+    }
+  ]
+}

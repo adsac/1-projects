@@ -19,14 +19,14 @@ Zero-build static PWA. Plain HTML, CSS, ES modules. No npm, no bundler, no frame
 
 ## Install on Android
 
-1. Open `https://adsac.github.io/1-projects/arabic-newspaper/` in Android Chrome.
+1. Open `https://adsac.github.io/1-projects/msa-reader/` in Android Chrome.
 2. Chrome menu → **Add to Home screen**. Launch from the icon.
 3. After first load the service worker caches everything; works offline thereafter.
 
 ## Repo layout
 
 ```
-arabic-newspaper/
+msa-reader/
   index.html              app shell
   manifest.webmanifest    PWA manifest
   sw.js                   service worker (offline cache)

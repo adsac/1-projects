@@ -22,6 +22,7 @@ async function boot() {
   router.route('/patterns',      views.renderPatterns);
   router.route('/settings',      views.renderSettings);
   router.route('/suspended',     views.renderSuspended);
+  router.route('/unknowns',      views.renderUnknowns);
   router.start();
 
   registerSW();

@@ -3,7 +3,8 @@
 import { $, el, clear, toast, uid } from './util.js';
 import * as data from './data.js';
 import * as scheduler from './scheduler.js';
-import { lookup } from './parser.js';
+import { lookup, normalise } from './parser.js';
+import { autofillEntry } from './llm.js';
 import { navigate } from './router.js';
 
 let app = {
@@ -58,6 +59,7 @@ async function addToReview(headword) {
   const fresh = scheduler.newState(headword);
   await data.putState(fresh);
   app.states.set(headword, fresh);
+  await data.markTapAdded(headword).catch(() => {});
   toast(`Added: ${entry.vocalized || headword}`);
 }
 
@@ -262,6 +264,12 @@ function handleTokenTap(span, raw) {
   document.querySelectorAll('.tok.active').forEach((n) => n.classList.remove('active'));
   span.classList.add('active');
   const hit = lookup(raw, app.dictMap);
+  // Log every tap. For misses we key by the normalised raw token so we can
+  // surface "you've bounced on this word N times" later; for hits we key by
+  // the matched headword so the count tracks the actual lexeme, not surface
+  // forms.
+  const logKey = hit ? hit.entry.headword : normalise(raw);
+  if (logKey) data.logTap(logKey, !!hit).catch(() => {});
   showPopup(raw, hit);
 }
 
@@ -351,43 +359,82 @@ function renderGloss(hit, close) {
 function renderNotFound(rawWord, close) {
   const rows = el('div', { class: 'col' });
   rows.append(el('div', { class: 'ar lg' }, rawWord));
-  rows.append(el('div', { class: 'muted' }, 'Not in the dictionary yet — add it as a personal entry.'));
+  rows.append(el('div', { class: 'muted' }, 'Not in the dictionary yet.'));
 
   const fGloss = el('input', { type: 'text', placeholder: 'English gloss (required)' });
   const fRoot  = el('input', { type: 'text', placeholder: 'Root (e.g. k-t-b) — optional' });
   const fForm  = el('input', { type: 'text', placeholder: 'Form / pattern — optional' });
   const fHeb   = el('input', { type: 'text', placeholder: 'Hebrew cognate — optional' });
+  const fVoc   = el('input', { type: 'text', placeholder: 'Vocalised form — optional', class: 'ar', dir: 'rtl' });
+
+  const apiKey = (app.settings.claudeApiKey || '').trim();
+  const autofillBtn = apiKey
+    ? el('button', { class: 'primary', onclick: async () => {
+        autofillBtn.disabled = true;
+        autofillBtn.textContent = '✨ Looking it up…';
+        try {
+          const entry = await autofillEntry(rawWord, apiKey);
+          fGloss.value = entry.gloss || '';
+          fRoot.value  = entry.root  || '';
+          fForm.value  = entry.form  || '';
+          fHeb.value   = entry.hebrew || '';
+          fVoc.value   = entry.vocalized || '';
+          if (app.settings.autoSaveAiLookups && entry.gloss) {
+            await persist();
+            return;
+          }
+          autofillBtn.textContent = '✨ Re-run AI';
+          autofillBtn.disabled = false;
+        } catch (err) {
+          console.error(err);
+          toast('AI lookup failed: ' + (err.message || 'unknown'));
+          autofillBtn.textContent = '✨ Try AI again';
+          autofillBtn.disabled = false;
+        }
+      } }, '✨ Auto-fill with AI')
+    : null;
 
   rows.append(el('div', { class: 'col' }, [
-    el('div', { class: 'field' }, [el('label', {}, 'Gloss'), fGloss]),
+    autofillBtn,
+    el('div', { class: 'field' }, [el('label', {}, 'Gloss (required)'), fGloss]),
     el('div', { class: 'field' }, [el('label', {}, 'Root'),  fRoot]),
     el('div', { class: 'field' }, [el('label', {}, 'Form'),  fForm]),
     el('div', { class: 'field' }, [el('label', {}, 'Hebrew'), fHeb]),
+    el('div', { class: 'field' }, [el('label', {}, 'Vocalised form (optional)'), fVoc]),
   ]));
 
+  async function persist() {
+    const gloss = fGloss.value.trim();
+    if (!gloss) { toast('Gloss is required'); return; }
+    const headword = rawWord.replace(/[ً-ٰ]/g, '').replace(/ـ/g, '').trim();
+    const entry = {
+      headword,
+      vocalized: fVoc.value.trim() || rawWord,
+      gloss,
+      root: fRoot.value.trim(),
+      form: fForm.value.trim(),
+      hebrew: fHeb.value.trim(),
+      status: 'verified',
+    };
+    await data.addUserVocab(entry);
+    await data.markTapAdded(headword);
+    await rebuildDictMap();
+    toast(`Saved: ${headword}`);
+    close();
+  }
+
   rows.append(el('div', { class: 'actions' }, [
-    el('button', { class: 'primary', onclick: async () => {
-      const gloss = fGloss.value.trim();
-      if (!gloss) { toast('Gloss is required'); return; }
-      // Strip ḥarakāt + non-Arabic from the headword key so it matches what
-      // the tokenizer hands the lookup.
-      const headword = rawWord.replace(/[ً-ٰ]/g, '').replace(/ـ/g, '').trim();
-      const entry = {
-        headword,
-        vocalized: rawWord,
-        gloss,
-        root: fRoot.value.trim(),
-        form: fForm.value.trim(),
-        hebrew: fHeb.value.trim(),
-        status: 'verified', // user-authored = trusted
-      };
-      await data.addUserVocab(entry);
-      await rebuildDictMap();
-      toast(`Saved: ${headword}`);
-      close();
-    } }, '＋ Add to my dictionary'),
+    el('button', { class: 'primary', onclick: persist }, '＋ Save'),
     el('button', { class: 'ghost', onclick: close }, 'Close'),
   ]));
+
+  if (!apiKey) {
+    rows.append(el('div', { class: 'muted' }, [
+      'Set a Claude API key in ',
+      el('a', { href: '#/settings' }, 'Settings'),
+      ' for one-tap AI lookups.',
+    ]));
+  }
   return rows;
 }
 
@@ -839,6 +886,93 @@ export async function renderPaste() {
 
 // ---------------- Suspended list ----------------
 
+// ---------------- Common unknowns (tap-log surface) ----------------
+
+export async function renderUnknowns() {
+  const root = el('div', { class: 'col' });
+  root.append(appbar('Common unknowns', { backTo: '/settings' }));
+
+  const log = await data.listTapLog();
+  // Sort: in-dict-misses (the things we want to add) first, by count desc,
+  // then by recency. Already-added entries are filtered out — the markTap
+  // path clears them naturally.
+  const candidates = log
+    .filter((e) => !e.inDict && !e.addedAt)
+    .sort((a, b) => b.count - a.count || b.lastTappedAt - a.lastTappedAt);
+
+  if (candidates.length === 0) {
+    root.append(el('div', { class: 'empty' }, 'No outstanding unknowns. Tap an unfamiliar word in the Reader and they\'ll show up here.'));
+    mount(root); return;
+  }
+
+  const apiKey = (app.settings.claudeApiKey || '').trim();
+  root.append(el('div', { class: 'card col' }, [
+    el('div', { class: 'muted' }, [
+      `${candidates.length} words you tapped but haven't added yet, sorted by tap count.`,
+      apiKey ? ' Auto-fill uses Claude — about $0.0006 per word.' : '',
+    ]),
+    el('div', { class: 'row' }, [
+      apiKey
+        ? el('button', { class: 'primary', onclick: () => bulkAutofill(candidates.slice(0, 10)) }, '✨ Auto-fill top 10')
+        : el('a', { href: '#/settings' }, 'Set Claude API key →'),
+      el('button', {
+        class: 'ghost',
+        onclick: async () => {
+          if (!confirm('Clear the tap log? Already-added entries are kept.')) return;
+          await data.clearTapLog();
+          toast('Tap log cleared');
+          navigate('/unknowns');
+        },
+      }, 'Clear log'),
+    ]),
+  ]));
+
+  const list = el('div', { class: 'col' });
+  for (const e of candidates) {
+    const row = el('div', { class: 'card row' });
+    row.append(el('div', { class: 'ar', style: 'flex:1' }, e.headword));
+    row.append(el('div', { class: 'muted' }, `×${e.count}`));
+    row.append(el('button', {
+      class: 'ghost',
+      onclick: () => openAddPopup(e.headword),
+    }, 'Add'));
+    list.append(row);
+  }
+  root.append(list);
+  mount(root);
+
+  function openAddPopup(word) {
+    // Reuse the popup machinery — show the "not found" form for this word
+    // exactly as if the user had just tapped it in the Reader.
+    showPopup(word, null);
+  }
+
+  async function bulkAutofill(batch) {
+    const indicator = el('div', { class: 'card col' }, [
+      el('div', { class: 'muted' }, `Looking up ${batch.length} words…`),
+    ]);
+    root.append(indicator);
+    let added = 0, failed = 0;
+    for (const e of batch) {
+      try {
+        const entry = await autofillEntry(e.headword, apiKey);
+        if (entry.gloss) {
+          await data.addUserVocab(entry);
+          await data.markTapAdded(e.headword);
+          added++;
+          indicator.firstChild.textContent = `Adding ${added}/${batch.length}…`;
+        } else { failed++; }
+      } catch (err) {
+        console.error(err);
+        failed++;
+      }
+    }
+    await rebuildDictMap();
+    toast(`Added ${added}${failed ? ` · ${failed} failed` : ''}`);
+    navigate('/unknowns');
+  }
+}
+
 export async function renderSuspended() {
   const root = el('div', { class: 'col' });
   root.append(appbar('Suspended', { backTo: '/settings' }));
@@ -906,6 +1040,10 @@ export async function renderSettings() {
   heCog.checked = !!s.showHebrewCognates;
   const famHints = el('input', { type: 'checkbox' });
   famHints.checked = !!s.showFamiliarityHints;
+  const apiKey = el('input', { type: 'password', placeholder: 'sk-ant-…', autocomplete: 'off' });
+  apiKey.value = s.claudeApiKey || '';
+  const autoSave = el('input', { type: 'checkbox' });
+  autoSave.checked = !!s.autoSaveAiLookups;
 
   function previewSizes() {
     if (window.__applyFontSizes) {
@@ -963,8 +1101,32 @@ export async function renderSettings() {
         },
       }, 'Save'),
     ]),
+    el('h2', {}, 'AI auto-fill'),
+    el('div', { class: 'card col' }, [
+      el('div', { class: 'muted' }, [
+        'Adds an ',
+        el('strong', {}, '✨ Auto-fill'),
+        ' button to the unknown-word popup. Uses ',
+        el('strong', {}, 'Claude Haiku 4.5'),
+        ' — about $0.0006 per word. Your key is stored on this device only and is stripped from exports.',
+      ]),
+      el('div', { class: 'field' }, [el('label', {}, 'Anthropic API key'), apiKey]),
+      el('div', { class: 'field' }, [el('label', {}, 'Auto-save after AI fills the form (skip review)'), autoSave]),
+      el('button', {
+        class: 'primary',
+        onclick: async () => {
+          const next = await data.saveSettings({
+            claudeApiKey: apiKey.value.trim(),
+            autoSaveAiLookups: autoSave.checked,
+          });
+          app.settings = next;
+          toast('Saved');
+        },
+      }, 'Save key'),
+    ]),
     el('h2', {}, 'Data'),
     el('div', { class: 'card col' }, [
+      el('button', { class: 'ghost', onclick: () => navigate('/unknowns') }, 'Common unknowns (tap-log)'),
       el('button', { class: 'ghost', onclick: () => navigate('/suspended') }, `Suspended (${suspendedCount})`),
       el('button', {
         class: 'ghost',

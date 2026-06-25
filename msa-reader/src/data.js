@@ -10,6 +10,18 @@
  * @property {boolean} showHebrewCognates       // gloss popup includes Hebrew cognate
  * @property {boolean} showFamiliarityHints     // colour-code known/unknown words in Reader
  * @property {string[]} suspendedIds            // headwords hidden from reviews
+ * @property {string} claudeApiKey              // Anthropic API key for auto-fill (local-only; excluded from export)
+ * @property {boolean} autoSaveAiLookups        // skip the review step after AI fills the form
+ */
+
+/**
+ * @typedef {Object} TapLogEntry
+ * @property {string} headword        // the normalised token tapped on
+ * @property {number} count           // how many times this token has been tapped
+ * @property {number} firstTappedAt
+ * @property {number} lastTappedAt
+ * @property {boolean} inDict         // did the most recent tap find it in the dictionary?
+ * @property {number|null} addedAt    // ms when the user added it via the popup; null if still unsaved
  */
 
 /**
@@ -49,7 +61,7 @@
 // ---------------- IndexedDB wrapper ----------------
 
 const DB_NAME = 'msa-reader';
-const DB_VERSION = 1;
+const DB_VERSION = 2; // v2 adds 'tapLog' store
 
 let dbPromise = null;
 
@@ -64,6 +76,7 @@ export function openDb() {
       if (!db.objectStoreNames.contains('savedArticles'))  db.createObjectStore('savedArticles',  { keyPath: 'id' });
       if (!db.objectStoreNames.contains('settings'))       db.createObjectStore('settings');
       if (!db.objectStoreNames.contains('sessions'))       db.createObjectStore('sessions',       { keyPath: 'id' });
+      if (!db.objectStoreNames.contains('tapLog'))         db.createObjectStore('tapLog',         { keyPath: 'headword' });
     };
     req.onsuccess = () => resolve(req.result);
     req.onerror = () => reject(req.error);
@@ -94,6 +107,8 @@ export const DEFAULT_SETTINGS = /** @type {Settings} */ ({
   showHebrewCognates: true,
   showFamiliarityHints: true,
   suspendedIds: [],
+  claudeApiKey: '',
+  autoSaveAiLookups: false,
 });
 
 export async function getSettings() {
@@ -121,6 +136,36 @@ export async function unsuspendAll() {
   return saveSettings({ suspendedIds: [] });
 }
 
+// ---------------- Tap log (every popup view, hit or miss) ----------------
+
+/** Record a tap on a token in the Reader. Idempotent within a session —
+ *  re-tapping the same word increments the counter. */
+export async function logTap(headword, inDict) {
+  if (!headword) return;
+  const now = Date.now();
+  const cur = await dbGet('tapLog', headword);
+  const next = cur
+    ? { ...cur, count: cur.count + 1, lastTappedAt: now, inDict }
+    : { headword, count: 1, firstTappedAt: now, lastTappedAt: now, inDict, addedAt: null };
+  return dbPut('tapLog', next);
+}
+
+/** Mark a tap-log entry as resolved — user added the word to userVocab. */
+export async function markTapAdded(headword) {
+  const cur = await dbGet('tapLog', headword);
+  if (!cur) return;
+  return dbPut('tapLog', { ...cur, addedAt: Date.now() });
+}
+
+export async function listTapLog()  { return dbAll('tapLog'); }
+export async function clearTapLog() {
+  const db = await openDb();
+  await new Promise((resolve) => {
+    const req = db.transaction('tapLog', 'readwrite').objectStore('tapLog').clear();
+    req.onsuccess = req.onerror = () => resolve();
+  });
+}
+
 // ---------------- Export / import ----------------
 
 const EXPORT_FORMAT = 'msa-reader-export-v1';
@@ -130,17 +175,21 @@ const EXPORT_FORMAT = 'msa-reader-export-v1';
  *  Doesn't include the bundled content (dictionary / graded / patterns)
  *  — those live in the repo. */
 export async function exportSnapshot() {
-  const [reviewState, userVocab, savedArticles, sessions, settings] = await Promise.all([
+  const [reviewState, userVocab, savedArticles, sessions, tapLog, settings] = await Promise.all([
     dbAll('reviewState'),
     dbAll('userVocab'),
     dbAll('savedArticles'),
     dbAll('sessions'),
+    dbAll('tapLog'),
     getSettings(),
   ]);
+  // Strip the API key — never leaves the device in a snapshot.
+  const { claudeApiKey: _stripped, ...safeSettings } = settings;
   return {
     format: EXPORT_FORMAT,
     exportedAt: Date.now(),
-    reviewState, userVocab, savedArticles, sessions, settings,
+    reviewState, userVocab, savedArticles, sessions, tapLog,
+    settings: safeSettings,
   };
 }
 
@@ -152,7 +201,8 @@ export async function importSnapshot(snapshot) {
     throw new Error('Not a valid MSA Reader export.');
   }
   const db = await openDb();
-  await Promise.all(['reviewState', 'userVocab', 'savedArticles', 'sessions'].map((store) => new Promise((resolve, reject) => {
+  await Promise.all(['reviewState', 'userVocab', 'savedArticles', 'sessions', 'tapLog'].map((store) => new Promise((resolve, reject) => {
+    if (!db.objectStoreNames.contains(store)) { resolve(); return; }
     const txn = db.transaction(store, 'readwrite');
     const os = txn.objectStore(store);
     os.clear();
@@ -160,12 +210,17 @@ export async function importSnapshot(snapshot) {
     txn.oncomplete = () => resolve();
     txn.onerror = () => reject(txn.error);
   })));
-  if (snapshot.settings) await saveSettings(snapshot.settings);
+  if (snapshot.settings) {
+    // Preserve any API key already on this device — imports never overwrite it.
+    const cur = await getSettings();
+    await saveSettings({ ...snapshot.settings, claudeApiKey: cur.claudeApiKey });
+  }
   return {
     reviewStates: (snapshot.reviewState || []).length,
     userVocab: (snapshot.userVocab || []).length,
     savedArticles: (snapshot.savedArticles || []).length,
     sessions: (snapshot.sessions || []).length,
+    tapLog: (snapshot.tapLog || []).length,
   };
 }
 
@@ -173,7 +228,8 @@ export async function importSnapshot(snapshot) {
  *  preserved. Used by the Reset button in Settings. */
 export async function resetProgress() {
   const db = await openDb();
-  await Promise.all(['reviewState', 'userVocab', 'savedArticles', 'sessions'].map((store) => new Promise((resolve) => {
+  await Promise.all(['reviewState', 'userVocab', 'savedArticles', 'sessions', 'tapLog'].map((store) => new Promise((resolve) => {
+    if (!db.objectStoreNames.contains(store)) { resolve(); return; }
     const req = db.transaction(store, 'readwrite').objectStore(store).clear();
     req.onsuccess = req.onerror = () => resolve();
   })));

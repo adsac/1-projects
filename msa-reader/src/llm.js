@@ -1,13 +1,15 @@
 // Anthropic API wrapper for auto-filling unknown-word dictionary entries.
 //
-// Uses Claude Haiku 4.5 — fast and cheap. Roughly $0.0006 per word lookup
-// (200 input + 80 output tokens at Haiku rates).
+// Uses Claude Sonnet 4.6 for stronger Arabic morphology (roots, binyan
+// forms, Hebrew cognates) than Haiku. Roughly $0.0018 per word lookup
+// (~200 input + ~80 output tokens at Sonnet rates) — about 3x Haiku, still
+// well under a fifth of a cent each.
 //
 // The API key is stored in IndexedDB (Settings.claudeApiKey) and never
 // leaves the device — exports strip it. The browser-direct call uses
 // Anthropic's CORS header so no proxy is needed.
 
-const MODEL = 'claude-haiku-4-5-20251001';
+const MODEL = 'claude-sonnet-4-6';
 const ENDPOINT = 'https://api.anthropic.com/v1/messages';
 
 const SYSTEM_PROMPT = `You populate a Modern Standard Arabic newspaper-reader dictionary.

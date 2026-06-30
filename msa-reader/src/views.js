@@ -83,6 +83,7 @@ function appbar(title, opts = {}) {
 // ---------------- Home ----------------
 
 export async function renderHome() {
+  await refreshStates();
   const root = el('div', { class: 'col' });
   root.append(el('div', { class: 'appbar' }, [
     el('div', { class: 'title' }, 'MSA Reader'),
@@ -90,27 +91,44 @@ export async function renderHome() {
     el('a', { href: '#/settings' }, 'Settings'),
   ]));
 
-  root.append(el('div', { class: 'card' }, [
-    el('div', { class: 'muted' }, [
-      'Read newspaper Arabic. Tap any word for a gloss; long-press will add it to review (PR 3). ',
-      el('strong', {}, `${app.content.dictionary.length} words loaded.`),
+  // The one thing to do: a single Continue button. Below it, a quiet status
+  // line so you know what it'll do — but you don't have to act on it.
+  const due = countDue();
+  const next = await nextUnreadArticle();
+  const statusBits = [];
+  if (due > 0) statusBits.push(`${due} review${due === 1 ? '' : 's'} due`);
+  if (next) statusBits.push(`then read “${next.title}”`);
+  else if (due > 0) statusBits.push('then you\'re caught up');
+  const status = statusBits.length ? statusBits.join(' · ') : 'You\'re all caught up';
+
+  root.append(el('button', {
+    class: 'continue-btn',
+    onclick: () => navigate('/today'),
+  }, [
+    el('span', { class: 'continue-big' }, due > 0 || next ? 'Continue' : 'Read something'),
+    el('span', { class: 'continue-sub' }, status),
+  ]));
+
+  // Everything else is secondary — tucked under a quiet "More" row so the
+  // main path stays obvious.
+  root.append(el('div', { class: 'col', style: 'margin-top: 8px' }, [
+    el('div', { class: 'muted', style: 'padding-left: 4px' }, 'More'),
+    el('div', { class: 'grid-2' }, [
+      smallTile('/library',  'Library',  'all articles + paste'),
+      smallTile('/review',   'Review',   'just the due words'),
+      smallTile('/patterns', 'Patterns', 'roots + forms'),
+      smallTile('/settings', 'Settings', 'AI, fonts, data'),
     ]),
   ]));
 
-  const tile = (path, big, hint) =>
-    el('button', { class: 'tile', onclick: () => navigate(path) }, [
-      el('span', { class: 'big' }, big),
-      el('small', {}, hint),
-    ]);
-
-  root.append(el('div', { class: 'grid-2' }, [
-    tile('/read',     'Read',     'sample article + your library'),
-    tile('/library',  'Library',  'graded pieces + paste-in (coming)'),
-    tile('/review',   'Review',   'words you saved (coming)'),
-    tile('/patterns', 'Patterns', 'roots + forms (coming)'),
-  ]));
-
   mount(root);
+}
+
+function smallTile(path, big, hint) {
+  return el('button', { class: 'tile', onclick: () => navigate(path) }, [
+    el('span', { class: 'big' }, big),
+    el('small', {}, hint),
+  ]);
 }
 
 // ---------------- Reader ----------------
@@ -141,7 +159,7 @@ export async function renderReader() {
   return renderArticle({ id: 'sample' });
 }
 
-export async function renderArticle({ id }) {
+export async function renderArticle({ id, guided = false }) {
   await refreshStates();
   const article = await resolveArticle(id);
   if (!article) {
@@ -152,8 +170,8 @@ export async function renderArticle({ id }) {
   const root = el('div', { class: 'col' });
   const dueCount = countDue();
   root.append(appbar(article.title, {
-    backTo: '/library',
-    right: dueCount > 0
+    backTo: guided ? '/' : '/library',
+    right: (!guided && dueCount > 0)
       ? el('button', { class: 'ghost', onclick: () => navigate('/review') }, `Review (${dueCount})`)
       : null,
   }));
@@ -167,6 +185,18 @@ export async function renderArticle({ id }) {
     reader.append(renderParagraph(p));
   }
   root.append(reader);
+
+  // The single forward action. In guided mode this marks the article read
+  // and shows the gentle completion card; otherwise it just marks read and
+  // returns to the library.
+  root.append(el('button', {
+    class: 'primary',
+    onclick: async () => {
+      app.settings = await data.markArticleRead(article.id);
+      if (guided) guidedDoneCard();
+      else { toast('Marked read'); navigate('/library'); }
+    },
+  }, guided ? '✓ Finished — continue' : '✓ Mark as read'));
 
   mount(root);
 }
@@ -456,6 +486,65 @@ export async function renderReview() {
   runReviewSession(queue);
 }
 
+// ---------------- Guided "Continue" flow ----------------
+//
+// The standard path: one button does the right thing without making the
+// reader choose. Run any due reviews first, then open the next unread
+// article, then a gentle "done for now". No menus in between.
+
+/** Pick the next article the guided flow should serve: first graded piece
+ *  not yet marked read, then any unread saved article, else null (all read). */
+async function nextUnreadArticle() {
+  const read = new Set(app.settings.readArticleIds || []);
+  const graded = (app.content.graded || []).filter((a) => !read.has(a.id));
+  if (graded.length) return graded[0];
+  const saved = (await data.listSavedArticles()).filter((a) => !read.has(a.id));
+  if (saved.length) return saved.sort((a, b) => (a.createdAt || 0) - (b.createdAt || 0))[0];
+  return null;
+}
+
+export async function renderToday() {
+  await refreshStates();
+  const queue = buildReviewQueue();
+  if (queue.length > 0) {
+    // Reviews first; on completion, flow straight into reading.
+    runReviewSession(queue, { guided: true, onDone: () => startGuidedReading() });
+  } else {
+    startGuidedReading();
+  }
+}
+
+async function startGuidedReading() {
+  const article = await nextUnreadArticle();
+  if (!article) {
+    // Everything read. Offer a light off-ramp rather than a dead end.
+    mount(el('div', { class: 'col' }, [
+      appbar('All caught up', { backTo: '/' }),
+      el('div', { class: 'card col' }, [
+        el('h1', {}, 'Nice — you\'re caught up.'),
+        el('p', { class: 'muted' }, 'No reviews due and every article read. Paste a real article to keep going, or revisit anything from the library.'),
+        el('button', { class: 'primary', onclick: () => navigate('/paste') }, 'Paste an article'),
+        el('button', { class: 'ghost', onclick: () => navigate('/library') }, 'Browse library'),
+      ]),
+    ]));
+    return;
+  }
+  renderArticle({ id: article.id, guided: true });
+}
+
+/** Completion card shown after a guided article is finished. */
+function guidedDoneCard() {
+  mount(el('div', { class: 'col' }, [
+    appbar('Done', { back: false }),
+    el('div', { class: 'card col' }, [
+      el('h1', {}, 'Good session.'),
+      el('p', { class: 'muted' }, 'Words you added are scheduled for review. Come back tomorrow to keep them.'),
+      el('button', { class: 'primary', onclick: () => navigate('/today') }, 'Keep going'),
+      el('button', { class: 'ghost', onclick: () => navigate('/') }, 'Done for now'),
+    ]),
+  ]));
+}
+
 /** Pull every SRS state that is currently due (and not suspended).
  *  Sort by weakness desc so weak items front-load. */
 function buildReviewQueue() {
@@ -472,7 +561,8 @@ function buildReviewQueue() {
   return out;
 }
 
-function runReviewSession(queue) {
+function runReviewSession(queue, opts = {}) {
+  const { guided = false, onDone = null } = opts;
   let i = 0;
   let correct = 0, lapses = 0;
   const hardReshown = new Set();
@@ -507,6 +597,11 @@ function runReviewSession(queue) {
 
   function step() {
     if (i >= queue.length) {
+      if (guided && onDone) {
+        // Guided flow: no menu — flow straight into reading.
+        onDone();
+        return;
+      }
       mount(el('div', { class: 'col' }, [
         appbar('Review done'),
         el('div', { class: 'card col' }, [
@@ -909,7 +1004,7 @@ export async function renderUnknowns() {
   root.append(el('div', { class: 'card col' }, [
     el('div', { class: 'muted' }, [
       `${candidates.length} words you tapped but haven't added yet, sorted by tap count.`,
-      apiKey ? ' Auto-fill uses Claude — about $0.0006 per word.' : '',
+      apiKey ? ' Auto-fill uses Claude Sonnet — about $0.0018 per word.' : '',
     ]),
     el('div', { class: 'row' }, [
       apiKey
@@ -1107,8 +1202,8 @@ export async function renderSettings() {
         'Adds an ',
         el('strong', {}, '✨ Auto-fill'),
         ' button to the unknown-word popup. Uses ',
-        el('strong', {}, 'Claude Haiku 4.5'),
-        ' — about $0.0006 per word. Your key is stored on this device only and is stripped from exports.',
+        el('strong', {}, 'Claude Sonnet 4.6'),
+        ' — about $0.0018 per word. Your key is stored on this device only and is stripped from exports.',
       ]),
       el('div', { class: 'field' }, [el('label', {}, 'Anthropic API key'), apiKey]),
       el('div', { class: 'field' }, [el('label', {}, 'Auto-save after AI fills the form (skip review)'), autoSave]),

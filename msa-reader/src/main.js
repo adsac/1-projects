@@ -14,6 +14,7 @@ async function boot() {
   views.setApp({ content, settings });
 
   router.route('/',         views.renderHome);
+  router.route('/today',         views.renderToday);
   router.route('/read',          views.renderReader);
   router.route('/library',       views.renderLibrary);
   router.route('/article/:id',   views.renderArticle);

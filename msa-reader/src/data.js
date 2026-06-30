@@ -10,6 +10,7 @@
  * @property {boolean} showHebrewCognates       // gloss popup includes Hebrew cognate
  * @property {boolean} showFamiliarityHints     // colour-code known/unknown words in Reader
  * @property {string[]} suspendedIds            // headwords hidden from reviews
+ * @property {string[]} readArticleIds          // graded/saved article ids the user has finished
  * @property {string} claudeApiKey              // Anthropic API key for auto-fill (local-only; excluded from export)
  * @property {boolean} autoSaveAiLookups        // skip the review step after AI fills the form
  */
@@ -107,6 +108,7 @@ export const DEFAULT_SETTINGS = /** @type {Settings} */ ({
   showHebrewCognates: true,
   showFamiliarityHints: true,
   suspendedIds: [],
+  readArticleIds: [],
   claudeApiKey: '',
   autoSaveAiLookups: false,
 });
@@ -134,6 +136,14 @@ export async function unsuspendItem(id) {
 }
 export async function unsuspendAll() {
   return saveSettings({ suspendedIds: [] });
+}
+
+// ---------------- Read-article tracking (for the guided "Continue" flow) ----------------
+
+export async function markArticleRead(id) {
+  const cur = await getSettings();
+  if ((cur.readArticleIds || []).includes(id)) return cur;
+  return saveSettings({ readArticleIds: [...(cur.readArticleIds || []), id] });
 }
 
 // ---------------- Tap log (every popup view, hit or miss) ----------------

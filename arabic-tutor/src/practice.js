@@ -2,9 +2,42 @@
 // The controllers return DOM nodes; mutation flows via callbacks back into the session.
 
 import { el, clear, shuffle } from './util.js';
-import { grade, previewIntervals } from './scheduler.js';
+import { grade, previewIntervals, isLeech } from './scheduler.js';
 import { putState, getState } from './data.js';
 import * as recorder from './recorder.js';
+
+/**
+ * Resolve a phrase's word-by-word building blocks. Structured `breakdown`
+ * wins; older content that embeds "kīf = how, ..." in `context` still parses.
+ * @returns {Array<{token:string, gloss:string}>|null}
+ */
+export function componentsFor(phrase) {
+  if (Array.isArray(phrase.breakdown) && phrase.breakdown.length >= 2) {
+    return phrase.breakdown.filter((c) => c && c.token && c.gloss);
+  }
+  return parseWordByWord(phrase.context);
+}
+
+function componentsBlock(phrase, heading = 'Building blocks:') {
+  const components = componentsFor(phrase);
+  if (!components || components.length < 2) return null;
+  const block = el('div', { class: 'col' });
+  block.append(el('div', { class: 'muted' }, heading));
+  const list = el('div', { class: 'components' });
+  for (const c of components) {
+    list.append(el('div', { class: 'components-row' }, [
+      el('span', { class: 'translit' }, c.token),
+      el('span', { class: 'muted' }, ' — '),
+      el('span', {}, c.gloss),
+    ]));
+  }
+  block.append(list);
+  return block;
+}
+
+function leechTag(state) {
+  return isLeech(state) ? el('span', { class: 'tag leech' }, 'keeps slipping') : null;
+}
 
 function fmtInterval(d) {
   if (d < 1) return '<1m';
@@ -23,7 +56,7 @@ export function recallCard({ phrase, state, settings, onGraded, onSkip, onSuspen
   let revealed = false;
 
   const prompt = el('div', { class: 'col' }, [
-    el('div', { class: 'muted' }, phraseTags(phrase)),
+    el('div', { class: 'muted' }, [leechTag(state), ...phraseTags(phrase)]),
     phrase.context ? el('div', { class: 'context' }, phrase.context) : null,
     el('h1', {}, phrase.english),
   ]);
@@ -35,6 +68,8 @@ export function recallCard({ phrase, state, settings, onGraded, onSkip, onSuspen
   if (settings.showTransliteration) {
     answer.append(el('div', { class: 'translit' }, phrase.transliteration));
   }
+  const blocks = componentsBlock(phrase);
+  if (blocks) answer.append(blocks);
   if (phrase.pronunciationNote) answer.append(el('div', { class: 'note' }, `Pronunciation: ${phrase.pronunciationNote}`));
   if (phrase.fushaNote) answer.append(el('div', { class: 'note fusha' }, `Fuṣḥā note: ${phrase.fushaNote}`));
   answer.append(buildRecorderBar());
@@ -77,6 +112,7 @@ export function recognizeCard({ phrase, state, settings, onGraded, onSkip, onSus
   const tags = phraseTags(phrase);
   root.append(el('div', { class: 'muted' }, [
     el('span', { class: 'tag' }, 'Arabic → English'),
+    leechTag(state),
     ...tags,
   ]));
   root.append(el('div', { class: 'ar lg' }, phrase.arabic));
@@ -87,6 +123,7 @@ export function recognizeCard({ phrase, state, settings, onGraded, onSkip, onSus
   const answer = el('div', { class: 'col', hidden: true }, [
     el('h2', {}, phrase.english),
     phrase.context ? el('div', { class: 'context' }, phrase.context) : null,
+    componentsBlock(phrase),
     phrase.pronunciationNote ? el('div', { class: 'note' }, `Pronunciation: ${phrase.pronunciationNote}`) : null,
     phrase.fushaNote ? el('div', { class: 'note fusha' }, `Fuṣḥā note: ${phrase.fushaNote}`) : null,
   ]);
@@ -136,7 +173,7 @@ function gradeRow(state, finish) {
  * tap — i+1 ramp instead of i+4 wall. Otherwise the single-step intro.
  */
 export function newIntro(ctx) {
-  const components = parseWordByWord(ctx.phrase.context);
+  const components = componentsFor(ctx.phrase);
   return components && components.length >= 2
     ? twoStepIntro({ ...ctx, components })
     : singleStepIntro(ctx);
@@ -319,6 +356,7 @@ function renderDrillStep(drill, settings, onNext) {
   const answer = el('div', { class: 'col', hidden: true }, [
     el('div', { class: 'ar lg' }, drill.arabic),
     settings.showTransliteration ? el('div', { class: 'translit' }, drill.transliteration) : null,
+    componentsBlock(drill),
     drill.pronunciationNote ? el('div', { class: 'note' }, `Pronunciation: ${drill.pronunciationNote}`) : null,
   ]);
   card.append(answer);
@@ -333,7 +371,7 @@ function pickEngineDrills(engine, n) {
   const out = [];
   if (Array.isArray(engine.forms)) {
     for (const f of shuffle(engine.forms).slice(0, Math.min(n, engine.forms.length))) {
-      out.push({ label: f.label, english: f.english, arabic: f.arabic, transliteration: f.transliteration, context: f.context, pronunciationNote: f.pronunciationNote });
+      out.push({ label: f.label, english: f.english, arabic: f.arabic, transliteration: f.transliteration, context: f.context, pronunciationNote: f.pronunciationNote, breakdown: f.breakdown });
     }
   }
   // Slot substitutions: replace [SLOT] with options

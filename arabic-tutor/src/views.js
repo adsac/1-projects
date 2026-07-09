@@ -525,9 +525,14 @@ export async function renderProgress() {
 
   const visible = pool.phrases.filter((p) => !suspended.has(p.id));
   const strong = visible.filter((p) => scheduler.isStrong(stateFor(p.id)));
+  const leeches = visible
+    .map((p) => ({ p, st: stateFor(p.id) }))
+    .filter((x) => scheduler.isLeech(x.st))
+    .sort((a, b) => b.st.lapses - a.st.lapses);
+  const leechIds = new Set(leeches.map((x) => x.p.id));
   const weak = visible
     .map((p) => ({ p, st: stateFor(p.id) }))
-    .filter((x) => scheduler.isWeak(x.st))
+    .filter((x) => scheduler.isWeak(x.st) && !leechIds.has(x.p.id))
     .sort((a, b) => scheduler.weakness(b.st) - scheduler.weakness(a.st));
 
   const root = el('div', { class: 'col' });
@@ -594,6 +599,39 @@ export async function renderProgress() {
         el('div', { class: 'ar sm' }, p.arabic),
         app.settings.showTransliteration ? el('div', { class: 'translit' }, p.transliteration) : null,
         el('div', { class: 'muted' }, p.english),
+      ]));
+    }
+    root.append(list);
+  }
+
+  if (leeches.length) {
+    root.append(el('h2', {}, `Leeches — keep slipping (${leeches.length})`));
+    root.append(el('p', { class: 'muted' }, 'Forgotten 4+ times. More of the same reps won\'t fix these — re-learn from the building blocks, or suspend and come back later.'));
+    const list = el('ul', { class: 'list' });
+    for (const { p, st } of leeches.slice(0, 20)) {
+      list.append(el('li', { class: 'col' }, [
+        el('div', { class: 'ar sm' }, p.arabic),
+        app.settings.showTransliteration ? el('div', { class: 'translit' }, p.transliteration) : null,
+        el('div', {}, p.english),
+        el('div', { class: 'muted' }, `Lapses: ${st.lapses} · last: ${st.lastGrade || '–'}`),
+        el('div', { class: 'row' }, [
+          el('button', {
+            class: 'ghost',
+            onclick: async () => {
+              await data.deleteState(p.id);
+              toast('Reset — it\'ll come back as a new phrase, components first.');
+              renderProgress();
+            },
+          }, 'Re-learn from scratch'),
+          el('button', {
+            class: 'ghost',
+            onclick: async () => {
+              app.settings = await data.suspendItem(p.id);
+              toast('Suspended — see Settings → Suspended to bring it back.');
+              renderProgress();
+            },
+          }, 'Suspend'),
+        ]),
       ]));
     }
     root.append(list);

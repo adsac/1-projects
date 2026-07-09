@@ -22,6 +22,7 @@
  * @property {string} english
  * @property {string} [context]           // when do you say this? e.g. "Reply to: ṣabāḥ il-khēr"
  * @property {string} [pronunciationNote]
+ * @property {Array<{token:string, gloss:string}>} [breakdown]  // word-by-word building blocks
  */
 
 /**
@@ -53,6 +54,7 @@
  * @property {string} [context]           // when do you say this? — shown above the english prompt
  * @property {string} [pronunciationNote]
  * @property {string} [fushaNote]
+ * @property {Array<{token:string, gloss:string}>} [breakdown]  // word-by-word building blocks (preferred over breakdowns embedded in context)
  * @property {string[]} [tags]            // scenario slugs, formality, etc.
  * @property {boolean} [rescue]           // small set of high-priority rescue phrases
  * @property {('draft'|'verified')} [status]
@@ -345,6 +347,7 @@ function expandEngineForms(engines) {
         context: context || undefined,
         pronunciationNote: f.pronunciationNote,
         fushaNote: e.fushaNote,
+        breakdown: f.breakdown,
         tags: e.tags || [],
         status: e.status || 'draft',
       });

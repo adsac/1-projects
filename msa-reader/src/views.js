@@ -6,6 +6,7 @@ import * as scheduler from './scheduler.js';
 import { lookup, normalise } from './parser.js';
 import { autofillEntry } from './llm.js';
 import { navigate } from './router.js';
+import * as streak from './streak.js';
 
 let app = {
   /** @type {any} */
@@ -95,10 +96,12 @@ export async function renderHome() {
   // line so you know what it'll do — but you don't have to act on it.
   const due = countDue();
   const next = await nextUnreadArticle();
+  const sk = streak.streakInfo();
   const statusBits = [];
   if (due > 0) statusBits.push(`${due} review${due === 1 ? '' : 's'} due`);
   if (next) statusBits.push(`then read “${next.title}”`);
   else if (due > 0) statusBits.push('then you\'re caught up');
+  if (sk.current > 0) statusBits.push(`🔥 ${sk.current}-day streak${sk.today.tutor || sk.today.msa ? '' : ' — keep it'}`);
   const status = statusBits.length ? statusBits.join(' · ') : 'You\'re all caught up';
 
   root.append(el('button', {
@@ -108,6 +111,9 @@ export async function renderHome() {
     el('span', { class: 'continue-big' }, due > 0 || next ? 'Continue' : 'Read something'),
     el('span', { class: 'continue-sub' }, status),
   ]));
+
+  root.append(el('div', { class: 'muted', style: 'padding-left: 4px' },
+    `today: reader ${sk.today.msa ? '✓' : '—'} · tutor ${sk.today.tutor ? '✓' : '—'}`));
 
   // Everything else is secondary — tucked under a quiet "More" row so the
   // main path stays obvious.
@@ -193,6 +199,7 @@ export async function renderArticle({ id, guided = false }) {
     class: 'primary',
     onclick: async () => {
       app.settings = await data.markArticleRead(article.id);
+      streak.recordActivity('msa');
       if (guided) guidedDoneCard();
       else { toast('Marked read'); navigate('/library'); }
     },
@@ -597,6 +604,7 @@ function runReviewSession(queue, opts = {}) {
 
   function step() {
     if (i >= queue.length) {
+      if (queue.length > 0) streak.recordActivity('msa');
       if (guided && onDone) {
         // Guided flow: no menu — flow straight into reading.
         onDone();

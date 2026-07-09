@@ -7,6 +7,7 @@ import * as practice from './practice.js';
 import { plan, summarize } from './planner.js';
 import { navigate } from './router.js';
 import * as recorder from './recorder.js';
+import * as streak from './streak.js';
 
 let app = {
   /** @type {{engines:any[], phrases:any[], scenarios:any[], warnings:string[]}} */
@@ -72,12 +73,29 @@ export async function renderHome() {
   const w = warningsBanner();
   if (w) root.append(w);
 
+  // The one thing to do: a single Continue button sized to the backlog.
+  const mins = sum.due >= 18 ? 15 : sum.due >= 12 ? 10 : 7;
+  const sk = streak.streakInfo();
+  const statusBits = [];
+  statusBits.push(sum.due > 0 ? `${sum.due} due` : 'no reviews due — new phrases');
+  if (sk.current > 0) {
+    statusBits.push(`🔥 ${sk.current}-day streak${sk.today.tutor || sk.today.msa ? '' : ' — keep it'}`);
+  }
+  root.append(el('button', {
+    class: 'continue-btn',
+    onclick: () => navigate(`/practice/${mins}`),
+  }, [
+    el('span', { class: 'continue-big' }, `Continue · ${mins} min`),
+    el('span', { class: 'continue-sub' }, statusBits.join(' · ')),
+  ]));
+
   root.append(el('div', { class: 'card' }, [
     el('div', { class: 'muted' }, [
       `${sum.due} due · `,
       `${sum.weak} weak · `,
       `${sum.fresh} new available · `,
       `${sum.strong} strong`,
+      ` · today: tutor ${sk.today.tutor ? '✓' : '—'} · reader ${sk.today.msa ? '✓' : '—'}`,
     ]),
   ]));
 
@@ -155,6 +173,7 @@ export async function runSession({ minutes, scope }) {
   async function step() {
     if (i >= queue.length) {
       await data.logSession({ id: sessionId, startedAt, finishedAt: Date.now(), minutes: m, scope: scope || null, total: queue.length, correct, lapses });
+      streak.recordActivity('tutor');
       mount(el('div', { class: 'col' }, [
         appbar('Session done'),
         el('div', { class: 'card col' }, [

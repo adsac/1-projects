@@ -167,6 +167,21 @@ button[disabled] { opacity: 0.5; cursor: not-allowed; }
 
 .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
 
+/* AI passage-explain: quiet affordance under each paragraph, expands to a card */
+.explain-slot { margin: -6px 0 10px; text-align: left; }
+.explain-btn { font-size: calc(13px * var(--ui-scale)); padding: 4px 10px; opacity: 0.75; }
+.explain-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm, 8px);
+  padding: 12px 14px;
+  font-size: calc(15px * var(--ui-scale));
+  text-align: left;
+}
+.explain-words { display: flex; flex-wrap: wrap; gap: 6px 12px; margin-top: 8px; }
+.explain-words .xw { white-space: nowrap; }
+.explain-words .xw .ar { font-size: calc(18px * var(--ui-scale)); }
+
 .appbar {
   display: flex;
   align-items: center;

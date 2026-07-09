@@ -3,7 +3,7 @@
 // The in-app "Update available · reload" toast only fires when the SW
 // file itself differs from the previously-installed copy, so a content-
 // only change won't be signalled unless the version is bumped here.
-const CACHE_VERSION = 'v26';
+const CACHE_VERSION = 'v27';
 const SHELL_CACHE = `arabic-tutor-shell-${CACHE_VERSION}`;
 const CONTENT_CACHE = `arabic-tutor-content-${CACHE_VERSION}`;
 
@@ -23,6 +23,7 @@ const SHELL_FILES = [
   './src/router.js',
   './src/recorder.js',
   './src/util.js',
+  './src/streak.js',
 ];
 
 self.addEventListener('install', (event) => {

@@ -62,7 +62,7 @@
 // ---------------- IndexedDB wrapper ----------------
 
 const DB_NAME = 'msa-reader';
-const DB_VERSION = 2; // v2 adds 'tapLog' store
+const DB_VERSION = 3; // v2 adds 'tapLog'; v3 adds 'explainCache'
 
 let dbPromise = null;
 
@@ -78,6 +78,7 @@ export function openDb() {
       if (!db.objectStoreNames.contains('settings'))       db.createObjectStore('settings');
       if (!db.objectStoreNames.contains('sessions'))       db.createObjectStore('sessions',       { keyPath: 'id' });
       if (!db.objectStoreNames.contains('tapLog'))         db.createObjectStore('tapLog',         { keyPath: 'headword' });
+      if (!db.objectStoreNames.contains('explainCache'))   db.createObjectStore('explainCache',   { keyPath: 'key' });
     };
     req.onsuccess = () => resolve(req.result);
     req.onerror = () => reject(req.error);
@@ -158,6 +159,19 @@ export async function logTap(headword, inDict) {
     ? { ...cur, count: cur.count + 1, lastTappedAt: now, inDict }
     : { headword, count: 1, firstTappedAt: now, lastTappedAt: now, inDict, addedAt: null };
   return dbPut('tapLog', next);
+}
+
+// ---------------- Explain cache (AI passage explanations) ----------------
+//
+// Keyed by a hash of the passage text so re-opening an article never
+// re-bills the same paragraph. Not included in export/import snapshots —
+// it's a cache, cheap to rebuild.
+
+export async function getExplain(key) {
+  return (await dbGet('explainCache', key)) || null;
+}
+export async function putExplain(key, result) {
+  return dbPut('explainCache', { key, ...result, cachedAt: Date.now() });
 }
 
 /** Mark a tap-log entry as resolved — user added the word to userVocab. */

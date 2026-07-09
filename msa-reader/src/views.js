@@ -4,7 +4,7 @@ import { $, el, clear, toast, uid } from './util.js';
 import * as data from './data.js';
 import * as scheduler from './scheduler.js';
 import { lookup, normalise } from './parser.js';
-import { autofillEntry } from './llm.js';
+import { autofillEntry, explainPassage } from './llm.js';
 import { navigate } from './router.js';
 import * as streak from './streak.js';
 
@@ -189,6 +189,7 @@ export async function renderArticle({ id, guided = false }) {
   const reader = el('div', { class: 'reader ar' });
   for (const p of (article.paragraphs || [])) {
     reader.append(renderParagraph(p));
+    reader.append(renderExplainSlot(p));
   }
   root.append(reader);
 
@@ -244,6 +245,72 @@ function renderParagraph(text) {
     if (trail) p.append(document.createTextNode(trail));
   }
   return p;
+}
+
+// ---------------- AI passage explain ----------------
+
+/** djb2 — stable key for the explain cache. */
+function hashText(s) {
+  let h = 5381;
+  for (let i = 0; i < s.length; i++) h = ((h << 5) + h + s.charCodeAt(i)) | 0;
+  return (h >>> 0).toString(36);
+}
+
+/** A quiet per-paragraph affordance: "✨ Explain" expands into a cached
+ *  AI card (translation, word-by-word gloss, grammar note). First tap per
+ *  paragraph calls Claude with the stored key; repeats are free. */
+function renderExplainSlot(text) {
+  const slot = el('div', { class: 'explain-slot', dir: 'ltr' });
+  const key = 'p:' + hashText(text.trim());
+  const btn = el('button', { class: 'ghost explain-btn', onclick: run }, '✨ Explain');
+  slot.append(btn);
+
+  // If it's already cached, show the card straight away on first tap
+  // without the spinner — but don't render eagerly; keep reading clean.
+  async function run() {
+    btn.disabled = true;
+    const cached = await data.getExplain(key);
+    if (cached) { show(cached); return; }
+    if (!app.settings.claudeApiKey) {
+      toast('Add your Claude API key in Settings to use Explain.');
+      btn.disabled = false;
+      navigate('/settings');
+      return;
+    }
+    btn.textContent = 'Explaining…';
+    try {
+      const result = await explainPassage(text, app.settings.claudeApiKey);
+      await data.putExplain(key, result);
+      show(result);
+    } catch (err) {
+      console.error('explain failed', err);
+      toast('Explain failed: ' + (err.message || 'unknown'));
+      btn.textContent = '✨ Explain';
+      btn.disabled = false;
+    }
+  }
+
+  function show(result) {
+    btn.remove();
+    const card = el('div', { class: 'explain-card col' });
+    if (result.translation) card.append(el('div', {}, result.translation));
+    if (result.words && result.words.length) {
+      const words = el('div', { class: 'explain-words' });
+      for (const w of result.words) {
+        words.append(el('span', { class: 'xw' }, [
+          el('span', { class: 'ar' }, w.ar),
+          el('span', { class: 'muted' }, ` ${w.gloss}`),
+        ]));
+      }
+      card.append(words);
+    }
+    if (result.notes) card.append(el('div', { class: 'note' }, result.notes));
+    const hide = el('button', { class: 'ghost', onclick: () => { card.remove(); slot.append(btn); btn.textContent = '✨ Explain'; btn.disabled = false; } }, 'Hide');
+    card.append(hide);
+    slot.append(card);
+  }
+
+  return slot;
 }
 
 /** Wire tap and long-press onto a token span. Long-press (500 ms) adds
@@ -957,6 +1024,24 @@ export async function renderPaste() {
   const fSource = el('input', { type: 'text', placeholder: 'Source label (optional)' });
   const fBody = el('textarea', { rows: 14, dir: 'rtl', class: 'ar', placeholder: 'Paste the Arabic text here. Blank lines separate paragraphs.' });
 
+  // Prefill from the Web Share Target (see main.js). Shared text that
+  // contains Arabic goes into the body; a bare link goes into the source
+  // label — most news apps only share the URL, so the body still needs a
+  // manual copy-paste of the article text.
+  let sharedIn = false;
+  try {
+    const raw = sessionStorage.getItem('msa-share-payload');
+    if (raw) {
+      sessionStorage.removeItem('msa-share-payload');
+      const share = JSON.parse(raw);
+      sharedIn = true;
+      if (share.title) fTitle.value = share.title;
+      if (share.text && /[؀-ۿ]/.test(share.text)) fBody.value = share.text;
+      const link = share.url || (share.text && /^https?:\/\/\S+$/.test(share.text.trim()) ? share.text.trim() : '');
+      if (link) fSource.value = link;
+    }
+  } catch { /* ignore — plain empty form */ }
+
   async function save() {
     const title = fTitle.value.trim();
     const body = fBody.value.trim();
@@ -976,6 +1061,9 @@ export async function renderPaste() {
   }
 
   root.append(el('div', { class: 'card col' }, [
+    sharedIn && !fBody.value
+      ? el('div', { class: 'muted' }, 'Shared from another app — the link came through, but most apps don\'t share the text itself. Copy the article body and paste it below.')
+      : null,
     el('div', { class: 'field' }, [el('label', {}, 'Title'), fTitle]),
     el('div', { class: 'field' }, [el('label', {}, 'Source label (optional)'), fSource]),
     el('div', { class: 'field' }, [el('label', {}, 'Body'), fBody]),

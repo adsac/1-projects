@@ -5,7 +5,25 @@ import * as router from './router.js';
 import * as views from './views.js';
 import { toast } from './util.js';
 
+/** Web Share Target: Android's share sheet opens the app at
+ *  ./?share-title=…&share-text=…&share-url=… (see manifest). Stash the
+ *  payload, strip the query so reloads don't re-trigger, and land on the
+ *  paste view which reads the stash as a prefill. */
+function captureShareTarget() {
+  const q = new URLSearchParams(location.search);
+  if (!q.has('share-title') && !q.has('share-text') && !q.has('share-url')) return;
+  try {
+    sessionStorage.setItem('msa-share-payload', JSON.stringify({
+      title: q.get('share-title') || '',
+      text: q.get('share-text') || '',
+      url: q.get('share-url') || '',
+    }));
+  } catch { /* private mode — the paste view just opens empty */ }
+  history.replaceState(null, '', location.pathname + '#/paste');
+}
+
 async function boot() {
+  captureShareTarget();
   const [content, settings] = await Promise.all([
     data.loadContent(),
     data.getSettings(),

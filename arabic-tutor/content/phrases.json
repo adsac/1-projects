@@ -14,7 +14,21 @@
         "work"
       ],
       "rescue": true,
-      "status": "draft"
+      "status": "draft",
+      "breakdown": [
+        {
+          "token": "mumkin",
+          "gloss": "can / is it possible"
+        },
+        {
+          "token": "tiḥki",
+          "gloss": "you speak"
+        },
+        {
+          "token": "shwayy shwayy",
+          "gloss": "slowly (lit. 'a little a little')"
+        }
+      ]
     },
     {
       "id": "rescue-didnt-understand",
@@ -30,7 +44,17 @@
         "work"
       ],
       "rescue": true,
-      "status": "draft"
+      "status": "draft",
+      "breakdown": [
+        {
+          "token": "mā",
+          "gloss": "not"
+        },
+        {
+          "token": "fhimt",
+          "gloss": "I understood"
+        }
+      ]
     },
     {
       "id": "rescue-repeat",
@@ -44,7 +68,17 @@
         "shops"
       ],
       "rescue": true,
-      "status": "draft"
+      "status": "draft",
+      "breakdown": [
+        {
+          "token": "mumkin",
+          "gloss": "can"
+        },
+        {
+          "token": "tʿīd",
+          "gloss": "you repeat"
+        }
+      ]
     },
     {
       "id": "rescue-again-please",
@@ -75,7 +109,21 @@
         "work"
       ],
       "rescue": true,
-      "status": "draft"
+      "status": "draft",
+      "breakdown": [
+        {
+          "token": "ana",
+          "gloss": "I"
+        },
+        {
+          "token": "batʿallam",
+          "gloss": "I'm learning (b- present)"
+        },
+        {
+          "token": "ʿarabi",
+          "gloss": "Arabic"
+        }
+      ]
     },
     {
       "id": "rescue-little-arabic",
@@ -89,7 +137,21 @@
         "family"
       ],
       "rescue": true,
-      "status": "draft"
+      "status": "draft",
+      "breakdown": [
+        {
+          "token": "baḥki",
+          "gloss": "I speak"
+        },
+        {
+          "token": "ʿarabi",
+          "gloss": "Arabic"
+        },
+        {
+          "token": "shwayy",
+          "gloss": "a little"
+        }
+      ]
     },
     {
       "id": "rescue-english",
@@ -103,7 +165,17 @@
         "work"
       ],
       "rescue": true,
-      "status": "draft"
+      "status": "draft",
+      "breakdown": [
+        {
+          "token": "btiḥki",
+          "gloss": "you speak"
+        },
+        {
+          "token": "inglīzi",
+          "gloss": "English"
+        }
+      ]
     },
     {
       "id": "rescue-whats-this",
@@ -117,7 +189,21 @@
         "kids"
       ],
       "rescue": true,
-      "status": "draft"
+      "status": "draft",
+      "breakdown": [
+        {
+          "token": "shū",
+          "gloss": "what"
+        },
+        {
+          "token": "hād",
+          "gloss": "this"
+        },
+        {
+          "token": "bil-ʿarabi",
+          "gloss": "in Arabic (b- 'in' + il- 'the')"
+        }
+      ]
     },
     {
       "id": "rescue-how-say",
@@ -131,7 +217,25 @@
         "family"
       ],
       "rescue": true,
-      "status": "draft"
+      "status": "draft",
+      "breakdown": [
+        {
+          "token": "kīf",
+          "gloss": "how"
+        },
+        {
+          "token": "btʾūl",
+          "gloss": "you say"
+        },
+        {
+          "token": "hād",
+          "gloss": "this"
+        },
+        {
+          "token": "bil-ʿarabi",
+          "gloss": "in Arabic"
+        }
+      ]
     },
     {
       "id": "rescue-sorry",
@@ -162,7 +266,17 @@
         "drivers"
       ],
       "rescue": true,
-      "status": "draft"
+      "status": "draft",
+      "breakdown": [
+        {
+          "token": "laʾ",
+          "gloss": "no"
+        },
+        {
+          "token": "shukran",
+          "gloss": "thank you"
+        }
+      ]
     },
     {
       "id": "rescue-yes",
@@ -192,7 +306,17 @@
         "work"
       ],
       "rescue": true,
-      "status": "draft"
+      "status": "draft",
+      "breakdown": [
+        {
+          "token": "mā",
+          "gloss": "not"
+        },
+        {
+          "token": "baʿrif",
+          "gloss": "I know"
+        }
+      ]
     },
     {
       "id": "rescue-help-me",
@@ -206,7 +330,21 @@
         "shops"
       ],
       "rescue": true,
-      "status": "draft"
+      "status": "draft",
+      "breakdown": [
+        {
+          "token": "mumkin",
+          "gloss": "can"
+        },
+        {
+          "token": "tsāʿid",
+          "gloss": "you help"
+        },
+        {
+          "token": "-ni",
+          "gloss": "me"
+        }
+      ]
     },
     {
       "id": "rescue-moment",
@@ -221,7 +359,17 @@
         "work"
       ],
       "rescue": true,
-      "status": "draft"
+      "status": "draft",
+      "breakdown": [
+        {
+          "token": "laḥẓa",
+          "gloss": "a moment"
+        },
+        {
+          "token": "law samaḥt",
+          "gloss": "please (lit. 'if you permitted')"
+        }
+      ]
     },
     {
       "id": "drivers-to-modiin",
@@ -233,7 +381,21 @@
       "tags": [
         "drivers"
       ],
-      "status": "draft"
+      "status": "draft",
+      "breakdown": [
+        {
+          "token": "ʿa",
+          "gloss": "to (reduced ʿala)"
+        },
+        {
+          "token": "Mōdiʿīn",
+          "gloss": "Modi'in"
+        },
+        {
+          "token": "law samaḥt",
+          "gloss": "please"
+        }
+      ]
     },
     {
       "id": "drivers-to-jerusalem",
@@ -244,7 +406,21 @@
       "tags": [
         "drivers"
       ],
-      "status": "draft"
+      "status": "draft",
+      "breakdown": [
+        {
+          "token": "ʿa",
+          "gloss": "to"
+        },
+        {
+          "token": "l-Quds",
+          "gloss": "Jerusalem (lit. 'the holy')"
+        },
+        {
+          "token": "law samaḥt",
+          "gloss": "please"
+        }
+      ]
     },
     {
       "id": "drivers-stop-here",
@@ -256,7 +432,21 @@
       "tags": [
         "drivers"
       ],
-      "status": "draft"
+      "status": "draft",
+      "breakdown": [
+        {
+          "token": "waʾʾif",
+          "gloss": "stop! (imperative)"
+        },
+        {
+          "token": "hōn",
+          "gloss": "here"
+        },
+        {
+          "token": "law samaḥt",
+          "gloss": "please"
+        }
+      ]
     },
     {
       "id": "drivers-here-good",
@@ -267,7 +457,17 @@
       "tags": [
         "drivers"
       ],
-      "status": "draft"
+      "status": "draft",
+      "breakdown": [
+        {
+          "token": "hōn",
+          "gloss": "here"
+        },
+        {
+          "token": "mnīḥ",
+          "gloss": "good / fine"
+        }
+      ]
     },
     {
       "id": "drivers-how-much",
@@ -278,7 +478,17 @@
       "tags": [
         "drivers"
       ],
-      "status": "draft"
+      "status": "draft",
+      "breakdown": [
+        {
+          "token": "ʾaddēsh",
+          "gloss": "how much"
+        },
+        {
+          "token": "il-ujra",
+          "gloss": "the fare"
+        }
+      ]
     },
     {
       "id": "drivers-have-change",
@@ -291,7 +501,17 @@
         "drivers",
         "shops"
       ],
-      "status": "draft"
+      "status": "draft",
+      "breakdown": [
+        {
+          "token": "ʿindak",
+          "gloss": "you (m) have (lit. 'at you')"
+        },
+        {
+          "token": "fakke",
+          "gloss": "small change"
+        }
+      ]
     },
     {
       "id": "drivers-keep-change",
@@ -314,7 +534,25 @@
       "tags": [
         "drivers"
       ],
-      "status": "draft"
+      "status": "draft",
+      "breakdown": [
+        {
+          "token": "hād",
+          "gloss": "this"
+        },
+        {
+          "token": "iṭ-ṭarīʾ",
+          "gloss": "the road / way"
+        },
+        {
+          "token": "ʿa",
+          "gloss": "to"
+        },
+        {
+          "token": "Mōdiʿīn",
+          "gloss": "Modi'in"
+        }
+      ]
     },
     {
       "id": "drivers-by-card",
@@ -326,7 +564,21 @@
         "drivers",
         "shops"
       ],
-      "status": "draft"
+      "status": "draft",
+      "breakdown": [
+        {
+          "token": "mumkin",
+          "gloss": "can"
+        },
+        {
+          "token": "adfaʿ",
+          "gloss": "I pay"
+        },
+        {
+          "token": "bil-kart",
+          "gloss": "by card (b- 'with' + il- 'the')"
+        }
+      ]
     },
     {
       "id": "drivers-by-cash",
@@ -338,7 +590,17 @@
         "drivers",
         "shops"
       ],
-      "status": "draft"
+      "status": "draft",
+      "breakdown": [
+        {
+          "token": "badfaʿ",
+          "gloss": "I pay"
+        },
+        {
+          "token": "kāsh",
+          "gloss": "cash"
+        }
+      ]
     },
     {
       "id": "drivers-in-hurry",
@@ -350,7 +612,17 @@
         "drivers",
         "work"
       ],
-      "status": "draft"
+      "status": "draft",
+      "breakdown": [
+        {
+          "token": "ana",
+          "gloss": "I"
+        },
+        {
+          "token": "mistaʿjil",
+          "gloss": "in a hurry (m)"
+        }
+      ]
     },
     {
       "id": "drivers-take-time",
@@ -361,7 +633,21 @@
       "tags": [
         "drivers"
       ],
-      "status": "draft"
+      "status": "draft",
+      "breakdown": [
+        {
+          "token": "mā",
+          "gloss": "not"
+        },
+        {
+          "token": "fī",
+          "gloss": "there is"
+        },
+        {
+          "token": "ʿajale",
+          "gloss": "rush / hurry"
+        }
+      ]
     },
     {
       "id": "drivers-next-street",
@@ -372,7 +658,17 @@
       "tags": [
         "drivers"
       ],
-      "status": "draft"
+      "status": "draft",
+      "breakdown": [
+        {
+          "token": "ish-shāriʿ",
+          "gloss": "the street"
+        },
+        {
+          "token": "ij-jāy",
+          "gloss": "the coming / next"
+        }
+      ]
     },
     {
       "id": "drivers-right",
@@ -418,7 +714,17 @@
       "tags": [
         "drivers"
       ],
-      "status": "draft"
+      "status": "draft",
+      "breakdown": [
+        {
+          "token": "baʿd",
+          "gloss": "after"
+        },
+        {
+          "token": "il-ishāra",
+          "gloss": "the traffic light (lit. 'the signal')"
+        }
+      ]
     },
     {
       "id": "drivers-before-light",
@@ -429,7 +735,17 @@
       "tags": [
         "drivers"
       ],
-      "status": "draft"
+      "status": "draft",
+      "breakdown": [
+        {
+          "token": "ʾabl",
+          "gloss": "before"
+        },
+        {
+          "token": "il-ishāra",
+          "gloss": "the traffic light"
+        }
+      ]
     },
     {
       "id": "drivers-here-fine",
@@ -440,7 +756,25 @@
       "tags": [
         "drivers"
       ],
-      "status": "draft"
+      "status": "draft",
+      "breakdown": [
+        {
+          "token": "nazzil",
+          "gloss": "drop off (imperative)"
+        },
+        {
+          "token": "-ni",
+          "gloss": "me"
+        },
+        {
+          "token": "hōn",
+          "gloss": "here"
+        },
+        {
+          "token": "law samaḥt",
+          "gloss": "please"
+        }
+      ]
     },
     {
       "id": "drivers-thanks-bye",
@@ -451,7 +785,17 @@
       "tags": [
         "drivers"
       ],
-      "status": "draft"
+      "status": "draft",
+      "breakdown": [
+        {
+          "token": "shukran",
+          "gloss": "thanks"
+        },
+        {
+          "token": "Allāh maʿak",
+          "gloss": "goodbye (lit. 'God (be) with you')"
+        }
+      ]
     },
     {
       "id": "drivers-how-long",
@@ -463,7 +807,21 @@
       "tags": [
         "drivers"
       ],
-      "status": "draft"
+      "status": "draft",
+      "breakdown": [
+        {
+          "token": "ʾaddēsh",
+          "gloss": "how much"
+        },
+        {
+          "token": "biddha",
+          "gloss": "it (f) wants (idiom: it takes)"
+        },
+        {
+          "token": "waʾt",
+          "gloss": "time"
+        }
+      ]
     },
     {
       "id": "drivers-the-address",
@@ -474,7 +832,17 @@
       "tags": [
         "drivers"
       ],
-      "status": "draft"
+      "status": "draft",
+      "breakdown": [
+        {
+          "token": "hād",
+          "gloss": "this"
+        },
+        {
+          "token": "il-ʿinwān",
+          "gloss": "the address"
+        }
+      ]
     },
     {
       "id": "drivers-air-cond",
@@ -485,7 +853,21 @@
       "tags": [
         "drivers"
       ],
-      "status": "draft"
+      "status": "draft",
+      "breakdown": [
+        {
+          "token": "mumkin",
+          "gloss": "could you (turn on)"
+        },
+        {
+          "token": "il-mkayyif",
+          "gloss": "the AC"
+        },
+        {
+          "token": "law samaḥt",
+          "gloss": "please"
+        }
+      ]
     },
     {
       "id": "drivers-far",
@@ -517,7 +899,21 @@
       "tags": [
         "shops"
       ],
-      "status": "draft"
+      "status": "draft",
+      "breakdown": [
+        {
+          "token": "biddi",
+          "gloss": "I want"
+        },
+        {
+          "token": "ʾahwe",
+          "gloss": "coffee"
+        },
+        {
+          "token": "law samaḥt",
+          "gloss": "please"
+        }
+      ]
     },
     {
       "id": "shops-coffee-no-sugar",
@@ -528,7 +924,21 @@
       "tags": [
         "shops"
       ],
-      "status": "draft"
+      "status": "draft",
+      "breakdown": [
+        {
+          "token": "ʾahwe",
+          "gloss": "coffee"
+        },
+        {
+          "token": "bidūn",
+          "gloss": "without"
+        },
+        {
+          "token": "sukkar",
+          "gloss": "sugar"
+        }
+      ]
     },
     {
       "id": "shops-coffee-with-sugar",
@@ -540,7 +950,25 @@
       "tags": [
         "shops"
       ],
-      "status": "draft"
+      "status": "draft",
+      "breakdown": [
+        {
+          "token": "ʾahwe",
+          "gloss": "coffee"
+        },
+        {
+          "token": "sāde",
+          "gloss": "plain"
+        },
+        {
+          "token": "wasaṭ",
+          "gloss": "medium"
+        },
+        {
+          "token": "ḥilwe",
+          "gloss": "sweet"
+        }
+      ]
     },
     {
       "id": "shops-with-milk",
@@ -551,7 +979,17 @@
       "tags": [
         "shops"
       ],
-      "status": "draft"
+      "status": "draft",
+      "breakdown": [
+        {
+          "token": "maʿ",
+          "gloss": "with"
+        },
+        {
+          "token": "ḥalīb",
+          "gloss": "milk"
+        }
+      ]
     },
     {
       "id": "shops-tea",
@@ -563,7 +1001,25 @@
       "tags": [
         "shops"
       ],
-      "status": "draft"
+      "status": "draft",
+      "breakdown": [
+        {
+          "token": "biddi",
+          "gloss": "I want"
+        },
+        {
+          "token": "shāy",
+          "gloss": "tea"
+        },
+        {
+          "token": "maʿ",
+          "gloss": "with"
+        },
+        {
+          "token": "naʿnaʿ",
+          "gloss": "mint"
+        }
+      ]
     },
     {
       "id": "shops-water",
@@ -574,7 +1030,21 @@
       "tags": [
         "shops"
       ],
-      "status": "draft"
+      "status": "draft",
+      "breakdown": [
+        {
+          "token": "biddi",
+          "gloss": "I want"
+        },
+        {
+          "token": "ʾannīnit",
+          "gloss": "bottle of (construct form)"
+        },
+        {
+          "token": "mayy",
+          "gloss": "water"
+        }
+      ]
     },
     {
       "id": "shops-this-please",
@@ -585,7 +1055,17 @@
       "tags": [
         "shops"
       ],
-      "status": "draft"
+      "status": "draft",
+      "breakdown": [
+        {
+          "token": "hād",
+          "gloss": "this"
+        },
+        {
+          "token": "law samaḥt",
+          "gloss": "please"
+        }
+      ]
     },
     {
       "id": "shops-take-away",
@@ -607,7 +1087,21 @@
       "tags": [
         "shops"
       ],
-      "status": "draft"
+      "status": "draft",
+      "breakdown": [
+        {
+          "token": "raḥ",
+          "gloss": "will (future marker)"
+        },
+        {
+          "token": "ākul",
+          "gloss": "I eat"
+        },
+        {
+          "token": "hōn",
+          "gloss": "here"
+        }
+      ]
     },
     {
       "id": "shops-bill",
@@ -619,7 +1113,17 @@
       "tags": [
         "shops"
       ],
-      "status": "draft"
+      "status": "draft",
+      "breakdown": [
+        {
+          "token": "il-ḥsāb",
+          "gloss": "the bill"
+        },
+        {
+          "token": "law samaḥt",
+          "gloss": "please"
+        }
+      ]
     },
     {
       "id": "shops-how-much-is-it",
@@ -630,7 +1134,17 @@
       "tags": [
         "shops"
       ],
-      "status": "draft"
+      "status": "draft",
+      "breakdown": [
+        {
+          "token": "ʾaddēsh",
+          "gloss": "how much"
+        },
+        {
+          "token": "hād",
+          "gloss": "this"
+        }
+      ]
     },
     {
       "id": "shops-too-expensive",
@@ -641,7 +1155,17 @@
       "tags": [
         "shops"
       ],
-      "status": "draft"
+      "status": "draft",
+      "breakdown": [
+        {
+          "token": "ghāli",
+          "gloss": "expensive"
+        },
+        {
+          "token": "ktīr",
+          "gloss": "very / too"
+        }
+      ]
     },
     {
       "id": "shops-cheaper",
@@ -675,7 +1199,21 @@
       "tags": [
         "shops"
       ],
-      "status": "draft"
+      "status": "draft",
+      "breakdown": [
+        {
+          "token": "mumkin",
+          "gloss": "could I have"
+        },
+        {
+          "token": "kīs",
+          "gloss": "bag"
+        },
+        {
+          "token": "law samaḥt",
+          "gloss": "please"
+        }
+      ]
     },
     {
       "id": "shops-receipt",
@@ -686,7 +1224,17 @@
       "tags": [
         "shops"
       ],
-      "status": "draft"
+      "status": "draft",
+      "breakdown": [
+        {
+          "token": "biddi",
+          "gloss": "I want"
+        },
+        {
+          "token": "fātūra",
+          "gloss": "receipt / invoice"
+        }
+      ]
     },
     {
       "id": "shops-just-looking",
@@ -698,7 +1246,25 @@
       "tags": [
         "shops"
       ],
-      "status": "draft"
+      "status": "draft",
+      "breakdown": [
+        {
+          "token": "bass",
+          "gloss": "just / only"
+        },
+        {
+          "token": "ʿam",
+          "gloss": "-ing (progressive marker)"
+        },
+        {
+          "token": "atfarraj",
+          "gloss": "I look around"
+        },
+        {
+          "token": "shukran",
+          "gloss": "thanks"
+        }
+      ]
     },
     {
       "id": "shops-where-is-X",
@@ -709,7 +1275,17 @@
       "tags": [
         "shops"
       ],
-      "status": "draft"
+      "status": "draft",
+      "breakdown": [
+        {
+          "token": "wēn",
+          "gloss": "where"
+        },
+        {
+          "token": "il-khubz",
+          "gloss": "the bread"
+        }
+      ]
     },
     {
       "id": "shops-bathroom",
@@ -722,7 +1298,17 @@
         "shops"
       ],
       "rescue": true,
-      "status": "draft"
+      "status": "draft",
+      "breakdown": [
+        {
+          "token": "wēn",
+          "gloss": "where"
+        },
+        {
+          "token": "il-ḥammām",
+          "gloss": "the bathroom"
+        }
+      ]
     },
     {
       "id": "shops-half-kilo",
@@ -734,7 +1320,21 @@
       "tags": [
         "shops"
       ],
-      "status": "draft"
+      "status": "draft",
+      "breakdown": [
+        {
+          "token": "nuṣṣ",
+          "gloss": "half"
+        },
+        {
+          "token": "kīlo",
+          "gloss": "kilo"
+        },
+        {
+          "token": "law samaḥt",
+          "gloss": "please"
+        }
+      ]
     },
     {
       "id": "shops-one-kilo",
@@ -745,7 +1345,17 @@
       "tags": [
         "shops"
       ],
-      "status": "draft"
+      "status": "draft",
+      "breakdown": [
+        {
+          "token": "kīlo",
+          "gloss": "a kilo"
+        },
+        {
+          "token": "law samaḥt",
+          "gloss": "please"
+        }
+      ]
     },
     {
       "id": "shops-fresh",
@@ -757,7 +1367,17 @@
       "tags": [
         "shops"
       ],
-      "status": "draft"
+      "status": "draft",
+      "breakdown": [
+        {
+          "token": "hād",
+          "gloss": "this"
+        },
+        {
+          "token": "ṭāza",
+          "gloss": "fresh"
+        }
+      ]
     },
     {
       "id": "shops-delicious",
@@ -769,7 +1389,17 @@
         "shops",
         "family"
       ],
-      "status": "draft"
+      "status": "draft",
+      "breakdown": [
+        {
+          "token": "ktīr",
+          "gloss": "very"
+        },
+        {
+          "token": "zāki",
+          "gloss": "tasty"
+        }
+      ]
     },
     {
       "id": "shops-thats-all",
@@ -791,7 +1421,17 @@
       "tags": [
         "shops"
       ],
-      "status": "draft"
+      "status": "draft",
+      "breakdown": [
+        {
+          "token": "shi",
+          "gloss": "thing / anything"
+        },
+        {
+          "token": "tāni",
+          "gloss": "other / second"
+        }
+      ]
     },
     {
       "id": "shops-card-please",
@@ -802,7 +1442,17 @@
       "tags": [
         "shops"
       ],
-      "status": "draft"
+      "status": "draft",
+      "breakdown": [
+        {
+          "token": "badfaʿ",
+          "gloss": "I pay"
+        },
+        {
+          "token": "kart",
+          "gloss": "card"
+        }
+      ]
     },
     {
       "id": "shops-falafel",
@@ -813,7 +1463,21 @@
       "tags": [
         "shops"
       ],
-      "status": "draft"
+      "status": "draft",
+      "breakdown": [
+        {
+          "token": "biddi",
+          "gloss": "I want"
+        },
+        {
+          "token": "sandwīshet",
+          "gloss": "sandwich of (construct)"
+        },
+        {
+          "token": "falāfil",
+          "gloss": "falafel"
+        }
+      ]
     },
     {
       "id": "shops-spicy",
@@ -825,7 +1489,21 @@
       "tags": [
         "shops"
       ],
-      "status": "draft"
+      "status": "draft",
+      "breakdown": [
+        {
+          "token": "ḥārr",
+          "gloss": "spicy / hot"
+        },
+        {
+          "token": "law samaḥt",
+          "gloss": "please"
+        },
+        {
+          "token": "mish",
+          "gloss": "not"
+        }
+      ]
     },
     {
       "id": "shops-tahini",
@@ -836,7 +1514,17 @@
       "tags": [
         "shops"
       ],
-      "status": "draft"
+      "status": "draft",
+      "breakdown": [
+        {
+          "token": "maʿ",
+          "gloss": "with"
+        },
+        {
+          "token": "ṭḥīne",
+          "gloss": "tahini"
+        }
+      ]
     },
     {
       "id": "kids-whats-name",
@@ -873,7 +1561,21 @@
         "family",
         "work"
       ],
-      "status": "draft"
+      "status": "draft",
+      "breakdown": [
+        {
+          "token": "ism-",
+          "gloss": "name"
+        },
+        {
+          "token": "-i",
+          "gloss": "my"
+        },
+        {
+          "token": "Ādam",
+          "gloss": "Adam"
+        }
+      ]
     },
     {
       "id": "kids-how-old",
@@ -909,7 +1611,21 @@
       "tags": [
         "kids"
       ],
-      "status": "draft"
+      "status": "draft",
+      "breakdown": [
+        {
+          "token": "dīr",
+          "gloss": "turn / direct (imperative)"
+        },
+        {
+          "token": "bāl-",
+          "gloss": "attention / mind"
+        },
+        {
+          "token": "-ak",
+          "gloss": "your (m)"
+        }
+      ]
     },
     {
       "id": "kids-your-turn",
@@ -943,7 +1659,17 @@
       "tags": [
         "kids"
       ],
-      "status": "draft"
+      "status": "draft",
+      "breakdown": [
+        {
+          "token": "brāvo",
+          "gloss": "bravo"
+        },
+        {
+          "token": "ʿalēk",
+          "gloss": "on you (m)"
+        }
+      ]
     },
     {
       "id": "kids-lets-go",
@@ -966,7 +1692,17 @@
       "tags": [
         "kids"
       ],
-      "status": "draft"
+      "status": "draft",
+      "breakdown": [
+        {
+          "token": "taʿa",
+          "gloss": "come (imperative, to m)"
+        },
+        {
+          "token": "la-hōn",
+          "gloss": "to here"
+        }
+      ]
     },
     {
       "id": "kids-look",
@@ -998,7 +1734,17 @@
       "tags": [
         "kids"
       ],
-      "status": "draft"
+      "status": "draft",
+      "breakdown": [
+        {
+          "token": "wēn",
+          "gloss": "where"
+        },
+        {
+          "token": "māma",
+          "gloss": "mom"
+        }
+      ]
     },
     {
       "id": "kids-ball",
@@ -1009,7 +1755,21 @@
       "tags": [
         "kids"
       ],
-      "status": "draft"
+      "status": "draft",
+      "breakdown": [
+        {
+          "token": "biddak",
+          "gloss": "you (m) want"
+        },
+        {
+          "token": "tilʿab",
+          "gloss": "you play"
+        },
+        {
+          "token": "ṭāba",
+          "gloss": "ball"
+        }
+      ]
     },
     {
       "id": "kids-color-red",
@@ -1052,7 +1812,21 @@
         "kids",
         "family"
       ],
-      "status": "draft"
+      "status": "draft",
+      "breakdown": [
+        {
+          "token": "mā shāʾ Allāh",
+          "gloss": "mashallah (lit. 'what God willed')"
+        },
+        {
+          "token": "ḥilu",
+          "gloss": "cute / sweet"
+        },
+        {
+          "token": "ktīr",
+          "gloss": "very"
+        }
+      ]
     },
     {
       "id": "kids-bye-bye",
@@ -1063,7 +1837,17 @@
       "tags": [
         "kids"
       ],
-      "status": "draft"
+      "status": "draft",
+      "breakdown": [
+        {
+          "token": "bāy",
+          "gloss": "bye"
+        },
+        {
+          "token": "bāy",
+          "gloss": "bye"
+        }
+      ]
     },
     {
       "id": "family-howare-family",
@@ -1086,7 +1870,17 @@
         "family",
         "work"
       ],
-      "status": "draft"
+      "status": "draft",
+      "breakdown": [
+        {
+          "token": "il-ḥamdillāh",
+          "gloss": "thank God (lit. 'the praise (is) to God')"
+        },
+        {
+          "token": "mnīḥīn",
+          "gloss": "well (plural)"
+        }
+      ]
     },
     {
       "id": "family-how-many-kids",
@@ -1109,7 +1903,17 @@
       "tags": [
         "family"
       ],
-      "status": "draft"
+      "status": "draft",
+      "breakdown": [
+        {
+          "token": "ʿindi",
+          "gloss": "I have (lit. 'at me')"
+        },
+        {
+          "token": "waladēn",
+          "gloss": "two kids (dual -ēn on walad)"
+        }
+      ]
     },
     {
       "id": "family-god-protect",
@@ -1121,7 +1925,21 @@
       "tags": [
         "family"
       ],
-      "status": "draft"
+      "status": "draft",
+      "breakdown": [
+        {
+          "token": "Allāh",
+          "gloss": "God"
+        },
+        {
+          "token": "yḥfaẓ-",
+          "gloss": "may he protect"
+        },
+        {
+          "token": "-hum",
+          "gloss": "them"
+        }
+      ]
     },
     {
       "id": "family-where-from",
@@ -1145,7 +1963,33 @@
         "family",
         "work"
       ],
-      "status": "draft"
+      "status": "draft",
+      "breakdown": [
+        {
+          "token": "ana",
+          "gloss": "I"
+        },
+        {
+          "token": "min",
+          "gloss": "from"
+        },
+        {
+          "token": "Amrīka",
+          "gloss": "America"
+        },
+        {
+          "token": "bass",
+          "gloss": "but"
+        },
+        {
+          "token": "ʿāyish",
+          "gloss": "living (m)"
+        },
+        {
+          "token": "hōn",
+          "gloss": "here"
+        }
+      ]
     },
     {
       "id": "family-live-modiin",
@@ -1157,7 +2001,21 @@
         "family",
         "work"
       ],
-      "status": "draft"
+      "status": "draft",
+      "breakdown": [
+        {
+          "token": "sākin",
+          "gloss": "living / residing (m)"
+        },
+        {
+          "token": "fi",
+          "gloss": "in"
+        },
+        {
+          "token": "Mōdiʿīn",
+          "gloss": "Modi'in"
+        }
+      ]
     },
     {
       "id": "family-married",
@@ -1168,7 +2026,17 @@
       "tags": [
         "family"
       ],
-      "status": "draft"
+      "status": "draft",
+      "breakdown": [
+        {
+          "token": "ana",
+          "gloss": "I"
+        },
+        {
+          "token": "mitzawwaj",
+          "gloss": "married (m)"
+        }
+      ]
     },
     {
       "id": "family-my-wife",
@@ -1256,7 +2124,21 @@
       "tags": [
         "family"
       ],
-      "status": "draft"
+      "status": "draft",
+      "breakdown": [
+        {
+          "token": "sallim",
+          "gloss": "greet (imperative)"
+        },
+        {
+          "token": "-li",
+          "gloss": "for me"
+        },
+        {
+          "token": "ʿal-ʿēle",
+          "gloss": "onto the family (ʿala + il-)"
+        }
+      ]
     },
     {
       "id": "family-mother-of",
@@ -1268,7 +2150,21 @@
       "tags": [
         "family"
       ],
-      "status": "draft"
+      "status": "draft",
+      "breakdown": [
+        {
+          "token": "Umm",
+          "gloss": "mother of"
+        },
+        {
+          "token": "Muḥammad",
+          "gloss": "Muhammad"
+        },
+        {
+          "token": "kīfik",
+          "gloss": "how are you (f)"
+        }
+      ]
     },
     {
       "id": "family-blessing-food",
@@ -1292,7 +2188,17 @@
       "tags": [
         "family"
       ],
-      "status": "draft"
+      "status": "draft",
+      "breakdown": [
+        {
+          "token": "ahlan wa-sahlan",
+          "gloss": "welcome"
+        },
+        {
+          "token": "tfaḍḍal",
+          "gloss": "please come in / go ahead (to m)"
+        }
+      ]
     },
     {
       "id": "work-i-work-tech",
@@ -1303,7 +2209,21 @@
       "tags": [
         "work"
       ],
-      "status": "draft"
+      "status": "draft",
+      "breakdown": [
+        {
+          "token": "bashtaghil",
+          "gloss": "I work"
+        },
+        {
+          "token": "fi",
+          "gloss": "in"
+        },
+        {
+          "token": "t-teknolōjya",
+          "gloss": "the tech(nology)"
+        }
+      ]
     },
     {
       "id": "work-i-work-software",
@@ -1315,7 +2235,21 @@
       "tags": [
         "work"
       ],
-      "status": "draft"
+      "status": "draft",
+      "breakdown": [
+        {
+          "token": "bashtaghil",
+          "gloss": "I work (as)"
+        },
+        {
+          "token": "muhandis",
+          "gloss": "engineer"
+        },
+        {
+          "token": "barmajiyyāt",
+          "gloss": "software (pl.)"
+        }
+      ]
     },
     {
       "id": "work-where-work",
@@ -1327,7 +2261,17 @@
         "work",
         "family"
       ],
-      "status": "draft"
+      "status": "draft",
+      "breakdown": [
+        {
+          "token": "wēn",
+          "gloss": "where"
+        },
+        {
+          "token": "btishtaghil",
+          "gloss": "you (m) work"
+        }
+      ]
     },
     {
       "id": "work-what-work",
@@ -1339,7 +2283,17 @@
         "work",
         "family"
       ],
-      "status": "draft"
+      "status": "draft",
+      "breakdown": [
+        {
+          "token": "shū",
+          "gloss": "what"
+        },
+        {
+          "token": "btishtaghil",
+          "gloss": "you (m) work (at)"
+        }
+      ]
     },
     {
       "id": "work-meeting",
@@ -1349,7 +2303,17 @@
       "tags": [
         "work"
       ],
-      "status": "draft"
+      "status": "draft",
+      "breakdown": [
+        {
+          "token": "ʿindi",
+          "gloss": "I have (lit. 'at me')"
+        },
+        {
+          "token": "ijtimāʿ",
+          "gloss": "meeting"
+        }
+      ]
     },
     {
       "id": "work-busy",
@@ -1361,7 +2325,21 @@
         "work",
         "family"
       ],
-      "status": "draft"
+      "status": "draft",
+      "breakdown": [
+        {
+          "token": "ana",
+          "gloss": "I"
+        },
+        {
+          "token": "mashghūl",
+          "gloss": "busy (m)"
+        },
+        {
+          "token": "hallaʾ",
+          "gloss": "now"
+        }
+      ]
     },
     {
       "id": "work-call-later",
@@ -1409,7 +2387,21 @@
         "shops",
         "drivers"
       ],
-      "status": "draft"
+      "status": "draft",
+      "breakdown": [
+        {
+          "token": "mā",
+          "gloss": "not"
+        },
+        {
+          "token": "fī",
+          "gloss": "there is"
+        },
+        {
+          "token": "mushkile",
+          "gloss": "problem"
+        }
+      ]
     },
     {
       "id": "work-of-course",
@@ -1444,7 +2436,21 @@
       "tags": [
         "work"
       ],
-      "status": "draft"
+      "status": "draft",
+      "breakdown": [
+        {
+          "token": "bashtaghil",
+          "gloss": "I work"
+        },
+        {
+          "token": "min",
+          "gloss": "from"
+        },
+        {
+          "token": "il-bēt",
+          "gloss": "the house"
+        }
+      ]
     },
     {
       "id": "general-how-are-you",
@@ -1485,7 +2491,17 @@
         "drivers",
         "shops"
       ],
-      "status": "draft"
+      "status": "draft",
+      "breakdown": [
+        {
+          "token": "il-ḥamdillāh",
+          "gloss": "thank God"
+        },
+        {
+          "token": "mnīḥ",
+          "gloss": "well / good (m)"
+        }
+      ]
     },
     {
       "id": "general-and-you",
@@ -1515,7 +2531,17 @@
         "work"
       ],
       "rescue": true,
-      "status": "draft"
+      "status": "draft",
+      "breakdown": [
+        {
+          "token": "law",
+          "gloss": "if"
+        },
+        {
+          "token": "samaḥt",
+          "gloss": "you (m) permitted"
+        }
+      ]
     },
     {
       "id": "general-thank-much",
@@ -1529,7 +2555,17 @@
         "family",
         "work"
       ],
-      "status": "draft"
+      "status": "draft",
+      "breakdown": [
+        {
+          "token": "shukran",
+          "gloss": "thanks"
+        },
+        {
+          "token": "ktīr",
+          "gloss": "very much"
+        }
+      ]
     },
     {
       "id": "general-no-worries",
@@ -1544,7 +2580,21 @@
         "family",
         "work"
       ],
-      "status": "draft"
+      "status": "draft",
+      "breakdown": [
+        {
+          "token": "wala",
+          "gloss": "not even / don't let"
+        },
+        {
+          "token": "yhimm-",
+          "gloss": "it concern"
+        },
+        {
+          "token": "-ak",
+          "gloss": "you (m)"
+        }
+      ]
     },
     {
       "id": "general-god-willing",
@@ -1558,7 +2608,21 @@
         "work",
         "drivers"
       ],
-      "status": "draft"
+      "status": "draft",
+      "breakdown": [
+        {
+          "token": "in",
+          "gloss": "if"
+        },
+        {
+          "token": "shāʾ",
+          "gloss": "willed"
+        },
+        {
+          "token": "Allāh",
+          "gloss": "God"
+        }
+      ]
     },
     {
       "id": "general-its-okay",
@@ -1633,7 +2697,17 @@
         "family",
         "work"
       ],
-      "status": "draft"
+      "status": "draft",
+      "breakdown": [
+        {
+          "token": "mish",
+          "gloss": "not"
+        },
+        {
+          "token": "mnīḥ",
+          "gloss": "good"
+        }
+      ]
     },
     {
       "id": "general-here",
@@ -1670,7 +2744,17 @@
         "shops",
         "kids"
       ],
-      "status": "draft"
+      "status": "draft",
+      "breakdown": [
+        {
+          "token": "shū",
+          "gloss": "what"
+        },
+        {
+          "token": "hāda",
+          "gloss": "this (m)"
+        }
+      ]
     },
     {
       "id": "basics-whats-that",
@@ -1683,7 +2767,17 @@
         "shops",
         "kids"
       ],
-      "status": "draft"
+      "status": "draft",
+      "breakdown": [
+        {
+          "token": "shū",
+          "gloss": "what"
+        },
+        {
+          "token": "hadāk",
+          "gloss": "that (m, further away)"
+        }
+      ]
     },
     {
       "id": "basics-this-one",
@@ -1732,7 +2826,21 @@
       "tags": [
         "basics"
       ],
-      "status": "draft"
+      "status": "draft",
+      "breakdown": [
+        {
+          "token": "hēk",
+          "gloss": "like this / so"
+        },
+        {
+          "token": "zayy",
+          "gloss": "like / as"
+        },
+        {
+          "token": "hadāk",
+          "gloss": "that one"
+        }
+      ]
     },
     {
       "id": "basics-mine",
@@ -1805,7 +2913,21 @@
         "basics",
         "neighbours"
       ],
-      "status": "draft"
+      "status": "draft",
+      "breakdown": [
+        {
+          "token": "hāda",
+          "gloss": "this"
+        },
+        {
+          "token": "mish",
+          "gloss": "not"
+        },
+        {
+          "token": "ilī",
+          "gloss": "mine (lit. 'to me')"
+        }
+      ]
     },
     {
       "id": "basics-is-this-yours",
@@ -1818,7 +2940,17 @@
         "neighbours",
         "shops"
       ],
-      "status": "draft"
+      "status": "draft",
+      "breakdown": [
+        {
+          "token": "hāda",
+          "gloss": "this"
+        },
+        {
+          "token": "ilak",
+          "gloss": "yours (m) (lit. 'to you')"
+        }
+      ]
     },
     {
       "id": "basics-i-have-it",
@@ -1831,7 +2963,17 @@
         "basics",
         "shops"
       ],
-      "status": "draft"
+      "status": "draft",
+      "breakdown": [
+        {
+          "token": "ʿindi",
+          "gloss": "I have (lit. 'at me')"
+        },
+        {
+          "token": "yā",
+          "gloss": "it (object carrier)"
+        }
+      ]
     },
     {
       "id": "basics-dont-have-it",
@@ -1842,7 +2984,21 @@
         "basics",
         "shops"
       ],
-      "status": "draft"
+      "status": "draft",
+      "breakdown": [
+        {
+          "token": "mā",
+          "gloss": "not"
+        },
+        {
+          "token": "ʿindi",
+          "gloss": "I have"
+        },
+        {
+          "token": "yā",
+          "gloss": "it"
+        }
+      ]
     },
     {
       "id": "basics-its-here",
@@ -1878,7 +3034,17 @@
         "basics",
         "directions"
       ],
-      "status": "draft"
+      "status": "draft",
+      "breakdown": [
+        {
+          "token": "hunāk",
+          "gloss": "there"
+        },
+        {
+          "token": "bʿīd",
+          "gloss": "far"
+        }
+      ]
     },
     {
       "id": "basics-i-forgot",
@@ -1902,7 +3068,21 @@
         "basics",
         "work"
       ],
-      "status": "draft"
+      "status": "draft",
+      "breakdown": [
+        {
+          "token": "nsīt",
+          "gloss": "I forgot"
+        },
+        {
+          "token": "-o",
+          "gloss": "it (m)"
+        },
+        {
+          "token": "fil-bēt",
+          "gloss": "in the house (fi + il-)"
+        }
+      ]
     },
     {
       "id": "basics-i-lost-it",
@@ -1937,7 +3117,17 @@
         "basics",
         "shops"
       ],
-      "status": "draft"
+      "status": "draft",
+      "breakdown": [
+        {
+          "token": "nafs",
+          "gloss": "same / self"
+        },
+        {
+          "token": "ish-shi",
+          "gloss": "the thing"
+        }
+      ]
     },
     {
       "id": "basics-same-one",
@@ -1996,7 +3186,17 @@
         "basics",
         "shops"
       ],
-      "status": "draft"
+      "status": "draft",
+      "breakdown": [
+        {
+          "token": "wala",
+          "gloss": "not even"
+        },
+        {
+          "token": "wāḥad",
+          "gloss": "one"
+        }
+      ]
     },
     {
       "id": "basics-slowly",
@@ -2009,7 +3209,17 @@
         "rescue",
         "kids"
       ],
-      "status": "draft"
+      "status": "draft",
+      "breakdown": [
+        {
+          "token": "shwayy",
+          "gloss": "a little"
+        },
+        {
+          "token": "shwayy",
+          "gloss": "a little"
+        }
+      ]
     },
     {
       "id": "basics-quickly",
@@ -2045,7 +3255,17 @@
         "drivers",
         "work"
       ],
-      "status": "draft"
+      "status": "draft",
+      "breakdown": [
+        {
+          "token": "baʿd",
+          "gloss": "after"
+        },
+        {
+          "token": "shwayy",
+          "gloss": "a little"
+        }
+      ]
     },
     {
       "id": "basics-wait-moment",
@@ -2058,7 +3278,17 @@
         "drivers",
         "work"
       ],
-      "status": "draft"
+      "status": "draft",
+      "breakdown": [
+        {
+          "token": "istanna",
+          "gloss": "wait (imperative, to m)"
+        },
+        {
+          "token": "laḥẓa",
+          "gloss": "a moment"
+        }
+      ]
     },
     {
       "id": "basics-together",
@@ -2171,7 +3401,17 @@
         "neighbours",
         "shops"
       ],
-      "status": "draft"
+      "status": "draft",
+      "breakdown": [
+        {
+          "token": "mā",
+          "gloss": "not"
+        },
+        {
+          "token": "byishtaghil",
+          "gloss": "it (m) works"
+        }
+      ]
     },
     {
       "id": "basics-ready",
@@ -2198,7 +3438,21 @@
         "shops",
         "work"
       ],
-      "status": "draft"
+      "status": "draft",
+      "breakdown": [
+        {
+          "token": "lissa",
+          "gloss": "still / yet"
+        },
+        {
+          "token": "mish",
+          "gloss": "not"
+        },
+        {
+          "token": "jāhiz",
+          "gloss": "ready (m)"
+        }
+      ]
     },
     {
       "id": "doctor-headache",
@@ -2231,7 +3485,17 @@
       "tags": [
         "doctor"
       ],
-      "status": "draft"
+      "status": "draft",
+      "breakdown": [
+        {
+          "token": "ʿindi",
+          "gloss": "I have (lit. 'at me')"
+        },
+        {
+          "token": "ḥarāra",
+          "gloss": "fever (lit. 'heat')"
+        }
+      ]
     },
     {
       "id": "doctor-cough",
@@ -2241,7 +3505,17 @@
       "tags": [
         "doctor"
       ],
-      "status": "draft"
+      "status": "draft",
+      "breakdown": [
+        {
+          "token": "ʿindi",
+          "gloss": "I have"
+        },
+        {
+          "token": "saʿle",
+          "gloss": "cough"
+        }
+      ]
     },
     {
       "id": "doctor-back-pain",
@@ -2252,7 +3526,21 @@
       "tags": [
         "doctor"
       ],
-      "status": "draft"
+      "status": "draft",
+      "breakdown": [
+        {
+          "token": "ʿindi",
+          "gloss": "I have"
+        },
+        {
+          "token": "wajaʿ",
+          "gloss": "pain"
+        },
+        {
+          "token": "ẓahr",
+          "gloss": "back"
+        }
+      ]
     },
     {
       "id": "doctor-have-ibuprofen",
@@ -2263,7 +3551,17 @@
       "tags": [
         "doctor"
       ],
-      "status": "draft"
+      "status": "draft",
+      "breakdown": [
+        {
+          "token": "ʿindkum",
+          "gloss": "you (pl.) have"
+        },
+        {
+          "token": "nūrōfēn",
+          "gloss": "Nurofen (ibuprofen)"
+        }
+      ]
     },
     {
       "id": "doctor-have-paracetamol",
@@ -2274,7 +3572,17 @@
       "tags": [
         "doctor"
       ],
-      "status": "draft"
+      "status": "draft",
+      "breakdown": [
+        {
+          "token": "ʿindkum",
+          "gloss": "you (pl.) have"
+        },
+        {
+          "token": "akamōl",
+          "gloss": "Acamol (paracetamol)"
+        }
+      ]
     },
     {
       "id": "doctor-need-appointment",
@@ -2284,7 +3592,17 @@
       "tags": [
         "doctor"
       ],
-      "status": "draft"
+      "status": "draft",
+      "breakdown": [
+        {
+          "token": "biddi",
+          "gloss": "I want / need"
+        },
+        {
+          "token": "mawʿid",
+          "gloss": "appointment"
+        }
+      ]
     },
     {
       "id": "doctor-how-much-box",
@@ -2295,7 +3613,17 @@
       "tags": [
         "doctor"
       ],
-      "status": "draft"
+      "status": "draft",
+      "breakdown": [
+        {
+          "token": "ʾaddēsh",
+          "gloss": "how much"
+        },
+        {
+          "token": "il-ʿilbe",
+          "gloss": "the box"
+        }
+      ]
     },
     {
       "id": "doctor-how-much-pill",
@@ -2305,7 +3633,17 @@
       "tags": [
         "doctor"
       ],
-      "status": "draft"
+      "status": "draft",
+      "breakdown": [
+        {
+          "token": "ʾaddēsh",
+          "gloss": "how much"
+        },
+        {
+          "token": "il-ḥabbe",
+          "gloss": "the pill (lit. 'grain')"
+        }
+      ]
     },
     {
       "id": "doctor-pharmacy-nearby",
@@ -2316,7 +3654,21 @@
         "doctor",
         "directions"
       ],
-      "status": "draft"
+      "status": "draft",
+      "breakdown": [
+        {
+          "token": "fī",
+          "gloss": "is there"
+        },
+        {
+          "token": "ṣaydaliyye",
+          "gloss": "pharmacy"
+        },
+        {
+          "token": "ʾarībe",
+          "gloss": "near (f)"
+        }
+      ]
     },
     {
       "id": "doctor-allergic-peanuts",
@@ -2328,7 +3680,25 @@
         "doctor",
         "shops"
       ],
-      "status": "draft"
+      "status": "draft",
+      "breakdown": [
+        {
+          "token": "ʿindi",
+          "gloss": "I have"
+        },
+        {
+          "token": "ḥasāsiyye",
+          "gloss": "allergy / sensitivity"
+        },
+        {
+          "token": "min",
+          "gloss": "from / to"
+        },
+        {
+          "token": "il-fūl is-sūdāni",
+          "gloss": "peanuts (lit. 'Sudanese beans')"
+        }
+      ]
     },
     {
       "id": "doctor-allergic-penicillin",
@@ -2338,7 +3708,25 @@
       "tags": [
         "doctor"
       ],
-      "status": "draft"
+      "status": "draft",
+      "breakdown": [
+        {
+          "token": "ʿindi",
+          "gloss": "I have"
+        },
+        {
+          "token": "ḥasāsiyye",
+          "gloss": "allergy"
+        },
+        {
+          "token": "min",
+          "gloss": "from / to"
+        },
+        {
+          "token": "il-binisilīn",
+          "gloss": "penicillin"
+        }
+      ]
     },
     {
       "id": "doctor-twice-a-day",
@@ -2349,7 +3737,17 @@
       "tags": [
         "doctor"
       ],
-      "status": "draft"
+      "status": "draft",
+      "breakdown": [
+        {
+          "token": "marrtēn",
+          "gloss": "twice (dual of marra 'time')"
+        },
+        {
+          "token": "bil-yōm",
+          "gloss": "per day (b- + il-)"
+        }
+      ]
     },
     {
       "id": "doctor-after-eating",
@@ -2360,7 +3758,17 @@
       "tags": [
         "doctor"
       ],
-      "status": "draft"
+      "status": "draft",
+      "breakdown": [
+        {
+          "token": "baʿd",
+          "gloss": "after"
+        },
+        {
+          "token": "il-ʾakl",
+          "gloss": "the eating / food"
+        }
+      ]
     },
     {
       "id": "doctor-insurance-klalit",
@@ -2371,7 +3779,21 @@
       "tags": [
         "doctor"
       ],
-      "status": "draft"
+      "status": "draft",
+      "breakdown": [
+        {
+          "token": "ʿindi",
+          "gloss": "I have"
+        },
+        {
+          "token": "taʾmīn",
+          "gloss": "insurance"
+        },
+        {
+          "token": "Kalālīt",
+          "gloss": "Klalit"
+        }
+      ]
     },
     {
       "id": "doctor-insurance-maccabi",
@@ -2382,7 +3804,17 @@
       "tags": [
         "doctor"
       ],
-      "status": "draft"
+      "status": "draft",
+      "breakdown": [
+        {
+          "token": "ʿindi",
+          "gloss": "I have"
+        },
+        {
+          "token": "Makābi",
+          "gloss": "Maccabi"
+        }
+      ]
     },
     {
       "id": "doctor-insurance-meuhedet",
@@ -2393,7 +3825,17 @@
       "tags": [
         "doctor"
       ],
-      "status": "draft"
+      "status": "draft",
+      "breakdown": [
+        {
+          "token": "ʿindi",
+          "gloss": "I have"
+        },
+        {
+          "token": "Meʾuḥēdet",
+          "gloss": "Meuhedet"
+        }
+      ]
     },
     {
       "id": "doctor-hurts-here",
@@ -2425,7 +3867,17 @@
       "tags": [
         "doctor"
       ],
-      "status": "draft"
+      "status": "draft",
+      "breakdown": [
+        {
+          "token": "min",
+          "gloss": "from / since"
+        },
+        {
+          "token": "iṣ-ṣubḥ",
+          "gloss": "the morning"
+        }
+      ]
     },
     {
       "id": "directions-is-it-far",
@@ -2456,7 +3908,21 @@
         "directions",
         "drivers"
       ],
-      "status": "draft"
+      "status": "draft",
+      "breakdown": [
+        {
+          "token": "ʾaddēsh",
+          "gloss": "how much"
+        },
+        {
+          "token": "byākhud",
+          "gloss": "it takes (lit. 'it takes')"
+        },
+        {
+          "token": "waʾt",
+          "gloss": "time"
+        }
+      ]
     },
     {
       "id": "directions-walk-or-drive",
@@ -2467,7 +3933,21 @@
       "tags": [
         "directions"
       ],
-      "status": "draft"
+      "status": "draft",
+      "breakdown": [
+        {
+          "token": "mashi",
+          "gloss": "walking"
+        },
+        {
+          "token": "walla",
+          "gloss": "or (in questions)"
+        },
+        {
+          "token": "bis-sayyāra",
+          "gloss": "by car (b- + is-)"
+        }
+      ]
     },
     {
       "id": "directions-next-to",
@@ -2478,7 +3958,17 @@
       "tags": [
         "directions"
       ],
-      "status": "draft"
+      "status": "draft",
+      "breakdown": [
+        {
+          "token": "ḥadd",
+          "gloss": "next to (lit. 'edge/limit of')"
+        },
+        {
+          "token": "il-[X]",
+          "gloss": "the [X]"
+        }
+      ]
     },
     {
       "id": "directions-across-from",
@@ -2488,7 +3978,17 @@
       "tags": [
         "directions"
       ],
-      "status": "draft"
+      "status": "draft",
+      "breakdown": [
+        {
+          "token": "ʾbāl",
+          "gloss": "across from / facing"
+        },
+        {
+          "token": "il-[X]",
+          "gloss": "the [X]"
+        }
+      ]
     },
     {
       "id": "directions-behind",
@@ -2498,7 +3998,17 @@
       "tags": [
         "directions"
       ],
-      "status": "draft"
+      "status": "draft",
+      "breakdown": [
+        {
+          "token": "wara",
+          "gloss": "behind"
+        },
+        {
+          "token": "il-[X]",
+          "gloss": "the [X]"
+        }
+      ]
     },
     {
       "id": "directions-in-front",
@@ -2508,7 +4018,17 @@
       "tags": [
         "directions"
       ],
-      "status": "draft"
+      "status": "draft",
+      "breakdown": [
+        {
+          "token": "ʾuddām",
+          "gloss": "in front of"
+        },
+        {
+          "token": "il-[X]",
+          "gloss": "the [X]"
+        }
+      ]
     },
     {
       "id": "directions-turn-right",
@@ -2532,7 +4052,25 @@
         "directions",
         "drivers"
       ],
-      "status": "draft"
+      "status": "draft",
+      "breakdown": [
+        {
+          "token": "luff",
+          "gloss": "turn (imperative)"
+        },
+        {
+          "token": "shmāl",
+          "gloss": "left"
+        },
+        {
+          "token": "ʿind",
+          "gloss": "at"
+        },
+        {
+          "token": "il-[X]",
+          "gloss": "the [X]"
+        }
+      ]
     },
     {
       "id": "directions-straight-then-left",
@@ -2566,7 +4104,21 @@
       "tags": [
         "directions"
       ],
-      "status": "draft"
+      "status": "draft",
+      "breakdown": [
+        {
+          "token": "law samaḥt",
+          "gloss": "excuse me / please"
+        },
+        {
+          "token": "wēn",
+          "gloss": "where"
+        },
+        {
+          "token": "il-[X]",
+          "gloss": "the [X]"
+        }
+      ]
     },
     {
       "id": "directions-right-way",
@@ -2576,7 +4128,21 @@
       "tags": [
         "directions"
       ],
-      "status": "draft"
+      "status": "draft",
+      "breakdown": [
+        {
+          "token": "hāda",
+          "gloss": "this"
+        },
+        {
+          "token": "ṭ-ṭarīʾ",
+          "gloss": "the road / way"
+        },
+        {
+          "token": "iṣ-ṣaḥḥ",
+          "gloss": "the right / correct"
+        }
+      ]
     },
     {
       "id": "directions-im-lost",
@@ -2587,7 +4153,17 @@
       "tags": [
         "directions"
       ],
-      "status": "draft"
+      "status": "draft",
+      "breakdown": [
+        {
+          "token": "ana",
+          "gloss": "I"
+        },
+        {
+          "token": "tāyih",
+          "gloss": "lost (m)"
+        }
+      ]
     },
     {
       "id": "directions-show-map",
@@ -2599,7 +4175,21 @@
       "tags": [
         "directions"
       ],
-      "status": "draft"
+      "status": "draft",
+      "breakdown": [
+        {
+          "token": "warrī-",
+          "gloss": "show (imperative)"
+        },
+        {
+          "token": "-ni",
+          "gloss": "me"
+        },
+        {
+          "token": "ʿal-kharīṭa",
+          "gloss": "on the map (ʿala + il-)"
+        }
+      ]
     },
     {
       "id": "directions-street",
@@ -2674,7 +4264,25 @@
       "tags": [
         "neighbours"
       ],
-      "status": "draft"
+      "status": "draft",
+      "breakdown": [
+        {
+          "token": "sākin",
+          "gloss": "living (m)"
+        },
+        {
+          "token": "fi",
+          "gloss": "on / in"
+        },
+        {
+          "token": "ṭ-ṭābiʾ",
+          "gloss": "the floor / storey"
+        },
+        {
+          "token": "it-tālit",
+          "gloss": "the third"
+        }
+      ]
     },
     {
       "id": "neighbours-kid-forgot",
@@ -2686,7 +4294,25 @@
         "neighbours",
         "kids"
       ],
-      "status": "draft"
+      "status": "draft",
+      "breakdown": [
+        {
+          "token": "ibn-",
+          "gloss": "son"
+        },
+        {
+          "token": "-ak",
+          "gloss": "your (m)"
+        },
+        {
+          "token": "nisi",
+          "gloss": "he forgot"
+        },
+        {
+          "token": "hāda",
+          "gloss": "this"
+        }
+      ]
     },
     {
       "id": "neighbours-borrow-sugar",
@@ -2697,7 +4323,29 @@
       "tags": [
         "neighbours"
       ],
-      "status": "draft"
+      "status": "draft",
+      "breakdown": [
+        {
+          "token": "mumkin",
+          "gloss": "can"
+        },
+        {
+          "token": "tsallif-",
+          "gloss": "you lend"
+        },
+        {
+          "token": "-ni",
+          "gloss": "me"
+        },
+        {
+          "token": "shwayy",
+          "gloss": "a little"
+        },
+        {
+          "token": "sukkar",
+          "gloss": "sugar"
+        }
+      ]
     },
     {
       "id": "neighbours-borrow-eggs",
@@ -2708,7 +4356,29 @@
       "tags": [
         "neighbours"
       ],
-      "status": "draft"
+      "status": "draft",
+      "breakdown": [
+        {
+          "token": "mumkin",
+          "gloss": "can"
+        },
+        {
+          "token": "tsallif-",
+          "gloss": "you lend"
+        },
+        {
+          "token": "-ni",
+          "gloss": "me"
+        },
+        {
+          "token": "kam",
+          "gloss": "a few"
+        },
+        {
+          "token": "bēḍa",
+          "gloss": "egg"
+        }
+      ]
     },
     {
       "id": "neighbours-borrow-charger",
@@ -2719,7 +4389,25 @@
       "tags": [
         "neighbours"
       ],
-      "status": "draft"
+      "status": "draft",
+      "breakdown": [
+        {
+          "token": "mumkin",
+          "gloss": "can"
+        },
+        {
+          "token": "tsallif-",
+          "gloss": "you lend"
+        },
+        {
+          "token": "-ni",
+          "gloss": "me"
+        },
+        {
+          "token": "shāḥin",
+          "gloss": "charger"
+        }
+      ]
     },
     {
       "id": "neighbours-sorry-noise",
@@ -2730,7 +4418,17 @@
       "tags": [
         "neighbours"
       ],
-      "status": "draft"
+      "status": "draft",
+      "breakdown": [
+        {
+          "token": "āsif",
+          "gloss": "sorry (m)"
+        },
+        {
+          "token": "ʿaḍ-ḍajje",
+          "gloss": "about the noise (ʿa + iḍ-)"
+        }
+      ]
     },
     {
       "id": "neighbours-noise-too-much",
@@ -2751,7 +4449,17 @@
       "tags": [
         "neighbours"
       ],
-      "status": "draft"
+      "status": "draft",
+      "breakdown": [
+        {
+          "token": "il-maṣʿad",
+          "gloss": "the elevator"
+        },
+        {
+          "token": "maksūr",
+          "gloss": "broken"
+        }
+      ]
     },
     {
       "id": "neighbours-trash-room",
@@ -2761,7 +4469,21 @@
       "tags": [
         "neighbours"
       ],
-      "status": "draft"
+      "status": "draft",
+      "breakdown": [
+        {
+          "token": "wēn",
+          "gloss": "where"
+        },
+        {
+          "token": "ghurfit",
+          "gloss": "room of (construct)"
+        },
+        {
+          "token": "iz-zbāle",
+          "gloss": "the trash"
+        }
+      ]
     },
     {
       "id": "neighbours-where-park",
@@ -2784,7 +4506,21 @@
       "tags": [
         "neighbours"
       ],
-      "status": "draft"
+      "status": "draft",
+      "breakdown": [
+        {
+          "token": "hāda",
+          "gloss": "this"
+        },
+        {
+          "token": "l-mawʾaf",
+          "gloss": "the parking spot"
+        },
+        {
+          "token": "maḥjūz",
+          "gloss": "reserved / taken"
+        }
+      ]
     },
     {
       "id": "neighbours-package-yours",
@@ -2829,7 +4565,21 @@
         "neighbours",
         "work"
       ],
-      "status": "draft"
+      "status": "draft",
+      "breakdown": [
+        {
+          "token": "nahār-",
+          "gloss": "day"
+        },
+        {
+          "token": "-ak",
+          "gloss": "your (m)"
+        },
+        {
+          "token": "saʿīd",
+          "gloss": "happy"
+        }
+      ]
     },
     {
       "id": "neighbours-welcome-building",
@@ -2840,7 +4590,21 @@
       "tags": [
         "neighbours"
       ],
-      "status": "draft"
+      "status": "draft",
+      "breakdown": [
+        {
+          "token": "ahlan wa-sahlan",
+          "gloss": "welcome"
+        },
+        {
+          "token": "fīkum",
+          "gloss": "to you (pl.)"
+        },
+        {
+          "token": "bil-ʿimāra",
+          "gloss": "in the building (b- + il-)"
+        }
+      ]
     },
     {
       "id": "drivers-wait-minute",
@@ -2851,7 +4615,21 @@
       "tags": [
         "drivers"
       ],
-      "status": "draft"
+      "status": "draft",
+      "breakdown": [
+        {
+          "token": "istanna",
+          "gloss": "wait (imperative, to m)"
+        },
+        {
+          "token": "daʾīʾa",
+          "gloss": "a minute"
+        },
+        {
+          "token": "law samaḥt",
+          "gloss": "please"
+        }
+      ]
     },
     {
       "id": "drivers-open-trunk",
@@ -2862,7 +4640,21 @@
       "tags": [
         "drivers"
       ],
-      "status": "draft"
+      "status": "draft",
+      "breakdown": [
+        {
+          "token": "iftaḥ",
+          "gloss": "open (imperative)"
+        },
+        {
+          "token": "ish-shanṭa",
+          "gloss": "the trunk (lit. 'the bag')"
+        },
+        {
+          "token": "law samaḥt",
+          "gloss": "please"
+        }
+      ]
     },
     {
       "id": "drivers-five-minutes",
@@ -2873,7 +4665,29 @@
       "tags": [
         "drivers"
       ],
-      "status": "draft"
+      "status": "draft",
+      "breakdown": [
+        {
+          "token": "raḥ",
+          "gloss": "will (future marker)"
+        },
+        {
+          "token": "arjaʿ",
+          "gloss": "I return"
+        },
+        {
+          "token": "baʿd",
+          "gloss": "after"
+        },
+        {
+          "token": "khams",
+          "gloss": "five"
+        },
+        {
+          "token": "daʾāyiʾ",
+          "gloss": "minutes"
+        }
+      ]
     },
     {
       "id": "drivers-meter",
@@ -2884,7 +4698,21 @@
       "tags": [
         "drivers"
       ],
-      "status": "draft"
+      "status": "draft",
+      "breakdown": [
+        {
+          "token": "shaghghil",
+          "gloss": "turn on (imperative)"
+        },
+        {
+          "token": "il-ʿaddād",
+          "gloss": "the meter (lit. 'the counter')"
+        },
+        {
+          "token": "law samaḥt",
+          "gloss": "please"
+        }
+      ]
     },
     {
       "id": "drivers-can-smoke",
@@ -2895,7 +4723,25 @@
       "tags": [
         "drivers"
       ],
-      "status": "draft"
+      "status": "draft",
+      "breakdown": [
+        {
+          "token": "mumkin",
+          "gloss": "could"
+        },
+        {
+          "token": "mā",
+          "gloss": "not"
+        },
+        {
+          "token": "tdakhkhin",
+          "gloss": "you smoke"
+        },
+        {
+          "token": "law samaḥt",
+          "gloss": "please"
+        }
+      ]
     },
     {
       "id": "shops-no-bag",
@@ -2906,7 +4752,21 @@
       "tags": [
         "shops"
       ],
-      "status": "draft"
+      "status": "draft",
+      "breakdown": [
+        {
+          "token": "bidūn",
+          "gloss": "without"
+        },
+        {
+          "token": "kīs",
+          "gloss": "bag"
+        },
+        {
+          "token": "shukran",
+          "gloss": "thanks"
+        }
+      ]
     },
     {
       "id": "shops-wifi",
@@ -2938,7 +4798,17 @@
       "tags": [
         "shops"
       ],
-      "status": "draft"
+      "status": "draft",
+      "breakdown": [
+        {
+          "token": "hāda",
+          "gloss": "this"
+        },
+        {
+          "token": "ḥalāl",
+          "gloss": "halal"
+        }
+      ]
     },
     {
       "id": "shops-vegetarian",
@@ -2949,7 +4819,17 @@
       "tags": [
         "shops"
       ],
-      "status": "draft"
+      "status": "draft",
+      "breakdown": [
+        {
+          "token": "ana",
+          "gloss": "I"
+        },
+        {
+          "token": "nabāti",
+          "gloss": "vegetarian (lit. 'plant-based')"
+        }
+      ]
     },
     {
       "id": "kids-what-color",
@@ -2960,7 +4840,21 @@
       "tags": [
         "kids"
       ],
-      "status": "draft"
+      "status": "draft",
+      "breakdown": [
+        {
+          "token": "shū",
+          "gloss": "what"
+        },
+        {
+          "token": "lōn-",
+          "gloss": "color"
+        },
+        {
+          "token": "-o",
+          "gloss": "its (m)"
+        }
+      ]
     },
     {
       "id": "kids-count-to-ten",
@@ -3015,7 +4909,17 @@
       "tags": [
         "family"
       ],
-      "status": "draft"
+      "status": "draft",
+      "breakdown": [
+        {
+          "token": "wēn",
+          "gloss": "where"
+        },
+        {
+          "token": "btishtaghil",
+          "gloss": "you (m) work"
+        }
+      ]
     },
     {
       "id": "family-how-long-here",
@@ -3027,7 +4931,21 @@
         "family",
         "neighbours"
       ],
-      "status": "draft"
+      "status": "draft",
+      "breakdown": [
+        {
+          "token": "min ʾaddēsh",
+          "gloss": "since how much (= how long)"
+        },
+        {
+          "token": "sākin",
+          "gloss": "living (m)"
+        },
+        {
+          "token": "hōn",
+          "gloss": "here"
+        }
+      ]
     },
     {
       "id": "family-greet-wife",
@@ -3038,7 +4956,29 @@
       "tags": [
         "family"
       ],
-      "status": "draft"
+      "status": "draft",
+      "breakdown": [
+        {
+          "token": "sallim",
+          "gloss": "greet (imperative)"
+        },
+        {
+          "token": "-li",
+          "gloss": "for me"
+        },
+        {
+          "token": "ʿa",
+          "gloss": "onto"
+        },
+        {
+          "token": "marrt-",
+          "gloss": "wife of"
+        },
+        {
+          "token": "-ak",
+          "gloss": "your (m)"
+        }
+      ]
     },
     {
       "id": "family-from-where-originally",
@@ -3071,7 +5011,21 @@
       "tags": [
         "work"
       ],
-      "status": "draft"
+      "status": "draft",
+      "breakdown": [
+        {
+          "token": "mumkin",
+          "gloss": "can"
+        },
+        {
+          "token": "nʾajjil",
+          "gloss": "we postpone"
+        },
+        {
+          "token": "il-ijtimāʿ",
+          "gloss": "the meeting"
+        }
+      ]
     },
     {
       "id": "work-few-min-late",
@@ -3082,7 +5036,21 @@
       "tags": [
         "work"
       ],
-      "status": "draft"
+      "status": "draft",
+      "breakdown": [
+        {
+          "token": "raḥ",
+          "gloss": "will (future marker)"
+        },
+        {
+          "token": "atʾakhkhar",
+          "gloss": "I be late"
+        },
+        {
+          "token": "shwayy",
+          "gloss": "a little"
+        }
+      ]
     },
     {
       "id": "work-remote-today",
@@ -3092,7 +5060,25 @@
       "tags": [
         "work"
       ],
-      "status": "draft"
+      "status": "draft",
+      "breakdown": [
+        {
+          "token": "il-yōm",
+          "gloss": "today (lit. 'the day')"
+        },
+        {
+          "token": "bashtaghil",
+          "gloss": "I work"
+        },
+        {
+          "token": "min",
+          "gloss": "from"
+        },
+        {
+          "token": "il-bēt",
+          "gloss": "the house"
+        }
+      ]
     },
     {
       "id": "work-send-email",
@@ -3113,7 +5099,21 @@
       "tags": [
         "work"
       ],
-      "status": "draft"
+      "status": "draft",
+      "breakdown": [
+        {
+          "token": "ana",
+          "gloss": "I"
+        },
+        {
+          "token": "ʿat-talafōn",
+          "gloss": "on the phone (ʿa + it-)"
+        },
+        {
+          "token": "hallaʾ",
+          "gloss": "now"
+        }
+      ]
     },
     {
       "id": "basics-now",
@@ -3158,7 +5158,17 @@
       "tags": [
         "basics"
       ],
-      "status": "draft"
+      "status": "draft",
+      "breakdown": [
+        {
+          "token": "hāda",
+          "gloss": "this"
+        },
+        {
+          "token": "kitāb",
+          "gloss": "book (no 'is' needed)"
+        }
+      ]
     },
     {
       "id": "basics-this-is-not-mine",
@@ -3169,7 +5179,25 @@
         "basics",
         "neighbours"
       ],
-      "status": "draft"
+      "status": "draft",
+      "breakdown": [
+        {
+          "token": "hāda",
+          "gloss": "this"
+        },
+        {
+          "token": "mish",
+          "gloss": "not"
+        },
+        {
+          "token": "ilī",
+          "gloss": "mine"
+        },
+        {
+          "token": "ilo",
+          "gloss": "his (lit. 'to him')"
+        }
+      ]
     },
     {
       "id": "basics-whose-is-this",
@@ -3180,7 +5208,17 @@
         "basics",
         "neighbours"
       ],
-      "status": "draft"
+      "status": "draft",
+      "breakdown": [
+        {
+          "token": "la-mīn",
+          "gloss": "to whom / whose"
+        },
+        {
+          "token": "hāda",
+          "gloss": "this"
+        }
+      ]
     },
     {
       "id": "basics-its-okay",
@@ -3205,7 +5243,21 @@
         "work",
         "shops"
       ],
-      "status": "draft"
+      "status": "draft",
+      "breakdown": [
+        {
+          "token": "mā",
+          "gloss": "not"
+        },
+        {
+          "token": "fī",
+          "gloss": "there is"
+        },
+        {
+          "token": "mushkile",
+          "gloss": "problem"
+        }
+      ]
     },
     {
       "id": "basics-i-think",
@@ -3228,7 +5280,17 @@
         "basics",
         "work"
       ],
-      "status": "draft"
+      "status": "draft",
+      "breakdown": [
+        {
+          "token": "mish",
+          "gloss": "not"
+        },
+        {
+          "token": "mitʾakkid",
+          "gloss": "sure / certain (m)"
+        }
+      ]
     },
     {
       "id": "basics-of-course",
@@ -3264,7 +5326,17 @@
         "doctor",
         "family"
       ],
-      "status": "draft"
+      "status": "draft",
+      "breakdown": [
+        {
+          "token": "ana",
+          "gloss": "I"
+        },
+        {
+          "token": "taʿbān",
+          "gloss": "tired / unwell (m)"
+        }
+      ]
     },
     {
       "id": "doctor-need-doctor",
@@ -3275,7 +5347,17 @@
         "doctor",
         "rescue"
       ],
-      "status": "draft"
+      "status": "draft",
+      "breakdown": [
+        {
+          "token": "biddi",
+          "gloss": "I want / need"
+        },
+        {
+          "token": "dakatōr",
+          "gloss": "doctor"
+        }
+      ]
     },
     {
       "id": "doctor-prescription",
@@ -3286,7 +5368,21 @@
       "tags": [
         "doctor"
       ],
-      "status": "draft"
+      "status": "draft",
+      "breakdown": [
+        {
+          "token": "ʿindi",
+          "gloss": "I have"
+        },
+        {
+          "token": "waṣfe",
+          "gloss": "prescription (lit. 'description')"
+        },
+        {
+          "token": "ṭibbiyye",
+          "gloss": "medical (f)"
+        }
+      ]
     },
     {
       "id": "directions-first-street",
@@ -3309,7 +5405,21 @@
         "directions",
         "drivers"
       ],
-      "status": "draft"
+      "status": "draft",
+      "breakdown": [
+        {
+          "token": "tāni",
+          "gloss": "second"
+        },
+        {
+          "token": "shāriʿ",
+          "gloss": "street"
+        },
+        {
+          "token": "shmāl",
+          "gloss": "left"
+        }
+      ]
     },
     {
       "id": "directions-traffic-light",
@@ -3342,7 +5452,17 @@
       "tags": [
         "neighbours"
       ],
-      "status": "draft"
+      "status": "draft",
+      "breakdown": [
+        {
+          "token": "masā",
+          "gloss": "evening of"
+        },
+        {
+          "token": "il-khēr",
+          "gloss": "the goodness"
+        }
+      ]
     },
     {
       "id": "neighbours-water-leak",
@@ -3353,7 +5473,21 @@
       "tags": [
         "neighbours"
       ],
-      "status": "draft"
+      "status": "draft",
+      "breakdown": [
+        {
+          "token": "fī",
+          "gloss": "there is"
+        },
+        {
+          "token": "tasrīb",
+          "gloss": "leak(ing)"
+        },
+        {
+          "token": "mayy",
+          "gloss": "water"
+        }
+      ]
     },
     {
       "id": "pol-conflict",
@@ -3396,7 +5530,17 @@
       "tags": [
         "politics"
       ],
-      "status": "draft"
+      "status": "draft",
+      "breakdown": [
+        {
+          "token": "ʿamaliyyat",
+          "gloss": "process of (construct)"
+        },
+        {
+          "token": "is-salām",
+          "gloss": "the peace"
+        }
+      ]
     },
     {
       "id": "pol-coexistence",
@@ -3437,7 +5581,17 @@
       "tags": [
         "politics"
       ],
-      "status": "draft"
+      "status": "draft",
+      "breakdown": [
+        {
+          "token": "ḥuqūq",
+          "gloss": "rights (pl. of ḥaqq)"
+        },
+        {
+          "token": "al-insān",
+          "gloss": "the human"
+        }
+      ]
     },
     {
       "id": "pol-equality",
@@ -3552,7 +5706,17 @@
       "tags": [
         "politics"
       ],
-      "status": "draft"
+      "status": "draft",
+      "breakdown": [
+        {
+          "token": "ḥaqq",
+          "gloss": "right"
+        },
+        {
+          "token": "il-ʿawda",
+          "gloss": "the return"
+        }
+      ]
     },
     {
       "id": "pol-settler",
@@ -3620,7 +5784,17 @@
         "politics",
         "geography"
       ],
-      "status": "draft"
+      "status": "draft",
+      "breakdown": [
+        {
+          "token": "al-khaṭṭ",
+          "gloss": "the line"
+        },
+        {
+          "token": "il-akhḍar",
+          "gloss": "the green"
+        }
+      ]
     },
     {
       "id": "pol-two-state",
@@ -3630,7 +5804,17 @@
       "tags": [
         "politics"
       ],
-      "status": "draft"
+      "status": "draft",
+      "breakdown": [
+        {
+          "token": "ḥall",
+          "gloss": "solution"
+        },
+        {
+          "token": "id-dawlatēn",
+          "gloss": "the two states (dual)"
+        }
+      ]
     },
     {
       "id": "pol-one-state",
@@ -3641,7 +5825,17 @@
       "tags": [
         "politics"
       ],
-      "status": "draft"
+      "status": "draft",
+      "breakdown": [
+        {
+          "token": "dawla",
+          "gloss": "state"
+        },
+        {
+          "token": "wāḥda",
+          "gloss": "one (f)"
+        }
+      ]
     },
     {
       "id": "pol-citizen",
@@ -3727,7 +5921,17 @@
       "tags": [
         "politics"
       ],
-      "status": "draft"
+      "status": "draft",
+      "breakdown": [
+        {
+          "token": "as-sulṭa",
+          "gloss": "the authority"
+        },
+        {
+          "token": "il-filasṭīniyya",
+          "gloss": "the Palestinian (f)"
+        }
+      ]
     },
     {
       "id": "pol-party-hadash",
@@ -3749,7 +5953,25 @@
       "tags": [
         "politics"
       ],
-      "status": "draft"
+      "status": "draft",
+      "breakdown": [
+        {
+          "token": "al-Jabha",
+          "gloss": "the front"
+        },
+        {
+          "token": "ad-Dīmuqrāṭiyya",
+          "gloss": "the democratic"
+        },
+        {
+          "token": "lis-Salām",
+          "gloss": "for peace (li- + is-)"
+        },
+        {
+          "token": "wal-Musāwā",
+          "gloss": "and equality (wa- + il-)"
+        }
+      ]
     },
     {
       "id": "pol-party-balad",
@@ -3771,7 +5993,21 @@
       "tags": [
         "politics"
       ],
-      "status": "draft"
+      "status": "draft",
+      "breakdown": [
+        {
+          "token": "al-Qāʾima",
+          "gloss": "the list"
+        },
+        {
+          "token": "al-ʿArabiyya",
+          "gloss": "the Arab"
+        },
+        {
+          "token": "al-Muwaḥḥada",
+          "gloss": "the united"
+        }
+      ]
     },
     {
       "id": "pol-party-joint-list",
@@ -3782,7 +6018,17 @@
       "tags": [
         "politics"
       ],
-      "status": "draft"
+      "status": "draft",
+      "breakdown": [
+        {
+          "token": "al-Qāʾima",
+          "gloss": "the list"
+        },
+        {
+          "token": "al-Mushtarka",
+          "gloss": "the joint / shared"
+        }
+      ]
     },
     {
       "id": "pol-party-fatah",
@@ -3815,7 +6061,17 @@
       "tags": [
         "politics"
       ],
-      "status": "draft"
+      "status": "draft",
+      "breakdown": [
+        {
+          "token": "al-Jabha",
+          "gloss": "the front"
+        },
+        {
+          "token": "ash-Shaʿbiyya",
+          "gloss": "the popular"
+        }
+      ]
     },
     {
       "id": "pol-party-islamic-jihad",
@@ -3826,7 +6082,17 @@
       "tags": [
         "politics"
       ],
-      "status": "draft"
+      "status": "draft",
+      "breakdown": [
+        {
+          "token": "al-Jihād",
+          "gloss": "the jihad / struggle"
+        },
+        {
+          "token": "al-Islāmī",
+          "gloss": "the Islamic"
+        }
+      ]
     },
     {
       "id": "pol-jew",
@@ -3934,7 +6200,17 @@
         "politics",
         "family"
       ],
-      "status": "draft"
+      "status": "draft",
+      "breakdown": [
+        {
+          "token": "ʿArab",
+          "gloss": "Arabs of"
+        },
+        {
+          "token": "id-dākhil",
+          "gloss": "the inside"
+        }
+      ]
     },
     {
       "id": "pol-nakba",
@@ -3967,7 +6243,17 @@
       "tags": [
         "politics"
       ],
-      "status": "draft"
+      "status": "draft",
+      "breakdown": [
+        {
+          "token": "yōm",
+          "gloss": "day of"
+        },
+        {
+          "token": "il-istiqlāl",
+          "gloss": "the independence"
+        }
+      ]
     },
     {
       "id": "pol-holocaust",
@@ -4011,7 +6297,21 @@
       "tags": [
         "politics"
       ],
-      "status": "draft"
+      "status": "draft",
+      "breakdown": [
+        {
+          "token": "ana",
+          "gloss": "I"
+        },
+        {
+          "token": "ḍidd",
+          "gloss": "against"
+        },
+        {
+          "token": "il-ʿunf",
+          "gloss": "the violence"
+        }
+      ]
     },
     {
       "id": "pol-for-peace",
@@ -4022,7 +6322,21 @@
       "tags": [
         "politics"
       ],
-      "status": "draft"
+      "status": "draft",
+      "breakdown": [
+        {
+          "token": "ana",
+          "gloss": "I"
+        },
+        {
+          "token": "maʿ",
+          "gloss": "with / for"
+        },
+        {
+          "token": "is-salām",
+          "gloss": "the peace"
+        }
+      ]
     },
     {
       "id": "pol-respect-everyone",
@@ -4033,7 +6347,21 @@
       "tags": [
         "politics"
       ],
-      "status": "draft"
+      "status": "draft",
+      "breakdown": [
+        {
+          "token": "ana",
+          "gloss": "I"
+        },
+        {
+          "token": "baḥtirim",
+          "gloss": "I respect"
+        },
+        {
+          "token": "il-kull",
+          "gloss": "everyone (lit. 'the all')"
+        }
+      ]
     },
     {
       "id": "pol-not-religious",
@@ -4045,7 +6373,21 @@
         "politics",
         "family"
       ],
-      "status": "draft"
+      "status": "draft",
+      "breakdown": [
+        {
+          "token": "ana",
+          "gloss": "I"
+        },
+        {
+          "token": "mish",
+          "gloss": "not"
+        },
+        {
+          "token": "mutadayyin",
+          "gloss": "religious (m)"
+        }
+      ]
     },
     {
       "id": "pol-want-coexistence",
@@ -4055,7 +6397,17 @@
       "tags": [
         "politics"
       ],
-      "status": "draft"
+      "status": "draft",
+      "breakdown": [
+        {
+          "token": "biddi",
+          "gloss": "I want"
+        },
+        {
+          "token": "taʿāyush",
+          "gloss": "coexistence (lit. 'living together')"
+        }
+      ]
     },
     {
       "id": "pol-politics-complicated",
@@ -4067,7 +6419,17 @@
         "politics",
         "rescue"
       ],
-      "status": "draft"
+      "status": "draft",
+      "breakdown": [
+        {
+          "token": "is-siyāse",
+          "gloss": "the politics"
+        },
+        {
+          "token": "muʿaʾʾade",
+          "gloss": "complicated (f)"
+        }
+      ]
     },
     {
       "id": "pol-sensitive-topic",
@@ -4079,7 +6441,17 @@
         "politics",
         "rescue"
       ],
-      "status": "draft"
+      "status": "draft",
+      "breakdown": [
+        {
+          "token": "mawḍūʿ",
+          "gloss": "topic / subject"
+        },
+        {
+          "token": "ḥassās",
+          "gloss": "sensitive"
+        }
+      ]
     },
     {
       "id": "pol-prefer-not-talk",
@@ -4103,7 +6475,25 @@
         "politics",
         "rescue"
       ],
-      "status": "draft"
+      "status": "draft",
+      "breakdown": [
+        {
+          "token": "khalīna",
+          "gloss": "let us"
+        },
+        {
+          "token": "niḥki",
+          "gloss": "we talk"
+        },
+        {
+          "token": "bi-shī",
+          "gloss": "about a thing"
+        },
+        {
+          "token": "thāni",
+          "gloss": "other"
+        }
+      ]
     },
     {
       "id": "pol-disagree-respect",
@@ -4114,7 +6504,37 @@
       "tags": [
         "politics"
       ],
-      "status": "draft"
+      "status": "draft",
+      "breakdown": [
+        {
+          "token": "ana",
+          "gloss": "I"
+        },
+        {
+          "token": "mish",
+          "gloss": "not"
+        },
+        {
+          "token": "muwāfiʾ",
+          "gloss": "agreeing (m)"
+        },
+        {
+          "token": "bass",
+          "gloss": "but"
+        },
+        {
+          "token": "baḥtirim",
+          "gloss": "I respect"
+        },
+        {
+          "token": "raʾy-",
+          "gloss": "opinion"
+        },
+        {
+          "token": "-ak",
+          "gloss": "your (m)"
+        }
+      ]
     },
     {
       "id": "pol-both-deserve-peace",
@@ -4136,7 +6556,21 @@
       "tags": [
         "politics"
       ],
-      "status": "draft"
+      "status": "draft",
+      "breakdown": [
+        {
+          "token": "ana",
+          "gloss": "I"
+        },
+        {
+          "token": "hōn",
+          "gloss": "here"
+        },
+        {
+          "token": "la-asmaʿ",
+          "gloss": "in order to listen (la- 'to')"
+        }
+      ]
     },
     {
       "id": "pol-what-do-you-think",
@@ -4147,7 +6581,25 @@
       "tags": [
         "politics"
       ],
-      "status": "draft"
+      "status": "draft",
+      "breakdown": [
+        {
+          "token": "shū",
+          "gloss": "what"
+        },
+        {
+          "token": "raʾy-",
+          "gloss": "opinion"
+        },
+        {
+          "token": "-ak",
+          "gloss": "your (m)"
+        },
+        {
+          "token": "fī",
+          "gloss": "about / in"
+        }
+      ]
     },
     {
       "id": "pol-tell-me-about",
@@ -4159,7 +6611,25 @@
         "politics",
         "family"
       ],
-      "status": "draft"
+      "status": "draft",
+      "breakdown": [
+        {
+          "token": "iḥkī-",
+          "gloss": "tell (imperative)"
+        },
+        {
+          "token": "-li",
+          "gloss": "to me"
+        },
+        {
+          "token": "ʿan",
+          "gloss": "about"
+        },
+        {
+          "token": "ḍayʿt-ak",
+          "gloss": "your village"
+        }
+      ]
     },
     {
       "id": "pol-safe-to-go",
@@ -4416,7 +6886,17 @@
         "geography",
         "politics"
       ],
-      "status": "draft"
+      "status": "draft",
+      "breakdown": [
+        {
+          "token": "al-Quds",
+          "gloss": "Jerusalem (lit. 'the holy')"
+        },
+        {
+          "token": "ish-sharqiyya",
+          "gloss": "the eastern (f)"
+        }
+      ]
     },
     {
       "id": "geo-west-jerusalem",
@@ -4427,7 +6907,17 @@
         "geography",
         "politics"
       ],
-      "status": "draft"
+      "status": "draft",
+      "breakdown": [
+        {
+          "token": "al-Quds",
+          "gloss": "Jerusalem"
+        },
+        {
+          "token": "il-gharbiyya",
+          "gloss": "the western (f)"
+        }
+      ]
     },
     {
       "id": "geo-hebron",
@@ -4449,7 +6939,17 @@
       "tags": [
         "geography"
       ],
-      "status": "draft"
+      "status": "draft",
+      "breakdown": [
+        {
+          "token": "Bayt",
+          "gloss": "house of"
+        },
+        {
+          "token": "Laḥm",
+          "gloss": "meat (Hebrew: bread)"
+        }
+      ]
     },
     {
       "id": "geo-jaffa",
@@ -4515,7 +7015,17 @@
       "tags": [
         "geography"
       ],
-      "status": "draft"
+      "status": "draft",
+      "breakdown": [
+        {
+          "token": "Biʾr",
+          "gloss": "well of"
+        },
+        {
+          "token": "is-Sabʿ",
+          "gloss": "the seven / the oath"
+        }
+      ]
     },
     {
       "id": "geo-west-bank",
@@ -4527,7 +7037,17 @@
         "geography",
         "politics"
       ],
-      "status": "draft"
+      "status": "draft",
+      "breakdown": [
+        {
+          "token": "aḍ-Ḍiffa",
+          "gloss": "the bank (of a river)"
+        },
+        {
+          "token": "il-gharbiyya",
+          "gloss": "the western"
+        }
+      ]
     },
     {
       "id": "geo-gaza-strip",
@@ -4539,7 +7059,17 @@
         "geography",
         "politics"
       ],
-      "status": "draft"
+      "status": "draft",
+      "breakdown": [
+        {
+          "token": "Qiṭāʿ",
+          "gloss": "strip / sector of"
+        },
+        {
+          "token": "Ghazza",
+          "gloss": "Gaza"
+        }
+      ]
     },
     {
       "id": "geo-from-city-or-village",
@@ -4562,7 +7092,25 @@
       "tags": [
         "geography"
       ],
-      "status": "draft"
+      "status": "draft",
+      "breakdown": [
+        {
+          "token": "ʿumri",
+          "gloss": "my life (idiom: never in my life)"
+        },
+        {
+          "token": "mā",
+          "gloss": "not"
+        },
+        {
+          "token": "ruḥt",
+          "gloss": "I went"
+        },
+        {
+          "token": "la-hnāk",
+          "gloss": "to there"
+        }
+      ]
     },
     {
       "id": "geo-beautiful-area",
@@ -4574,7 +7122,17 @@
         "geography",
         "family"
       ],
-      "status": "draft"
+      "status": "draft",
+      "breakdown": [
+        {
+          "token": "manṭiʾa",
+          "gloss": "area / region"
+        },
+        {
+          "token": "ḥilwe",
+          "gloss": "beautiful / sweet (f)"
+        }
+      ]
     },
     {
       "id": "geo-how-far",
@@ -4610,7 +7168,17 @@
         "geography",
         "directions"
       ],
-      "status": "draft"
+      "status": "draft",
+      "breakdown": [
+        {
+          "token": "ʾarīb",
+          "gloss": "near (m)"
+        },
+        {
+          "token": "min",
+          "gloss": "from / to"
+        }
+      ]
     },
     {
       "id": "geo-family-there",
@@ -4665,7 +7233,17 @@
       "tags": [
         "politics"
       ],
-      "status": "draft"
+      "status": "draft",
+      "breakdown": [
+        {
+          "token": "wazīr",
+          "gloss": "minister of"
+        },
+        {
+          "token": "al-khārijiyya",
+          "gloss": "the foreign (affairs)"
+        }
+      ]
     },
     {
       "id": "pol-defence-minister",
@@ -4675,7 +7253,17 @@
       "tags": [
         "politics"
       ],
-      "status": "draft"
+      "status": "draft",
+      "breakdown": [
+        {
+          "token": "wazīr",
+          "gloss": "minister of"
+        },
+        {
+          "token": "ad-difāʿ",
+          "gloss": "the defence"
+        }
+      ]
     },
     {
       "id": "pol-general",
@@ -4749,7 +7337,17 @@
       "tags": [
         "politics"
       ],
-      "status": "draft"
+      "status": "draft",
+      "breakdown": [
+        {
+          "token": "nāʾib",
+          "gloss": "deputy / representative"
+        },
+        {
+          "token": "bil-knīsit",
+          "gloss": "in the Knesset (b- + il-)"
+        }
+      ]
     },
     {
       "id": "pol-mayor",
@@ -4760,7 +7358,17 @@
       "tags": [
         "politics"
       ],
-      "status": "draft"
+      "status": "draft",
+      "breakdown": [
+        {
+          "token": "raʾīs",
+          "gloss": "head of"
+        },
+        {
+          "token": "il-baladiyya",
+          "gloss": "the municipality"
+        }
+      ]
     },
     {
       "id": "learn-arabic-uni",
@@ -4773,7 +7381,25 @@
         "work",
         "basics"
       ],
-      "status": "draft"
+      "status": "draft",
+      "breakdown": [
+        {
+          "token": "tʿallamt",
+          "gloss": "I learned"
+        },
+        {
+          "token": "shwayy",
+          "gloss": "a little"
+        },
+        {
+          "token": "ʿarabi",
+          "gloss": "Arabic"
+        },
+        {
+          "token": "bi-l-jāmʿa",
+          "gloss": "at the university (b- + il-)"
+        }
+      ]
     },
     {
       "id": "learn-where-uni",
@@ -4786,7 +7412,21 @@
         "work",
         "basics"
       ],
-      "status": "draft"
+      "status": "draft",
+      "breakdown": [
+        {
+          "token": "wēn",
+          "gloss": "where"
+        },
+        {
+          "token": "tʿallamt",
+          "gloss": "you (m) learned"
+        },
+        {
+          "token": "il-ʿarabi",
+          "gloss": "the Arabic"
+        }
+      ]
     },
     {
       "id": "pol-extremist",
@@ -4842,7 +7482,25 @@
         "politics",
         "rescue"
       ],
-      "status": "draft"
+      "status": "draft",
+      "breakdown": [
+        {
+          "token": "fī",
+          "gloss": "there are"
+        },
+        {
+          "token": "mutaṭarrifīn",
+          "gloss": "extremists (pl.)"
+        },
+        {
+          "token": "min",
+          "gloss": "from"
+        },
+        {
+          "token": "iṭ-ṭarafēn",
+          "gloss": "the two sides (dual)"
+        }
+      ]
     },
     {
       "id": "pol-most-moderate",
@@ -4854,7 +7512,17 @@
         "politics",
         "rescue"
       ],
-      "status": "draft"
+      "status": "draft",
+      "breakdown": [
+        {
+          "token": "al-aghlabiyye",
+          "gloss": "the majority"
+        },
+        {
+          "token": "muʿtadile",
+          "gloss": "moderate (f)"
+        }
+      ]
     },
     {
       "id": "pol-im-moderate",
@@ -4866,7 +7534,17 @@
         "politics",
         "rescue"
       ],
-      "status": "draft"
+      "status": "draft",
+      "breakdown": [
+        {
+          "token": "ana",
+          "gloss": "I"
+        },
+        {
+          "token": "muʿtadil",
+          "gloss": "moderate (m)"
+        }
+      ]
     },
     {
       "id": "talk-agree",
@@ -4880,7 +7558,17 @@
         "work",
         "rescue"
       ],
-      "status": "draft"
+      "status": "draft",
+      "breakdown": [
+        {
+          "token": "ana",
+          "gloss": "I"
+        },
+        {
+          "token": "muwāfiʾ",
+          "gloss": "agreeing (m participle = 'I agree')"
+        }
+      ]
     },
     {
       "id": "talk-disagree",
@@ -4893,7 +7581,21 @@
         "family",
         "work"
       ],
-      "status": "draft"
+      "status": "draft",
+      "breakdown": [
+        {
+          "token": "ana",
+          "gloss": "I"
+        },
+        {
+          "token": "mish",
+          "gloss": "not"
+        },
+        {
+          "token": "muwāfiʾ",
+          "gloss": "agreeing (m)"
+        }
+      ]
     },
     {
       "id": "talk-youre-right",
@@ -4907,7 +7609,17 @@
         "work",
         "rescue"
       ],
-      "status": "draft"
+      "status": "draft",
+      "breakdown": [
+        {
+          "token": "maʿak",
+          "gloss": "with you (m)"
+        },
+        {
+          "token": "ḥaʾʾ",
+          "gloss": "right / truth"
+        }
+      ]
     },
     {
       "id": "talk-exactly",
@@ -4946,7 +7658,17 @@
         "family",
         "work"
       ],
-      "status": "draft"
+      "status": "draft",
+      "breakdown": [
+        {
+          "token": "mā",
+          "gloss": "not"
+        },
+        {
+          "token": "baʿtaʾid",
+          "gloss": "I believe / think"
+        }
+      ]
     },
     {
       "id": "talk-in-my-opinion",
@@ -4972,7 +7694,21 @@
         "family",
         "work"
       ],
-      "status": "draft"
+      "status": "draft",
+      "breakdown": [
+        {
+          "token": "shū",
+          "gloss": "what"
+        },
+        {
+          "token": "raʾy-",
+          "gloss": "opinion"
+        },
+        {
+          "token": "-ak",
+          "gloss": "your (m)"
+        }
+      ]
     },
     {
       "id": "talk-i-oppose-this",
@@ -4984,7 +7720,21 @@
         "politics",
         "family"
       ],
-      "status": "draft"
+      "status": "draft",
+      "breakdown": [
+        {
+          "token": "ana",
+          "gloss": "I"
+        },
+        {
+          "token": "ḍidd",
+          "gloss": "against"
+        },
+        {
+          "token": "hāda",
+          "gloss": "this"
+        }
+      ]
     },
     {
       "id": "talk-argument",

@@ -2,7 +2,7 @@
 // Bump CACHE_VERSION on any user-visible change (shell *or* content).
 // The in-app "Update available · reload" toast only fires when the SW
 // file itself differs from the previously-installed copy.
-const CACHE_VERSION = 'v10';
+const CACHE_VERSION = 'v11';
 const SHELL_CACHE = `msa-reader-shell-${CACHE_VERSION}`;
 const CONTENT_CACHE = `msa-reader-content-${CACHE_VERSION}`;
 
@@ -21,6 +21,7 @@ const SHELL_FILES = [
   './src/parser.js',
   './src/scheduler.js',
   './src/llm.js',
+  './src/streak.js',
 ];
 
 self.addEventListener('install', (event) => {
@@ -65,9 +66,11 @@ self.addEventListener('fetch', (event) => {
     return;
   }
 
-  // Shell: cache-first.
+  // Shell: cache-first. Navigations match ignoring the query string so a
+  // Web Share Target launch (./?share-text=…) resolves to the cached shell
+  // when offline.
   event.respondWith(
-    caches.match(req).then((hit) => hit || fetch(req).then((res) => {
+    caches.match(req, req.mode === 'navigate' ? { ignoreSearch: true } : undefined).then((hit) => hit || fetch(req).then((res) => {
       const copy = res.clone();
       caches.open(SHELL_CACHE).then((cache) => cache.put(req, copy));
       return res;

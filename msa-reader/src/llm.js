@@ -79,3 +79,61 @@ export async function autofillEntry(headword, apiKey) {
     status: 'verified',
   };
 }
+
+const EXPLAIN_PROMPT = `You help an intermediate learner read real Modern Standard Arabic news text.
+
+Given an Arabic passage, respond with ONLY a JSON object — no preamble, no markdown fences — with exactly these fields:
+
+- translation: natural English translation of the whole passage
+- words: array of {ar, gloss} covering the passage IN ORDER, one entry per word as printed (clitics explained inside the gloss, e.g. "and-the-government (wa- + al-)"). Keep glosses short.
+- notes: 1-3 sentences on whatever grammar in this passage would trip a learner (case endings, verb forms, iḍāfa, passive, word order). Plain English. Empty string if genuinely nothing noteworthy.
+
+Passage:
+`;
+
+/**
+ * Explain a passage (usually one paragraph) via Claude.
+ * Returns { translation, words: [{ar, gloss}], notes }.
+ * Throws on network / auth / parse errors so the caller can surface them.
+ * Roughly $0.01–0.02 per paragraph at Sonnet rates.
+ */
+export async function explainPassage(passage, apiKey) {
+  if (!apiKey) throw new Error('No API key set in Settings.');
+  if (!passage || !passage.trim()) throw new Error('Nothing to explain.');
+
+  const res = await fetch(ENDPOINT, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      'x-api-key': apiKey,
+      'anthropic-version': '2023-06-01',
+      'anthropic-dangerous-direct-browser-access': 'true',
+    },
+    body: JSON.stringify({
+      model: MODEL,
+      max_tokens: 1500,
+      messages: [
+        { role: 'user', content: EXPLAIN_PROMPT + passage },
+      ],
+    }),
+  });
+
+  if (!res.ok) {
+    let detail = '';
+    try { detail = (await res.json())?.error?.message || ''; } catch {}
+    throw new Error(`API ${res.status}${detail ? ` — ${detail}` : ''}`);
+  }
+
+  const data = await res.json();
+  const text = data?.content?.[0]?.text || '';
+  const match = text.match(/\{[\s\S]*\}/);
+  if (!match) throw new Error('Response was not JSON.');
+  const parsed = JSON.parse(match[0]);
+  return {
+    translation: parsed.translation || '',
+    words: Array.isArray(parsed.words)
+      ? parsed.words.filter((w) => w && w.ar && w.gloss).map((w) => ({ ar: String(w.ar), gloss: String(w.gloss) }))
+      : [],
+    notes: parsed.notes || '',
+  };
+}

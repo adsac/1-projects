@@ -116,3 +116,17 @@ export function isStrong(state) {
   if (!state) return false;
   return state.intervalDays >= 7 && state.lastGrade !== 'again' && state.repCount >= 3 && state.lapses <= 1;
 }
+
+const LEECH_LAPSES = 4;
+
+/** A leech — repeatedly forgotten despite reviews. These eat session time
+ *  without converting; they need a different treatment (re-learn from
+ *  components, or suspension), not more of the same reps. The flag clears
+ *  once the item climbs back to a week-plus interval — lapse count alone
+ *  can't clear (it only ever grows), so recovery is judged by whether the
+ *  item is currently holding. (isStrong can't serve here: it requires
+ *  lapses ≤ 1, which a leech can never get back to.) */
+export function isLeech(state) {
+  if (!state) return false;
+  return state.lapses >= LEECH_LAPSES && state.intervalDays < 7;
+}

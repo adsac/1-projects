@@ -280,7 +280,9 @@ function renderExplainSlot(text) {
     btn.textContent = 'Explaining…';
     try {
       const result = await explainPassage(text, app.settings.claudeApiKey);
-      await data.putExplain(key, result);
+      // Partial (truncated) results still render, but aren't cached — Hide
+      // restores the button so a retry can get the full version.
+      if (!result.truncated) await data.putExplain(key, result);
       show(result);
     } catch (err) {
       console.error('explain failed', err);
@@ -293,6 +295,7 @@ function renderExplainSlot(text) {
   function show(result) {
     btn.remove();
     const card = el('div', { class: 'explain-card col' });
+    if (result.truncated) card.append(el('div', { class: 'muted' }, 'Long paragraph — this explanation was cut short. Hide and retry for a full one.'));
     if (result.translation) card.append(el('div', {}, result.translation));
     if (result.words && result.words.length) {
       const words = el('div', { class: 'explain-words' });

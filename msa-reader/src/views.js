@@ -272,9 +272,12 @@ function renderExplainSlot(text) {
     const cached = await data.getExplain(key);
     if (cached) { show(cached); return; }
     if (!app.settings.claudeApiKey) {
-      toast('Add your Claude API key in Settings to use Explain.');
+      // Don't bounce to Settings — the redirect reads as a bug (the toast
+      // explaining it is gone in ~2s). Ask for the key right here and run
+      // the explain immediately after saving. Keys are per-device (stripped
+      // from exports), so this is the first-run path on every new device.
       btn.disabled = false;
-      navigate('/settings');
+      showKeyPrompt();
       return;
     }
     btn.textContent = 'Explaining…';
@@ -290,6 +293,32 @@ function renderExplainSlot(text) {
       btn.textContent = '✨ Explain';
       btn.disabled = false;
     }
+  }
+
+  function showKeyPrompt() {
+    if (slot.querySelector('.explain-card')) return; // already open
+    btn.remove();
+    const input = el('input', { type: 'password', placeholder: 'sk-ant-…', autocomplete: 'off' });
+    const restore = () => { card.remove(); slot.append(btn); };
+    const card = el('div', { class: 'explain-card col' }, [
+      el('div', {}, 'Explain uses Claude, and this device has no API key yet — keys are stored per device and never leave it (exports strip them). The same key powers ✨ Auto-fill in the word popup.'),
+      el('div', { class: 'field' }, [el('label', {}, 'Anthropic API key'), input]),
+      el('div', { class: 'row' }, [
+        el('button', {
+          class: 'primary',
+          onclick: async () => {
+            const v = input.value.trim();
+            if (!v) { toast('Paste a key first'); return; }
+            app.settings = await data.saveSettings({ claudeApiKey: v });
+            restore();
+            run();
+          },
+        }, 'Save & explain'),
+        el('button', { class: 'ghost', onclick: restore }, 'Cancel'),
+      ]),
+    ]);
+    slot.append(card);
+    input.focus();
   }
 
   function show(result) {

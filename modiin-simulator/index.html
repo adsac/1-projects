@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<title>Modi'in — City Walk | מודיעין־מכבים־רעות</title>
+<meta name="description" content="Walk through a living miniature of Modi'in-Maccabim-Re'ut — from the Maccabees' hometown to Moshe Safdie's city of valleys.">
+<link rel="stylesheet" href="styles.css">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='80' font-size='80'>🕎</text></svg>">
+<script type="importmap">
+{ "imports": { "three": "./vendor/three.module.min.js" } }
+</script>
+</head>
+<body>
+<canvas id="scene"></canvas>
+
+<!-- ── Loading / title screen ─────────────────────────── -->
+<div id="intro" class="overlay">
+  <div class="intro-card">
+    <div class="intro-emblem">🕎</div>
+    <h1>Modi'in</h1>
+    <div class="intro-heb">מודיעין־מכבים־רעות</div>
+    <p class="intro-tag">City of the Maccabees · City of Valleys</p>
+    <p class="intro-desc">Walk a living miniature of Israel's first fully planned city of the modern era —
+      from 2,200-year-old ruins to Moshe Safdie's boulevards. Find the eight torches,
+      light the great hanukkiah, and learn the city's story along the way.</p>
+    <div id="intro-progress"><div id="intro-bar"></div></div>
+    <button id="start-btn" disabled>Preparing the hills…</button>
+    <div class="intro-keys">
+      <span><b>W A S D</b> walk</span><span><b>Mouse</b> look</span>
+      <span><b>Shift</b> run</span><span><b>E</b> read plaques</span>
+      <span><b>M</b> map</span><span><b>N</b> day/night</span>
+    </div>
+  </div>
+</div>
+
+<!-- ── HUD ────────────────────────────────────────────── -->
+<div id="hud" class="hidden">
+  <div id="compass"><div id="compass-strip"></div><div class="compass-notch"></div></div>
+
+  <div id="location-banner" class="hidden">
+    <div id="location-name"></div>
+    <div id="location-sub"></div>
+  </div>
+
+  <div id="torch-tracker" title="Torches of the relay">
+    <span id="torch-flames"></span>
+    <span id="torch-count"></span>
+  </div>
+
+  <div id="prompt" class="hidden"><b>E</b> <span id="prompt-text"></span></div>
+
+  <div id="minimap-wrap">
+    <canvas id="minimap" width="220" height="220"></canvas>
+    <div id="minimap-label">Modi'in</div>
+  </div>
+
+  <div id="hud-buttons">
+    <button id="btn-map" title="Full map (M)">🗺️</button>
+    <button id="btn-night" title="Day / night (N)">🌗</button>
+    <button id="btn-help" title="Help (H)">❓</button>
+  </div>
+
+  <div id="crosshair"></div>
+
+  <!-- touch controls -->
+  <div id="stick-zone"><div id="stick-base"><div id="stick-nub"></div></div></div>
+  <button id="touch-action" class="hidden">E</button>
+</div>
+
+<!-- ── Info card (plaques) ────────────────────────────── -->
+<div id="card" class="overlay hidden">
+  <div class="card-body">
+    <div class="card-kicker" id="card-kicker"></div>
+    <h2 id="card-title"></h2>
+    <div class="card-heb" id="card-heb"></div>
+    <div id="card-text"></div>
+    <div id="card-quiz" class="hidden">
+      <div class="quiz-q" id="quiz-q"></div>
+      <div class="quiz-answers" id="quiz-answers"></div>
+      <div class="quiz-result hidden" id="quiz-result"></div>
+    </div>
+    <button id="card-close">Continue walking ↵</button>
+  </div>
+</div>
+
+<!-- ── Full map ───────────────────────────────────────── -->
+<div id="bigmap-wrap" class="overlay hidden">
+  <div class="bigmap-card">
+    <h2>Modi'in-Maccabim-Re'ut <span class="bigmap-heb">מפת העיר</span></h2>
+    <canvas id="bigmap" width="900" height="700"></canvas>
+    <div class="bigmap-hint">Click anywhere to close · Gold dots are places worth visiting</div>
+  </div>
+</div>
+
+<!-- ── Toast ──────────────────────────────────────────── -->
+<div id="toast" class="hidden"></div>
+
+<script type="module" src="src/main.js"></script>
+</body>
+</html>

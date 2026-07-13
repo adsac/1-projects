@@ -1,512 +1,246 @@
-// ============================================================
-// main.js — Modi'in City Simulator entry point.
-// ============================================================
+// Modi'in City Walk — bootstrap & game loop.
 import * as THREE from 'three';
-import {
-  TRAFFIC_COUNT, STREETS, LANDMARKS,
-  SKY_DAY, SKY_DUSK, SKY_NIGHT, FOG_DAY, FOG_NIGHT,
-} from './config.js';
-import {
-  buildTerrain, buildRoads, buildBuildings,
-  buildLandmarks, buildProps, buildSky, buildHorizon,
-  lookupLocation, terrainHeight,
-} from './city.js';
-import {
-  loadOSM, buildOSMStreets, buildOSMBuildings,
-  buildOSMAreas, buildOSMRails, findByName,
-} from './osm.js';
-import { Player, ChaseCamera, InputState, makeCar } from './player.js';
-import { HUD } from './hud.js';
+import { World } from './world.js';
+import { City } from './city.js';
+import { Player } from './player.js';
+import { Hud } from './hud.js';
+import { buildLandmark, BUILDERS } from './landmarks.js';
+import { LANDMARKS, TORCHES, AMBIENT_FACTS, SPAWN } from './data/city-data.js';
 
-// ---------- Renderer / scene ----------
-const canvas = document.getElementById('game');
-const renderer = new THREE.WebGLRenderer({
-  canvas, antialias: true, powerPreference: 'high-performance',
-});
-renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
-renderer.setSize(window.innerWidth, window.innerHeight);
-renderer.outputColorSpace = THREE.SRGBColorSpace;
+const canvas = document.getElementById('scene');
+const renderer = new THREE.WebGLRenderer({ canvas, antialias: true });
+renderer.setPixelRatio(Math.min(devicePixelRatio, 2));
+renderer.setSize(innerWidth, innerHeight);
 renderer.shadowMap.enabled = true;
 renderer.shadowMap.type = THREE.PCFSoftShadowMap;
-renderer.toneMapping = THREE.ACESFilmicToneMapping;
-renderer.toneMappingExposure = 1.0;
+renderer.outputColorSpace = THREE.SRGBColorSpace;
 
 const scene = new THREE.Scene();
-scene.background = SKY_DAY.clone();
-scene.fog = new THREE.Fog(FOG_DAY.clone(), 250, 1400);
+const camera = new THREE.PerspectiveCamera(70, innerWidth / innerHeight, 0.1, 12000);
 
-const camera = new THREE.PerspectiveCamera(
-  65, window.innerWidth / window.innerHeight, 0.5, 4000
-);
-camera.position.set(0, 30, 60);
+const progress = p => { document.getElementById('intro-bar').style.width = (p * 100).toFixed(0) + '%'; };
 
-// ---------- Lights ----------
-const hemi = new THREE.HemisphereLight(0xcfe7ff, 0x8a7e5a, 0.55);
-scene.add(hemi);
+// build in stages so the loading bar moves
+const world = new World(scene, renderer);
+progress(0.25);
 
-const sun = new THREE.DirectionalLight(0xfff3d6, 1.6);
-sun.position.set(400, 700, 200);
-sun.castShadow = true;
-sun.shadow.mapSize.set(1024, 1024);                // was 2048 — quarter the pixels
-sun.shadow.camera.left = -220;
-sun.shadow.camera.right = 220;
-sun.shadow.camera.top = 220;
-sun.shadow.camera.bottom = -220;
-sun.shadow.camera.near = 1;
-sun.shadow.camera.far = 1500;
-sun.shadow.bias = -0.0005;
-scene.add(sun);
-scene.add(sun.target);
+const reserved = LANDMARKS.map(lm => ({ x: lm.x, z: lm.z, r: lm.clearR || 40 }));
+let city, player, hud;
+const landmarkGroups = new Map();
+const torches = TORCHES.map(t => ({ ...t, lit: false, group: null }));
+const markers = [];
+let hanukkiah = null;
 
-// ---------- Build world ----------
-const loadingEl = document.getElementById('loading');
-const loaderFill = document.querySelector('.loader-fill');
-const loaderHint = document.querySelector('.loader-hint');
+setTimeout(() => {
+  city = new City(scene, (x, z) => world.heightAt(x, z), reserved);
+  progress(0.65);
 
-function setLoader(pct, hint) {
-  loaderFill.style.width = pct + '%';
-  if (hint) loaderHint.textContent = hint;
+  setTimeout(() => {
+    const markerGeo = new THREE.OctahedronGeometry(0.9);
+    const markerMat = new THREE.MeshStandardMaterial({
+      color: '#f2b632', emissive: '#7a5408', roughness: 0.3, metalness: 0.7,
+    });
+    for (const lm of LANDMARKS) {
+      const g = buildLandmark(lm, (x, z) => world.heightAt(x, z));
+      scene.add(g);
+      landmarkGroups.set(lm.id, g);
+      if (lm.builder === 'hanukkiah') hanukkiah = g;
+      if (lm.collideR) city.colliders.push({ x: lm.x, z: lm.z, r: lm.collideR });
+      // floating golden plaque beacon so landmarks are spottable from afar
+      const mk = new THREE.Mesh(markerGeo, markerMat);
+      const my = world.heightAt(lm.x, lm.z);
+      mk.position.set(lm.x, my + 5.2, lm.z);
+      mk.userData.baseY = my + 5.2;
+      scene.add(mk);
+      markers.push(mk);
+    }
+    for (const t of torches) {
+      const g = new THREE.Group();
+      const y = world.heightAt(t.x, t.z);
+      g.position.set(t.x, y, t.z);
+      BUILDERS.torch(g);
+      scene.add(g);
+      t.group = g;
+    }
+    progress(0.9);
+
+    player = new Player(camera, canvas, (x, z) => world.heightAt(x, z));
+    player.place(SPAWN.x, SPAWN.z, SPAWN.yaw);
+    hud = new Hud();
+    progress(1);
+
+    const btn = document.getElementById('start-btn');
+    btn.disabled = false;
+    btn.textContent = 'Start walking';
+    btn.onclick = start;
+  }, 30);
+}, 30);
+
+function start() {
+  document.getElementById('intro').classList.add('display-none');
+  document.getElementById('intro').style.display = 'none';
+  document.getElementById('hud').classList.remove('hidden');
+  player.enabled = true;
+  if (!document.body.classList.contains('touch')) canvas.requestPointerLock?.();
+  hud.toast(`Welcome to Modi'in! Follow the <span class="toast-gold">orange dots</span> on your minimap to find the 8 relay torches. Walk up to golden plaques to learn the city's story.`, 7000);
 }
 
-const labels = [];
-const sky = buildSky(scene);
-const horizon = buildHorizon(scene);
+// ── interactions ──────────────────────────────────────
+let nearLandmark = null, nearTorch = null;
 
-// Starfield (visible only at night via opacity).
-const starGeo = new THREE.BufferGeometry();
-const starPositions = new Float32Array(2400 * 3);
-for (let i = 0; i < 2400; i++) {
-  const phi = Math.random() * Math.PI * 2;
-  const theta = Math.acos(1 - Math.random() * 0.9);           // upper hemisphere
-  const r = 2800;
-  starPositions[i * 3    ] = r * Math.sin(theta) * Math.cos(phi);
-  starPositions[i * 3 + 1] = r * Math.cos(theta);
-  starPositions[i * 3 + 2] = r * Math.sin(theta) * Math.sin(phi);
+function checkProximity() {
+  nearLandmark = null; nearTorch = null;
+  const p = player.pos;
+  for (const t of torches) {
+    if (!t.lit && Math.hypot(p.x - t.x, p.z - t.z) < 6) { nearTorch = t; break; }
+  }
+  if (!nearTorch) {
+    let best = 1e9;
+    for (const lm of LANDMARKS) {
+      const d = Math.hypot(p.x - lm.x, p.z - lm.z);
+      if (d < (lm.triggerR || 30) && d < best) { best = d; nearLandmark = lm; }
+    }
+  }
+  if (hud.cardOpen) { hud.hidePrompt(); return; }
+  if (nearTorch) hud.showPrompt('Light the torch');
+  else if (nearLandmark) hud.showPrompt(nearLandmark.prompt || `About: ${nearLandmark.name}`);
+  else hud.hidePrompt();
 }
-starGeo.setAttribute('position', new THREE.BufferAttribute(starPositions, 3));
-const starMat = new THREE.PointsMaterial({
-  color: 0xffffff, size: 3.5, sizeAttenuation: true, transparent: true, opacity: 0,
+
+function interact() {
+  if (hud.cardOpen) { hud.hideCard(); return; }
+  if (nearTorch) return lightTorch(nearTorch);
+  if (nearLandmark) {
+    if (document.pointerLockElement) document.exitPointerLock();
+    hud.showCard(nearLandmark, () => {
+      if (player.enabled && !document.body.classList.contains('touch')) canvas.requestPointerLock?.();
+    });
+  }
+}
+
+function lightTorch(t) {
+  t.lit = true;
+  const flame = t.group.getObjectByName('flame');
+  const glow = t.group.getObjectByName('glow');
+  if (glow) glow.intensity = 2.2;
+  if (flame) flame.material.color.set('#ffd23a');
+  hud.torchesLit = torches.filter(x => x.lit).length;
+  hud.updateTorches();
+  const left = torches.length - hud.torchesLit;
+  if (left > 0) {
+    hud.toast(`🔥 Torch lit! <span class="toast-gold">${t.hint || ''}</span> ${left} to go.`, 5200);
+    // also light the matching hanukkiah candle
+    lightCandles(hud.torchesLit);
+  } else {
+    lightCandles(9);
+    hud.toast(`🕎 <span class="toast-gold">All eight torches are lit!</span> The great hanukkiah at Mount Titora is burning — just like the relay that has run from Modi'in toward Jerusalem every Hanukkah since 1944. You know this city now!`, 12000);
+  }
+}
+
+function lightCandles(n) {
+  if (!hanukkiah) return;
+  // candle0..candle8, skip shamash (candle4 = centre) until the end
+  const order = [0, 1, 2, 3, 5, 6, 7, 8];
+  for (let i = 0; i < Math.min(n, 8); i++) {
+    const c = hanukkiah.getObjectByName('candle' + order[i]);
+    if (c) c.visible = true;
+  }
+  if (n >= 9) {
+    const sh = hanukkiah.getObjectByName('candle4');
+    if (sh) sh.visible = true;
+  }
+}
+
+// ── input wiring ──────────────────────────────────────
+addEventListener('keydown', e => {
+  if (!player?.enabled && !hud) return;
+  if (e.code === 'KeyE' || e.code === 'Enter') interact();
+  if (e.code === 'Escape' && hud?.cardOpen) hud.hideCard();
+  if (e.code === 'KeyN') toggleNight();
+  if (e.code === 'KeyM') hud?.mapOpen ? hud.hideMap() : (player && hud.showMap(player.pos.x, player.pos.z));
+  if (e.code === 'KeyH') showHelp();
 });
-const stars = new THREE.Points(starGeo, starMat);
-scene.add(stars);
+document.getElementById('card-close').addEventListener('click', () => hud.hideCard());
+document.getElementById('btn-night').addEventListener('click', toggleNight);
+document.getElementById('btn-map').addEventListener('click', () => hud.mapOpen ? hud.hideMap() : hud.showMap(player.pos.x, player.pos.z));
+document.getElementById('btn-help').addEventListener('click', showHelp);
+document.getElementById('touch-action').addEventListener('click', interact);
 
-await nextFrame();
-
-setLoader(10, 'Loading OpenStreetMap…');
-const osm = await loadOSM('data/osm.json');
-await nextFrame();
-
-setLoader(20, 'Sculpting terrain…');
-buildTerrain(scene);
-await nextFrame();
-
-const waterMeshes = [];
-let lamps;
-if (osm) {
-  setLoader(35, 'Drawing OSM parks & water…');
-  buildOSMAreas(scene, osm);
-  await nextFrame();
-
-  setLoader(50, 'Paving OSM streets…');
-  buildOSMStreets(scene, osm);
-  await nextFrame();
-
-  setLoader(65, 'Laying railway…');
-  buildOSMRails(scene, osm);
-  await nextFrame();
-
-  setLoader(80, 'Raising OSM buildings…');
-  buildOSMBuildings(scene, osm);
-  await nextFrame();
-
-  setLoader(88, 'Placing labeled landmarks…');
-  // Labels only — the building geometry is already from OSM.
-  buildLandmarks(scene, labels, waterMeshes, { labelsOnly: true, locateFromOSM: osm });
-  await nextFrame();
-
-  setLoader(93, 'Planting trees…');
-  ({ lamps } = buildProps(scene, { skipStreetProps: true }));
-} else {
-  setLoader(30, 'Paving procedural streets…');
-  buildRoads(scene);
-  await nextFrame();
-
-  setLoader(55, 'Raising apartments…');
-  buildBuildings(scene);
-  await nextFrame();
-
-  setLoader(75, 'Placing landmarks & Anabe Park…');
-  buildLandmarks(scene, labels, waterMeshes);
-  await nextFrame();
-
-  setLoader(90, 'Planting trees…');
-  ({ lamps } = buildProps(scene));
-}
-await nextFrame();
-
-// ---------- Player ----------
-setLoader(95, 'Starting engine…');
-const player = new Player(scene);
-const chaseCam = new ChaseCamera(camera);
-const input = new InputState();
-
-// Respawn near "Dam HaMaccabim" if OSM data has it.
-if (osm) {
-  const spawnSpot = findByName(osm, "המכבים", "Maccabim Blvd", "Dam HaMaccabim", "דרך המכבים");
-  if (spawnSpot) {
-    player.object.position.set(spawnSpot.x, 0, spawnSpot.z);
-    player.heading = Math.PI / 2;
-    player.object.rotation.y = player.heading;
-    console.log('[spawn] snapped to Dam HaMaccabim:', spawnSpot);
+function toggleNight() {
+  world.setNight(!world.night);
+  city?.setNight(world.night);
+  for (const t of torches) if (!t.lit) {
+    const glow = t.group.getObjectByName('glow');
+    if (glow) glow.intensity = world.night ? 0.6 : 0;
   }
+  hud?.toast(world.night
+    ? '🌙 Night over the Judean foothills. Watch the windows light up — and look up: you can still see stars here.'
+    : '☀️ Morning light on Jerusalem stone. Modi\'in gets ~290 sunny days a year.');
 }
 
-// ---------- NPC traffic (drive along street polylines) ----------
-const traffic = [];
-function pathTotalLen(p) {
-  let s = 0;
-  for (let i = 0; i < p.length - 1; i++) s += Math.hypot(p[i+1][0]-p[i][0], p[i+1][1]-p[i][1]);
-  return s;
-}
-function sampleStreet(path, dist) {
-  let rem = dist;
-  for (let i = 0; i < path.length - 1; i++) {
-    const [ax, az] = path[i], [bx, bz] = path[i + 1];
-    const L = Math.hypot(bx - ax, bz - az);
-    if (rem <= L) {
-      const t = rem / L;
-      return {
-        x: ax + (bx - ax) * t,
-        z: az + (bz - az) * t,
-        tx: (bx - ax) / L,
-        tz: (bz - az) / L,
-      };
-    }
-    rem -= L;
-  }
-  const last = path[path.length - 1];
-  return { x: last[0], z: last[1], tx: 1, tz: 0 };
-}
-// Use OSM streets as the traffic network if available.
-const streetSource = osm ? osm.streets : STREETS;
-const driveStreets = streetSource
-  .filter(s => s.path && s.path.length >= 2)
-  .filter(s => !['highway','service'].includes(s.type) || Math.random() < 0.3)
-  .filter(s => pathTotalLen(s.path) > 40)
-  .map(s => ({ street: s, length: pathTotalLen(s.path) }));
-
-function spawnTraffic() {
-  const palette = [0x2b78b0, 0x2d8b55, 0xe1a227, 0xc44545, 0x8a61c6, 0x3c3c3c, 0xd4c9b8, 0xeaeaea];
-  for (let i = 0; i < TRAFFIC_COUNT; i++) {
-    const ds = driveStreets[Math.floor(Math.random() * driveStreets.length)];
-    const dir = Math.random() < 0.5 ? 1 : -1;
-    const dist = Math.random() * ds.length;
-    const lateral = (Math.random() < 0.5 ? -1 : 1) * ds.street.width * 0.22;
-    const speed = (ds.street.type === 'highway' ? 18 : ds.street.type === 'spine' ? 12 : 8) + Math.random() * 4;
-    const car = makeCar(palette[i % palette.length]);
-    const s = sampleStreet(ds.street.path, dist);
-    const nx = -s.tz, nz = s.tx;
-    car.position.set(s.x + nx * lateral, Math.max(0, terrainHeight(s.x, s.z)), s.z + nz * lateral);
-    car.userData.ai = { ds, dir, dist, speed, lateral };
-    scene.add(car);
-    traffic.push(car);
-  }
-}
-spawnTraffic();
-
-function updateTraffic(dt) {
-  for (const car of traffic) {
-    const ai = car.userData.ai;
-    ai.dist += ai.speed * ai.dir * dt;
-    // Bounce at ends
-    if (ai.dist < 0)           { ai.dist = 0; ai.dir = 1; car.rotation.y += Math.PI; }
-    else if (ai.dist > ai.ds.length) { ai.dist = ai.ds.length; ai.dir = -1; car.rotation.y += Math.PI; }
-    const s = sampleStreet(ai.ds.street.path, ai.dist);
-    const nx = -s.tz, nz = s.tx;
-    const x = s.x + nx * ai.lateral;
-    const z = s.z + nz * ai.lateral;
-    car.position.set(x, Math.max(0, terrainHeight(x, z)), z);
-    const tx = s.tx * ai.dir, tz = s.tz * ai.dir;
-    car.rotation.y = Math.atan2(tx, tz);
-  }
-}
-
-// ---------- HUD ----------
-const hud = new HUD();
-
-// ---------- Tour: visit every landmark to complete ----------
-const TOUR_TARGETS = LANDMARKS.filter(
-  lm => lm.type !== 'distant' && lm.type !== 'suburb' && lm.type !== 'gateway'
-);
-const visited = new Set();
-hud.setTour(0, TOUR_TARGETS.length);
-
-function checkTour() {
-  const p = player.object.position;
-  for (const lm of TOUR_TARGETS) {
-    if (visited.has(lm.key)) continue;
-    const d = Math.hypot(p.x - lm.pos[0], p.z - lm.pos[1]);
-    const radius = Math.max(lm.size[0], lm.size[1]) * 0.5 + 30;
-    if (d < radius) {
-      visited.add(lm.key);
-      hud.setTour(visited.size, TOUR_TARGETS.length);
-      playChime();
-      if (visited.size === TOUR_TARGETS.length) {
-        hud.showNotice(`🏆 Tour complete! You've seen every landmark in Modi'in.`);
-      } else {
-        hud.showNotice(`★ ${lm.name} visited (${visited.size}/${TOUR_TARGETS.length})`);
-      }
-    }
-  }
-}
-
-function playChime() {
-  ensureAudio();
-  const t = audioCtx.currentTime;
-  [880, 1320].forEach((f, i) => {
-    const osc = audioCtx.createOscillator();
-    const g = audioCtx.createGain();
-    osc.type = 'sine';
-    osc.frequency.setValueAtTime(f, t + i * 0.14);
-    g.gain.setValueAtTime(0.0001, t + i * 0.14);
-    g.gain.exponentialRampToValueAtTime(0.18, t + i * 0.14 + 0.02);
-    g.gain.exponentialRampToValueAtTime(0.0001, t + i * 0.14 + 0.4);
-    osc.connect(g).connect(audioCtx.destination);
-    osc.start(t + i * 0.14);
-    osc.stop(t + i * 0.14 + 0.45);
+function showHelp() {
+  hud.showCard({
+    id: '_help', kicker: 'How to explore', name: 'Walking guide', heb: 'מדריך',
+    info: `<p><b>Move</b> with WASD or arrow keys (hold <b>Shift</b> to run). Look around with the mouse — click the view to capture it, <b>Esc</b> to release.</p>
+    <p><b>E</b> reads plaques and lights torches. <b>M</b> opens the city map, <b>N</b> flips day and night.</p>
+    <p>On touch screens: left thumb = joystick, right thumb = look, gold button = interact.</p>
+    <p class="fact">Your quest: find the <b>8 relay torches</b> (orange dots on the minimap) scattered at the city's most storied spots. Each one lights a candle on the great hanukkiah on Mount Titora.</p>`,
   });
 }
 
-// ---------- Day / Night ----------
-let timeOfDay = 9.5;       // hours, 0..24
-let dayPaused = false;
-let nightOverride = null;  // forced night toggle
+// ambient educational toasts while wandering
+let factIdx = 0, factTimer = 0;
 
-const sunOffset = new THREE.Vector3(400, 700, 200);
-
-function updateDayNight(dt) {
-  if (!dayPaused) timeOfDay = (timeOfDay + dt * (24 / 300)) % 24; // full day every 5 min
-  const t = nightOverride !== null ? nightOverride : timeOfDay;
-
-  // Sun angle (stored as an offset from the player; applied in the loop)
-  const sunT = ((t - 6) / 12) * Math.PI;          // sunrise 6, sunset 18
-  sunOffset.set(Math.cos(sunT) * 800, Math.sin(sunT) * 800, 200);
-
-  const isDay = t > 6 && t < 18;
-  const isDusk = (t >= 18 && t < 19.5) || (t >= 5 && t < 6.5);
-
-  let sunInt = 0, hemiInt = 0.12;
-  let skyCol, fogCol;
-
-  if (isDay) {
-    const mid = Math.sin(((t - 6) / 12) * Math.PI);
-    sunInt = 0.6 + mid * 1.2;
-    hemiInt = 0.35 + mid * 0.3;
-    skyCol = SKY_DAY.clone().lerp(SKY_DUSK, (1 - mid) * 0.4);
-    fogCol = FOG_DAY;
-  } else if (isDusk) {
-    sunInt = 0.4;
-    hemiInt = 0.22;
-    skyCol = SKY_DUSK.clone();
-    fogCol = SKY_DUSK.clone().lerp(FOG_NIGHT, 0.4);
-  } else {
-    sunInt = 0.05;
-    hemiInt = 0.12;
-    skyCol = SKY_NIGHT.clone();
-    fogCol = FOG_NIGHT.clone();
-  }
-  sun.intensity = sunInt;
-  hemi.intensity = hemiInt;
-
-  sky.material.color.copy(skyCol);
-  scene.background.copy(skyCol);
-  scene.fog.color.copy(fogCol);
-
-  // Stars fade in on the way to night.
-  starMat.opacity = isDay ? 0 : isDusk ? 0.25 : 0.95;
-  stars.position.set(player.object.position.x, 0, player.object.position.z);
-  horizon.position.set(player.object.position.x, 0, player.object.position.z);
-
-  // Street-lamp glow
-  const lampOn = !isDay && !isDusk;
-  const emiss = lampOn ? 1.6 : 0;
-  for (const l of lamps.children) {
-    const bulb = l.userData.bulb;
-    if (bulb) bulb.material.emissiveIntensity = emiss;
-  }
-
-  // Player headlights auto
-  player.setHeadlights(!isDay);
-
-  // Clock + label
-  let tod = 'Day';
-  if (!isDay && !isDusk) tod = 'Night';
-  else if (isDusk) tod = t < 12 ? 'Dawn' : 'Dusk';
-  hud.setClock(t, tod);
-}
-
-// ---------- Camera controls ----------
-let pendingCameraCycle = false;
-let pendingAerialToggle = false;
-window.addEventListener('keydown', (e) => {
-  if (e.code === 'KeyC') pendingCameraCycle = true;
-  if (e.code === 'KeyV') pendingAerialToggle = true;
-  if (e.code === 'KeyH') {
-    hud.triggerHorn();
-    playHorn();
-  }
-  if (e.code === 'KeyN') {
-    nightOverride = nightOverride === null ? 0 : null;
-    hud.showNotice(nightOverride !== null ? '🌙 Night mode' : '☀️ Day cycle resumed');
-  }
-  if (e.code === 'KeyR') {
-    player.respawn();
-    hud.showNotice('↺ Respawned at Azrieli Mall');
-  }
-  if (e.code === 'KeyM') {
-    minimapVisible = !minimapVisible;
-    hud.setMinimapVisible(minimapVisible);
-  }
-  if (e.code === 'KeyP') dayPaused = !dayPaused;
-});
-let minimapVisible = true;
-
-// ---------- Horn (WebAudio) ----------
-let audioCtx = null;
-function ensureAudio() {
-  if (!audioCtx) audioCtx = new (window.AudioContext || window.webkitAudioContext)();
-}
-function playHorn() {
-  ensureAudio();
-  const now = audioCtx.currentTime;
-  const osc = audioCtx.createOscillator();
-  const gain = audioCtx.createGain();
-  osc.type = 'square';
-  osc.frequency.setValueAtTime(440, now);
-  osc.frequency.exponentialRampToValueAtTime(330, now + 0.25);
-  gain.gain.setValueAtTime(0.0001, now);
-  gain.gain.exponentialRampToValueAtTime(0.25, now + 0.02);
-  gain.gain.exponentialRampToValueAtTime(0.0001, now + 0.3);
-  osc.connect(gain).connect(audioCtx.destination);
-  osc.start(now);
-  osc.stop(now + 0.32);
-}
-
-// Engine sound (continuous) — simple pitch-by-speed sawtooth.
-let engineOsc = null, engineGain = null;
-function startEngine() {
-  ensureAudio();
-  engineOsc = audioCtx.createOscillator();
-  engineGain = audioCtx.createGain();
-  engineOsc.type = 'sawtooth';
-  engineOsc.frequency.value = 60;
-  engineGain.gain.value = 0.0;
-  const filter = audioCtx.createBiquadFilter();
-  filter.type = 'lowpass';
-  filter.frequency.value = 700;
-  engineOsc.connect(filter).connect(engineGain).connect(audioCtx.destination);
-  engineOsc.start();
-}
-function updateEngine() {
-  if (!engineOsc) return;
-  const speed = Math.abs(player.velocity);
-  const target = 55 + speed * 6;
-  engineOsc.frequency.setTargetAtTime(target, audioCtx.currentTime, 0.12);
-  engineGain.gain.setTargetAtTime(0.025 + Math.min(0.05, speed * 0.003), audioCtx.currentTime, 0.2);
-}
-// Start engine on first interaction
-window.addEventListener('keydown', () => { if (!engineOsc) startEngine(); }, { once: true });
-window.addEventListener('click', () => { if (!engineOsc) startEngine(); }, { once: true });
-
-// ---------- Label billboards ----------
-function updateLabels(dt) {
-  const camPos = camera.position;
-  for (const l of labels) {
-    const d = camPos.distanceTo(l.pos);
-    // Fade out when far, bob slightly
-    l.sprite.position.y = l.baseY + Math.sin(performance.now() * 0.001 + l.pos.x) * 0.35;
-    l.sprite.material.opacity = d < 300 ? Math.min(1, (300 - d) / 80) : 0;
-    l.sprite.visible = d < 320;
-  }
-}
-
-// ---------- Main loop ----------
-let last = performance.now();
-function loop() {
-  const now = performance.now();
-  const dt = Math.min(0.05, (now - last) / 1000);
-  last = now;
-
-  if (pendingCameraCycle) {
-    player.cameraMode = (player.cameraMode + 1) % 5;
-    pendingCameraCycle = false;
-    const modes = ['Chase', 'Cockpit', 'Top-down', 'Hood', 'Aerial'];
-    hud.showNotice(`📷 ${modes[player.cameraMode]} camera`);
-  }
-  if (pendingAerialToggle) {
-    pendingAerialToggle = false;
-    player.cameraMode = player.cameraMode === 4 ? 0 : 4;
-    const modes = ['Chase', 'Cockpit', 'Top-down', 'Hood', 'Aerial'];
-    hud.showNotice(`📷 ${modes[player.cameraMode]} camera`);
-  }
-
-  player.update(dt, input);
-  updateTraffic(dt);
-  chaseCam.update(dt, player);
-  updateDayNight(dt);
-
-  // Keep the directional light's shadow frustum centered on the player.
-  const px = player.object.position.x;
-  const pz = player.object.position.z;
-  sun.position.set(px + sunOffset.x, sunOffset.y, pz + sunOffset.z);
-  sun.target.position.set(px, 0, pz);
-  sun.target.updateMatrixWorld();
-  updateLabels(dt);
-  updateEngine();
-  updateWater();
-
-  const info = lookupLocation(player.object.position.x, player.object.position.z);
-  hud.setLocation(info);
-  hud.setSpeed(player.speedKmh, player.isReverse);
-  hud.setCompass(player.heading);
-  hud.tick(dt);
-  hud.drawMinimap(player.object.position.x, player.object.position.z, player.heading, traffic);
-  checkTour();
-
-  renderer.render(scene, camera);
-  requestAnimationFrame(loop);
-}
-
-// ---------- Resize ----------
-window.addEventListener('resize', () => {
-  camera.aspect = window.innerWidth / window.innerHeight;
+// ── resize & loop ─────────────────────────────────────
+addEventListener('resize', () => {
+  camera.aspect = innerWidth / innerHeight;
   camera.updateProjectionMatrix();
-  renderer.setSize(window.innerWidth, window.innerHeight);
+  renderer.setSize(innerWidth, innerHeight);
 });
 
-// ---------- Kick off ----------
-setLoader(100, 'Welcome to Modi\'in!');
-await sleep(400);
-loadingEl.classList.add('hidden');
-hud.reveal();
-hud.showNotice('ברוכים הבאים למודיעין! · Welcome to Modi\'in!\nDrive with WASD — explore the city.');
-last = performance.now();
-requestAnimationFrame(loop);
+// dev helpers: jump anywhere / inspect state from the console
+window.__teleport = (x, z, yaw = 0) => player?.place(x, z, yaw);
+window.__dbg = () => ({
+  pos: player && { x: +player.pos.x.toFixed(1), z: +player.pos.z.toFixed(1) },
+  keys: player && [...player.keys],
+  enabled: player?.enabled,
+});
 
-function updateWater() {
-  const t = performance.now() * 0.001;
-  for (const m of waterMeshes) {
-    const pos = m.geometry.attributes.position;
-    const base = m.userData.basePos;
-    for (let i = 0; i < pos.count; i++) {
-      const x = base[i * 3    ];
-      const y = base[i * 3 + 1];
-      // Z of the geometry lies along the Y axis after rotateX - use base values.
-      pos.setZ(i, Math.sin(x * 0.06 + t * 1.6) * 0.12 + Math.cos(y * 0.05 - t * 1.1) * 0.12);
+const clock = new THREE.Clock();
+let frame = 0;
+function loop() {
+  requestAnimationFrame(loop);
+  const dt = Math.min(0.12, clock.getDelta());
+  if (player) {
+    player.update(dt);
+    if (city) city.collide(player.pos);
+    world.update(dt, player.pos);
+    if (player.enabled && hud) {
+      checkProximity();
+      hud.updateCompass(player.headingDeg());
+      if (frame % 3 === 0) hud.updateDistrict(player.pos.x, player.pos.z);
+      if (frame % 6 === 0) hud.drawMinimap(player.pos.x, player.pos.z, player.headingDeg(), torches);
+      factTimer += dt * 3;
+      if (factTimer > 75 && !hud.cardOpen && AMBIENT_FACTS.length) {
+        factTimer = 0;
+        hud.toast('💡 ' + AMBIENT_FACTS[factIdx % AMBIENT_FACTS.length], 8000);
+        factIdx++;
+      }
     }
-    pos.needsUpdate = true;
+    // animate torch flames & plaque beacons
+    if (frame % 2 === 0) {
+      const tNow = clock.elapsedTime;
+      for (const mk of markers) {
+        mk.rotation.y = tNow * 1.4;
+        mk.position.y = mk.userData.baseY + Math.sin(tNow * 2 + mk.position.x) * 0.35;
+      }
+      for (const t of torches) {
+        const f = t.group?.getObjectByName('flame');
+        if (f && t.lit) { const s = 1 + Math.sin(tNow * 9 + t.x) * 0.18; f.scale.set(s, 1 + Math.sin(tNow * 7 + t.z) * 0.25, s); }
+      }
+    }
   }
+  renderer.render(scene, camera);
+  frame++;
 }
-
-function nextFrame() { return new Promise(r => requestAnimationFrame(() => r())); }
-function sleep(ms) { return new Promise(r => setTimeout(r, ms)); }
+loop();

@@ -46,7 +46,7 @@ async function init() {
   const heightAt = (x, z) => (rawHeight(x, z) - base) * EXAGGERATION;
   progress(0.5);
 
-  world = new World(scene, heightAt);
+  world = new World(scene, heightAt, LOW);
   await frame();
   progress(0.62);
 
@@ -138,8 +138,11 @@ function start() {
   document.getElementById('intro').style.display = 'none';
   document.getElementById('hud').classList.remove('hidden');
   player.enabled = true;
-  if (!document.body.classList.contains('touch')) canvas.requestPointerLock?.();
-  hud.toast(`Welcome to the real Modi'in — every street here is mapped from the actual city. Follow the <span class="toast-gold">orange dots</span> to the 8 relay torches, and read the golden plaques along the way.`, 8000);
+  const touch = document.body.classList.contains('touch');
+  if (!touch) canvas.requestPointerLock?.();
+  hud.toast(touch
+    ? `Drag the <span class="toast-gold">WALK pad</span> (bottom-left) to move — push far to run. Drag the right side of the screen to look around. Follow the orange dots to the 8 torches!`
+    : `Welcome to the real Modi'in — every street here is mapped from the actual city. Follow the <span class="toast-gold">orange dots</span> to the 8 relay torches, and read the golden plaques along the way.`, 9000);
 }
 
 // ── interactions ──────────────────────────────────────
@@ -258,11 +261,31 @@ window.__dbg = () => ({
   keys: player && [...player.keys], enabled: player?.enabled,
 });
 
+// adaptive resolution: if a weak GPU can't hold ~20 fps, step the render scale down
+let perfAccum = 0, perfFrames = 0, perfTier = 0;
+function perfCheck(dt) {
+  perfAccum += dt; perfFrames++;
+  if (perfFrames < 120) return;
+  const avg = perfAccum / perfFrames;
+  perfAccum = 0; perfFrames = 0;
+  if (avg > 0.055 && perfTier === 0) {
+    perfTier = 1;
+    renderer.setPixelRatio(1);
+    renderer.setSize(innerWidth, innerHeight);
+  } else if (avg > 0.07 && perfTier === 1) {
+    perfTier = 2;
+    renderer.setPixelRatio(0.8);
+    renderer.setSize(innerWidth, innerHeight);
+    if (scene.fog) { scene.fog.near = 400; scene.fog.far = 2600; }
+  }
+}
+
 const clock = new THREE.Clock();
 let frameNo = 0;
 function loop() {
   requestAnimationFrame(loop);
   const dt = Math.min(0.12, clock.getDelta());
+  if (player?.enabled) perfCheck(dt);
   if (player && world) {
     player.update(dt);
     if (city) city.collide(player.pos);

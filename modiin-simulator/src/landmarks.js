@@ -54,6 +54,22 @@ function hebrewSign(g, text, w, h, x, y, z, opts = {}) {
 
 export const BUILDERS = {
 
+  // ── Bilingual landmark sign: stone plinth + panel, for real mapped buildings ──
+  sign(g, def) {
+    box(g, M.stoneDark, 2.6, 1.0, 0.8, 0, 0, 0);
+    cyl(g, M.steel, 0.09, 0.09, 2.6, -0.9, 1.0, 0, 6);
+    cyl(g, M.steel, 0.09, 0.09, 2.6, 0.9, 1.0, 0, 6);
+    hebrewSign(g, def?.heb || '', 4.6, 1.1, 0, 3.1, 0.06, { bg: '#173a5e' });
+    hebrewSign(g, def?.name || '', 4.6, 0.7, 0, 2.2, 0.06, { bg: '#ffffff', fg: '#173a5e', fs: 0.5 });
+    // small olive by the sign
+    const trunk = new THREE.Mesh(new THREE.CylinderGeometry(0.14, 0.22, 1.1, 6), M.wood);
+    trunk.position.set(2.2, 0.55, 0);
+    const crown = new THREE.Mesh(new THREE.IcosahedronGeometry(0.9, 1),
+      new THREE.MeshLambertMaterial({ color: '#7c8f66' }));
+    crown.position.set(2.2, 1.7, 0); crown.scale.y = 0.75;
+    g.add(trunk, crown);
+  },
+
   // ── Modi'in Merkaz railway station: sweeping twin steel arches over a
   //    glazed hall; the platforms are deep underground ─────────────────────
   station(g) {
@@ -83,6 +99,11 @@ export const BUILDERS = {
     box(g, M.dark, 10, 0.4, 14, -22, 0, -14);
     box(g, M.stoneDark, 1.2, 1.2, 14, -27.5, 0, -14);
     box(g, M.stoneDark, 1.2, 1.2, 14, -16.5, 0, -14);
+    // plaza menorah
+    const men = new THREE.Group();
+    men.position.set(30, 0, 22);
+    BUILDERS.menorah(men);
+    g.add(men);
   },
 
   // ── Azrieli Modi'in mall — beige block, curved glass entry, roof sign ──
@@ -239,6 +260,11 @@ export const BUILDERS = {
 
   // ── Umm el-Umdan: ancient village & one of the oldest synagogues ──────
   ruins(g) {
+    // excavation terrace so the walls sit proud of the hillside
+    const dig = new THREE.Mesh(new THREE.BoxGeometry(46, 1.6, 34),
+      new THREE.MeshLambertMaterial({ color: '#cbb98f' }));
+    dig.position.y = -0.85; dig.receiveShadow = true;
+    g.add(dig);
     const wall = (w, d, x, z, ry = 0, h = 1.1) => {
       const m = box(g, M.ancient, w, h, 0.8, x, 0, z, ry);
       m.position.y = h / 2;
@@ -411,13 +437,33 @@ export const BUILDERS = {
   },
 };
 
-// Build a landmark group; returns { group, colliders }
+// The big free-standing menorah on the station plaza
+BUILDERS.menorah = function (g) {
+  const mat = new THREE.MeshStandardMaterial({ color: '#c89b3c', roughness: 0.35, metalness: 0.85 });
+  const s = 3.2;
+  cyl(g, mat, 0.1 * s, 0.16 * s, 1.6 * s, 0, 0, 0, 10);
+  cyl(g, mat, 0.45 * s, 0.6 * s, 0.2 * s, 0, 0, 0, 12);
+  for (let i = -4; i <= 4; i++) {
+    if (i !== 0) {
+      const arm = new THREE.Mesh(new THREE.CylinderGeometry(0.05 * s, 0.05 * s, Math.abs(i) * 0.24 * s, 8), mat);
+      arm.rotation.z = Math.PI / 2;
+      arm.position.set(i * 0.12 * s, 1.6 * s, 0);
+      g.add(arm);
+    }
+    const up = new THREE.Mesh(new THREE.CylinderGeometry(0.05 * s, 0.05 * s, 0.5 * s, 8), mat);
+    up.position.set(i * 0.24 * s, 1.6 * s + 0.25 * s + (i === 0 ? 0.15 * s : 0), 0);
+    g.add(up);
+  }
+  g.traverse(o => { if (o.isMesh) o.castShadow = true; });
+};
+
+// Build a landmark group at terrain height
 export function buildLandmark(def, heightAt) {
   const g = new THREE.Group();
   const y = heightAt(def.x, def.z);
   g.position.set(def.x, y, def.z);
   g.rotation.y = THREE.MathUtils.degToRad(def.yaw || 0);
   const builder = BUILDERS[def.builder];
-  if (builder) builder(g);
+  if (builder) builder(g, def);
   return g;
 }

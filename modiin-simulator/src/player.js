@@ -2,15 +2,16 @@
 import * as THREE from 'three';
 
 const EYE = 1.7;          // eye height above ground (m)
-const WALK = 9;           // brisk walk for a city this size
-const RUN = 22;
 const TOUCH_LOOK = 0.0042;
 
 export class Player {
-  constructor(camera, canvas, heightAt) {
+  constructor(camera, canvas, heightAt, opts = {}) {
     this.camera = camera;
     this.canvas = canvas;
     this.heightAt = heightAt;
+    this.bound = opts.bound || 1180;
+    this.walkSpeed = opts.walk || 9;
+    this.runSpeed = opts.run || 22;
     this.pos = new THREE.Vector3(0, 0, 0);
     this.yaw = 0;           // radians, 0 = facing -Z (north)
     this.pitch = 0;
@@ -127,8 +128,9 @@ export class Player {
     if (this.keys.has('KeyD') || this.keys.has('ArrowRight')) strafe += 1;
     if (this.stick.active) { fwd -= this.stick.y; strafe += this.stick.x; }
 
-    const running = this.keys.has('ShiftLeft') || this.keys.has('ShiftRight');
-    const speed = running ? RUN : WALK;
+    const running = this.keys.has('ShiftLeft') || this.keys.has('ShiftRight')
+      || (this.stick.active && Math.hypot(this.stick.x, this.stick.y) > 0.92);  // full stick = run
+    const speed = running ? this.runSpeed : this.walkSpeed;
     const len = Math.hypot(fwd, strafe);
     if (len > 1) { fwd /= len; strafe /= len; }
 
@@ -143,7 +145,7 @@ export class Player {
     this.pos.z += this._vel.z * dt;
 
     // keep inside world bounds
-    const B = 1180;
+    const B = this.bound;
     this.pos.x = THREE.MathUtils.clamp(this.pos.x, -B, B);
     this.pos.z = THREE.MathUtils.clamp(this.pos.z, -B, B);
 

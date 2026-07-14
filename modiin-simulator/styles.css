@@ -12,7 +12,9 @@
 }
 * { margin: 0; padding: 0; box-sizing: border-box; }
 html, body { width: 100%; height: 100%; overflow: hidden; background: #0d0f14; color: var(--ink); }
-#scene { position: fixed; inset: 0; width: 100%; height: 100%; display: block; }
+body { -webkit-user-select: none; user-select: none; -webkit-touch-callout: none; overscroll-behavior: none; }
+#scene { position: fixed; inset: 0; width: 100%; height: 100%; display: block; touch-action: none; }
+#hud, #stick-zone, #stick-base, #touch-action { touch-action: none; }
 .hidden { display: none !important; }
 
 .overlay { position: fixed; inset: 0; z-index: 40; display: flex; align-items: center; justify-content: center; }
@@ -96,18 +98,26 @@ body.touch #hud-buttons button { width: 54px; height: 54px; font-size: 23px; }
 }
 
 /* touch */
-#stick-zone { position: absolute; left: 0; bottom: 0; width: 45%; height: 55%; pointer-events: none; }
+#stick-zone { position: absolute; left: 0; bottom: 0; width: 48%; height: 60%; pointer-events: none; }
 #stick-base {
-  position: absolute; display: none; width: 110px; height: 110px; border-radius: 50%;
-  background: rgba(255,255,255,.10); border: 2px solid rgba(255,255,255,.28);
+  position: fixed; display: none; width: 124px; height: 124px; border-radius: 50%;
+  background: rgba(255,255,255,.12); border: 2.5px solid rgba(255,255,255,.4);
+  box-shadow: 0 4px 16px rgba(0,0,0,.3);
 }
-#stick-nub { position: absolute; left: 50%; top: 50%; width: 46px; height: 46px; border-radius: 50%; background: rgba(255,255,255,.5); transform: translate(-50%,-50%); }
+#stick-base::after {
+  content: 'WALK'; position: absolute; left: 50%; bottom: -22px; transform: translateX(-50%);
+  font-size: 10px; letter-spacing: .25em; color: rgba(255,255,255,.75); text-shadow: 0 1px 3px #000;
+}
+#stick-nub { position: absolute; left: 50%; top: 50%; width: 52px; height: 52px; border-radius: 50%; background: rgba(255,255,255,.55); transform: translate(-50%,-50%); box-shadow: 0 2px 8px rgba(0,0,0,.35); }
 #touch-action {
-  position: absolute; right: 22px; bottom: 30vh; width: 76px; height: 76px; border-radius: 50%;
-  font-size: 28px; font-weight: 700; border: none; background: var(--gold); color: #332404;
+  position: absolute; right: 20px; bottom: calc(27vh + env(safe-area-inset-bottom, 0px));
+  width: 80px; height: 80px; border-radius: 50%;
+  font-size: 30px; font-weight: 700; border: none; background: var(--gold); color: #332404;
   box-shadow: 0 6px 18px rgba(0,0,0,.45); pointer-events: auto;
 }
 body.touch #stick-zone { pointer-events: auto; }
+body.touch #stick-base { display: block; }
+body.touch #minimap-wrap { bottom: calc(14px + env(safe-area-inset-bottom, 0px)); }
 
 /* ── Info card ── */
 #card { background: rgba(8, 8, 10, .55); backdrop-filter: blur(3px); }

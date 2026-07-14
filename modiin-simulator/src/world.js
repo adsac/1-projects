@@ -3,9 +3,10 @@ import * as THREE from 'three';
 import { WORLD } from './loader.js';
 
 export class World {
-  constructor(scene, heightAt) {
+  constructor(scene, heightAt, low = false) {
     this.scene = scene;
     this.heightAt = heightAt;
+    this.low = low;
     this.night = false;
     this._buildGround();
     this._buildSky();
@@ -22,9 +23,23 @@ export class World {
       pos.setY(k, this.heightAt(pos.getX(k), pos.getZ(k)));
     }
     geo.computeVertexNormals();
-    const tex = new THREE.TextureLoader().load('data/ground.jpg');
+    // on weak GPUs, downscale the 4096² ground texture to save ~70 MB of VRAM
+    const tex = new THREE.Texture();
     tex.colorSpace = THREE.SRGBColorSpace;
-    tex.anisotropy = 8;
+    tex.anisotropy = this.low ? 2 : 8;
+    const img = new Image();
+    img.onload = () => {
+      if (this.low) {
+        const c = document.createElement('canvas');
+        c.width = c.height = 2048;
+        c.getContext('2d').drawImage(img, 0, 0, 2048, 2048);
+        tex.image = c;
+      } else {
+        tex.image = img;
+      }
+      tex.needsUpdate = true;
+    };
+    img.src = 'data/ground.jpg';
     const mat = new THREE.MeshLambertMaterial({ map: tex });
     this.ground = new THREE.Mesh(geo, mat);
     this.ground.receiveShadow = true;

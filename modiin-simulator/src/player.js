@@ -66,16 +66,26 @@ export class Player {
     const nub = document.getElementById('stick-nub');
     let stickId = null, cx = 0, cy = 0;
     let lookId = null, lx = 0, ly = 0;
+    const HALF = 62;   // base is 124px
 
-    const isTouchLike = matchMedia('(pointer: coarse)').matches;
+    const isTouchLike = matchMedia('(pointer: coarse)').matches || 'ontouchstart' in window;
     if (isTouchLike) document.body.classList.add('touch');
+
+    // the pad is always visible at a rest position so thumbs know where to go
+    const rest = () => {
+      base.style.left = '26px';
+      base.style.top = (innerHeight - 124 - 110) + 'px';
+      nub.style.transform = 'translate(-50%,-50%)';
+    };
+    if (isTouchLike) { rest(); addEventListener('resize', rest); }
 
     zone.addEventListener('touchstart', e => {
       const t = e.changedTouches[0];
       if (stickId !== null) return;
-      stickId = t.identifier; cx = t.clientX; cy = t.clientY;
-      base.style.display = 'block';
-      base.style.left = (cx - 55) + 'px'; base.style.top = (cy - 55) + 'px';
+      stickId = t.identifier;
+      cx = t.clientX;
+      cy = Math.min(t.clientY, innerHeight - 92);   // keep clear of browser bottom bars
+      base.style.left = (cx - HALF) + 'px'; base.style.top = (cy - HALF) + 'px';
       e.preventDefault();
     }, { passive: false });
 
@@ -83,7 +93,7 @@ export class Player {
       for (const t of e.changedTouches) {
         if (t.identifier === stickId) {
           const dx = t.clientX - cx, dy = t.clientY - cy;
-          const len = Math.hypot(dx, dy), max = 48;
+          const len = Math.hypot(dx, dy), max = 54;
           const k = len > max ? max / len : 1;
           this.stick.x = (dx * k) / max; this.stick.y = (dy * k) / max;
           this.stick.active = true;
@@ -101,7 +111,7 @@ export class Player {
       for (const t of e.changedTouches) {
         if (t.identifier === stickId) {
           stickId = null; this.stick.active = false; this.stick.x = this.stick.y = 0;
-          base.style.display = 'none'; nub.style.transform = 'translate(-50%,-50%)';
+          rest();
         }
         if (t.identifier === lookId) lookId = null;
       }
